@@ -6,6 +6,9 @@
 <title>Religiões em Comparação - Conheça. Compare. Examine.</title>
 <meta name="description" content="Compare crenças, ritos, origens e ensinamentos de mais de 20 religiões e denominações. Examine tudo à luz do Novo Testamento.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%23132449'/%3E%3Cpath d='M10 16c6-3 10-1 14 2v16c-4-3-8-5-14-2Z' fill='%23e2c25a'/%3E%3Cpath d='M38 16c-6-3-10-1-14 2v16c4-3 8-5 14-2Z' fill='%23f2dd8d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    RELIGIÕES EM COMPARAÇÃO - folha de estilos
@@ -125,6 +128,7 @@
   --red: #e2685f;
   --purple-light: #241a3d;
   --gold-text: var(--gold-light);
+  --gray-neutral-light: #1c2740;
 }
 
 /* Redução de movimento: desativa/encurta animações e transições
@@ -143,7 +147,8 @@ html { scroll-behavior: smooth; overflow-x: hidden; -webkit-text-size-adjust: 10
 body {
   margin: 0;
   min-width: 320px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-feature-settings: "cv11", "ss01";
   background: var(--bg);
   color: var(--text);
   font-size: var(--fs-body);
@@ -672,19 +677,155 @@ table.similarity-table th { background: var(--gray-50); font-size: var(--fs-labe
 }
 .mobile-ritual-card details.nt-group-mobile summary::-webkit-details-marker { display: none; }
 
-/* ---------- Comparison page ---------- */
-.vs-header { display: flex; align-items: center; justify-content: center; gap: var(--space-6); padding: var(--space-7) 0; text-align: center; flex-wrap: wrap; }
-.vs-header .side { min-width: 0; }
-.vs-header .side h2 { margin: 6px 0 2px; font-size: var(--fs-h2); }
-.vs-header .vs-circle { width: 52px; height: 52px; border-radius: 50%; background: var(--gold); color: var(--navy-950); display: flex; align-items: center; justify-content: center; font-weight: 900; flex-shrink: 0; }
-table.compare-table { width: 100%; border-collapse: collapse; background: var(--bg-elevated); min-width: 520px; }
-table.compare-table th, table.compare-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 13.5px; vertical-align: top; text-align: left; }
-table.compare-table thead th { background: var(--navy-900); color: var(--text-on-dark); position: sticky; top: 0; }
-table.compare-table tbody th { width: 150px; background: var(--gray-50); font-weight: 700; white-space: nowrap; }
-.similarities-diffs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-top: var(--space-7); }
-@media (max-width: 800px) { .similarities-diffs { grid-template-columns: 1fr; } }
+/* ============================================================
+   COMPARADOR - página de comparação lado a lado
+   Estrutura: topbar → VS header → chips de navegação → tabela
+   (desktop/tablet) ou cards por tema (mobile) → resumo → fontes.
+   Verde = semelhança, âmbar = diferença, cinza = não se aplica.
+   As cores nunca indicam "religião boa/religião ruim" - apenas se
+   as duas tradições concordam ou divergem no ponto comparado.
+   ============================================================ */
+.compare-page { padding-top: var(--space-6); }
+.compare-topbar { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-5); }
+.compare-back {
+  font-size: 13px; font-weight: 700; color: var(--text-muted); display: inline-flex; align-items: center;
+  gap: 4px; min-height: var(--tap-min); padding: 6px 4px;
+}
+.compare-back:hover { color: var(--gold-text); }
+.compare-eyebrow { font-size: var(--fs-label); font-weight: 800; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; }
+
+.compare-vs-header {
+  display: flex; align-items: center; justify-content: center; gap: var(--space-7); padding: var(--space-6) 0 var(--space-7);
+  text-align: center; flex-wrap: wrap;
+}
+.compare-side { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.compare-name { margin: 0; font-size: var(--fs-h2); letter-spacing: 0.01em; text-transform: uppercase; line-height: 1.15; max-width: 20ch; }
+.compare-vs-circle {
+  width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: var(--navy-950); display: flex; align-items: center; justify-content: center; font-weight: 900;
+  font-size: 15px; flex-shrink: 0; box-shadow: 0 8px 20px rgba(201,162,39,0.3);
+}
+
+/* Chips de navegação rápida por tema */
+.compare-nav-chips {
+  display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px var(--space-5); scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+.compare-nav-chip {
+  flex-shrink: 0; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 999px;
+  padding: 8px 14px; font-size: 12.5px; font-weight: 700; color: var(--text-muted); white-space: nowrap;
+  min-height: 36px; transition: all var(--dur-fast) var(--ease);
+}
+.compare-nav-chip:hover, .compare-nav-chip:focus-visible { border-color: var(--gold); color: var(--gold-text); }
+
+/* Tabela (desktop / tablet) */
+.compare-mobile { display: none; }
+@media (max-width: 680px) { .compare-desktop { display: none; } .compare-mobile { display: block; } }
+
+.compare-table-scroll { max-height: 74vh; }
+table.compare-table { width: 100%; table-layout: fixed; border-collapse: collapse; background: var(--bg-elevated); min-width: 800px; }
+table.compare-table th, table.compare-table td { padding: var(--space-4) var(--space-4); border-bottom: 1px solid var(--border); font-size: 13.5px; vertical-align: top; text-align: left; overflow-wrap: break-word; }
+table.compare-table thead th {
+  background: var(--navy-900); color: var(--text-on-dark); position: sticky; top: 0; z-index: 2;
+  font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 800;
+}
+/* table-layout:fixed usa a largura das células da primeira linha (thead)
+   para definir as colunas - por isso os percentuais ficam aqui, e não
+   só nas classes .pos-cell/.comparativo-cell do corpo da tabela. */
+table.compare-table thead th:nth-child(1) { width: 190px; }
+table.compare-table thead th:nth-child(2) { width: 27%; }
+table.compare-table thead th:nth-child(3) { width: 26%; }
+table.compare-table thead th:nth-child(4) { width: 27%; }
+table.compare-table thead th.theme-col-head { left: 0; z-index: 4; }
+table.compare-table th.theme-cell, table.compare-table thead th.theme-col-head { position: sticky; left: 0; }
+table.compare-table th.theme-cell {
+  z-index: 1; background: var(--bg-elevated); white-space: normal;
+  box-shadow: 2px 0 6px rgba(16,31,61,0.05);
+}
+table.compare-table tbody tr.compare-theme-row:hover th.theme-cell,
+table.compare-table tbody tr.compare-theme-row:hover td { background: var(--gray-50); }
+table.compare-table tbody tr.compare-theme-row.open th.theme-cell,
+table.compare-table tbody tr.compare-theme-row.open td.comparativo-cell { background: var(--gray-100); }
+.theme-toggle {
+  background: none; border: none; padding: 0; display: flex; align-items: center; gap: 8px; width: 100%;
+  text-align: left; font-weight: 700; font-size: 13.5px; color: var(--text); min-height: var(--tap-min);
+}
+.theme-icon { font-size: 17px; flex-shrink: 0; transition: transform var(--dur-fast) var(--ease); }
+.theme-toggle:hover .theme-icon { transform: scale(1.12); }
+.theme-label { flex: 1; }
+.theme-chevron { font-size: 11px; color: var(--text-muted); transition: transform var(--dur-fast) var(--ease); flex-shrink: 0; }
+.compare-theme-row.open .theme-chevron { transform: rotate(90deg); color: var(--gold-text); }
+.pos-cell { color: var(--text-muted); line-height: 1.55; width: 27%; }
+.comparativo-cell { width: 26%; }
+.comparativo-note { margin: 8px 0 0; font-size: 12.5px; color: var(--text-muted); line-height: 1.5; }
+.compare-detail-row td { padding: 0; border-bottom: 2px solid var(--gold); background: var(--gray-50); }
+.compare-detail-row[hidden] { display: none; }
+
+.comparativo-pill {
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px;
+  font-size: var(--fs-badge); font-weight: 800; white-space: nowrap;
+}
+.rel-sim { background: var(--green-light); color: var(--green); }
+.rel-diff { background: var(--amber-light); color: var(--amber); }
+.rel-na { background: var(--gray-neutral-light); color: var(--gray-600); }
+[data-theme="dark"] .rel-na { color: var(--gray-300); }
+
+/* Painel de detalhe (expandido a partir da linha, ou dentro do card mobile) */
+.compare-detail-grid { display: grid; grid-template-columns: 1fr minmax(260px, 340px) 1fr; gap: var(--space-5); padding: var(--space-5); align-items: start; }
+.compare-detail-grid-2 { grid-template-columns: 1fr 1fr; }
+@media (max-width: 980px) { .compare-detail-grid { grid-template-columns: 1fr; } }
+.compare-detail-side h4 { margin: 0 0 8px; font-size: var(--fs-h4); }
+.compare-detail-side p { margin: 8px 0 0; font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+.compare-detail-label { font-size: var(--fs-label); font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); margin-top: 12px !important; }
+.compare-detail-actions { display: flex; gap: 10px; flex-wrap: wrap; padding: 0 var(--space-5) var(--space-5); }
+
+/* Realce ao navegar via chip/atalho */
+.compare-flash { animation: compareFlash 1.2s var(--ease); }
+@keyframes compareFlash {
+  0% { box-shadow: 0 0 0 3px rgba(201,162,39,0.55); }
+  100% { box-shadow: 0 0 0 0 rgba(201,162,39,0); }
+}
+
+/* Versão mobile: um card por tema (não é a tabela encolhida) */
+.compare-mobile-list { display: flex; flex-direction: column; gap: var(--space-4); }
+.compare-mobile-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-4); box-shadow: var(--shadow); scroll-margin-top: 90px; }
+.cmc-head { display: flex; align-items: center; gap: 10px; margin-bottom: var(--space-2); }
+.cmc-icon { font-size: 19px; }
+.compare-mobile-card h4 { margin: 0; font-size: 14.5px; }
+.cmc-side { padding: 10px 0; border-top: 1px dashed var(--border); }
+.cmc-side:first-of-type { border-top: none; }
+.cmc-rel-name { font-size: 11.5px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); }
+.cmc-side p { margin: 6px 0 0; font-size: 13px; color: var(--text); line-height: 1.5; }
+.cmc-comparativo { padding: 12px; margin: 4px 0; background: var(--gray-50); border-radius: var(--radius-sm); }
+.cmc-details { margin-top: 10px; border-top: 1px dashed var(--border); padding-top: 10px; }
+.cmc-details summary { cursor: pointer; list-style: none; font-size: 12.5px; font-weight: 700; color: var(--gold-text); display: flex; align-items: center; gap: 6px; min-height: 36px; }
+.cmc-details summary::-webkit-details-marker { display: none; }
+.cmc-details[open] summary .chevron { transform: rotate(90deg); }
+.cmc-details-body { padding-top: 6px; }
+.cmc-details-body .compare-detail-grid, .cmc-details-body .compare-detail-actions { padding-left: 0; padding-right: 0; }
+
+/* Resumo dinâmico: semelhanças e diferenças principais */
+.compare-summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-top: var(--space-8); }
+@media (max-width: 800px) { .compare-summary-grid { grid-template-columns: 1fr; } }
+.summary-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-5); box-shadow: var(--shadow); }
+.summary-card h3 { margin: 0 0 var(--space-3); font-size: var(--fs-h4); }
+.summary-sims { border-top: 3px solid var(--green); }
+.summary-diffs { border-top: 3px solid var(--amber); }
+.compare-summary-empty { font-size: 13px; color: var(--text-muted); margin: 0; }
+.compare-summary-link { background: none; border: none; padding: 0; font-size: 13.5px; color: var(--text); text-align: left; min-height: 28px; }
+.compare-summary-link:hover { color: var(--gold-text); }
 .diff-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .diff-list li { background: var(--gray-50); border-radius: var(--radius-sm); padding: 10px 12px; font-size: 13.5px; }
+.diff-list .comparativo-note { color: var(--text-muted); }
+
+/* Fontes e referências */
+.compare-sources-cta {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); flex-wrap: wrap;
+  margin-top: var(--space-7); padding: var(--space-5); background: var(--gray-50); border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.compare-sources-cta h3 { margin: 0 0 4px; font-size: var(--fs-h4); }
+.compare-sources-cta p { margin: 0; font-size: 13px; color: var(--text-muted); max-width: 60ch; }
 
 /* ---------- Disclaimer ---------- */
 .disclaimer { background: var(--amber-light); color: var(--gray-800); border: 1px solid rgba(138,93,10,0.3); border-radius: var(--radius); padding: var(--space-5); font-size: var(--fs-body); }
@@ -2992,66 +3133,282 @@ if (typeof module !== "undefined") {
     );
   }
 
+  // ============================================================
+  // COMPARADOR - motor de comparação tema a tema (dados reais)
+  // ============================================================
+  // Temas doutrinários (texto livre em data-religions.js) - comparados
+  // por sobreposição de palavras-chave reais dos dois textos cadastrados.
+  var COMPARE_DOCTRINE_THEMES = [
+    { key: "god", icon: "🌌", label: "Deus", field: "god" },
+    { key: "jesus", icon: "✝", label: "Jesus", field: "jesus" },
+    { key: "salvation", icon: "🔑", label: "Salvação", field: "salvation" },
+    { key: "afterlife", icon: "🌅", label: "Vida após a morte", field: "afterlife" },
+  ];
+  // Temas rituais (categóricos em data-matrix.js) - todos os ritos já
+  // cadastrados no sistema entram na comparação, na mesma ordem usada
+  // na tabela geral de ritos e práticas.
+  var COMPARE_RITUAL_THEME_IDS = [
+    "escrituras", "agua", "oracao", "batismo", "ceia-comunhao", "jejum",
+    "sacerdocio", "acesso-a-deus", "confissao", "imagens", "oleo-uncao",
+    "imposicao-maos", "oferendas", "incorporacao", "peregrinacao",
+    "velas-incenso", "roupa-branca",
+  ];
+  var COMPARE_STOPWORDS = {
+    que: 1, como: 1, para: 1, com: 1, uma: 1, um: 1, de: 1, da: 1, do: 1, das: 1, dos: 1,
+    em: 1, por: 1, sobre: 1, nao: 1, sao: 1, foi: 1, ser: 1, tem: 1, seu: 1, sua: 1, seus: 1,
+    suas: 1, mais: 1, pela: 1, pelo: 1, aos: 1, num: 1, numa: 1, esta: 1, este: 1, isso: 1,
+    essa: 1, esse: 1, mas: 1, ou: 1, ao: 1, na: 1, no: 1, se: 1, sem: 1, ja: 1, the: 1, and: 1,
+  };
+  function compareTokens(str) {
+    return normalizeText(str).split(/[^a-z0-9]+/i).filter(function (w) { return w.length > 2 && !COMPARE_STOPWORDS[w]; });
+  }
+  function jaccardSim(tokensA, tokensB) {
+    var setB = {};
+    tokensB.forEach(function (t) { setB[t] = true; });
+    var union = {}, unionCount = 0, inter = 0, seenA = {};
+    tokensA.concat(tokensB).forEach(function (t) { if (!union[t]) { union[t] = true; unionCount++; } });
+    tokensA.forEach(function (t) { if (!seenA[t]) { seenA[t] = true; if (setB[t]) inter++; } });
+    return unionCount ? inter / unionCount : 0;
+  }
+  function sharedTokens(tokensA, tokensB, n) {
+    var setB = {}, seen = {}, out = [];
+    tokensB.forEach(function (t) { setB[t] = true; });
+    tokensA.forEach(function (t) { if (setB[t] && !seen[t]) { seen[t] = true; out.push(t); } });
+    return out.slice(0, n || 3);
+  }
+  function excerpt(str, n) {
+    str = (str || "").toString().trim();
+    if (str.length <= n) return str;
+    var cut = str.slice(0, n);
+    var lastSpace = cut.lastIndexOf(" ");
+    if (lastSpace > n * 0.6) cut = cut.slice(0, lastSpace);
+    return cut + "…";
+  }
+
+  function compareDoctrineTheme(def, a, b) {
+    var aText = a.doctrines[def.field] || "", bText = b.doctrines[def.field] || "";
+    var ta = compareTokens(aText), tb = compareTokens(bText);
+    var score = jaccardSim(ta, tb);
+    var relation = score >= 0.12 ? "semelhante" : "diferente";
+    var note;
+    if (relation === "semelhante") {
+      var shared = sharedTokens(ta, tb, 4);
+      note = shared.length
+        ? "Pontos em comum identificados nos textos cadastrados de ambas: " + shared.join(", ") + "."
+        : "As posições registradas para as duas tradições convergem em termos gerais.";
+    } else {
+      note = a.shortName + ": “" + excerpt(aText, 100) + "” · " + b.shortName + ": “" + excerpt(bText, 100) + "”";
+    }
+    return { key: def.key, icon: def.icon, label: def.label, kind: "doctrine", aText: aText, bText: bText, relation: relation, note: note };
+  }
+
+  function compareRitualTheme(ritId, a, b) {
+    var rit = findRitual(ritId);
+    var ca = (MATRIX[a.slug] || {})[ritId], cb = (MATRIX[b.slug] || {})[ritId];
+    var sa = ca ? ca.status : "naplica", sb = cb ? cb.status : "naplica";
+    var aPractices = sa !== "nao" && sa !== "naplica";
+    var bPractices = sb !== "nao" && sb !== "naplica";
+    var relation, note;
+    if (sa === "naplica" || sb === "naplica") {
+      relation = "naplica";
+      note = sa === "naplica" && sb === "naplica"
+        ? "Não há dado cadastrado sobre " + rit.name + " para nenhuma das duas tradições."
+        : "Não há dado comparável sobre " + rit.name + " para " + (sa === "naplica" ? a.shortName : b.shortName) + ".";
+    } else if (!aPractices && !bPractices) {
+      relation = "naplica";
+      note = "Nenhuma das duas tradições pratica " + rit.name + ".";
+    } else if (aPractices !== bPractices) {
+      relation = "diferente";
+      var who = aPractices ? a.shortName : b.shortName, other = aPractices ? b.shortName : a.shortName;
+      var whoUsage = aPractices ? ca.usage : cb.usage;
+      note = who + " pratica " + rit.name + (whoUsage ? " (" + whoUsage + ")" : "") + "; " + other + " não pratica.";
+    } else if (sa === sb) {
+      relation = "semelhante";
+      note = "Ambas praticam de forma semelhante entre si (" + STATUS[sa].label.toLowerCase() + ").";
+    } else {
+      relation = "diferente";
+      note = a.shortName + ": " + (ca.purpose || ca.usage || STATUS[sa].label) + " · " + b.shortName + ": " + (cb.purpose || cb.usage || STATUS[sb].label);
+    }
+    return {
+      key: ritId, icon: rit.icon, label: rit.name, kind: "ritual", rit: rit,
+      aText: ca && ca.usage ? ca.usage : (STATUS[sa] ? STATUS[sa].label : "Não se aplica"),
+      bText: cb && cb.usage ? cb.usage : (STATUS[sb] ? STATUS[sb].label : "Não se aplica"),
+      relation: relation, note: note,
+    };
+  }
+
+  function buildComparisonThemes(aSlug, bSlug) {
+    var a = findReligion(aSlug), b = findReligion(bSlug);
+    var themes = [];
+    COMPARE_DOCTRINE_THEMES.forEach(function (def) { themes.push(compareDoctrineTheme(def, a, b)); });
+    COMPARE_RITUAL_THEME_IDS.forEach(function (id) { if (findRitual(id)) themes.push(compareRitualTheme(id, a, b)); });
+    return themes;
+  }
+
+  function summarizeComparison(themes, a, b) {
+    var sims = themes.filter(function (t) { return t.relation === "semelhante"; });
+    var diffs = themes.filter(function (t) { return t.relation === "diferente"; });
+    if (a.assessment.status !== b.assessment.status) {
+      diffs.unshift({
+        key: "assessment", icon: "⚖️", label: "Avaliação bíblica geral", relation: "diferente",
+        note: a.shortName + " está classificada como “" + statusLabel(a.assessment.status) + "”, enquanto " + b.shortName + " está como “" + statusLabel(b.assessment.status) + "”.",
+      });
+    }
+    return { sims: sims, diffs: diffs };
+  }
+
+  var COMPARE_RELATION_META = {
+    semelhante: { icon: "🟢", label: "Ensinamento semelhante", cls: "rel-sim" },
+    diferente: { icon: "🟠", label: "Ensinamento diferente", cls: "rel-diff" },
+    naplica: { icon: "⚪", label: "Não se aplica", cls: "rel-na" },
+  };
+  function compareRelationPill(relation) {
+    var m = COMPARE_RELATION_META[relation] || COMPARE_RELATION_META.naplica;
+    return '<span class="comparativo-pill ' + m.cls + '">' + m.icon + " " + esc(m.label) + "</span>";
+  }
+
+  function compareHeaderMarkup(a, b) {
+    return (
+      '<div class="compare-topbar">' +
+      '<a class="compare-back" href="#/comparar">← Voltar</a>' +
+      '<span class="compare-eyebrow">Comparação de Religiões</span>' +
+      "</div>" +
+      '<div class="compare-vs-header">' +
+      '<div class="compare-side"><span class="badge ' + statusBadgeClass(a.assessment.status) + '">' + statusLabel(a.assessment.status) + '</span><h1 class="compare-name">' + esc(a.name) + "</h1></div>" +
+      '<div class="compare-vs-circle" aria-hidden="true">VS</div>' +
+      '<div class="compare-side"><span class="badge ' + statusBadgeClass(b.assessment.status) + '">' + statusLabel(b.assessment.status) + '</span><h1 class="compare-name">' + esc(b.name) + "</h1></div>" +
+      "</div>"
+    );
+  }
+
+  function compareNavChipsMarkup(themes) {
+    return (
+      '<nav class="compare-nav-chips" aria-label="Navegar por tema">' +
+      themes.map(function (t) {
+        return '<button type="button" class="compare-nav-chip" data-action="compare-jump" data-key="' + t.key + '">' + t.icon + " " + esc(t.label) + "</button>";
+      }).join("") +
+      "</nav>"
+    );
+  }
+
+  function compareDetailMarkup(t, a, b) {
+    if (t.kind === "ritual") {
+      var rit = t.rit;
+      var ca = (MATRIX[a.slug] || {})[rit.id] || { status: "naplica" };
+      var cb = (MATRIX[b.slug] || {})[rit.id] || { status: "naplica" };
+      var sta = STATUS[ca.status] || STATUS.naplica, stb = STATUS[cb.status] || STATUS.naplica;
+      return (
+        '<div class="compare-detail-grid">' +
+        '<div class="compare-detail-side"><h4>' + esc(a.name) + '</h4><span class="status-pill" style="background:' + sta.color + '22;color:' + sta.color + '">' + sta.icon + " " + esc(sta.label) + "</span>" +
+        (ca.usage ? "<p>" + glossify(ca.usage) + "</p>" : "") +
+        (ca.purpose ? '<p class="compare-detail-label">Finalidade</p><p>' + glossify(ca.purpose) + "</p>" : "") +
+        "</div>" +
+        '<div class="compare-detail-nt"><div class="nt-panel nt-panel-inline">' + ntPanelBody(rit) + "</div></div>" +
+        '<div class="compare-detail-side"><h4>' + esc(b.name) + '</h4><span class="status-pill" style="background:' + stb.color + '22;color:' + stb.color + '">' + stb.icon + " " + esc(stb.label) + "</span>" +
+        (cb.usage ? "<p>" + glossify(cb.usage) + "</p>" : "") +
+        (cb.purpose ? '<p class="compare-detail-label">Finalidade</p><p>' + glossify(cb.purpose) + "</p>" : "") +
+        "</div>" +
+        "</div>" +
+        '<div class="compare-detail-actions">' +
+        '<a class="btn btn-outline-light btn-sm" href="#/biblia/' + rit.id + '">Examinar na Bíblia →</a>' +
+        '<button type="button" class="btn btn-outline-light btn-sm" data-action="open-similarities" data-ritual="' + rit.id + '">Ver todas as religiões neste tema</button>' +
+        "</div>"
+      );
+    }
+    return (
+      '<div class="compare-detail-grid compare-detail-grid-2">' +
+      '<div class="compare-detail-side"><h4>' + esc(a.name) + "</h4><p>" + glossify(t.aText) + "</p>" +
+      (a.assessment.verses || []).slice(0, 2).map(function (v) { return verseBlock(v, { noAction: true }); }).join("") +
+      "</div>" +
+      '<div class="compare-detail-side"><h4>' + esc(b.name) + "</h4><p>" + glossify(t.bText) + "</p>" +
+      (b.assessment.verses || []).slice(0, 2).map(function (v) { return verseBlock(v, { noAction: true }); }).join("") +
+      "</div>" +
+      "</div>" +
+      '<div class="compare-detail-actions">' +
+      '<a class="btn btn-outline-light btn-sm" href="#/religiao/' + a.slug + '">Ver análise completa de ' + esc(a.shortName) + " →</a>" +
+      '<a class="btn btn-outline-light btn-sm" href="#/religiao/' + b.slug + '">Ver análise completa de ' + esc(b.shortName) + " →</a>" +
+      "</div>"
+    );
+  }
+
+  function compareTableRowsMarkup(themes, a, b) {
+    return themes.map(function (t) {
+      return (
+        '<tr class="compare-theme-row" id="theme-' + t.key + '">' +
+        '<th class="theme-cell" scope="row"><button type="button" class="theme-toggle" data-action="compare-toggle-detail" data-target="detail-' + t.key + '" aria-expanded="false">' +
+        '<span class="theme-icon" aria-hidden="true">' + t.icon + '</span><span class="theme-label">' + esc(t.label) + '</span><span class="theme-chevron" aria-hidden="true">▸</span>' +
+        "</button></th>" +
+        '<td class="pos-cell">' + glossify(t.aText) + "</td>" +
+        '<td class="comparativo-cell">' + compareRelationPill(t.relation) + '<p class="comparativo-note">' + glossify(t.note) + "</p></td>" +
+        '<td class="pos-cell">' + glossify(t.bText) + "</td>" +
+        "</tr>" +
+        '<tr class="compare-detail-row" id="detail-' + t.key + '" hidden><td colspan="4">' + compareDetailMarkup(t, a, b) + "</td></tr>"
+      );
+    }).join("");
+  }
+
+  function compareMobileCardsMarkup(themes, a, b) {
+    return themes.map(function (t) {
+      return (
+        '<div class="compare-mobile-card" id="theme-m-' + t.key + '">' +
+        '<div class="cmc-head"><span class="cmc-icon" aria-hidden="true">' + t.icon + '</span><h4>' + esc(t.label) + "</h4></div>" +
+        '<div class="cmc-side"><span class="cmc-rel-name">' + esc(a.shortName) + "</span><p>" + glossify(t.aText) + "</p></div>" +
+        '<div class="cmc-comparativo">' + compareRelationPill(t.relation) + '<p class="comparativo-note">' + glossify(t.note) + "</p></div>" +
+        '<div class="cmc-side"><span class="cmc-rel-name">' + esc(b.shortName) + "</span><p>" + glossify(t.bText) + "</p></div>" +
+        '<details class="cmc-details"><summary>Ver detalhes e fontes<span class="chevron" aria-hidden="true">▸</span></summary><div class="cmc-details-body">' + compareDetailMarkup(t, a, b) + "</div></details>" +
+        "</div>"
+      );
+    }).join("");
+  }
+
+  function compareSummaryCardsMarkup(sims, diffs) {
+    function list(items, emptyMsg) {
+      if (!items.length) return '<p class="compare-summary-empty">' + esc(emptyMsg) + "</p>";
+      return (
+        '<ul class="diff-list">' +
+        items.slice(0, 8).map(function (t) {
+          return '<li><button type="button" class="compare-summary-link" data-action="compare-jump" data-key="' + t.key + '">' + t.icon + " <strong>" + esc(t.label) + "</strong></button><br>" + glossify(t.note) + "</li>";
+        }).join("") +
+        "</ul>"
+      );
+    }
+    return (
+      '<div class="compare-summary-grid">' +
+      '<div class="summary-card summary-sims"><h3>🟢 Semelhanças principais</h3>' + list(sims, "Poucas semelhanças diretas encontradas na nossa base de dados.") + "</div>" +
+      '<div class="summary-card summary-diffs"><h3>🟠 Diferenças principais</h3>' + list(diffs, "Sem diferenças marcantes identificadas na nossa base de dados.") + "</div>" +
+      "</div>"
+    );
+  }
+
+  function compareSourcesSectionMarkup() {
+    return (
+      '<div class="compare-sources-cta">' +
+      '<div><span class="eyebrow">Transparência</span><h3>Fontes e Referências</h3><p>Cada posição comparada acima vem dos versículos, classificações e descrições já cadastrados no site, com fontes bíblicas, históricas e acadêmicas documentadas.</p></div>' +
+      '<button type="button" class="btn btn-outline-light btn-sm" data-action="open-compare-sources">Ver fontes →</button>' +
+      "</div>"
+    );
+  }
+
   // ---------- Página de comparação lado a lado ----------
   function pageCompare(aSlug, bSlug) {
     var a = findReligion(aSlug), b = findReligion(bSlug);
     if (!a || !b) return '<div class="section container"><p>Selecione duas religiões válidas.</p><a href="#/comparar">Voltar</a></div>';
 
-    var themes = [
-      ["Deus", a.doctrines.god, b.doctrines.god],
-      ["Jesus", a.doctrines.jesus, b.doctrines.jesus],
-      ["Salvação", a.doctrines.salvation, b.doctrines.salvation],
-      ["Escrituras", a.doctrines.scripture, b.doctrines.scripture],
-      ["Vida após a morte", a.doctrines.afterlife, b.doctrines.afterlife],
-      ["Água e Purificação", ritualUsage(aSlug, "agua"), ritualUsage(bSlug, "agua")],
-      ["Oração", ritualUsage(aSlug, "oracao"), ritualUsage(bSlug, "oracao")],
-      ["Batismo", ritualUsage(aSlug, "batismo"), ritualUsage(bSlug, "batismo")],
-    ];
-
-    var rows = themes.map(function (t) {
-      return "<tr><th>" + t[0] + "</th><td>" + glossify(t[1]) + "</td><td>" + glossify(t[2]) + "</td></tr>";
-    }).join("");
-
-    var sims = [], diffs = [];
-    RITUALS.forEach(function (rit) {
-      var ca = (MATRIX[aSlug] || {})[rit.id], cb = (MATRIX[bSlug] || {})[rit.id];
-      var aHas = ca && (ca.status === "sim" || ca.status === "diferente" || ca.status === "semelhante");
-      var bHas = cb && (cb.status === "sim" || cb.status === "diferente" || cb.status === "semelhante");
-      if (aHas && bHas) sims.push(rit.icon + " Ambas praticam <strong>" + rit.name + "</strong> - prática semelhante, ainda que a finalidade possa variar.");
-      else if (aHas !== bHas) diffs.push(rit.icon + " <strong>" + rit.name + "</strong>: praticado por " + (aHas ? esc(a.shortName) : esc(b.shortName)) + ", não encontrado em " + (aHas ? esc(b.shortName) : esc(a.shortName)) + ".");
-    });
-    if (a.assessment.status !== b.assessment.status) {
-      diffs.unshift("Avaliação bíblica diferente: " + esc(a.shortName) + " está classificada como “" + statusLabel(a.assessment.status) + "”, enquanto " + esc(b.shortName) + " está como “" + statusLabel(b.assessment.status) + "”.");
-    }
+    var themes = buildComparisonThemes(aSlug, bSlug);
+    var summary = summarizeComparison(themes, a, b);
 
     return (
-      '<section class="section"><div class="container">' +
-      '<a class="btn btn-outline-light btn-sm" href="#/comparar">← Nova comparação</a>' +
-      '<div class="vs-header">' +
-      '<div class="side"><span class="badge ' + statusBadgeClass(a.assessment.status) + '">' + statusLabel(a.assessment.status) + '</span><h2>' + esc(a.name) + "</h2></div>" +
-      '<div class="vs-circle">VS</div>' +
-      '<div class="side"><span class="badge ' + statusBadgeClass(b.assessment.status) + '">' + statusLabel(b.assessment.status) + '</span><h2>' + esc(b.name) + "</h2></div>" +
-      "</div>" +
-      '<div class="table-scroll"><table class="compare-table"><thead><tr><th>Tema</th><th>' + esc(a.name) + "</th><th>" + esc(b.name) + "</th></tr></thead><tbody>" + rows + "</tbody></table></div>" +
-
-      '<div class="similarities-diffs">' +
-      '<div><h3>O que é semelhante?</h3><ul class="diff-list">' + (sims.map(function (s) { return "<li>" + s + "</li>"; }).join("") || '<li>Poucas semelhanças rituais diretas encontradas.</li>') + "</ul></div>" +
-      '<div><h3>O que é diferente?</h3><ul class="diff-list">' + (diffs.map(function (s) { return "<li>" + s + "</li>"; }).join("") || "<li>Sem diferenças rituais marcantes na nossa base.</li>") + "</ul></div>" +
-      "</div>" +
-
-      '<div class="section-head" style="margin-top:36px"><div><span class="eyebrow">Análise</span><h2>O que o Novo Testamento diz?</h2></div></div>' +
-      '<div class="grid-2">' +
-      '<div class="info-card"><h3>' + esc(a.name) + '</h3><span class="badge ' + statusBadgeClass(a.assessment.status) + '">' + statusLabel(a.assessment.status) + "</span><p style='margin-top:10px'>" + glossify(a.assessment.explanation) + "</p>" + a.assessment.verses.slice(0, 2).map(function (v) { return verseBlock(v); }).join("") + "</div>" +
-      '<div class="info-card"><h3>' + esc(b.name) + '</h3><span class="badge ' + statusBadgeClass(b.assessment.status) + '">' + statusLabel(b.assessment.status) + "</span><p style='margin-top:10px'>" + glossify(b.assessment.explanation) + "</p>" + b.assessment.verses.slice(0, 2).map(function (v) { return verseBlock(v); }).join("") + "</div>" +
-      "</div>" +
+      '<section class="section compare-page"><div class="container">' +
+      compareHeaderMarkup(a, b) +
+      compareNavChipsMarkup(themes) +
+      '<div class="compare-desktop"><div class="table-scroll compare-table-scroll"><table class="compare-table"><thead><tr>' +
+      '<th class="theme-col-head">Tema</th><th>' + esc(a.name) + "</th><th>Comparativo</th><th>" + esc(b.name) + "</th>" +
+      "</tr></thead><tbody>" + compareTableRowsMarkup(themes, a, b) + "</tbody></table></div></div>" +
+      '<div class="compare-mobile"><div class="compare-mobile-list">' + compareMobileCardsMarkup(themes, a, b) + "</div></div>" +
+      compareSummaryCardsMarkup(summary.sims, summary.diffs) +
+      compareSourcesSectionMarkup() +
       "</div></section>"
     );
-  }
-  function ritualUsage(slug, ritId) {
-    var c = (MATRIX[slug] || {})[ritId];
-    if (!c) return "Não encontrado ou não se aplica.";
-    var st = STATUS[c.status];
-    return st.label + (c.usage ? " - " + c.usage : "");
   }
 
   // ---------- Linha do tempo ----------
@@ -3617,6 +3974,35 @@ if (typeof module !== "undefined") {
       var a = el.getAttribute("data-a");
       var b = $("#religion-compare-b").value;
       location.hash = "#/comparar/" + a + "/" + b;
+    },
+    "compare-toggle-detail": function (el) {
+      var target = document.getElementById(el.getAttribute("data-target"));
+      if (!target) return;
+      var expanded = el.getAttribute("aria-expanded") === "true";
+      el.setAttribute("aria-expanded", expanded ? "false" : "true");
+      target.hidden = expanded;
+      var row = el.closest("tr");
+      if (row) row.classList.toggle("open", !expanded);
+    },
+    "compare-jump": function (el) {
+      var key = el.getAttribute("data-key");
+      var isMobile = window.matchMedia && window.matchMedia("(max-width: 680px)").matches;
+      var id = isMobile ? "theme-m-" + key : "theme-" + key;
+      var target = document.getElementById(id) || document.getElementById("theme-" + key) || document.getElementById("theme-m-" + key);
+      if (!target) return;
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      target.classList.add("compare-flash");
+      setTimeout(function () { target.classList.remove("compare-flash"); }, 1200);
+    },
+    "open-compare-sources": function (el) {
+      var content = (
+        "<h3>📚 Fontes e Referências desta comparação</h3>" +
+        '<p class="sub">Base bíblica, histórica e acadêmica usada nas análises deste site.</p>' +
+        sourceGroup("Fontes Bíblicas", SOURCES.biblicas) +
+        sourceGroup("Fontes Históricas e Acadêmicas", SOURCES.historicas.concat(SOURCES.academicas)) +
+        '<p class="small" style="margin-top:14px"><a href="#/fontes" data-action="close-modal">Ver todas as fontes e dados estatísticos →</a></p>'
+      );
+      openModal(content, el);
     },
   };
 
