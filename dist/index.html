@@ -2991,14 +2991,29 @@ if (typeof module !== "undefined") {
     }).join("");
   }
 
+  // Ordem só para a tabela "Ritos e Práticas - Comparação Geral": religiões
+  // evangélicas, cristãs históricas e protestantes primeiro, depois as demais
+  // tradições - mantendo a ordem relativa original dentro de cada grupo.
+  // (As demais telas do site continuam usando a ordem teológica padrão de
+  // RELIGIONS, definida em data-religions.js.)
+  var RITUAL_TABLE_CHRISTIAN_CATS = { "neopentecostal": 1, "catolica": 1, "protestante-historica": 1, "pentecostal": 1, "reformada": 1 };
+  function ritualTableReligions() {
+    return RELIGIONS.slice().sort(function (a, b) {
+      var pa = RITUAL_TABLE_CHRISTIAN_CATS[a.category] ? 0 : 1;
+      var pb = RITUAL_TABLE_CHRISTIAN_CATS[b.category] ? 0 : 1;
+      return pa - pb;
+    });
+  }
+
   function ritualTableSection(activeRitualId) {
     activeRitualId = activeRitualId || "agua";
-    var thead = '<tr><th>Ritos e Práticas</th>' + RELIGIONS.map(function (r) {
+    var ritualReligions = ritualTableReligions();
+    var thead = '<tr><th>Ritos e Práticas</th>' + ritualReligions.map(function (r) {
       return '<th style="border-bottom:3px solid ' + r.color + '" title="' + esc(r.name) + '">' + esc(r.shortName) + "</th>";
     }).join("") + "</tr>";
 
     var rows = RITUALS.map(function (rit) {
-      var cells = RELIGIONS.map(function (r) {
+      var cells = ritualReligions.map(function (r) {
         var cell = (MATRIX[r.slug] || {})[rit.id] || { status: "naplica" };
         var st = STATUS[cell.status] || STATUS.naplica;
         var title = esc(r.name) + " - " + st.label + (cell.usage ? " - " + esc(cell.usage) : "");
