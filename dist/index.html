@@ -1299,6 +1299,161 @@ table.compare-table tbody tr.compare-theme-row.open td.comparativo-cell { backgr
   .hero-bible-aura { filter: blur(3px); }
 }
 
+/* ============================================================
+   BIBLIOTECA BÍBLICA - "A Verdade Sem Filtro"
+   ============================================================ */
+
+/* ---------- Card de destaque na home ---------- */
+.bib-promo-card {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-6);
+  background: linear-gradient(135deg, var(--navy-950), var(--navy-800));
+  border: 1px solid rgba(201,162,39,0.3);
+  border-radius: var(--radius);
+  padding: var(--space-6);
+  box-shadow: var(--shadow);
+  align-items: center;
+}
+.bib-promo-copy h2 { color: var(--white); font-size: var(--fs-h2); margin: 6px 0 10px; }
+.bib-promo-copy p { color: var(--text-muted-on-dark); font-size: var(--fs-body); line-height: 1.6; margin: 0 0 18px; }
+.bib-promo-list { display: flex; flex-direction: column; gap: 8px; }
+.bib-promo-item {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  color: var(--text-on-dark);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+.bib-promo-item:hover, .bib-promo-item:focus-visible { background: rgba(201,162,39,0.14); border-color: rgba(201,162,39,0.4); transform: translateX(3px); }
+.bib-promo-icon { font-size: 18px; }
+.bib-promo-more { justify-content: center; color: var(--gold-light); font-style: italic; }
+@media (max-width: 780px) {
+  .bib-promo-card { grid-template-columns: 1fr; }
+}
+
+/* ---------- Índice de temas ---------- */
+.bib-principle-note { font-size: var(--fs-body); line-height: 1.6; }
+.bib-category-group { margin-top: var(--space-6); }
+.bib-category-title { font-size: var(--fs-h4); font-weight: 800; margin-bottom: var(--space-3); color: var(--gold-text); }
+[data-theme="dark"] .bib-category-title { color: var(--gold-light); }
+.bib-topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--space-4); }
+.bib-topic-card {
+  display: flex; flex-direction: column;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.bib-topic-card:hover, .bib-topic-card:focus-visible { transform: translateY(-3px); border-color: var(--gold); }
+.bib-topic-icon { font-size: 26px; margin-bottom: 8px; }
+.bib-topic-cat { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-text); font-weight: 700; }
+[data-theme="dark"] .bib-topic-cat { color: var(--gold-light); }
+.bib-topic-card h3 { font-size: var(--fs-h4); margin: 6px 0 8px; font-weight: 800; }
+.bib-topic-card p { font-size: var(--fs-small); color: var(--text-muted); line-height: 1.5; flex: 1; margin: 0; }
+.bib-topic-cta { display: inline-block; margin-top: 12px; font-size: var(--fs-caption); font-weight: 700; color: var(--navy-900); }
+[data-theme="dark"] .bib-topic-cta { color: var(--gold-light); }
+
+/* ---------- Artigo de um tema ---------- */
+.bib-back { display: inline-block; margin-bottom: var(--space-4); font-size: var(--fs-caption); font-weight: 700; color: var(--text-muted); text-decoration: none; }
+.bib-back:hover { color: var(--gold-text); }
+.bib-article-head { margin-bottom: var(--space-5); }
+.bib-article-head h1 { font-size: var(--fs-h2); margin: 6px 0 10px; }
+.bib-article-summary { font-size: var(--fs-body-lg, var(--fs-body)); color: var(--text-muted); line-height: 1.6; }
+.bib-block { border-radius: var(--radius); padding: var(--space-5); margin-bottom: var(--space-4); border: 1px solid var(--border); background: var(--bg-elevated); }
+.bib-block h2 { font-size: var(--fs-h4); font-weight: 800; margin: 0 0 12px; }
+.bib-block p { font-size: var(--fs-body); line-height: 1.65; color: var(--text-muted); margin: 0 0 6px; }
+.bib-today { background: var(--gray-100); }
+.bib-old { border-left: 4px solid var(--navy-700); }
+.bib-new { border-left: 4px solid var(--gold); }
+.bib-historical { background: var(--gray-50); }
+.bib-conclusion {
+  background: linear-gradient(135deg, var(--navy-950), var(--navy-800));
+  border: 1px solid rgba(201,162,39,0.35);
+}
+.bib-conclusion h2 { color: var(--gold-light); }
+.bib-conclusion p { color: var(--white); font-weight: 600; font-size: var(--fs-body-lg, 17px); line-height: 1.7; }
+
+/* ---------- Comparador de versões dentro do artigo ---------- */
+.bib-verse-compare { margin-top: var(--space-4); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+.bib-verse-ref { background: var(--navy-900); color: var(--gold-light); font-weight: 800; font-size: var(--fs-caption); letter-spacing: 0.02em; padding: 10px 14px; }
+.bib-version-row { display: grid; grid-template-columns: 90px 1fr; gap: 12px; padding: 12px 14px; border-top: 1px solid var(--border); }
+.bib-version-row:nth-child(even) { background: var(--gray-50); }
+.bib-version-tag { font-weight: 800; font-size: 12px; color: var(--gold-text); align-self: start; }
+[data-theme="dark"] .bib-version-tag { color: var(--gold-light); }
+.bib-version-text { font-size: var(--fs-small); font-style: italic; color: var(--text-muted); line-height: 1.55; }
+
+/* ---------- Navegação entre temas ---------- */
+.bib-pager { display: flex; justify-content: space-between; gap: var(--space-3); margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px dashed var(--border); }
+.bib-pager a { font-size: var(--fs-caption); font-weight: 700; color: var(--navy-900); text-decoration: none; }
+[data-theme="dark"] .bib-pager a { color: var(--gold-light); }
+.bib-pager a:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .bib-version-row { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* ---------- Busca "Google da Bíblia" ---------- */
+.bib-search-hero { text-align: center; max-width: 720px; margin: 0 auto var(--space-5); }
+.bib-search-hero .eyebrow { display: block; margin-bottom: 4px; }
+.bib-search-hero h2 { font-size: var(--fs-h2); margin: 0 0 10px; }
+.bib-search-hero p { font-size: var(--fs-body); color: var(--text-muted); line-height: 1.6; margin: 0 auto var(--space-5); max-width: 62ch; }
+.bib-search-box {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 8px 6px 20px;
+  box-shadow: var(--shadow);
+  max-width: 560px;
+  margin: 0 auto;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.bib-search-box:focus-within { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,162,39,0.18); }
+.bib-search-box .btn-icon { flex-shrink: 0; color: var(--text-muted); width: 18px; height: 18px; }
+.bib-search-box input {
+  flex: 1; border: none; outline: none; background: transparent;
+  font-size: var(--fs-lead); color: var(--text); min-width: 0; padding: 10px 0;
+}
+.bib-search-box input::placeholder { color: var(--text-muted); }
+.bib-search-box button { border-radius: 999px; white-space: nowrap; }
+.bib-search-hint { font-size: 12px; color: var(--text-muted); margin: 10px 0 0; }
+.bib-filter-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: var(--space-4); }
+.bib-chip {
+  font-family: inherit; font-size: var(--fs-caption); font-weight: 700; cursor: pointer;
+  background: var(--gray-100); border: 1px solid var(--border); color: var(--text-muted);
+  border-radius: 999px; padding: 7px 16px; transition: all 0.15s ease;
+}
+.bib-chip:hover { border-color: var(--gold); color: var(--text); }
+.bib-chip.active { background: var(--navy-900); border-color: var(--navy-900); color: var(--white); }
+[data-theme="dark"] .bib-chip.active { background: var(--gold); border-color: var(--gold); color: var(--navy-950); }
+.bib-results-count { text-align: center; font-size: var(--fs-caption); font-weight: 700; color: var(--text-muted); min-height: 1.2em; margin: 0 0 var(--space-3); }
+.bib-no-results { text-align: center; color: var(--text-muted); padding: var(--space-6) 0; font-size: var(--fs-body); }
+
+/* ---------- Tags de tema + tradição no card/artigo ---------- */
+.bib-topic-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 4px; }
+.bib-topic-tradition {
+  font-size: 10.5px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 700;
+  color: var(--text-muted); background: var(--gray-100); border-radius: 999px; padding: 2px 9px;
+}
+[data-theme="dark"] .bib-topic-tradition { background: rgba(255,255,255,0.08); }
+.bib-verse-note { font-size: 12px; font-style: italic; color: var(--text-muted); padding: 8px 14px; border-top: 1px solid var(--border); background: var(--gray-50); }
+
+@media (max-width: 560px) {
+  .bib-search-box { flex-wrap: wrap; border-radius: var(--radius); padding: 12px 16px; }
+  .bib-search-box input { width: 100%; order: 1; }
+  .bib-search-box button { order: 2; margin-left: auto; }
+}
+
 </style>
 </head>
 <body>
@@ -2767,6 +2922,719 @@ if (typeof module !== "undefined") module.exports = { WORLDVIEW_TOPICS, WORLDVIE
 
 
 // ============================================================
+// BIBLIOTECA BÍBLICA - "A Verdade Sem Filtro"
+// Cada tema segue uma estrutura fixa: o que se ensina hoje, o que
+// o Antigo Testamento diz (texto + contexto histórico), o que a
+// Nova Aliança diz (texto + contexto histórico), comparativo entre
+// versões da Bíblia, argumentos históricos e conclusão direta.
+// Todos os versículos citados foram conferidos em pelo menos quatro
+// versões (NVI, ARA, NTLH, ACF) antes da publicação.
+// ============================================================
+
+const BIBLIOTECA_PRINCIPLE =
+  "A Bíblia não é aberta a opiniões humanas: o que está escrito está escrito. O padrão definitivo para o cristão é a Nova Aliança, inaugurada pela morte e ressurreição de Jesus Cristo. O Antigo Testamento deve ser respeitado e estudado, pois aponta para Cristo (Mateus 5:17) - mas, depois da cruz, as obrigações da Lei mosaica foram cumpridas nele (Hebreus 8-10). Qualquer ensino que imponha novamente, sobre o cristão de hoje, obrigações da Antiga Aliança como se fossem mandamentos da Nova Aliança é uma distorção. Esta página examina práticas comuns no meio evangélico à luz do texto bíblico, em português impecável, com fontes, com o texto integral em quatro versões e sem margem para “eu acho”.";
+
+const BIBLIOTECA_METHOD = [
+  { title: "O que se ensina hoje", text: "Descrição factual e neutra da prática, como é ensinada em parte significativa das igrejas contemporâneas." },
+  { title: "Antigo Testamento", text: "O texto e o contexto histórico em que a prática (ou o versículo usado para justificá-la) surgiu, antes da cruz." },
+  { title: "Nova Aliança", text: "O que os evangelhos e as cartas apostólicas, escritos depois da morte e ressurreição de Cristo, efetivamente ensinam." },
+  { title: "Comparativo de versões", text: "O texto integral do(s) versículo(s)-chave em NVI, ARA, NTLH e ACF, lado a lado." },
+  { title: "Fatos históricos", text: "Dados históricos, arqueológicos ou documentais verificáveis, com origem e data identificáveis." },
+  { title: "Conclusão", text: "Uma frase direta, sem rodeios, sobre o que a Bíblia de fato ordena - ou não ordena - na Nova Aliança." },
+];
+
+const BIBLIOTECA_TOPICS = [
+  // ------------------------------------------------------------
+  {
+    id: "dizimo",
+    icon: "💰",
+    category: "Dinheiro e Igreja",
+    title: "Dízimo obrigatório",
+    summary: "Dez por cento da renda como mandamento permanente - ou lei cerimonial já cumprida em Cristo?",
+    today:
+      "A maior parte das igrejas evangélicas contemporâneas - especialmente no meio neopentecostal e em setores do pentecostalismo clássico - ensina que o dízimo, isto é, dez por cento de toda a renda do fiel, é uma ordenança bíblica obrigatória, válida para todo cristão, em qualquer época e sob qualquer aliança. A prática é apresentada como mandamento permanente de Deus, não como escolha. Em muitas comunidades, o não pagamento do dízimo é associado a maldição financeira, é chamado publicamente de “roubo a Deus” e é apontado como causa direta de dificuldades materiais do fiel. Em diversos casos, dizimar é tratado como pré-requisito para ocupar cargos na igreja ou para ser considerado “fiel” à comunidade.",
+    oldTestament: {
+      context:
+        "O dízimo aparece pela primeira vez em Gênesis 14:20, quando Abraão entrega a Melquisedeque a décima parte do despojo de guerra - um gesto voluntário e único, sem legislação associada. A obrigação formal de dizimar surge séculos depois, dentro da Lei de Moisés, como parte do sistema que sustentava o culto de Israel. Levítico 27:30 declara que o dízimo da terra pertence ao Senhor; Números 18:21 determina que os dízimos de Israel fossem entregues à tribo de Levi “em herança, pelo serviço que prestam” - ou seja, o dízimo era o salário dos levitas, a única tribo que não recebeu terra em Canaã e que, por isso, dependia inteiramente desse sustento. O profeta Malaquias escreve depois do exílio babilônico: o povo havia retornado à terra, reconstruído o templo, mas negligenciava o seu sustento - os sacerdotes estavam sem provisão e o culto, em decadência. É nesse cenário concreto de restauração do sistema levítico do templo que Deus acusa a nação de “roubá-lo” nos dízimos e ofertas.",
+      verses: [
+        {
+          ref: "Malaquias 3:8-10",
+          versions: {
+            nvi: "Pode um homem roubar a Deus? Contudo, vocês estão me roubando. Ainda perguntam: “Em que te roubamos?”. Nos dízimos e nas ofertas. Vocês estão debaixo de grande maldição, porque estão me roubando; a nação toda está me roubando. Tragam o dízimo todo ao depósito do templo, para que haja mantimento na minha casa.",
+            ra: "Roubará o homem a Deus? Todavia, vós me roubais e dizeis: Em que te roubamos? Nos dízimos e nas ofertas. Com maldição sois amaldiçoados, porque a mim me roubais, vós, a nação toda. Trazei todos os dízimos à casa do Tesouro, para que haja mantimento na minha casa; e provai-me nisto, diz o Senhor dos Exércitos, se eu não vos abrir as janelas do céu e não derramar sobre vós bênção sem medida.",
+            ntlh: "Eu pergunto: “Será que alguém pode roubar a Deus?” Mas vocês têm roubado e ainda me perguntam: “Como é que estamos te roubando?” Vocês me roubam nos dízimos e nas ofertas. Todos vocês estão me roubando, e por isso eu amaldiçoo a nação toda. Eu, o Senhor Todo-Poderoso, ordeno que tragam todos os seus dízimos aos depósitos do Templo.",
+            acf: "Roubará o homem a Deus? Todavia vós me roubais, e dizeis: Em que te roubamos? Nos dízimos e nas ofertas. Com maldição sois amaldiçoados, porque a mim me roubais, sim, toda esta nação. Trazei todos os dízimos à casa do tesouro, para que haja mantimento na minha casa, e depois fazei prova de mim nisto, diz o Senhor dos Exércitos, se eu não vos abrir as janelas do céu, e não derramar sobre vós uma bênção tal até que não haja lugar suficiente para a recolherdes.",
+          },
+        },
+      ],
+    },
+    newCovenant: {
+      context:
+        "Jesus viveu e ensinou sob a Lei mosaica, antes da cruz - por isso, ao mencionar o dízimo em Mateus 23:23, ele o faz dentro do contexto da Antiga Aliança, ainda vigente naquele momento, e não institui uma nova ordenança para a igreja. O objetivo do texto não é ordenar o dízimo: é denunciar a hipocrisia dos fariseus, que cumpriam escrupulosamente os detalhes rituais da lei e negligenciavam “os preceitos mais importantes”: justiça, misericórdia e fidelidade. Depois da morte e ressurreição de Cristo, nenhuma epístola do Novo Testamento - nem Paulo, nem Pedro, nem Tiago, nem João, nem o autor de Hebreus - ordena o dízimo à igreja. Quando o Novo Testamento trata de finanças e generosidade, o faz em outros termos: em 1 Coríntios 16:2, Paulo pede que cada um separe semanalmente “conforme a sua prosperidade”; em 2 Coríntios 8 e 9, ao tratar da coleta para os cristãos pobres de Jerusalém, ele não menciona percentual fixo em nenhum momento - descreve o padrão do Novo Testamento como contribuição voluntária, decidida no coração, sem tristeza e sem constrangimento, “porque Deus ama a quem dá com alegria”.",
+      verses: [
+        {
+          ref: "Mateus 23:23",
+          versions: {
+            nvi: "Ai de vocês, mestres da lei e fariseus, hipócritas! Pois vocês dão o dízimo da hortelã, do endro e do cominho, mas têm negligenciado os preceitos mais importantes da lei: a justiça, a misericórdia e a fidelidade. Vocês deviam praticar estas coisas, sem omitir aquelas.",
+            ra: "Ai de vós, escribas e fariseus, hipócritas, porque dais o dízimo da hortelã, do endro e do cominho e tendes negligenciado os preceitos mais importantes da Lei: a justiça, a misericórdia e a fé; devíeis, porém, fazer estas coisas, sem omitir aquelas!",
+            ntlh: "Ai de vocês, mestres da Lei e fariseus, hipócritas! Pois vocês dão a Deus a décima parte até mesmo da hortelã, da erva-doce e do cominho, mas não obedecem aos mandamentos mais importantes da Lei, que são: o de serem justos com os outros, o de serem bondosos e o de serem honestos.",
+            acf: "Ai de vós, escribas e fariseus, hipócritas! Pois que dizimais a hortelã, o endro e o cominho, e desprezais o mais importante da lei, o juízo, a misericórdia e a fé; deveis, porém, fazer estas coisas, e não omitir aquelas.",
+          },
+        },
+        {
+          ref: "2 Coríntios 9:6-7",
+          versions: {
+            nvi: "Aquele que semeia com moderação também colherá moderadamente, e aquele que semeia com fartura também colherá fartamente. Cada um contribua conforme determinou no coração, não com pesar nem por obrigação, pois Deus ama a quem dá com alegria.",
+            ra: "Aquele que semeia pouco pouco também ceifará; e o que semeia com fartura com abundância também ceifará. Cada um contribua segundo tiver proposto no coração, não com tristeza ou por necessidade; porque Deus ama a quem dá com alegria.",
+            ntlh: "Quem planta pouco colhe pouco; quem planta muito colhe muito. Que cada um dê a sua oferta conforme resolveu no seu coração, não com tristeza nem por obrigação, pois Deus ama quem dá com alegria.",
+            acf: "O que semeia pouco, pouco também ceifará; e o que semeia em abundância, em abundância ceifará. Cada um contribua segundo propôs no seu coração; não com tristeza, ou por necessidade; porque Deus ama ao que dá com alegria.",
+          },
+        },
+      ],
+    },
+    historical:
+      "Historicamente, o dízimo levítico era indissociável do templo de Jerusalém e do sacerdócio aarônico: sustentava um sistema específico - sacrifícios de animais, festas, purificações - que deixou de existir com a destruição do templo em 70 d.C. e que a carta aos Hebreus descreve como cumprido em Cristo, o sumo sacerdote definitivo (Hebreus 8-10). Documentos da igreja cristã primitiva mostram que, nos primeiros séculos, a comunidade se sustentava por ofertas voluntárias, não por um dízimo institucionalizado: a Didaquê (manual cristão do final do século I) instrui os fiéis a doar “as primícias” de forma generosa e livre, sem fixar percentual. A obrigatoriedade formal do dízimo na cristandade ocidental só se consolida séculos depois - no Concílio de Tours (567 d.C.) e, de forma mais ampla, na legislação civil de reinos medievais, quando o dízimo passou a ser cobrado por lei, muitas vezes junto com impostos civis. O dízimo obrigatório na igreja, portanto, não é prática apostólica do primeiro século: é instituição eclesiástica e civil desenvolvida ao longo da Idade Média, muito depois do Novo Testamento.",
+    conclusion:
+      "Portanto, na Nova Aliança, a Bíblia não ensina isso. O dízimo obrigatório era parte da Lei de Moisés, criada para sustentar um sistema sacerdotal e um templo que já não existem, cumpridos em Cristo. Depois da cruz, nenhum apóstolo ordena esse percentual à igreja; o padrão do Novo Testamento é a generosidade voluntária, proporcional e alegre. Impor o dízimo como obrigação, sob ameaça de maldição, é tradição humana - não mandamento bíblico.",
+  },
+  // ------------------------------------------------------------
+  {
+    id: "ofertas-semente",
+    icon: "🌱",
+    category: "Dinheiro e Igreja",
+    title: "Ofertas e “semente” como obrigação ou fórmula de prosperidade",
+    summary: "Ofertar como investimento espiritual com retorno multiplicado - ou generosidade sem cálculo?",
+    today:
+      "Um segmento expressivo do meio neopentecostal ensina que a oferta - muitas vezes chamada de “semente”, “semente de fé” ou “oferta de resgate” - funciona como uma espécie de investimento espiritual: quanto maior o valor semeado, maior a colheita financeira prometida por Deus em troca. É comum a pregação de valores específicos associados a promessas concretas de multiplicação material, cura ou solução de problemas, muitas vezes sob forte apelo emocional em cultos de arrecadação. Nesse modelo, ofertar deixa de ser um gesto de generosidade e passa a ser apresentado como transação: dar para receber de volta, na mesma moeda, geralmente multiplicada.",
+    oldTestament: {
+      context:
+        "O Antigo Testamento conhece as ofertas voluntárias - Levítico 1 a 7 descreve holocaustos, ofertas de manjares, de paz e pela culpa - como parte do sistema sacrificial de Israel, sempre ligadas à adoração, à expiação ou à comunhão com Deus, nunca apresentadas como fórmula de multiplicação financeira automática e proporcional ao valor ofertado. O princípio de “semear e colher” aparece na literatura de sabedoria em sentido moral e geral - o caráter generoso prospera, o caráter mesquinho se empobrece -, não como equação financeira entre valor doado e valor devolvido.",
+      verses: [],
+    },
+    newCovenant: {
+      context:
+        "O texto mais citado para justificar a “semente” é Gálatas 6:7 - “tudo o que o homem semear, isso também colherá” -, mas o contexto imediato do capítulo não fala de dinheiro: Paulo trata de restauração espiritual, do fruto do Espírito e da tentação de “semear para a carne”. Outro texto usado fora de contexto é Lucas 6:38, inserido no ensino de Jesus sobre misericórdia, perdão e generosidade entre pessoas - não numa fórmula financeira de investimento com Deus. Quando o Novo Testamento trata diretamente de dar dinheiro à igreja, o critério nunca é o tamanho da semente prometendo retorno multiplicado: é o estado do coração de quem dá. Paulo resume o princípio com clareza: dar “conforme determinou no coração, não com pesar nem por obrigação” (2 Coríntios 9:7). Não há, em nenhuma carta apostólica, a promessa de que ofertar um valor específico gera, como retorno automático e proporcional, prosperidade financeira.",
+      verses: [
+        {
+          ref: "Lucas 6:38",
+          versions: {
+            nvi: "Deem, e será dado a vocês: uma boa medida, calcada, sacudida e transbordante será dada a vocês. Pois a medida com que medirem será usada como medida para vocês.",
+            ra: "Dai, e dar-se-vos-á; boa medida, recalcada, sacudida, transbordante, generosamente vos darão; porque com a medida com que tiverdes medido vos medirão também.",
+            ntlh: "Deem aos outros, e Deus dará a vocês. Ele será generoso, e as bênçãos que ele lhes dará serão tantas, que vocês não poderão segurá-las nas suas mãos.",
+            acf: "Dai, e ser-vos-á dado; boa medida, recalcada, sacudida e transbordando, vos deitarão no vosso regaço; porque com a mesma medida com que medirdes também vos medirão de novo.",
+          },
+        },
+        {
+          ref: "2 Coríntios 9:6-7",
+          versions: {
+            nvi: "Aquele que semeia com moderação também colherá moderadamente, e aquele que semeia com fartura também colherá fartamente. Cada um contribua conforme determinou no coração, não com pesar nem por obrigação, pois Deus ama a quem dá com alegria.",
+            ra: "Aquele que semeia pouco pouco também ceifará; e o que semeia com fartura com abundância também ceifará. Cada um contribua segundo tiver proposto no coração, não com tristeza ou por necessidade; porque Deus ama a quem dá com alegria.",
+            ntlh: "Quem planta pouco colhe pouco; quem planta muito colhe muito. Que cada um dê a sua oferta conforme resolveu no seu coração, não com tristeza nem por obrigação, pois Deus ama quem dá com alegria.",
+            acf: "O que semeia pouco, pouco também ceifará; e o que semeia em abundância, em abundância ceifará. Cada um contribua segundo propôs no seu coração; não com tristeza, ou por necessidade; porque Deus ama ao que dá com alegria.",
+          },
+        },
+      ],
+    },
+    historical:
+      "A ideia de “semente” como fórmula de multiplicação financeira é desenvolvimento teológico do século XX, associado ao movimento da Fé (Word of Faith), que se consolidou nos Estados Unidos a partir das décadas de 1940 e 1950 com pregadores como E. W. Kenyon e, depois, Kenneth Hagin. Oral Roberts popularizou a expressão “semeadura de fé” (seed-faith) em campanhas de arrecadação televisivas nas décadas de 1960 e 1970. O modelo chegou ao Brasil sobretudo a partir das décadas de 1980 e 1990, com a expansão de igrejas neopentecostais influenciadas, direta ou indiretamente, por essa teologia norte-americana. Trata-se de prática rastreável na história recente, com origem documentada - não de ensino presente nos escritos do primeiro século.",
+    conclusion:
+      "Portanto, na Nova Aliança, a Bíblia não ensina isso. Os textos usados para sustentar a “semente” como fórmula de multiplicação financeira tratam, em seu contexto original, de generosidade, perdão e vida espiritual - não de contrato de investimento com Deus. Ofertar como transação financeira, prometendo retorno multiplicado, é tradição humana recente, de origem histórica identificável - não mandamento bíblico.",
+  },
+  // ------------------------------------------------------------
+  {
+    id: "prosperidade-financeira",
+    icon: "📈",
+    category: "Dinheiro e Igreja",
+    title: "Prosperidade financeira como direito do crente",
+    summary: "Riqueza garantida a todo fiel obediente - ou contentamento em qualquer circunstância?",
+    today:
+      "A Teologia da Prosperidade - amplamente difundida em igrejas neopentecostais - ensina que a riqueza material é direito garantido de todo cristão fiel, bênção automática decorrente da fé e da obediência, incluindo o dízimo e as ofertas. Pobreza, nessa leitura, é frequentemente apresentada como sinal de pecado, de maldição ou de falta de fé, e não como circunstância que qualquer pessoa - inclusive um cristão fiel - pode legitimamente atravessar.",
+    oldTestament: {
+      context:
+        "O Antigo Testamento contém, de fato, promessas de prosperidade material associadas à obediência de Israel como nação, dentro do pacto mosaico: Deuteronômio 28 detalha bênçãos materiais para a obediência, num contexto de aliança nacional ligada à posse da terra de Canaã. Ao mesmo tempo, o próprio Antigo Testamento contém contraponto interno robusto: o livro de Jó mostra um homem justo e íntegro que perde tudo sem que isso seja punição por pecado; Eclesiastes questiona reiteradamente a ideia de que riqueza traz sentido ou é garantia de bênção; e textos de sabedoria pedem a Deus nem pobreza nem riqueza em excesso, mas o sustento necessário.",
+      verses: [
+        {
+          ref: "Provérbios 30:8-9",
+          versions: {
+            nvi: "Mantém longe de mim a falsidade e a mentira; não me dês nem pobreza nem riqueza; dá-me apenas o alimento necessário. Senão, tendo demais, eu te negaria, te deixaria e diria: “Quem é o Senhor?”. Se eu ficasse pobre, poderia vir a roubar, desonrando, assim, o nome do meu Deus.",
+            ra: "Afasta de mim a falsidade e a mentira; não me dês nem a pobreza nem a riqueza; dá-me o pão que me for necessário; para não suceder que, estando eu farto, te negue e diga: Quem é o Senhor? Ou que, empobrecido, venha a furtar e profane o nome de Deus.",
+            ntlh: "Não me deixes mentir e não me deixes ficar nem rico nem pobre. Dá-me somente o alimento que preciso para viver. Porque, se eu tiver mais do que o necessário, poderei dizer que não preciso de ti. E, se eu ficar pobre, poderei roubar e assim envergonharei o teu nome, ó meu Deus.",
+            acf: "Afasta de mim a vaidade e a palavra mentirosa; não me dês nem a pobreza nem a riqueza; mantém-me do pão da minha porção de costume; para que, porventura, estando farto não te negue, e venha a dizer: Quem é o Senhor? Ou que, empobrecendo, não venha a furtar, e tome o nome de Deus em vão.",
+          },
+        },
+      ],
+    },
+    newCovenant: {
+      context:
+        "No Novo Testamento, Jesus e os apóstolos vivem, ensinam e morrem em condições materialmente modestas. O próprio Paulo escreve que aprendeu “a viver contente em toda e qualquer situação”, incluindo passar necessidade (Filipenses 4:11-12). Em 1 Timóteo 6, o texto associa explicitamente o desejo de enriquecer a um risco espiritual - “tentação”, “laço”, “muitos desejos insensatos e nocivos” - e afirma que “o amor ao dinheiro é a raiz de todos os males”, concluindo que, tendo sustento e com que se vestir, o cristão deve estar contente. Não há, em nenhuma epístola do Novo Testamento, a promessa de que todo cristão fiel terá prosperidade financeira garantida como resultado automático da fé.",
+      verses: [
+        {
+          ref: "1 Timóteo 6:6-10",
+          versions: {
+            nvi: "De fato, a piedade com contentamento é grande fonte de lucro, pois nada trouxemos para este mundo e dele nada podemos levar; por isso, tendo o que comer e com que nos vestir, estejamos com isso satisfeitos. No entanto, os que querem ficar ricos caem em tentação, em ciladas e em muitos desejos insensatos e nocivos, que levam os homens a mergulhar na ruína e na destruição, pois o amor ao dinheiro é a raiz de todos os males.",
+            ra: "De fato, grande fonte de lucro é a piedade com o contentamento. Porque nada temos trazido para o mundo, nem coisa alguma podemos levar dele. Tendo sustento e com que nos vestir, estejamos contentes. Ora, os que querem ficar ricos caem em tentação, e cilada, e em muitas concupiscências insensatas e perniciosas... Porque o amor do dinheiro é raiz de todos os males.",
+            ntlh: "É claro que a religião é uma fonte de muita riqueza, mas só para a pessoa que se contenta com o que tem. O que foi que trouxemos para o mundo? Nada! E o que é que vamos levar do mundo? Nada! Portanto, se temos comida e roupas, fiquemos contentes com isso. Porém os que querem ficar ricos caem em pecado, ao serem tentados, e ficam presos na armadilha de muitos desejos tolos... Pois o amor ao dinheiro é uma fonte de todos os tipos de males.",
+            acf: "Mas é grande ganho a piedade com contentamento. Porque nada trouxemos para este mundo, e manifesto é que nada podemos levar dele. Tendo, porém, sustento, e com que nos cobrirmos, estejamos com isso contentes. Mas os que querem ser ricos caem em tentação, e em laço, e em muitas concupiscências loucas e nocivas... Porque o amor ao dinheiro é a raiz de todos os males.",
+          },
+        },
+      ],
+    },
+    historical:
+      "A Teologia da Prosperidade, como sistema doutrinário, é identificada por historiadores do protestantismo americano como desenvolvimento do movimento da Fé do século XX, difundido no Brasil especialmente a partir das décadas de 1980 e 1990. Estudos sociológicos sobre o crescimento neopentecostal brasileiro (como os do pesquisador Ricardo Mariano, da USP, autor de “Neopentecostais: sociologia do novo pentecostalismo no Brasil”) documentam essa doutrina como fenômeno religioso datável e rastreável - e não como ensino presente nos escritos do primeiro século cristão.",
+    conclusion:
+      "Portanto, na Nova Aliança, a Bíblia não ensina isso. Não há garantia bíblica de prosperidade financeira automática para todo cristão fiel; há, isso sim, advertência explícita contra o amor ao dinheiro e ensino claro sobre contentamento em qualquer circunstância. Tratar pobreza como maldição espiritual e riqueza como prova de fé é tradição humana - não mandamento bíblico.",
+  },
+  // ------------------------------------------------------------
+  {
+    id: "maldicoes-geracionais",
+    icon: "🔗",
+    category: "Sofrimento e Cura",
+    title: "Maldições geracionais",
+    summary: "Pecados dos antepassados operando sobre os descendentes - ou responsabilidade individual diante de Deus?",
+    today:
+      "É comum, especialmente em correntes neopentecostais, o ensino de que problemas recorrentes numa família - pobreza, doenças, vícios, separações, insucesso - são causados por “maldições geracionais”: pecados cometidos por antepassados que continuariam operando espiritualmente sobre os descendentes até serem “quebrados” por meio de orações e rituais específicos. Sob esse ensino, o cristão de hoje seria, de certa forma, refém espiritual de decisões tomadas por avós ou bisavós que nunca conheceu.",
+    oldTestament: {
+      context:
+        "O texto normalmente citado para sustentar essa doutrina é Êxodo 20:5, dentro dos Dez Mandamentos, onde Deus se descreve como aquele que “visita a iniquidade dos pais nos filhos, até a terceira e quarta geração” dos que o odeiam. Lido isoladamente, o versículo parece confirmar a ideia de maldição hereditária automática. Mas o próprio Antigo Testamento oferece, mais tarde, uma correção explícita a essa leitura. No livro de Ezequiel, escrito durante o exílio babilônico - quando o povo repetia o provérbio “os pais comeram uvas verdes, e os dentes dos filhos se embotaram”, atribuindo seu sofrimento aos pecados dos antepassados -, Deus responde de forma direta, encerrando essa lógica: cada pessoa responde pelos próprios pecados, não pelos de seus pais.",
+      verses: [
+        {
+          ref: "Êxodo 20:5",
+          versions: {
+            nvi: "Não se prostre diante deles nem lhes preste culto, porque eu, o Senhor, o seu Deus, sou Deus zeloso, que castigo os filhos pelo pecado dos pais até a terceira e a quarta geração daqueles que me odeiam.",
+            ra: "Não as adorarás, nem lhes darás culto; porque eu sou o Senhor, teu Deus, Deus zeloso, que visito a iniquidade dos pais nos filhos até à terceira e quarta geração daqueles que me aborrecem.",
+            ntlh: "Não se ajoelhe diante de ídolos, nem os adore, pois eu, o Senhor, sou o seu Deus e não tolero outros deuses. Eu castigo aqueles que me odeiam, até os seus bisnetos e trinetos.",
+            acf: "Não te encurvarás a elas nem as servirás; porque eu, o Senhor teu Deus, sou Deus zeloso, que visito a iniquidade dos pais nos filhos, até a terceira e quarta geração daqueles que me odeiam.",
+          },
+        },
+        {
+          ref: "Ezequiel 18:20",
+          versions: {
+            nvi: "Aquele que pecar é que morrerá. O filho não levará a culpa do pai nem o pai levará a culpa do filho.",
+            ra: "A alma que pecar, essa morrerá; o filho não levará a iniquidade do pai, nem o pai, a iniquidade do filho.",
+            ntlh: "Aquele que peca é que morre. O filho não sofrerá por causa dos pecados do pai, nem o pai, por causa dos pecados do filho.",
+            acf: "A alma que pecar, essa morrerá; o filho não levará a iniquidade do pai, nem o pai levará a iniquidade do filho.",
+          },
+        },
+      ],
+    },
+    newCovenant: {
+      context:
+        "Na Nova Aliança, a obra de Cristo na cruz é descrita como o fim de qualquer maldição herdada da Lei. Gálatas 3:13 afirma que Cristo “nos resgatou da maldição da lei, fazendo-se ele próprio maldição em nosso lugar”. Paulo trata esse resgate como já consumado - não como algo pendente que precise ser “quebrado” periodicamente por um crente por meio de oração repetida. Em Cristo, o crente é descrito como nova criação, com as coisas antigas já passadas (2 Coríntios 5:17). Não há, em nenhuma epístola do Novo Testamento, instrução para “quebrar” maldições familiares por meio de rituais recorrentes.",
+      verses: [
+        {
+          ref: "Gálatas 3:13",
+          versions: {
+            nvi: "Cristo nos redimiu da maldição da lei quando se tornou maldição no nosso lugar, pois está escrito: “Maldito todo aquele que for pendurado em um madeiro”.",
+            ra: "Cristo nos resgatou da maldição da lei, fazendo-se ele próprio maldição em nosso lugar (porque está escrito: Maldito todo aquele que for pendurado em madeiro).",
+            ntlh: "Porém Cristo, tornando-se maldição por nós, nos livrou da maldição imposta pela lei. Como dizem as Escrituras: “Maldito todo aquele que for pendurado numa cruz!”",
+            acf: "Cristo nos resgatou da maldição da lei, fazendo-se maldição por nós; porque está escrito: Maldito todo aquele que for pendurado no madeiro.",
+          },
+        },
+      ],
+    },
+    historical:
+      "O ensino de “maldições geracionais” como sistema doutrinário estruturado - exigindo diagnóstico da árvore genealógica e rituais periódicos de libertação - é rastreável a literatura de guerra espiritual e de libertação do final do século XX, associada sobretudo a autores e pregadores norte-americanos das décadas de 1970 e 1980, posteriormente incorporada por igrejas neopentecostais brasileiras. Não há, na literatura judaica do Segundo Templo nem nos escritos do Novo Testamento, um ritual equivalente de “quebra de maldição geracional” dirigido a cristãos individuais.",
+    conclusion:
+      "Portanto, na Nova Aliança, a Bíblia não ensina isso. O próprio Antigo Testamento já havia corrigido a leitura de que o pecado dos antepassados condena automaticamente os descendentes, e a obra de Cristo na cruz é apresentada como resgate já consumado da maldição da lei. Tratar o cristão como refém espiritual de pecados alheios que precisam ser “quebrados” repetidamente é distorção. A Bíblia não ordena isso.",
+  },
+  // ------------------------------------------------------------
+  {
+    id: "amarrar-demonios",
+    icon: "⛓️",
+    category: "Espírito e Prática",
+    title: "Quebra de maldições e “amarrar demônios”",
+    summary: "Fórmulas verbais de guerra espiritual repetidas em culto - ou disciplina eclesiástica mal aplicada?",
+    today:
+      "Parte do meio neopentecostal desenvolveu um vocabulário de guerra espiritual aplicado ao cotidiano: “amarrar” o diabo, “quebrar” maldições, “desatar” bênçãos, orações de libertação dirigidas a supostos espíritos nomeados (da pobreza, do atraso, da traição), muitas vezes em cultos de intensa carga emocional, com imposição de mãos, gritos e rituais repetidos periodicamente - como se a vitória espiritual do crente dependesse de fórmulas verbais e da repetição do ritual.",
+    oldTestament: {
+      context:
+        "O Antigo Testamento não registra um ritual verbal equivalente de “amarrar” espíritos nomeados. A luta de Israel contra o mal é descrita majoritariamente em termos de aliança, obediência e confronto com nações e práticas idólatras concretas - não em fórmulas de exorcismo verbal repetidas em culto público. A ausência desse vocabulário no Antigo Testamento já é, em si, um dado relevante: a prática não tem raiz no texto hebraico.",
+      verses: [],
+    },
+    newCovenant: {
+      context:
+        "O texto mais usado para justificar “amarrar e desatar” é Mateus 18:18 - mas seu contexto imediato (Mateus 18:15-20) trata de disciplina eclesiástica: como a igreja lida com um irmão que peca, o processo de correção fraterna e a autoridade da igreja reunida para reconhecer decisões morais e disciplinares - não uma fórmula de guerra espiritual verbal contra demônios individuais. O mesmo verbo aparece em Mateus 16:19, dirigido a Pedro, no contexto da confissão de que Jesus é o Cristo e da autoridade das chaves do Reino - novamente autoridade doutrinária e eclesiástica, não técnica de exorcismo repetitivo. Quanto à luta espiritual em si, Efésios 6:12 afirma que ela é real, mas o mesmo capítulo descreve a “armadura de Deus” (Efésios 6:13-18) como virtudes estáveis - verdade, justiça, fé, salvação, a Palavra de Deus e oração -, não fórmulas verbais repetidas contra espíritos nomeados. Tiago resume o padrão bíblico com duas ações, sem ritual: sujeitar-se a Deus e resistir ao diabo.",
+      verses: [
+        {
+          ref: "Efésios 6:12",
+          versions: {
+            nvi: "Pois a nossa luta não é contra sangue e carne, mas contra os poderes e as autoridades, contra os dominadores deste mundo de trevas e contra as forças espirituais do mal nas regiões celestiais.",
+            ra: "Porque a nossa luta não é contra o sangue e a carne, e sim contra os principados e potestades, contra os dominadores deste mundo tenebroso, contra as forças espirituais do mal, nas regiões celestiais.",
+            ntlh: "Pois nós não estamos lutando contra seres humanos, mas contra as forças espirituais do mal que vivem nas alturas, isto é, os governos, as autoridades e os poderes que dominam este mundo de trevas.",
+            acf: "Porque não temos que lutar contra a carne e o sangue, mas, sim, contra os principados, contra as potestades, contra os príncipes das trevas deste século, contra as hostes espirituais da maldade, nos lugares celestiais.",
+          },
+        },
+        {
+          ref: "Tiago 4:7",
+          versions: {
+            nvi: "Portanto, submetam-se a Deus. Resistam ao Diabo, e ele fugirá de vocês.",
+            ra: "Sujeitai-vos, portanto, a Deus; mas resisti ao diabo, e ele fugirá de vós.",
+            ntlh: "Portanto, obedeçam a Deus e enfrentem o Diabo, que ele fugirá de vocês.",
+            acf: "Sujeitai-vos, pois, a Deus, resisti ao diabo, e ele fugirá de vós.",
+          },
+        },
+      ],
+    },
+    historical:
+      "O vocabulário de “amarrar e desatar” demônios nomeados, aplicado a rituais recorrentes de libertação individual, desenvolve-se dentro da literatura de guerra espiritual norte-americana do final do século XX - autores como C. Peter Wagner, à frente do chamado “movimento de guerra espiritual estratégica” dos anos 1980 e 1990, sistematizaram esse tipo de linguagem, posteriormente incorporada por igrejas neopentecostais no Brasil. Trata-se de desenvolvimento teológico datável, não de prática registrada nos escritos do primeiro século.",
+    conclusion:
+      "Portanto, na Nova Aliança, a Bíblia não ensina isso. “Ligar e desligar” é linguagem de autoridade eclesiástica e disciplinar, não fórmula verbal de exorcismo repetido contra espíritos nomeados. A luta espiritual é real, mas o Novo Testamento a descreve por meio de caráter e submissão a Deus, não de rituais periódicos de “quebra”. Transformar isso em espetáculo de culto é distorção. A Bíblia não ordena isso.",
+  },
+  // ------------------------------------------------------------
+  {
+    id: "linguas-evidencia",
+    icon: "🗣️",
+    category: "Espírito e Prática",
+    title: "Falar em línguas como evidência obrigatória",
+    summary: "Sinal físico obrigatório do batismo no Espírito - ou um entre vários dons distribuídos “a cada um como quer”?",
+    today:
+      "Em setores pentecostais e neopentecostais, falar em línguas estranhas (glossolalia) é ensinado como evidência física obrigatória e inicial do batismo no Espírito Santo - quem não fala em línguas, nessa visão, ainda não teria recebido plenamente o Espírito, criando uma divisão entre cristãos “batizados” e “não batizados” no Espírito com base nesse único sinal.",
+    oldTestament: {
+      context:
+        "O Antigo Testamento não registra o fenômeno de línguas como aparece no livro de Atos, mas contém a profecia que a igreja primitiva reconheceu como cumprida no dia de Pentecostes: Joel anuncia um derramamento geral do Espírito de Deus sobre “toda a carne” - filhos, filhas, velhos, jovens, servos e servas -, sem vincular esse derramamento a um sinal específico de línguas como evidência obrigatória. A marca central da profecia é a proximidade e a generosidade de Deus com o seu povo, não um teste linguístico individual.",
+      verses: [
+        {
+          ref: "Joel 2:28-29",
+          versions: {
+            nvi: "Depois disso, derramarei do meu Espírito sobre todas as pessoas. Os seus filhos e as suas filhas profetizarão, os velhos terão sonhos e os jovens terão visões. Até sobre os servos e as servas derramarei do meu Espírito naqueles dias.",
+            ra: "E acontecerá, depois, que derramarei o meu Espírito sobre toda a carne; vossos filhos e vossas filhas profetizarão, vossos velhos sonharão, e vossos jovens terão visões; até sobre os servos e sobre as servas derramarei o meu Espírito naqueles dias.",
+            ntlh: "Depois disso, eu derramarei o meu Espírito sobre todas as pessoas: os filhos e as filhas de vocês anunciarão a minha mensagem; os velhos sonharão, e os moços terão visões. Até sobre os escravos e as escravas eu derramarei o meu Espírito naqueles dias.",
+            acf: "E há de ser que, depois derramarei o meu Espírito sobre toda a carne, e vossos filhos e vossas filhas profetizarão, os vossos velhos terão sonhos, os vossos jovens terão visões. E também sobre os servos e sobre as servas naqueles dias derramarei o meu Espírito.",
+          },
+        },
+      ],
+    },
+    newCovenant: {
+      context:
+        "Em Atos 2, o dom de línguas aparece de forma pontual e com função clara: comunicar o evangelho a estrangeiros de diversas nações, cada um ouvindo na própria língua - um milagre de comunicação, não senha espiritual repetida em toda conversão. O próprio Paulo, ao tratar dos dons espirituais em 1 Coríntios 12, formula uma pergunta retórica que pressupõe resposta negativa: “Falam todos em línguas?” - deixando claro que nem todo crente fala em línguas, e que isso é normal, pois os dons são distribuídos “a cada um... como quer” (1 Coríntios 12:11), não distribuídos igualmente a todos como pré-requisito. Em 1 Coríntios 14, Paulo prefere abertamente a profecia às línguas em contexto de igreja reunida, por edificar mais claramente a comunidade, e determina que tudo - inclusive o uso de línguas - “seja feito com decência e ordem”.",
+      verses: [
+        {
+          ref: "1 Coríntios 12:29-30",
+          versions: {
+            nvi: "São todos apóstolos? São todos profetas? São todos mestres? Têm todos dom de realizar milagres? Têm todos dons de curar? Falam todos em línguas? Todos interpretam?",
+            ra: "Porventura, são todos apóstolos? Ou, todos profetas? São todos mestres? Ou, operadores de milagres? Têm todos dons de curar? Falam todos em outras línguas? Interpretam-nas todos?",
+            ntlh: "Nem todos são apóstolos, ou profetas, ou mestres. Nem todos têm o dom de fazer milagres, nem de curar doenças, nem de falar em línguas estranhas, nem de explicar o que essas línguas querem dizer.",
+            acf: "Porventura são todos apóstolos? São todos profetas? São todos doutores? São todos operadores de milagres? Têm todos o dom de curar? Falam todos diversas línguas? Interpretam todos?",
+          },
+        },
+        {
+          ref: "1 Coríntios 14:5",
+          versions: {
+            nvi: "Desejo que todos vocês falem em línguas, mas prefiro que profetizem. Quem profetiza é maior do que aquele que fala em línguas, a não ser que as interprete, para que a igreja seja edificada.",
+            ra: "Eu quisera que vós todos falásseis em outras línguas; muito mais, porém, que profetizásseis; pois quem profetiza é superior ao que fala em outras línguas, salvo se as interpretar, para que a igreja receba edificação.",
+            ntlh: "Eu gostaria que vocês todos falassem em línguas estranhas, mas gostaria ainda mais que tivessem o dom de anunciar a mensagem de Deus.",
+            acf: "E eu quero que todos vós faleis em línguas, mas muito mais que profetizeis; porque o que profetiza é maior do que o que fala em línguas, a não ser que também interprete para que a igreja receba edificação.",
+          },
+        },
+      ],
+    },
+    historical:
+      "O ensino de que línguas são a evidência única e obrigatória do batismo no Espírito é doutrina específica formulada no início do século XX, associada ao avivamento de Charles Parham (Topeka, 1901) e popularizada pelo avivamento da Rua Azusa, em Los Angeles (1906), sob liderança de William Seymour - marco reconhecido pela própria historiografia pentecostal como nascimento do movimento pentecostal moderno. É formulação doutrinária identificável no início do século XX, não ensino explícito e universal dos escritos do primeiro século.",
+    conclusion:
+      "Portanto, na Nova Aliança, a Bíblia não ensina que línguas sejam evidência obrigatória do Espírito Santo em todo crente. O próprio texto que trata do assunto com mais detalhe pressupõe o contrário - nem todos falam em línguas, e isso é normal na distribuição dos dons. Exigir esse sinal específico de todo cristão é doutrina formulada no início do século XX - tradição de um movimento histórico específico, não mandamento bíblico universal.",
+  },
+  // ------------------------------------------------------------
+  {
+    id: "pastor-mediador",
+    icon: "🚪",
+    category: "Autoridade e Mediação",
+    title: "Pastor como mediador entre Deus e o homem",
+    summary: "Autoridade espiritual que substitui o acesso direto do crente a Deus - ou serviço e exemplo dentro de um sacerdócio de todos os crentes?",
+    today:
+      "Em diversas igrejas, cresce a prática de tratar o pastor - ou apóstolo, bispo, profeta - como intermediário necessário entre o fiel e Deus: decisões pessoais, orações por cura, liberação de bênçãos passam, na prática, pela figura do líder, cuja palavra é tratada como quase infalível e cuja autoridade espiritual não pode ser questionada pelo membro comum.",
+    oldTestament: {
+      context:
+        "No sistema levítico, havia de fato mediação sacerdotal formal: apenas o sumo sacerdote podia entrar no Lugar Santíssimo, uma vez por ano, no Dia da Expiação (Levítico 16), para interceder pelo povo. Ao mesmo tempo, o propósito declarado de Deus para toda a nação de Israel, já no Sinai, era mais amplo: um chamado - ainda não plenamente realizado no Antigo Testamento - para que o povo inteiro, não apenas uma casta separada, vivesse em proximidade sacerdotal com Deus.",
+      verses: [
+        {
+          ref: "Êxodo 19:5-6",
+          versions: {
+            nvi: "Agora, se me obedecerem fielmente e guardarem a minha aliança, vocês serão o meu tesouro especial [...] vocês serão para mim um reino de sacerdotes e uma nação santa.",
+            ra: "Agora, pois, se diligentemente ouvirdes a minha voz e guardardes a minha aliança, então, sereis a minha propriedade peculiar [...] vós me sereis reino de sacerdotes e nação santa.",
+            ntlh: "Agora, se me obedecerem e cumprirem a minha aliança vocês serão o meu povo escolhido por mim [...] Vocês são um povo separado somente para mim e me servirão como sacerdotes.",
+            acf: "Agora, pois, se diligentemente ouvirdes a minha voz e guardardes a minha aliança, então sereis a minha propriedade peculiar [...] E vós me sereis um reino sacerdotal e o povo santo.",
+          },
+        },
+      ],
+    },
+    newCovenant: {
+      context:
+        "A Nova Aliança apresenta essa mediação de forma definitiva e exclusiva em uma só pessoa: não há, no texto do Novo Testamento, categoria de mediador humano adicional entre o crente e Deus depois da cruz. Hebreus 4:14-16 descreve o acesso do crente ao trono de Deus como direto e ousado, por causa do sumo sacerdócio de Cristo - não por causa de um líder humano intermediário. E o antigo chamado do Sinai, ainda pendente no Antigo Testamento, é declarado cumprido para todo cristão: todo crente é parte de um “sacerdócio real”, não apenas o pastor ou o líder da congregação.",
+      verses: [
+        {
+          ref: "1 Timóteo 2:5",
+          versions: {
+            nvi: "Pois há um só Deus e um só mediador entre Deus e os homens, o homem Cristo Jesus.",
+            ra: "Porquanto há um só Deus e um só Mediador entre Deus e os homens, Cristo Jesus, homem.",
+            ntlh: "Pois existe um só Deus e uma só pessoa que une Deus com os seres humanos - o ser humano Cristo Jesus.",
+            acf: "Porque há um só Deus, e um só Mediador entre Deus e os homens, Jesus Cristo homem.",
+          },
+        },
+        {
+          ref: "1 Pedro 2:9",
+          versions: {
+            nvi: "Vocês, porém, são geração eleita, reino de sacerdotes, nação santa, povo que pertence a Deus, para anunciar as grandezas daquele que os chamou das trevas para a sua maravilhosa luz.",
+            ra: "Vós, porém, sois raça eleita, sacerdócio real, nação santa, povo de propriedade exclusiva de Deus, a fim de proclamardes as virtudes daquele que vos chamou das trevas para a sua maravilhosa luz.",
+            ntlh: "Mas vocês são a raça escolhida, os sacerdotes do Rei, a nação completamente dedicada a Deus, o povo que pertence a ele, escolhidos para anunciar as maravilhas de Deus.",
+            acf: "Mas vós sois a geração eleita, o sacerdócio real, a nação santa, o povo adquirido, para que anuncieis as virtudes daquele que vos chamou das trevas para a sua maravilhosa luz.",
+          },
+        },
+      ],
+    },
+    historical:
+      "Estruturas de liderança que concentram autoridade espiritual quase absoluta num único homem, exigindo obediência incondicional e tratando questionamento como rebeldia contra Deus, são descritas na sociologia da religião como características de grupos de controle espiritual de alta demanda (“high-control groups”) - padrão documentado em diversos movimentos religiosos ao longo dos séculos XX e XXI, independentemente de tradição, sempre que a autoridade de um líder humano é colocada, na prática, acima da possibilidade de correção pela própria comunidade.",
+    conclusion:
+      "Portanto, na Nova Aliança, a Bíblia não ensina que o pastor seja mediador entre o crente e Deus. O único mediador reconhecido no Novo Testamento, depois da cruz, é Jesus Cristo. Pastores lideram, ensinam e servem de exemplo - não substituem o acesso direto que todo cristão tem ao Pai. Tratar a palavra de um líder humano como equivalente à voz de Deus é distorção. A Bíblia não ordena isso.",
+  },
+  // ------------------------------------------------------------
+  {
+    id: "confissao-positiva",
+    icon: "💬",
+    category: "Espírito e Prática",
+    title: "Confissão positiva / declaração de fé como poder mágico",
+    summary: "Palavras que criam realidade automaticamente - ou sabedoria prática sobre o impacto real da fala?",
+    today:
+      "A “confissão positiva” - também chamada de “declaração de fé” - ensina que palavras faladas em voz alta têm poder criativo quase automático: declarar prosperidade, cura ou vitória “ativaria” espiritualmente essas realidades, enquanto declarar algo negativo, inclusive descrever um sintoma real ou uma dificuldade concreta, poderia “abrir porta” para que ela se concretize. Nessa lógica, admitir um problema em voz alta é tratado, por si só, como erro espiritual.",
+    oldTestament: {
+      context:
+        "O texto de sabedoria mais citado para sustentar essa prática é Provérbios 18:21. No contexto do livro de Provérbios, esse é um princípio de sabedoria prática sobre o impacto real das palavras nas relações humanas, na reputação e no caráter - mensagens edificantes constroem, mensagens destrutivas (mentira, calúnia, fofoca) destroem -, não uma fórmula de manifestação da realidade física por meio de repetição verbal.",
+      verses: [
+        {
+          ref: "Provérbios 18:21",
+          versions: {
+            nvi: "A língua tem o poder de vida e morte; quem a ama comerá do seu fruto.",
+            ra: "A morte e a vida estão no poder da língua; o que bem a utiliza come do seu fruto.",
+            ntlh: "O que você diz pode salvar ou destruir uma vida; portanto, use bem as suas palavras e você será recompensado.",
+            acf: "A morte e a vida estão no poder da língua; e aquele que a ama comerá do seu fruto.",
+          },
+        },
+      ],
+    },
+    newCovenant: {
+      context:
+        "No Novo Testamento, Tiago corrige diretamente qualquer presunção humana de controlar o futuro por meio de palavras declaradas com convicção: quem diz “hoje ou amanhã iremos... e ganharemos” sem reconhecer a soberania de Deus está sendo presunçoso; o padrão correto é reconhecer, em toda decisão, que tudo depende da vontade do Senhor. Jesus, por sua vez, ensina o oposto de fórmulas verbais repetidas: ao orientar como orar, adverte contra “vãs repetições”, como quem pensa que por muito falar será ouvido. O valor da oração não está na técnica verbal ou na quantidade de repetições, mas na relação sincera com o Pai.",
+      verses: [
+        {
+          ref: "Tiago 4:13-15",
+          versions: {
+            nvi: "Ouçam agora, vocês que dizem: “Hoje ou amanhã iremos para esta ou aquela cidade, passaremos um ano ali, faremos negócios e ganharemos dinheiro”. Vocês nem sabem o que acontecerá amanhã! Que é a sua vida? Vocês são como a neblina que aparece por um pouco de tempo e depois se dissipa. Em vez disso, deveriam dizer: “Se o Senhor quiser, viveremos e faremos isto ou aquilo”.",
+            ra: "Atendei, agora, vós que dizeis: Hoje ou amanhã, iremos para a cidade tal, e lá passaremos um ano, e negociaremos, e teremos lucros. Vós não sabeis o que sucederá amanhã. Que é a vossa vida? Sois, apenas, como neblina que aparece por instante e logo se dissipa. Em vez disso, devíeis dizer: Se o Senhor quiser, não só viveremos, como também faremos isto ou aquilo.",
+            ntlh: "Agora escutem, vocês que dizem: “Hoje ou amanhã iremos a tal cidade e ali ficaremos um ano fazendo negócios e ganhando muito dinheiro!” Vocês não sabem como será a sua vida amanhã, pois vocês são como uma neblina passageira. O que vocês deveriam dizer é isto: “Se Deus quiser, estaremos vivos e faremos isto ou aquilo”.",
+            acf: "Eia agora vós, que dizeis: Hoje, ou amanhã, iremos a tal cidade, e lá passaremos um ano, e contrataremos, e ganharemos; Digo-vos que não sabeis o que acontecerá amanhã. Porque, que é a vossa vida? É um vapor que aparece por um pouco, e depois se desvanece. Em lugar do que devíeis dizer: Se o Senhor quiser, e se vivermos, faremos isto ou aquilo.",
+          },
+        },
+        {
+          ref: "Mateus 6:7",
+          versions: {
+            nvi: "Quando orarem, não falem por falar, como fazem os gentios. Pois eles pensam que por muito falar serão ouvidos.",
+            ra: "E, orando, não useis de vãs repetições, como os gentios; porque presumem que pelo seu muito falar serão ouvidos.",
+            ntlh: "Nas suas orações, não fiquem repetindo o que vocês já disseram, como fazem os pagãos. Eles pensam que Deus os ouvirá porque fazem orações compridas.",
+            acf: "E, orando, não useis de vãs repetições, como os gentios, que pensam que por muito falarem serão ouvidos.",
+          },
+        },
+      ],
+    },
+    historical:
+      "A confissão positiva, como sistema teológico estruturado, é identificada por historiadores do movimento evangélico americano como parte central do movimento da Fé do século XX, com raízes nos ensinos de E. W. Kenyon (falecido em 1948) - que, por sua vez, foi influenciado por correntes do Novo Pensamento (New Thought) norte-americano do final do século XIX, movimento metafísico não cristão que já ensinava o poder criativo da mente e da palavra antes de qualquer desenvolvimento pentecostal. Parte do arcabouço conceitual da confissão positiva tem, portanto, raiz documentada fora da tradição cristã histórica.",
+    conclusion:
+      "Portanto, na Nova Aliança, a Bíblia não ensina que palavras declaradas com convicção tenham poder automático de criar realidade física. O texto bíblico valoriza a integridade da fala e reconhece seu impacto moral e relacional real - mas condiciona todo planejamento humano à vontade soberana de Deus, não ao poder da própria declaração. Tratar a fala do crente como fórmula de manifestação é tradição de origem identificável, estranha à fé cristã histórica - não mandamento bíblico.",
+  },
+  // ------------------------------------------------------------
+  {
+    id: "cura-garantida",
+    icon: "🩹",
+    category: "Sofrimento e Cura",
+    title: "Cura física garantida para todo crente",
+    summary: "Cura incluída na cruz para todo fiel com fé suficiente - ou graça suficiente mesmo na fraqueza?",
+    today:
+      "Um ensino recorrente afirma que a cura física está incluída, de forma garantida, na obra da cruz para todo crente - bastaria ter fé suficiente para recebê-la. Como consequência direta, a doença que persiste após oração é, muitas vezes, atribuída à falta de fé do próprio enfermo, gerando culpa e sofrimento espiritual adicional sobre pessoas já doentes.",
+    oldTestament: {
+      context:
+        "O texto-base dessa doutrina é Isaías 53:4-5, no quarto Cântico do Servo Sofredor, escrito cerca de sete séculos antes de Cristo. O texto descreve, em conjunto, o sofrimento vicário do Servo por pecado e por dor humana - físico e moral entrelaçados na poesia hebraica -, apontando profeticamente para a obra redentora do Messias.",
+      verses: [
+        {
+          ref: "Isaías 53:4-5",
+          versions: {
+            nvi: "Certamente ele tomou sobre si as nossas enfermidades e sobre si levou as nossas doenças [...] Ele, porém, foi traspassado por causa das nossas transgressões e esmagado por causa das nossas iniquidades.",
+            ra: "Certamente, ele tomou sobre si as nossas enfermidades e as nossas dores levou sobre si [...] Mas ele foi traspassado pelas nossas transgressões e moído pelas nossas iniquidades.",
+            ntlh: "No entanto, era o nosso sofrimento que ele estava carregando, era a nossa dor que ele estava suportando [...] Porém ele estava sofrendo por causa dos nossos pecados, estava sendo castigado por causa das nossas maldades.",
+            acf: "Verdadeiramente ele tomou sobre si as nossas enfermidades, e as nossas dores levou sobre si [...] Mas ele foi ferido por causa das nossas transgressões, e moído por causa das nossas iniquidades.",
+          },
+        },
+      ],
+    },
+    newCovenant: {
+      context:
+        "O Novo Testamento aplica esse texto de duas formas, e é importante notar as duas: Mateus 8:16-17 o cita a propósito de curas físicas realizadas por Jesus durante seu ministério terreno; já 1 Pedro 2:24 aplica a mesma passagem, de forma explícita, à cura espiritual do pecado, no contexto de suportar injustiça e sofrimento como Cristo suportou. O próprio Novo Testamento mostra, na prática apostólica, que a cura física não era automática nem garantida a todo crente fiel: Paulo pede três vezes que seu “espinho na carne” seja retirado e recebe como resposta não a cura, mas a suficiência da graça de Deus; ele recomenda a Timóteo remédio prático para o estômago, em vez de prometer cura miraculosa instantânea; e relata ter deixado um companheiro doente em outra cidade, sem curá-lo. Tiago 5:14-15 orienta o procedimento bíblico diante da doença: chamar os presbíteros, orar com fé, ungir com óleo - cuidado pastoral comunitário, não fórmula de fé individual com resultado garantido em todos os casos.",
+      verses: [
+        {
+          ref: "2 Coríntios 12:7-9",
+          versions: {
+            nvi: "Para evitar que eu me exaltasse por causa da grandeza dessas revelações, foi-me dado um espinho na carne, um mensageiro de Satanás, para me atormentar. Três vezes pedi ao Senhor que o tirasse de mim. Ele, porém, me disse: “A minha graça é suficiente para você, pois o meu poder se aperfeiçoa na fraqueza”.",
+            ra: "E, para que não me ensoberbecesse com a grandeza das revelações, foi-me posto um espinho na carne, mensageiro de Satanás, para me esbofetear. Por causa disto, três vezes pedi ao Senhor que o afastasse de mim. Então, ele me disse: A minha graça te basta, porque o poder se aperfeiçoa na fraqueza.",
+            ntlh: "Mas, para que não ficasse orgulhoso demais por causa das coisas maravilhosas que vi, eu recebi uma doença dolorosa, que é como um espinho no meu corpo. Três vezes orei ao Senhor, pedindo que ele me tirasse esse sofrimento. Mas ele me respondeu: “A minha graça é tudo o que você precisa, pois o meu poder é mais forte quando você está fraco”.",
+            acf: "E, para que não me exaltasse pela excelência das revelações, foi-me dado um espinho na carne, a saber, um mensageiro de Satanás para me esbofetear. Acerca do qual três vezes orei ao Senhor para que se desviasse de mim. E disse-me: A minha graça te basta, porque o meu poder se aperfeiçoa na fraqueza.",
+          },
+        },
+        {
+          ref: "Tiago 5:14-15",
+          versions: {
+            nvi: "Há alguém doente entre vocês? Que ele mande chamar os presbíteros da igreja, e que estes orem por ele, ungindo-o com óleo, em nome do Senhor. A oração feita com fé curará o doente, e o Senhor o levantará.",
+            ra: "Está alguém entre vós doente? Chame os presbíteros da igreja, e estes façam oração sobre ele, ungindo-o com óleo, em nome do Senhor. E a oração da fé salvará o enfermo, e o Senhor o levantará.",
+            ntlh: "Se algum de vocês estiver doente, que chame os presbíteros da igreja, para que façam oração e ponham azeite na cabeça dessa pessoa em nome do Senhor. Essa oração, feita com fé, salvará a pessoa doente. O Senhor lhe dará saúde.",
+            acf: "Está alguém entre vós doente? Chame os presbíteros da igreja, e orem sobre ele, ungindo-o com azeite em nome do Senhor; E a oração da fé salvará o doente, e o Senhor o levantará.",
+          },
+        },
+      ],
+    },
+    historical:
+      "Documentos históricos mostram que doenças graves e mortes por causas naturais atingiram, ao longo de toda a história do cristianismo, pessoas de fé reconhecida, incluindo apóstolos, mártires e líderes cristãos - dado incompatível com a ideia de garantia automática de cura física para todo crente fiel. A promessa bíblica final de ausência total de doença é escatológica, isto é, reservada ao fim dos tempos: Apocalipse 21:4 descreve um estado futuro em que não haverá mais morte, pranto, clamor nem dor, indicando que a erradicação completa da doença ainda não é a realidade presente da igreja.",
+    conclusion:
+      "Portanto, na Nova Aliança, a Bíblia não garante cura física automática a todo crente fiel mediante fé suficiente. Deus cura, e o Novo Testamento registra curas reais - mas também registra apóstolos que oraram sem obter cura física, adoeceram e usaram cuidados médicos comuns. Atribuir toda doença não curada à falta de fé do enfermo não tem base no texto bíblico; é sofrimento adicional imposto por leitura que ignora o próprio testemunho apostólico.",
+  },
+  // ------------------------------------------------------------
+  {
+    id: "uncao-cair-espirito",
+    icon: "✨",
+    category: "Espírito e Prática",
+    title: "Unção e “cair no espírito” como prática bíblica",
+    summary: "Fiéis derrubados pelo toque do pregador em série - ou prostração diante da glória direta de Deus?",
+    today:
+      "Em cultos de alguns segmentos neopentecostais, tornou-se comum a prática de pregadores tocarem, soprarem ou apenas gesticularem em direção a fiéis, que então caem ao chão, supostamente “sob o poder do Espírito Santo” ou “sob unção” - fenômeno tratado, nesses contextos, como sinal visível de espiritualidade e como prova da autoridade espiritual do líder que o provoca.",
+    oldTestament: {
+      context:
+        "O Antigo Testamento não registra ritual equivalente - um profeta tocando pessoas para que caiam ao chão em série, em contexto de culto público repetido. O que aparece são episódios pontuais de profetas prostrados diante da glória direta de Deus, em visões pessoais e não repetíveis por outro ser humano.",
+      verses: [
+        {
+          ref: "Ezequiel 1:28",
+          versions: {
+            nvi: "Esta era a aparência da figura da glória do Senhor. Quando a vi, prostrei-me com o rosto em terra e ouvi a voz de alguém que falava.",
+            ra: "Esta era a aparência da glória do Senhor; vendo isto, caí com o rosto em terra e ouvi a voz de quem falava.",
+            ntlh: "Esta era a luz brilhante que mostra a presença da glória do Senhor.",
+            acf: "Este era o aspecto da semelhança da glória do Senhor; e, vendo isto, caí sobre o meu rosto, e ouvi a voz de quem falava.",
+          },
+        },
+      ],
+    },
+    newCovenant: {
+      context:
+        "No Novo Testamento, o episódio mais próximo é a experiência do apóstolo João em Patmos: ao ver Cristo glorificado, ele caiu a seus pés como morto - de novo, reação diante da presença direta e gloriosa de Cristo, sem qualquer mediador humano tocando ou soprando sobre ele. Quando o Novo Testamento descreve reuniões da igreja e o exercício de dons espirituais, o critério repetido não é a intensidade da manifestação física, mas a ordem e o controle consciente dos próprios participantes: o texto insiste que o exercício dos dons permanece sujeito a quem os exerce, e que tudo deve ser feito com decência e ordem.",
+      verses: [
+        {
+          ref: "Apocalipse 1:17",
+          versions: {
+            nvi: "Quando o vi, caí aos seus pés como morto. Então, ele colocou a mão direita sobre mim e disse: “Não tenha medo. Eu sou o Primeiro e o Último”.",
+            ra: "Quando o vi, caí a seus pés como morto. Porém ele pôs sobre mim a mão direita, dizendo: Não temas; eu sou o primeiro e o último.",
+            ntlh: "Quando eu o vi, caí aos seus pés, como morto. Porém ele pôs a mão direita sobre mim e disse: “Não tenha medo. Eu sou o Primeiro e o Último”.",
+            acf: "E eu, quando o vi, caí a seus pés como morto; e ele pôs sobre mim a sua destra, dizendo-me: Não temas; Eu sou o primeiro e o último.",
+          },
+        },
+        {
+          ref: "1 Coríntios 14:39-40",
+          versions: {
+            nvi: "Portanto, meus irmãos, busquem com dedicação o profetizar e não proíbam que se fale em línguas. Tudo, porém, deve ser feito com decência e ordem.",
+            ra: "Portanto, meus irmãos, procurai com zelo o dom de profetizar e não proibais o falar em outras línguas. Tudo, porém, seja feito com decência e ordem.",
+            ntlh: "Assim, meus irmãos, procurem sempre anunciar a mensagem de Deus, mas não proíbam que se fale em línguas estranhas. Portanto, façam tudo com decência e ordem.",
+            acf: "Portanto, irmãos, procurai, com zelo, profetizar, e não proibais falar línguas. Mas faça-se tudo decentemente e com ordem.",
+          },
+        },
+      ],
+    },
+    historical:
+      "Historiadores do movimento pentecostal e neopentecostal documentam a prática de “cair no Espírito” (também chamada de “descanso no Espírito” ou, em inglês, slain in the Spirit) como fenômeno que ganha visibilidade e sistematização a partir dos avivamentos carismáticos do século XX e, de forma ainda mais massificada, nas cruzadas de cura e nos cultos neopentecostais das décadas de 1980 e 1990 - sem correspondência direta com ritual equivalente descrito nos evangelhos ou nas cartas apostólicas do primeiro século.",
+    conclusion:
+      "Portanto, na Nova Aliança, a Bíblia não descreve nem ordena a prática de um líder humano tocar fiéis para que caiam ao chão como sinal de unção. Os relatos bíblicos de prostração acontecem diante da presença direta e gloriosa de Deus ou de Cristo, não pelo toque de um pregador. Transformar isso em espetáculo repetido de culto, medindo espiritualidade pela queda física, é prática de desenvolvimento histórico recente - não mandamento bíblico.",
+  },
+  // ------------------------------------------------------------
+  {
+    id: "pastores-milionarios",
+    icon: "🏦",
+    category: "Dinheiro e Igreja",
+    title: "Pastores que se tornam milionários com o dinheiro dos fiéis",
+    summary: "O que a Bíblia realmente diz sobre líderes religiosos que acumulam fortuna com dízimos e ofertas.",
+    today:
+      "No Brasil contemporâneo - especialmente em segmentos neopentecostais influenciados pela Teologia da Prosperidade - é fato documentado pela imprensa que diversos líderes religiosos acumularam patrimônios pessoais milionários e bilionários a partir de dízimos e ofertas de fiéis, num padrão que se repete, com variações, em megaigrejas de vários países: parte da estrutura financeira da fé é convertida em patrimônio pessoal concentrado em poucas mãos, enquanto a maioria dos membros continua em situação financeira comum ou difícil. Esse padrão é distinto do sustento digno de quem se dedica integralmente ao ministério - que a própria Bíblia reconhece como legítimo, conforme tratado adiante.",
+    oldTestament: {
+      context:
+        "No sistema levítico, os sacerdotes e levitas recebiam sustento pelo serviço no templo, mas dentro de limites claros: a própria tribo de Levi não recebia herança de terra em Canaã (Números 18:20-21), justamente para que seu sustento dependesse do dízimo destinado ao serviço, não à acumulação pessoal de patrimônio comparável à das demais tribos. Quando sacerdotes de Israel usaram a função religiosa para enriquecimento pessoal às custas do povo, os profetas os confrontaram diretamente: Ezequiel acusa os “pastores” (líderes) de Israel de cuidarem de si mesmos - comendo a gordura, vestindo-se da lã do rebanho - em vez de cuidar das ovelhas.",
+      verses: [
+        {
+          ref: "Ezequiel 34:2-3",
+          versions: {
+            nvi: "Filho do homem, profetize contra os pastores de Israel; profetize e diga-lhes que assim diz o Soberano Senhor: “Ai dos pastores de Israel que só cuidam de si mesmos! Acaso os pastores não deveriam cuidar do rebanho? Vocês comem a coalhada, vestem-se de lã e abatem os melhores animais, mas não tomam conta do rebanho”.",
+            ra: "Filho do homem, profetiza contra os pastores de Israel; profetiza e dize-lhes: Assim diz o Senhor Deus: Ai dos pastores de Israel que se apascentam a si mesmos! Não apascentarão os pastores as ovelhas? Comeis a gordura, vestis-vos da lã e degolais o cevado; mas não apascentais as ovelhas.",
+            ntlh: "Homem mortal, fale contra as autoridades que governam o meu povo de Israel [...] Ai de vocês, autoridades, pois cuidam de vocês mesmos, mas nunca tomam conta do rebanho! Vocês bebem o leite das ovelhas, usam a sua lã para fazer roupas e matam e comem as ovelhas mais bem-tratadas, porém não cuidam do rebanho.",
+            acf: "Filho do homem, profetiza contra os pastores de Israel; profetiza, e dize aos pastores: Assim diz o Senhor Deus: Ai dos pastores de Israel que se apascentam a si mesmos! Não devem os pastores apascentar as ovelhas? Comeis a gordura, e vos vestis da lã; matais o cevado; mas não apascentais as ovelhas.",
+          },
+        },
+      ],
+    },
+    newCovenant: {
+      context:
+        "No Novo Testamento, o texto é igualmente direto. Paulo condena explicitamente quem vê a piedade como “fonte de lucro” (1 Timóteo 6:3-5), afirmando que “o amor ao dinheiro é raiz de todos os males”. As qualificações para bispo e presbítero incluem, de forma expressa, não ser “cobiçoso de torpe ganância” (1 Timóteo 3:3; Tito 1:7). Pedro instrui os presbíteros a pastorear o rebanho “não por torpe ganância, mas de boa vontade”, e “não como dominadores”, mas como exemplo (1 Pedro 5:2-3). Paulo reconhece, em 1 Coríntios 9, o direito legítimo de sustento do trabalhador do evangelho - “se nós vos semeamos as coisas espirituais, será muito recolhermos de vós bens materiais?” - mas ele mesmo frequentemente abriu mão desse direito para não ser pedra de tropeço, chegando a dizer que preferia morrer a perder esse motivo de glória (1 Coríntios 9:15); em 2 Coríntios 11, afirma ter recebido sustento de outras igrejas para não pesar sobre a igreja que servia. E resume o modelo com o próprio testemunho: “De ninguém cobicei a prata, nem o ouro, nem as roupas... trabalhei com estas mãos... mais bem-aventurada coisa é dar do que receber” (Atos 20:33-35).",
+      verses: [
+        {
+          ref: "1 Timóteo 6:9-10",
+          versions: {
+            nvi: "Os que querem ficar ricos caem em tentação, em ciladas e em muitos desejos insensatos e nocivos, que levam os homens a mergulhar na ruína e na destruição, pois o amor ao dinheiro é a raiz de todos os males.",
+            ra: "Ora, os que querem ficar ricos caem em tentação, e cilada, e em muitas concupiscências insensatas e perniciosas [...] Porque o amor do dinheiro é raiz de todos os males.",
+            ntlh: "Os que querem ficar ricos caem em pecado, ao serem tentados, e ficam presos na armadilha de muitos desejos tolos [...] Pois o amor ao dinheiro é uma fonte de todos os tipos de males.",
+            acf: "Mas os que querem ser ricos caem em tentação, e em laço, e em muitas concupiscências loucas e nocivas [...] Porque o amor ao dinheiro é a raiz de todos os males.",
+          },
+        },
+        {
+          ref: "1 Pedro 5:2-3",
+          versions: {
+            nvi: "Pastoreiem o rebanho de Deus que está aos seus cuidados [...] Não façam isso por ganância, mas com o desejo de servir. Não ajam como dominadores dos que foram confiados a vocês, mas como exemplos para o rebanho.",
+            ra: "Pastoreai o rebanho de Deus que há entre vós [...] nem por sórdida ganância, mas de boa vontade; nem como dominadores dos que vos foram confiados, antes, tornando-vos modelos do rebanho.",
+            ntlh: "Aconselho que cuidem bem do rebanho que Deus lhes deu [...] Não façam o seu trabalho para ganhar dinheiro, mas com o verdadeiro desejo de servir. Não procurem dominar os que foram entregues aos cuidados de vocês, mas sejam um exemplo para o rebanho.",
+            acf: "Apascentai o rebanho de Deus, que está entre vós [...] nem por torpe ganância, mas de ânimo pronto; Nem como tendo domínio sobre a herança de Deus, mas servindo de exemplo ao rebanho.",
+          },
+        },
+        {
+          ref: "Atos 20:33-35",
+          versions: {
+            nvi: "Não cobicei a prata, nem o ouro, nem as roupas de ninguém. Vocês mesmos sabem que estas minhas mãos supriram as minhas necessidades e as dos meus companheiros [...] lembrando as palavras do próprio Senhor Jesus, que disse: “Mais bem-aventurada coisa é dar do que receber”.",
+            ra: "De ninguém cobicei prata, nem ouro, nem vestes; vós mesmos sabeis que estas mãos serviram para o que me era necessário a mim e aos que estavam comigo [...] e recordar as palavras do próprio Senhor Jesus: Mais bem-aventurado é dar que receber.",
+            ntlh: "Não cobicei nem a prata, nem o ouro, nem as roupas de ninguém. Pelo contrário, vocês sabem que eu trabalhei com as minhas próprias mãos [...] Lembrem das palavras do Senhor Jesus: “É mais feliz quem dá do que quem recebe”.",
+            acf: "De ninguém cobicei a prata, nem o ouro, nem o vestuário [...] estas mãos me serviram [...] recordar as palavras do Senhor Jesus, que disse: Mais bem-aventurada coisa é dar do que receber.",
+          },
+        },
+      ],
+    },
+    historical:
+      "Reportagens da revista Forbes, replicadas por veículos como InfoMoney, Terra e Jornal Opção, estimaram o patrimônio de Edir Macedo (Igreja Universal do Reino de Deus) entre cerca de R$ 2 bilhões e R$ 5,6 bilhões em diferentes levantamentos entre 2013 e 2024; o de Valdemiro Santiago (Igreja Mundial do Poder de Deus) em cerca de US$ 220 milhões em 2013 e R$ 1,4 bilhão em 2024; e o de Romildo Ribeiro Soares - R. R. Soares (Igreja Internacional da Graça de Deus) em cerca de R$ 736 milhões em 2024. É documentado, na cobertura jornalística desses casos, o crescimento expressivo de patrimônio em poucos anos e a aquisição de aeronaves particulares, propriedades de luxo e empresas de comunicação, num cenário de baixa transparência pública sobre a origem e a destinação dos recursos arrecadados de fiéis, muitos deles de renda baixa ou modesta. O mesmo padrão é observado internacionalmente em outras megaigrejas de teologia da prosperidade, o que indica um fenômeno estrutural do modelo de arrecadação - não um caso isolado.",
+    conclusion:
+      "Portanto, na Nova Aliança, a Bíblia não autoriza que líderes se tornem milionários com o dinheiro dos fiéis. O padrão bíblico para quem se dedica ao ministério é sustento digno e justo, contentamento, generosidade, ausência de ganância, transparência e exemplaridade - nunca acumulação pessoal de fortuna às custas do povo de Deus. Qualquer sistema que transforma a igreja em máquina de enriquecimento pessoal de líderes, enquanto cobra dízimo e oferta como obrigação sob pressão espiritual, está em direta contradição com o ensino do Novo Testamento. Enriquecer-se à custa do povo de Deus, usando o nome de Cristo, não é bênção. É distorção.",
+  },
+  // ------------------------------------------------------------
+  // CATOLICISMO ROMANO - a partir daqui, os temas examinam ensinos
+  // de outras tradições cristãs, não apenas o meio evangélico. A
+  // descrição de "o que se ensina hoje" busca representar a posição
+  // oficial (Catecismo da Igreja Católica e documentos do Magistério)
+  // de forma fiel, antes de apresentar a resposta a partir do texto
+  // bíblico e da Nova Aliança.
+  // ------------------------------------------------------------
+  {
+    id: "purgatorio",
+    icon: "🔥",
+    category: "Além-vida e Salvação",
+    tradition: "Catolicismo Romano",
+    title: "Purgatório",
+    summary: "Um estado intermediário de purificação após a morte - ou julgamento e salvação já plenamente selados na cruz?",
+    today:
+      "O Catecismo da Igreja Católica (CIC 1030-1032) ensina que “os que morrem na graça e na amizade de Deus, mas não de todo purificados, embora seguros da sua salvação eterna, sofrem depois da morte uma purificação, a fim de obterem a santidade necessária para entrar na alegria do céu”. A Igreja chama Purgatório a essa purificação final dos eleitos - distinta do castigo dos condenados - e ensina, desde os primeiros séculos, que se pode ajudar os falecidos nessa purificação por meio de orações, missas e indulgências oferecidas em seu favor. A doutrina foi formalizada nos concílios de Florença (1439) e de Trento (1545-1563).",
+    oldTestament: {
+      context:
+        "O texto mais citado como base bíblica do Purgatório é 2 Macabeus 12:43-46, que narra Judas Macabeu enviando uma oferta a Jerusalém para que se orasse pelos soldados judeus mortos em batalha, “para que os mortos fossem livres de suas faltas”. O livro de 2 Macabeus narra acontecimentos do século II a.C. e integra o grupo de livros chamados deuterocanônicos pela Igreja Católica - reconhecidos como Escritura no Concílio de Trento (1546), mas historicamente ausentes do cânon hebraico que os próprios judeus reconheciam como Escritura (o historiador judeu Flávio Josefo, no século I, enumera 22 livros como sagrados) e, por isso, ausentes também das Bíblias protestantes, que seguem esse cânon hebraico para o Antigo Testamento. É um fato relevante e verificável: o texto de apoio mais direto ao Purgatório vem de um livro que a tradição judaica, à época de Jesus, não reconhecia como Escritura canônica.",
+        verses: [
+          {
+            ref: "2 Macabeus 12:43-46",
+            note: "Este livro não consta no cânon das Bíblias protestantes (NVI, ARA, NTLH, ACF), que seguem o cânon hebraico do Antigo Testamento - por isso o texto abaixo é citado a partir da Bíblia Ave-Maria, tradução católica de referência, e não pode ser comparado nas quatro versões-padrão desta Biblioteca.",
+            versions: {
+              avemaria: "Em seguida, fez uma coleta, enviando a Jerusalém cerca de dez mil dracmas, para que se oferecesse um sacrifício pelos pecados: belo e santo modo de agir, decorrente de sua crença na ressurreição, porque, se ele não julgasse que os mortos ressuscitariam, teria sido vão e supérfluo rezar por eles. Mas, se ele acreditava que uma bela recompensa aguarda os que morrem piedosamente, era esse um bom e religioso pensamento. Eis por que ele pediu um sacrifício expiatório para que os mortos fossem livres de suas faltas.",
+            },
+          },
+        ],
+    },
+    newCovenant: {
+      context:
+        "O Novo Testamento descreve a morte do crente em Cristo como passagem direta para a presença do Senhor, não como entrada num processo adicional de purificação. Paulo afirma preferir “estar ausente do corpo e viver com o Senhor” (2 Coríntios 5:8) - uma transição imediata, sem etapa intermediária mencionada. Hebreus 9:27-28 descreve a sequência como morte, depois juízo - sem um estágio purificador entre as duas coisas -, e afirma que Cristo já “se ofereceu uma vez para sempre para tirar os pecados de muitos”. O outro texto citado pela tradição católica, 1 Coríntios 3:11-15, fala do “fogo” que provará a obra de cada um sobre o alicerce que é Cristo - mas o contexto imediato do capítulo trata da qualidade do trabalho ministerial de cada cristão (o que foi edificado sobre o evangelho), não de um processo de purificação da alma do crente para a entrada no céu; mesmo quem tem a obra “queimada” é descrito como salvo, e não como sujeito a um período de sofrimento purificador.",
+      verses: [
+        {
+          ref: "Hebreus 9:27-28",
+          versions: {
+            nvi: "E, assim como aos homens está ordenado morrerem uma só vez, vindo, depois disto, o juízo, assim também Cristo, tendo-se oferecido uma vez para sempre para tirar os pecados de muitos, aparecerá segunda vez, sem pecado, aos que o aguardam para a salvação.",
+            ra: "E, assim como aos homens está ordenado morrerem uma só vez, vindo, depois disto, o juízo, assim também Cristo, tendo-se oferecido uma vez para sempre para tirar os pecados de muitos, aparecerá segunda vez, sem pecado, aos que o aguardam para a salvação.",
+            ntlh: "Cada pessoa tem de morrer uma vez só e depois ser julgada por Deus. Assim também Cristo foi oferecido uma só vez em sacrifício, para tirar os pecados de muitas pessoas. Depois ele aparecerá pela segunda vez, não para tirar pecados, mas para salvar as pessoas que estão esperando por ele.",
+            acf: "E, como aos homens está ordenado morrerem uma vez, vindo depois disso o juízo, assim também Cristo, oferecendo-se uma vez para levar os pecados de muitos, aparecerá segunda vez, sem pecado, aos que o esperam para salvação.",
+          },
+        },
+        {
+          ref: "2 Coríntios 5:6-8",
+          versions: {
+            nvi: "Portanto, temos sempre confiança e sabemos que, enquanto vivemos neste corpo, estamos longe do Senhor, pois vivemos por fé, não pelo que vemos. Temos, pois, confiança e preferimos estar ausentes do corpo e viver com o Senhor.",
+            ra: "Temos, portanto, sempre bom ânimo, sabendo que, enquanto no corpo, estamos ausentes do Senhor; visto que andamos por fé e não pelo que vemos. Entretanto, estamos em plena confiança, preferindo deixar o corpo e habitar com o Senhor.",
+            ntlh: "Estamos sempre muito animados, pois sabemos que, enquanto vivemos neste corpo, estamos longe do lar do Senhor. Porque vivemos pela fé e não pelo que vemos. Estamos muito animados e gostaríamos de deixar de viver neste corpo para irmos viver com o Senhor.",
+            acf: "Por isso estamos sempre de bom ânimo, sabendo que, enquanto estamos no corpo, vivemos ausentes do Senhor (Porque andamos por fé, e não por vista). Mas temos confiança e desejamos antes deixar este corpo, para habitar com o Senhor.",
+          },
+        },
+        {
+          ref: "1 Coríntios 3:11-15",
+          versions: {
+            nvi: "Porque ninguém pode pôr outro alicerce além do que já está posto, que é Jesus Cristo. [...] A sua obra será mostrada, porque o Dia a trará à luz. Ela será revelada pelo fogo, e o fogo provará a qualidade da obra de cada um. Se o que alguém construiu permanecer, este receberá uma recompensa. Se a obra que alguém construiu for consumida, este sofrerá prejuízo; contudo, será salvo como alguém que escapa através do fogo.",
+            ra: "Porque ninguém pode lançar outro fundamento, além do que foi posto, o qual é Jesus Cristo. [...] pois o Dia a demonstrará, porque está sendo revelada pelo fogo; e qual seja a obra de cada um o próprio fogo o provará. Se permanecer a obra de alguém que sobre o fundamento edificou, esse receberá galardão; se a obra de alguém se queimar, sofrerá ele dano; mas esse mesmo será salvo, todavia, como que através do fogo.",
+            ntlh: "Porque Deus já pôs Jesus Cristo como o único alicerce, e nenhum outro alicerce pode ser colocado. [...] Pois o fogo daquele dia mostrará o trabalho de cada pessoa: o fogo vai mostrar e provar a verdadeira qualidade do trabalho. Se aquilo que alguém construir em cima do alicerce resistir ao fogo, então o construtor receberá a recompensa. Mas, se o trabalho de alguém for destruído pelo fogo, então esse construtor perderá a recompensa. Porém ele mesmo será salvo, como se tivesse passado pelo fogo para se salvar.",
+            acf: "Porque ninguém pode lançar outro fundamento, além do que foi posto, o qual é Jesus Cristo. [...] pois o Dia a demonstrará, porque está sendo revelada pelo fogo; e qual seja a obra de cada um o próprio fogo o provará. Se permanecer a obra de alguém que sobre o fundamento edificou, esse receberá galardão; se a obra de alguém se queimar, sofrerá ele dano; mas esse mesmo será salvo, todavia, como que através do fogo.",
+          },
+        },
+      ],
+    },
+    historical:
+      "A doutrina do Purgatório foi definida dogmaticamente nos concílios de Florença (1439) e de Trento (1545-1563) - este último convocado, entre outras razões, como resposta à Reforma Protestante. A prática de vender indulgências para abreviar o tempo de purificação no Purgatório dos falecidos foi o estopim histórico direto da Reforma: em 1517, o frade dominicano Johann Tetzel vendia indulgências na Alemanha com o dito popular “assim que a moeda no cofre soa, a alma do Purgatório para o céu voa” - episódio que levou Martinho Lutero a redigir as 95 Teses contra a venda de indulgências, publicadas em 31 de outubro de 1517, evento reconhecido pela historiografia como o marco inicial da Reforma Protestante.",
+    conclusion:
+      "Portanto, na Nova Aliança, a Bíblia não ensina isso. O texto de apoio mais direto ao Purgatório provém de um livro fora do cânon hebraico e das Bíblias protestantes; o Novo Testamento descreve a morte do crente como passagem imediata para a presença do Senhor, sem etapa purificadora intermediária, e afirma que Cristo já ofereceu, de uma vez por todas, o sacrifício que tira o pecado. Impor um estágio adicional de purificação póstuma é doutrina formalizada em concílios medievais - não mandamento do texto bíblico.",
+  },
+  // ------------------------------------------------------------
+  {
+    id: "maria-mediadora",
+    icon: "🙏",
+    category: "Autoridade e Mediação",
+    tradition: "Catolicismo Romano",
+    title: "Maria e os santos como intercessores junto a Deus",
+    summary: "Orações dirigidas a Maria e aos santos para interceder junto a Deus - ou um só Mediador reconhecido depois da cruz?",
+    today:
+      "O Catecismo da Igreja Católica (CIC 969) ensina que Maria, como “Mãe na ordem da graça”, continua junto a Cristo exercendo uma função maternal de intercessão, sendo invocada pelos fiéis sob títulos como “advogada”, “auxiliadora” e “medianeira”. É prática difundida da Igreja Católica dirigir orações a Maria (como a Ave-Maria e o terço) e a santos específicos, pedindo que intercedam junto a Deus por necessidades dos fiéis. É importante registrar, com justiça, que a própria Igreja Católica delimita esse ensino: o Concílio Vaticano II (Lumen Gentium 60, 62) afirma que a função maternal de Maria “não obscurece nem diminui esta mediação única de Cristo, antes lhe manifesta a eficácia”; e, em novembro de 2025, o Vaticano publicou a nota doutrinal “Mater Populi Fidelis”, afirmando ser “sempre inoportuno” o uso do título “Corredentora” para Maria e restringindo de forma significativa o uso de “Mediadora de todas as graças” - justamente pelo risco de obscurecer a mediação única de Cristo.",
+    oldTestament: {
+      context:
+        "O Antigo Testamento regula de forma explícita qualquer tentativa de contato ou petição dirigida aos mortos. Deuteronômio 18:10-11, dentro da Lei de Moisés, proíbe que se “consulte os mortos” junto com outras práticas de adivinhação - numa época em que o povo de Israel convivia com nações vizinhas que cultuavam ancestrais e consultavam espíritos. O episódio da médium de En-Dor, em 1 Samuel 28, mostra o rei Saul sendo condenado justamente por buscar contato com o falecido profeta Samuel por meio de uma médium, prática explicitamente vedada pela Lei que ele mesmo deveria fazer cumprir.",
+      verses: [
+        {
+          ref: "Deuteronômio 18:10-11",
+          versions: {
+            nvi: "Não permitam que se ache alguém no meio de vocês que queime em sacrifício o seu filho ou a sua filha; que pratique adivinhação, ou se dedique à magia, ou faça presságios, ou pratique feitiçaria; tampouco que faça encantamentos, que seja médium, consulte os espíritos ou consulte os mortos.",
+            ra: "Não se achará entre ti quem faça passar pelo fogo o seu filho ou a sua filha, nem adivinhador, nem prognosticador, nem agoureiro, nem feiticeiro; nem encantador, nem necromante, nem mágico, nem quem consulte os mortos.",
+            ntlh: "Não ofereçam os seus filhos em sacrifício, queimando-os no altar. Não deixem que no meio do povo haja adivinhos ou pessoas que tiram sortes; não tolerem feiticeiros, nem quem faz despachos, nem os que invocam os espíritos dos mortos.",
+            acf: "Entre ti não se achará quem faça passar pelo fogo a seu filho ou a sua filha, nem adivinhador, nem prognosticador, nem agoureiro, nem feiticeiro; Nem encantador, nem quem consulte a um espírito adivinhador, nem mágico, nem quem consulte os mortos.",
+          },
+        },
+      ],
+    },
+    newCovenant: {
+      context:
+        "A Nova Aliança reconhece um só mediador entre Deus e os homens: “Porque há um só Deus, e um só Mediador entre Deus e os homens, Jesus Cristo homem” (1 Timóteo 2:5). O texto grego não abre categoria para mediadores humanos adicionais, vivos ou falecidos. Quanto à relação entre Jesus e Maria, o próprio Novo Testamento registra o momento em que Cristo, na cruz, confia sua mãe aos cuidados práticos do apóstolo João - “eis aí tua mãe” - um gesto de provisão familiar concreta, num contexto de despedida terrena, não a instituição de uma mediação celestial permanente e universal para todos os cristãos de todas as épocas. O Novo Testamento não registra nenhum apóstolo orientando a igreja a orar a Maria ou a pedir intercessão de crentes falecidos; a instrução recorrente é orar diretamente “no nome” de Cristo, com acesso direto ao Pai.",
+      verses: [
+        {
+          ref: "1 Timóteo 2:5",
+          versions: {
+            nvi: "Pois há um só Deus e um só mediador entre Deus e os homens, o homem Cristo Jesus.",
+            ra: "Porquanto há um só Deus e um só Mediador entre Deus e os homens, Cristo Jesus, homem.",
+            ntlh: "Pois existe um só Deus e uma só pessoa que une Deus com os seres humanos - o ser humano Cristo Jesus.",
+            acf: "Porque há um só Deus, e um só Mediador entre Deus e os homens, Jesus Cristo homem.",
+          },
+        },
+        {
+          ref: "João 19:26-27",
+          versions: {
+            nvi: "Quando Jesus viu a sua mãe ali e, junto dela, o discípulo a quem ele amava, disse à sua mãe: “Mulher, aí está o seu filho”. Depois, disse ao discípulo: “Aí está a sua mãe”.",
+            ra: "Vendo Jesus sua mãe e junto a ela o discípulo amado, disse: Mulher, eis aí teu filho. Depois, disse ao discípulo: Eis aí tua mãe.",
+            ntlh: "Quando Jesus viu a sua mãe e perto dela o discípulo que ele amava, disse a ela: “Este é o seu filho”. Em seguida disse a ele: “Esta é a sua mãe”.",
+            acf: "Vendo Jesus sua mãe e junto a ela o discípulo amado, disse: Mulher, eis aí teu filho. Depois, disse ao discípulo: Eis aí tua mãe.",
+          },
+        },
+      ],
+    },
+    historical:
+      "A própria produção teológica católica recente confirma que este é um ponto de tensão interno à Igreja, não uma invenção da crítica protestante: a nota doutrinal “Mater Populi Fidelis”, aprovada pelo papa Francisco em 7 de outubro de 2025 e publicada em 4 de novembro de 2025, afasta formalmente o título “Corredentora” - usado por parte da piedade popular católica havia décadas - por reconhecer que ele “requer explicação excessiva” para não ser mal interpretado e que o próprio Concílio Vaticano II evitou-o deliberadamente “por razões dogmáticas, pastorais e ecumênicas”. O documento também reconhece que Maria, como “a primeira redimida”, não poderia mediar uma graça que ela mesma recebeu - um raciocínio teológico que caminha na mesma direção do argumento bíblico apresentado acima.",
+    conclusion:
+      "Portanto, na Nova Aliança, a Bíblia não ensina que Maria ou os santos falecidos sejam mediadores ou intercessores aos quais o cristão deva dirigir oração. O Antigo Testamento já vedava a busca de contato com os mortos, e o Novo Testamento reconhece um único Mediador depois da cruz. A própria Igreja Católica, em documento recente, reconhece os riscos de obscurecer essa mediação única ao elevar demais o papel de Maria. Orar a intercessores humanos, vivos ou falecidos, é tradição de piedade popular - não mandamento bíblico.",
+  },
+];
+
+if (typeof module !== "undefined") module.exports = { BIBLIOTECA_PRINCIPLE, BIBLIOTECA_METHOD, BIBLIOTECA_TOPICS };
+
+
+// ============================================================
 // BIBLE-API - integração ao vivo com "A Bíblia Digital"
 // (https://www.abibliadigital.com.br) para comparar um mesmo
 // versículo em diferentes versões da Bíblia cristã em português.
@@ -3088,6 +3956,16 @@ if (typeof module !== "undefined") {
       });
     }
 
+    if (typeof BIBLIOTECA_TOPICS !== "undefined") {
+      BIBLIOTECA_TOPICS.forEach(function (t) {
+        push("doutrina", t.title, t.summary, "Encontrado na Biblioteca Bíblica - " + t.category, "#/biblioteca/" + t.id,
+          [t.title, t.summary, t.today, t.oldTestament.context, t.newCovenant.context, t.conclusion]);
+        (t.oldTestament.verses || []).concat(t.newCovenant.verses || []).forEach(function (v) {
+          push("biblia", v.ref, (v.versions.nvi || "").slice(0, 140), 'Citado em "' + t.title + '" na Biblioteca Bíblica', "#/biblioteca/" + t.id, [v.ref, v.versions.nvi, v.versions.ra, v.versions.ntlh, v.versions.acf]);
+        });
+      });
+    }
+
     Object.keys(GLOSSARY).forEach(function (term) {
       push("conceito", term.charAt(0).toUpperCase() + term.slice(1), GLOSSARY[term], "Termo do glossário teológico", "#/busca?q=" + encodeURIComponent(term), [term, GLOSSARY[term]]);
     });
@@ -3155,6 +4033,8 @@ if (typeof module !== "undefined") {
     if (parts[0] === "sobre") return { name: "sobre", query: query };
     if (parts[0] === "ateismo" && parts[1]) return { name: "ateismo", topic: parts[1], query: query };
     if (parts[0] === "ateismo") return { name: "ateismo", query: query };
+    if (parts[0] === "biblioteca" && parts[1]) return { name: "biblioteca", topic: parts[1], query: query };
+    if (parts[0] === "biblioteca") return { name: "biblioteca", query: query };
     if (parts[0] === "ritos") return { name: "home", scrollTo: "ritos-section", query: query };
     return { name: "home", query: query };
   }
@@ -3162,7 +4042,7 @@ if (typeof module !== "undefined") {
   function navHref(route) {
     return {
       home: "#/", comparar: "#/comparar", ritos: "#/ritos", timeline: "#/linha-do-tempo",
-      biblia: "#/biblia", sobre: "#/sobre",
+      biblia: "#/biblia", biblioteca: "#/biblioteca", sobre: "#/sobre",
     }[route];
   }
 
@@ -3181,6 +4061,7 @@ if (typeof module !== "undefined") {
     else if (route.name === "fontes") html = pageFontes();
     else if (route.name === "sobre") html = pageSobre();
     else if (route.name === "ateismo") html = pageAteismo(route.topic);
+    else if (route.name === "biblioteca") html = pageBiblioteca(route.topic);
     else html = pageHome();
 
     app.innerHTML = html;
@@ -3195,7 +4076,7 @@ if (typeof module !== "undefined") {
 
   function updateActiveNav(route) {
     $all(".main-nav a, .mobile-drawer a").forEach(function (a) { a.classList.remove("active"); });
-    var map = { home: "#/", "compare-hub": "#/comparar", compare: "#/comparar", timeline: "#/linha-do-tempo", biblia: "#/biblia", ateismo: "#/ateismo", fontes: "#/fontes", sobre: "#/sobre" };
+    var map = { home: "#/", "compare-hub": "#/comparar", compare: "#/comparar", timeline: "#/linha-do-tempo", biblia: "#/biblia", ateismo: "#/ateismo", biblioteca: "#/biblioteca", fontes: "#/fontes", sobre: "#/sobre" };
     var href = map[route.name];
     if (href) $all('a[href="' + href + '"]').forEach(function (a) { a.classList.add("active"); });
   }
@@ -3423,6 +4304,8 @@ if (typeof module !== "undefined") {
       '<div class="category-scroll">' + categoryStrip() + "</div>" +
       "</div></section>" +
 
+      bibliotecaPromoSection() +
+
       '<section class="section" id="ritos-section"><div class="container">' +
       '<div class="section-head"><div><span class="eyebrow">Comparação geral</span><h2>Ritos e Práticas - Comparação Geral</h2><p>Veja como diferentes tradições utilizam práticas semelhantes ou diferentes.</p></div></div>' +
       ritualTableSection("agua") +
@@ -3464,6 +4347,28 @@ if (typeof module !== "undefined") {
         return '<button type="button" data-action="search-suggestion" data-q="' + t + '">' + t + "</button>";
       }).join("") + "</div>" +
       "</div>"
+    );
+  }
+
+  function bibliotecaPromoSection() {
+    var count = BIBLIOTECA_TOPICS.length;
+    return (
+      '<section class="section bib-promo"><div class="container">' +
+      '<div class="bib-promo-card">' +
+      '<div class="bib-promo-copy">' +
+      '<span class="eyebrow">A Verdade Sem Filtro</span>' +
+      "<h2>📖 Biblioteca Bíblica</h2>" +
+      '<p>' + count + ' temas em que a tradição eclesiástica se afastou do texto - dízimo obrigatório, prosperidade, maldições geracionais, cura garantida e mais - examinados com o texto integral em quatro versões da Bíblia, contexto histórico e a diferença entre o Antigo Testamento e a Nova Aliança.</p>' +
+      '<a class="btn btn-gold btn-cta-primary" href="#/biblioteca"><span>EXAMINAR OS TEMAS</span>' + arrowIcon() + "</a>" +
+      "</div>" +
+      '<div class="bib-promo-list">' +
+      BIBLIOTECA_TOPICS.slice(0, 5).map(function (t) {
+        return '<a class="bib-promo-item" href="#/biblioteca/' + t.id + '"><span class="bib-promo-icon">' + t.icon + "</span>" + esc(t.title) + "</a>";
+      }).join("") +
+      '<a class="bib-promo-item bib-promo-more" href="#/biblioteca">Ver todos os ' + count + " temas →</a>" +
+      "</div>" +
+      "</div>" +
+      "</div></section>"
     );
   }
 
@@ -4324,6 +5229,319 @@ if (typeof module !== "undefined") {
   }
 
   // ============================================================
+  // BIBLIOTECA BÍBLICA - "A Verdade Sem Filtro"
+  // ============================================================
+  var BIB_DEFAULT_TRADITION = "Protestantismo e Neopentecostalismo";
+
+  function findBibliotecaTopic(id) {
+    for (var i = 0; i < BIBLIOTECA_TOPICS.length; i++) {
+      if (BIBLIOTECA_TOPICS[i].id === id) return BIBLIOTECA_TOPICS[i];
+    }
+    return null;
+  }
+
+  function bibliotecaTradition(t) {
+    return t.tradition || BIB_DEFAULT_TRADITION;
+  }
+
+  function bibliotecaAllTraditions() {
+    var out = [];
+    BIBLIOTECA_TOPICS.forEach(function (t) {
+      var tr = bibliotecaTradition(t);
+      if (out.indexOf(tr) === -1) out.push(tr);
+    });
+    return out;
+  }
+
+  // Busca inteligente da Biblioteca Bíblica: sem servidor, sem chave de
+  // API e sem custo (roda inteiramente no navegador da pessoa) - combina
+  // (1) um pequeno dicionário de sinônimos/apelidos comuns, (2) distância
+  // de edição (Levenshtein) para tolerar erros de digitação, e (3) uma
+  // pontuação de relevância por tema. Não é um modelo de linguagem: é um
+  // algoritmo de busca e ranqueamento, mais parecido com o "corretor" de
+  // um buscador do que com um chat de IA - ver explicação para o usuário
+  // sobre por que uma IA generativa de verdade exigiria um servidor.
+  var BIB_SYNONYMS = {
+    dizimo: ["dizimos", "dizimar", "dez por cento", "10%"],
+    oferta: ["ofertas", "semente", "sementes", "oferta de fe"],
+    prosperidade: ["riqueza", "prosperar", "teologia da prosperidade"],
+    maldicao: ["maldicoes", "maldicao geracional", "amaldicoado"],
+    demonio: ["demonios", "exorcismo", "libertacao", "amarrar", "desatar"],
+    lingua: ["linguas", "glossolalia", "falar em linguas"],
+    pastor: ["pastores", "apostolo", "bispo", "lider", "mediador"],
+    confissao: ["declaracao", "confissao positiva", "boca da fe"],
+    cura: ["curas", "sarar", "sarado", "doenca", "doente"],
+    uncao: ["uncoes", "cair no espirito", "descanso no espirito"],
+    milionario: ["milionarios", "bilionario", "fortuna", "patrimonio", "rico", "ricos"],
+    purgatorio: ["purificacao apos a morte"],
+    maria: ["nossa senhora", "corredentora", "medianeira", "santos", "santo"],
+    catolico: ["catolicismo", "catolica", "romano", "vaticano", "papa"],
+    protestante: ["protestantismo", "evangelico", "evangelicos"],
+    pentecostal: ["neopentecostal", "neopentecostalismo", "assembleia"],
+    espirita: ["espiritismo", "kardecismo", "reencarnacao", "umbanda", "candomble"],
+    testemunha: ["testemunhas de jeova", "jeova"],
+    mormon: ["mormons", "mormonismo", "sud", "ultimos dias"],
+  };
+
+  function levenshtein(a, b) {
+    if (a === b) return 0;
+    var la = a.length, lb = b.length;
+    if (!la) return lb;
+    if (!lb) return la;
+    var prev = [];
+    for (var j = 0; j <= lb; j++) prev[j] = j;
+    for (var i = 1; i <= la; i++) {
+      var cur = [i];
+      for (var k = 1; k <= lb; k++) {
+        var cost = a.charAt(i - 1) === b.charAt(k - 1) ? 0 : 1;
+        cur[k] = Math.min(prev[k] + 1, cur[k - 1] + 1, prev[k - 1] + cost);
+      }
+      prev = cur;
+    }
+    return prev[lb];
+  }
+
+  function bibliotecaExpandQuery(tokens) {
+    var out = tokens.slice();
+    tokens.forEach(function (tok) {
+      Object.keys(BIB_SYNONYMS).forEach(function (root) {
+        var group = BIB_SYNONYMS[root].concat([root]);
+        if (group.indexOf(tok) !== -1) {
+          group.forEach(function (syn) { if (out.indexOf(syn) === -1) out.push(syn); });
+        }
+      });
+    });
+    return out;
+  }
+
+  // Duas "camadas" de texto por tema: a primária (título, resumo,
+  // categoria, tradição) pesa muito mais que o corpo do artigo - assim,
+  // uma menção incidental dentro de um parágrafo histórico (ex.: o tema
+  // "Purgatório" cita a "Reforma Protestante" no contexto histórico) não
+  // faz esse tema aparecer numa busca por "evangélico" só por causa dessa
+  // única palavra solta no meio do texto.
+  function bibliotecaTopicHaystacks(t) {
+    return {
+      primary: normalizeText([t.title, t.summary, t.category, bibliotecaTradition(t)].join(" ")),
+      body: normalizeText([t.today, t.oldTestament.context, t.newCovenant.context, t.historical, t.conclusion].join(" ")),
+    };
+  }
+
+  function bibliotecaScoreTopic(hs, qTokens) {
+    var score = 0;
+    var primaryTokens = hs.primary.split(/\s+/).filter(Boolean);
+    qTokens.forEach(function (qt) {
+      if (!qt) return;
+      if (hs.primary.indexOf(qt) !== -1) { score += 20; return; }
+      if (hs.body.indexOf(qt) !== -1) { score += 3; return; }
+      // Tolerância a erro de digitação: só contra título/resumo/tags, não
+      // contra o corpo inteiro do artigo (evita ruído em textos longos).
+      var maxDist = qt.length <= 4 ? 0 : (qt.length <= 7 ? 1 : 2);
+      var best = Infinity;
+      for (var i = 0; i < primaryTokens.length; i++) {
+        var ht = primaryTokens[i];
+        if (Math.abs(ht.length - qt.length) > maxDist) continue;
+        var d = levenshtein(qt, ht);
+        if (d < best) best = d;
+        if (best === 0) break;
+      }
+      if (best <= maxDist) score += Math.max(6, 12 - best * 3);
+    });
+    return score;
+  }
+
+  function bibliotecaFilterTopics(query, tradition) {
+    var base = BIBLIOTECA_TOPICS.filter(function (t) {
+      return !tradition || tradition === "todas" || bibliotecaTradition(t) === tradition;
+    });
+    var qTokens = normalizeText(query || "").split(/\s+/).filter(Boolean);
+    if (!qTokens.length) return base;
+    qTokens = bibliotecaExpandQuery(qTokens);
+    var scored = base.map(function (t) {
+      return { t: t, score: bibliotecaScoreTopic(bibliotecaTopicHaystacks(t), qTokens) };
+    }).filter(function (s) { return s.score >= 6; });
+    scored.sort(function (a, b) { return b.score - a.score; });
+    return scored.map(function (s) { return s.t; });
+  }
+
+  function bibliotecaRenderGrouped(topics) {
+    if (!topics.length) {
+      return '<p class="bib-no-results">Nenhum tema encontrado para essa busca. Tente outra palavra-chave - por exemplo, o nome de uma prática (“dízimo”), de uma religião (“catolicismo”) ou de uma doutrina (“purgatório”).</p>';
+    }
+    var cats = [];
+    topics.forEach(function (t) { if (cats.indexOf(t.category) === -1) cats.push(t.category); });
+    return cats.map(function (cat) {
+      var group = topics.filter(function (t) { return t.category === cat; });
+      return (
+        '<div class="bib-category-group">' +
+        "<h3 class=\"bib-category-title\">" + esc(cat) + "</h3>" +
+        '<div class="bib-topic-grid">' + group.map(bibliotecaTopicCard).join("") + "</div>" +
+        "</div>"
+      );
+    }).join("");
+  }
+
+  // Para resultados de busca (query não vazia): lista única ordenada por
+  // relevância, sem agrupar por categoria - preserva o ranqueamento.
+  function bibliotecaRenderRanked(topics) {
+    if (!topics.length) {
+      return '<p class="bib-no-results">Nenhum tema encontrado para essa busca. Tente outra palavra-chave - por exemplo, o nome de uma prática (“dízimo”), de uma religião (“catolicismo”) ou de uma doutrina (“purgatório”).</p>';
+    }
+    return '<div class="bib-topic-grid">' + topics.map(bibliotecaTopicCard).join("") + "</div>";
+  }
+
+  function initBibliotecaSearch() {
+    var form = $("#bib-search-form");
+    var input = $("#bib-search-input");
+    var chipsEl = $("#bib-filter-chips");
+    var resultsEl = $("#bib-results-container");
+    var countEl = $("#bib-results-count");
+    if (!form || !input || !resultsEl) return;
+    var activeTradition = "todas";
+
+    function run() {
+      var q = input.value.trim();
+      var filtered = bibliotecaFilterTopics(q, activeTradition);
+      resultsEl.innerHTML = q ? bibliotecaRenderRanked(filtered) : bibliotecaRenderGrouped(filtered);
+      if (q || activeTradition !== "todas") {
+        countEl.textContent = filtered.length + (filtered.length === 1 ? " tema encontrado" : " temas encontrados");
+      } else {
+        countEl.textContent = "";
+      }
+    }
+
+    input.addEventListener("input", debounce(run, 120));
+    form.addEventListener("submit", function (e) { e.preventDefault(); run(); });
+    if (chipsEl) {
+      chipsEl.addEventListener("click", function (e) {
+        var chip = e.target.closest(".bib-chip");
+        if (!chip) return;
+        $all(".bib-chip", chipsEl).forEach(function (c) { c.classList.remove("active"); });
+        chip.classList.add("active");
+        activeTradition = chip.getAttribute("data-tradition");
+        run();
+      });
+    }
+  }
+
+  var BIB_EXTRA_VERSION_LABELS = {
+    avemaria: "Ave-Maria (católica)",
+    jerusalem: "Bíblia de Jerusalém (católica)",
+  };
+
+  function bibliotecaVerseCompareBlock(v) {
+    var order = ["nvi", "ra", "ntlh", "acf", "avemaria", "jerusalem"];
+    var rows = order.map(function (code) {
+      if (!v.versions[code]) return "";
+      var label = (VERSION_LABELS[code] || BIB_EXTRA_VERSION_LABELS[code] || code.toUpperCase()).split(" - ")[0];
+      return (
+        '<div class="bib-version-row">' +
+        '<span class="bib-version-tag">' + esc(label) + "</span>" +
+        '<span class="bib-version-text">“' + esc(v.versions[code]) + '”</span>' +
+        "</div>"
+      );
+    }).join("");
+    return (
+      '<div class="bib-verse-compare">' +
+      '<div class="bib-verse-ref">' + esc(v.ref) + "</div>" +
+      (v.note ? '<div class="bib-verse-note">' + esc(v.note) + "</div>" : "") +
+      rows +
+      "</div>"
+    );
+  }
+
+  function bibliotecaTopicCard(t) {
+    return (
+      '<a class="bib-topic-card" href="#/biblioteca/' + t.id + '">' +
+      '<span class="bib-topic-icon">' + t.icon + "</span>" +
+      '<span class="bib-topic-tags"><span class="bib-topic-cat">' + esc(t.category) + '</span><span class="bib-topic-tradition">' + esc(bibliotecaTradition(t)) + "</span></span>" +
+      "<h3>" + esc(t.title) + "</h3>" +
+      "<p>" + esc(t.summary) + "</p>" +
+      '<span class="bib-topic-cta">Examinar à luz da Bíblia →</span>' +
+      "</a>"
+    );
+  }
+
+  function bibliotecaTopicDetail(t) {
+    var idx = BIBLIOTECA_TOPICS.indexOf(t);
+    var prev = BIBLIOTECA_TOPICS[idx - 1];
+    var next = BIBLIOTECA_TOPICS[(idx + 1) % BIBLIOTECA_TOPICS.length];
+    return (
+      '<article class="bib-article">' +
+      '<a class="bib-back" href="#/biblioteca">← Todos os temas</a>' +
+      '<header class="bib-article-head">' +
+      '<span class="bib-topic-tags"><span class="bib-topic-cat">' + esc(t.category) + '</span><span class="bib-topic-tradition">' + esc(bibliotecaTradition(t)) + "</span></span>" +
+      "<h1>" + t.icon + " " + esc(t.title) + "</h1>" +
+      "<p class=\"bib-article-summary\">" + esc(t.summary) + "</p>" +
+      "</header>" +
+
+      '<section class="bib-block bib-today">' +
+      "<h2>1. O que se ensina hoje</h2>" +
+      "<p>" + glossify(t.today) + "</p>" +
+      "</section>" +
+
+      '<section class="bib-block bib-old">' +
+      '<h2>2. O que a Bíblia diz - Antigo Testamento</h2>' +
+      "<p>" + glossify(t.oldTestament.context) + "</p>" +
+      (t.oldTestament.verses || []).map(bibliotecaVerseCompareBlock).join("") +
+      "</section>" +
+
+      '<section class="bib-block bib-new">' +
+      "<h2>3. O que a Bíblia diz - Nova Aliança</h2>" +
+      "<p>" + glossify(t.newCovenant.context) + "</p>" +
+      (t.newCovenant.verses || []).map(bibliotecaVerseCompareBlock).join("") +
+      "</section>" +
+
+      '<section class="bib-block bib-historical">' +
+      "<h2>4. Fatos históricos</h2>" +
+      "<p>" + glossify(t.historical) + "</p>" +
+      "</section>" +
+
+      '<section class="bib-block bib-conclusion">' +
+      "<h2>5. Conclusão</h2>" +
+      "<p>" + esc(t.conclusion) + "</p>" +
+      "</section>" +
+
+      '<nav class="bib-pager">' +
+      (prev ? '<a href="#/biblioteca/' + prev.id + '">← ' + esc(prev.title) + "</a>" : "<span></span>") +
+      '<a href="#/biblioteca/' + next.id + '">' + esc(next.title) + " →</a>" +
+      "</nav>" +
+      "</article>"
+    );
+  }
+
+  function pageBiblioteca(topicId) {
+    if (topicId) {
+      var t = findBibliotecaTopic(topicId);
+      if (t) return '<section class="section bib-page"><div class="container" style="max-width:880px">' + bibliotecaTopicDetail(t) + "</div></section>";
+    }
+    var traditions = bibliotecaAllTraditions();
+    var chips = '<button type="button" class="bib-chip active" data-tradition="todas">Todas as religiões</button>' +
+      traditions.map(function (tr) {
+        return '<button type="button" class="bib-chip" data-tradition="' + esc(tr) + '">' + esc(tr) + "</button>";
+      }).join("");
+    return (
+      '<section class="section bib-page"><div class="container">' +
+      '<div class="bib-search-hero">' +
+      '<span class="eyebrow">A Verdade Sem Filtro</span>' +
+      "<h2>📖 Biblioteca Bíblica</h2>" +
+      "<p>Um Google da Bíblia: pesquise uma prática, uma doutrina ou o nome de uma religião e veja o texto bíblico integral em quatro versões, o contexto histórico e a diferença entre o que se ensina hoje e o que a Nova Aliança, inaugurada pela morte e ressurreição de Cristo, de fato diz - em todas as religiões e denominações mapeadas pelo site, não apenas no meio evangélico.</p>" +
+      '<form id="bib-search-form" class="bib-search-box" role="search">' +
+      searchIcon() +
+      '<input type="text" id="bib-search-input" placeholder="Pesquise um tema, uma doutrina ou uma religião... Ex.: dízimo, purgatório, mediador" aria-label="Pesquisar na Biblioteca Bíblica" autocomplete="off">' +
+      '<button class="btn btn-gold btn-sm" type="submit">Buscar</button>' +
+      "</form>" +
+      '<p class="bib-search-hint">Busca inteligente: reconhece sinônimos (ex.: “evangélico” ≈ “pentecostal”) e tolera erros de digitação.</p>' +
+      '<div class="bib-filter-chips" id="bib-filter-chips">' + chips + "</div>" +
+      "</div>" +
+      '<div class="observation-note bib-principle-note"><strong>Princípio desta seção:</strong> ' + esc(BIBLIOTECA_PRINCIPLE) + "</div>" +
+      '<p class="bib-results-count" id="bib-results-count" aria-live="polite"></p>' +
+      '<div id="bib-results-container">' + bibliotecaRenderGrouped(BIBLIOTECA_TOPICS) + "</div>" +
+      "</div></section>"
+    );
+  }
+
+  // ============================================================
   // MODAIS
   // ============================================================
   function openSimilaritiesModal(ritualId, triggerEl) {
@@ -4692,6 +5910,7 @@ if (typeof module !== "undefined") {
 
   function postRenderHooks(route) {
     if (route.name === "biblia") initBibleComparator("");
+    if (route.name === "biblioteca" && !route.topic) initBibliotecaSearch();
   }
 
   // ============================================================
@@ -4707,7 +5926,7 @@ if (typeof module !== "undefined") {
       '<a class="brand" href="#/">' + brandSVG() + '<span class="brand-name">Nova<span class="gold">&#8217;</span> Aliança</span></a>' +
       '<nav class="main-nav" aria-label="Navegação principal">' +
       '<a href="#/">Início</a><a href="#/comparar">Comparar Religiões</a><a href="#/ritos">Ritos e Práticas</a>' +
-      '<a href="#/linha-do-tempo">Linha do Tempo</a><a href="#/biblia">O que diz a Bíblia</a><a href="#/ateismo">Ateísmo</a><a href="#/sobre">Sobre</a>' +
+      '<a href="#/linha-do-tempo">Linha do Tempo</a><a href="#/biblia">O que diz a Bíblia</a><a href="#/biblioteca">Biblioteca Bíblica</a><a href="#/ateismo">Ateísmo</a><a href="#/sobre">Sobre</a>' +
       "</nav>" +
       '<div class="header-actions">' +
       '<span class="simple-mode-toggle" title="Explicar termos técnicos em linguagem simples"><button class="switch on" data-action="toggle-simple" aria-label="Alternar explicações simples" aria-pressed="true"></button></span>' +
@@ -4719,7 +5938,7 @@ if (typeof module !== "undefined") {
       '<div class="panel" role="dialog" aria-modal="true" aria-label="Menu de navegação">' +
       '<button class="icon-btn close-drawer" data-action="close-menu" aria-label="Fechar menu">✕</button>' +
       '<a href="#/">Início</a><a href="#/comparar">Comparar Religiões</a><a href="#/ritos">Ritos e Práticas</a>' +
-      '<a href="#/linha-do-tempo">Linha do Tempo</a><a href="#/biblia">O que diz a Bíblia</a><a href="#/ateismo">Ateísmo</a><a href="#/sobre">Sobre</a>' +
+      '<a href="#/linha-do-tempo">Linha do Tempo</a><a href="#/biblia">O que diz a Bíblia</a><a href="#/biblioteca">Biblioteca Bíblica</a><a href="#/ateismo">Ateísmo</a><a href="#/sobre">Sobre</a>' +
       "</div></div>";
 
     $("#footer-slot").innerHTML =
