@@ -192,10 +192,10 @@ p { overflow-wrap: break-word; }
   font-size: 21px; letter-spacing: 0.015em; white-space: nowrap; color: var(--text-on-dark);
 }
 .brand-name .gold { color: var(--gold-light); font-weight: 700; }
-.main-nav { display: flex; gap: 2px; flex-wrap: wrap; }
+.main-nav { display: flex; gap: 2px; flex-wrap: nowrap; }
 .main-nav a {
-  position: relative; color: var(--text-muted-on-dark); font-weight: 600; font-size: 13.5px;
-  letter-spacing: 0.01em; padding: 10px 15px; border-radius: 999px;
+  position: relative; color: var(--text-muted-on-dark); font-weight: 600; font-size: 12.2px;
+  letter-spacing: 0.01em; padding: 8px 9px; border-radius: 999px; white-space: nowrap;
   transition: color var(--dur-base) var(--ease), background var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
   min-height: var(--tap-min); display: inline-flex; align-items: center;
 }
@@ -217,7 +217,7 @@ p { overflow-wrap: break-word; }
 .icon-btn:hover { background: rgba(255,255,255,0.16); }
 .hamburger { display: none; }
 
-@media (max-width: 1080px) {
+@media (max-width: 1279px) {
   .main-nav { display: none; }
   .hamburger { display: flex; }
 }
@@ -901,23 +901,23 @@ table.similarity-table th { background: var(--gray-50); font-size: var(--fs-labe
    Linha do Tempo dos Fundadores.
    ============================================================ */
 .mh-page {
-  --mh-bg: #05070a; --mh-surface: #0b1118; --mh-glass: rgba(15,25,38,0.72);
-  --mh-blue: #4da3ff; --mh-cyan: #39d9ff; --mh-violet: #9a7cff; --mh-gold: #d9a441; --mh-emerald: #31c48d;
-  --mh-text: #f2f5f8; --mh-text-soft: #c3cbd6; --mh-text-mute: #8d9aaa;
-  --mh-line: rgba(255,255,255,0.09); --mh-line-soft: rgba(255,255,255,0.06);
-  background: radial-gradient(1000px 560px at 85% -10%, rgba(77,163,255,0.08), transparent 60%), var(--mh-bg);
+  --mh-bg: #07060a; --mh-surface: #120e0a; --mh-glass: rgba(24,18,10,0.72);
+  --mh-blue: #e2b04d; --mh-cyan: #f6cf7a; --mh-violet: #c9822f; --mh-gold: #e2b04d; --mh-gold-bright: #f6dfa0; --mh-emerald: #31c48d;
+  --mh-text: #f5efe0; --mh-text-soft: #d8caa8; --mh-text-mute: #a8987a;
+  --mh-line: rgba(226,176,77,0.16); --mh-line-soft: rgba(226,176,77,0.09);
+  background: radial-gradient(1100px 620px at 82% -8%, rgba(226,176,77,0.10), transparent 60%), radial-gradient(900px 500px at 10% 105%, rgba(180,120,40,0.08), transparent 60%), var(--mh-bg);
   color: var(--mh-text); padding-bottom: var(--space-9);
 }
 .mh-page .container.mh-container { padding-top: var(--space-6); padding-bottom: var(--space-6); }
 
 /* ---- header ---- */
-.mh-header { border-bottom: 1px solid var(--mh-line); background: rgba(2,4,8,0.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.mh-header { border-bottom: 1px solid var(--mh-line); background: rgba(8,5,2,0.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 .mh-header-inner { display: flex; align-items: center; gap: 20px; padding: 16px 0; flex-wrap: wrap; }
 .mh-header-brand { display: flex; align-items: center; gap: 12px; flex: 0 0 auto; }
 .mh-header-brand svg { width: 28px; height: 28px; color: var(--mh-gold); flex: 0 0 auto; }
 .mh-header-titles { display: flex; flex-direction: column; line-height: 1.2; }
 .mh-title { font-family: "Playfair Display", serif; font-size: 17px; font-weight: 700; color: var(--mh-text); }
-.mh-subtitle { font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mh-text-mute); }
+.mh-subtitle { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mh-text-mute); }
 .mh-header-search { flex: 1 1 260px; max-width: 420px; display: flex; align-items: center; gap: 8px; background: var(--mh-glass); border: 1px solid var(--mh-line); border-radius: 999px; padding: 9px 16px; }
 .mh-header-search svg { width: 16px; height: 16px; color: var(--mh-blue); flex: 0 0 auto; }
 .mh-header-search input { flex: 1; background: none; border: none; outline: none; color: var(--mh-text); font-size: 13px; font-family: inherit; }
@@ -936,14 +936,14 @@ table.similarity-table th { background: var(--gray-50); font-size: var(--fs-labe
 .mh-nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 10px; font-size: 12.5px; font-weight: 600; color: var(--mh-text-soft); text-align: left; background: none; border: 1px solid transparent; }
 .mh-nav-item svg { width: 16px; height: 16px; flex: 0 0 auto; color: var(--mh-text-mute); }
 .mh-nav-item:hover { background: rgba(255,255,255,0.05); color: var(--mh-text); }
-.mh-nav-item.active { background: rgba(77,163,255,0.14); border-color: rgba(77,163,255,0.3); color: var(--mh-text); }
+.mh-nav-item.active { background: rgba(226,176,77,0.16); border-color: rgba(226,176,77,0.35); color: var(--mh-text); }
 .mh-nav-item.active svg { color: var(--mh-blue); }
 .mh-stats { display: flex; flex-direction: column; gap: 10px; padding-top: 14px; border-top: 1px solid var(--mh-line-soft); }
 .mh-stat { display: flex; flex-direction: column; gap: 2px; }
-.mh-stat-label { font-size: 9.5px; font-weight: 800; letter-spacing: 0.06em; color: var(--mh-text-mute); }
+.mh-stat-label { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; color: var(--mh-text-mute); }
 .mh-stat-value { font-family: "SFMono-Regular", Consolas, monospace; font-size: 18px; font-weight: 700; color: var(--mh-text); }
 .mh-legend { display: flex; flex-direction: column; gap: 8px; padding-top: 14px; border-top: 1px solid var(--mh-line-soft); }
-.mh-legend-title { font-size: 9.5px; font-weight: 800; letter-spacing: 0.06em; color: var(--mh-text-mute); margin-bottom: 2px; }
+.mh-legend-title { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; color: var(--mh-text-mute); margin-bottom: 2px; }
 .mh-legend-item { display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--mh-text-soft); font-weight: 600; }
 .mh-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; }
 
@@ -973,38 +973,55 @@ table.similarity-table th { background: var(--gray-50); font-size: var(--fs-labe
 .mh-card-rel { position: absolute; top: 12px; right: 12px; font-size: 8px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; padding: 3px 7px; border-radius: 999px; color: #05070a; background: var(--rel-c, #8d9aaa); cursor: help; }
 .mh-card-name { font-size: 13px; font-weight: 700; color: var(--mh-text); line-height: 1.3; margin-top: 4px; }
 .mh-card-period { font-family: "SFMono-Regular", Consolas, monospace; font-size: 11px; color: var(--mh-text-mute); }
-.mh-card-region { font-size: 10px; font-weight: 700; color: var(--region-c, var(--mh-blue)); }
+.mh-card-region { font-size: 11px; font-weight: 700; color: var(--region-c, var(--mh-blue)); }
+
+/* cartões com ilustração de referência: imagem preenche o cartão, texto
+   sobre um gradiente escuro na base — mesma informação, visual do mockup */
+.mh-card.has-thumb { padding: 0; overflow: hidden; min-height: 210px; justify-content: flex-end; }
+.mh-card-thumb { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
+.mh-card-thumb::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(7,6,10,0.94) 0%, rgba(7,6,10,0.68) 38%, rgba(7,6,10,0.08) 72%, transparent 100%);
+}
+.mh-card.has-thumb .mh-card-rel { z-index: 2; }
+.mh-card.has-thumb .mh-card-name,
+.mh-card.has-thumb .mh-card-period,
+.mh-card.has-thumb .mh-card-region { position: relative; z-index: 2; padding: 0 13px; }
+.mh-card.has-thumb .mh-card-name { margin-top: 0; }
+.mh-card.has-thumb .mh-card-region { padding-bottom: 13px; }
+.mh-card.has-thumb:hover .mh-card-thumb, .mh-card.has-thumb:focus-visible .mh-card-thumb { transform: scale(1.045); }
+.mh-card-thumb { transition: transform 0.5s ease; }
 
 /* ---- placeholder (mapa / árvore / glossário) ---- */
 .mh-placeholder { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; background: var(--mh-glass); border: 1px solid var(--mh-line); border-radius: 16px; padding: var(--space-7); }
-.mh-placeholder-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(77,163,255,0.12); border: 1px solid rgba(77,163,255,0.3); }
+.mh-placeholder-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(226,176,77,0.14); border: 1px solid rgba(226,176,77,0.35); }
 .mh-placeholder-icon svg { width: 22px; height: 22px; color: var(--mh-blue); }
 .mh-placeholder h3 { font-size: 17px; margin: 4px 0 0; color: var(--mh-text); }
 .mh-placeholder p { font-size: 13px; line-height: 1.6; color: var(--mh-text-soft); max-width: 520px; margin: 0 0 6px; }
 
 /* ---- detail panel ---- */
 .mh-detail { background: var(--mh-glass); border: 1px solid var(--mh-line); border-radius: 16px; padding: 18px; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
-.mh-detail-badge { display: inline-flex; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; padding: 4px 10px; border-radius: 999px; color: #05070a; background: var(--region-c, var(--mh-blue)); }
+.mh-detail-badge { display: inline-flex; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; padding: 4px 10px; border-radius: 999px; color: #05070a; background: var(--region-c, var(--mh-blue)); }
 .mh-detail-name { font-family: "Playfair Display", serif; font-size: 19px; margin: 10px 0 2px; color: var(--mh-text); line-height: 1.25; }
 .mh-detail-period { font-family: "SFMono-Regular", Consolas, monospace; font-size: 12px; color: var(--mh-text-mute); margin: 0 0 12px; }
 .mh-detail-emblem-wrap { width: 100%; height: 76px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, color-mix(in srgb, var(--region-c, #4da3ff) 20%, transparent), transparent); border: 1px solid var(--mh-line); margin-bottom: 14px; }
 .mh-detail-emblem-wrap svg { width: 30px; height: 30px; color: var(--region-c, var(--mh-blue)); }
 .mh-detail-facts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
 .mh-detail-facts-grid .fact { background: rgba(255,255,255,0.03); border: 1px solid var(--mh-line-soft); border-radius: 10px; padding: 8px 10px; }
-.mh-detail-facts-grid .fact .label { color: var(--mh-text-mute); font-size: 9.5px; }
+.mh-detail-facts-grid .fact .label { color: var(--mh-text-mute); font-size: 11px; }
 .mh-detail-facts-grid .fact .value { color: var(--mh-text); font-size: 12px; }
 .mh-detail-link { font-size: 12px; font-weight: 700; color: var(--mh-blue); background: none; border: none; padding: 0; text-align: left; }
 .mh-detail-link:hover { text-decoration: underline; }
 .mh-detail-block { margin-bottom: 14px; }
-.mh-detail-title { display: block; font-size: 10px; font-weight: 800; letter-spacing: 0.06em; color: var(--mh-text-mute); margin-bottom: 6px; }
+.mh-detail-title { display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; color: var(--mh-text-mute); margin-bottom: 6px; }
 .mh-detail-summary { font-size: 12.5px; line-height: 1.65; color: var(--mh-text-soft); margin: 0; }
 .mh-facts-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
 .mh-fact-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; line-height: 1.55; color: var(--mh-text-soft); }
-.mh-fact-check { flex: 0 0 auto; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: #05070a; background: var(--rel-c, var(--mh-emerald)); margin-top: 1px; }
+.mh-fact-check { flex: 0 0 auto; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #05070a; background: var(--rel-c, var(--mh-emerald)); margin-top: 1px; }
 .mh-descendant-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
 .mh-descendant-list li { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12px; padding: 7px 10px; background: rgba(255,255,255,0.03); border-radius: 8px; }
 .mh-descendant-name { color: var(--mh-text); font-weight: 600; }
-.mh-descendant-period { color: var(--mh-text-mute); font-size: 10.5px; font-family: "SFMono-Regular", Consolas, monospace; }
+.mh-descendant-period { color: var(--mh-text-mute); font-size: 11px; font-family: "SFMono-Regular", Consolas, monospace; }
 .mh-source-list { list-style: none; padding: 0; margin: 0 0 8px; display: flex; flex-direction: column; gap: 6px; }
 .mh-source-item { display: flex; flex-direction: column; font-size: 11.5px; }
 .mh-source-author { color: var(--mh-text); font-weight: 700; }
@@ -1016,7 +1033,7 @@ table.similarity-table th { background: var(--gray-50); font-size: var(--fs-labe
 .mh-footer { border-top: 1px solid var(--mh-line); margin-top: var(--space-7); padding-top: var(--space-5); }
 .mh-footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px 24px; }
 .mh-footer-filters { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.mh-footer-label { font-size: 9.5px; font-weight: 800; letter-spacing: 0.06em; color: var(--mh-text-mute); }
+.mh-footer-label { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; color: var(--mh-text-mute); }
 .mh-select { background: var(--mh-glass); color: var(--mh-text); border: 1px solid var(--mh-line); border-radius: 8px; padding: 7px 10px; font-size: 12px; font-family: inherit; }
 .mh-clear-link { font-size: 12px; font-weight: 700; color: var(--mh-blue); background: none; border: none; }
 .mh-clear-link:hover { text-decoration: underline; }
@@ -1028,6 +1045,86 @@ table.similarity-table th { background: var(--gray-50); font-size: var(--fs-labe
 .tl-crosslink { display: inline-flex; margin-top: 12px; font-size: 12px; font-weight: 600; color: var(--tlp-gold-pale); background: rgba(230,200,105,0.08); border: 1px solid rgba(230,200,105,0.22); border-radius: 999px; padding: 8px 16px; max-width: 100%; }
 .tl-crosslink:hover { background: rgba(230,200,105,0.16); }
 @media (max-width: 560px) { .tl-crosslink { white-space: normal; } }
+
+/* ---- Museu Histórico Interativo v2: três faixas empilhadas         ----
+   (Timeline + Árvore Genealógica 3D + Mapa Múndi), cada uma com o mesmo
+   grid sidebar/main/detail acima, WebGL real (Three.js, museu-three.js)
+   desenhado dentro de .museu-canvas-wrap. Reaproveita as classes .mh-*
+   já existentes (badges, facts, fontes) para o conteúdo dos 3 painéis. */
+.museu-header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.museu-section { padding-top: var(--space-6); padding-bottom: var(--space-6); border-top: 1px solid var(--mh-line-soft); }
+.museu-section:first-of-type { border-top: none; padding-top: var(--space-5); }
+.museu-section-label { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mh-gold); margin-bottom: 10px; }
+.museu-sidebar-title { display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; color: var(--mh-text-mute); line-height: 1.55; padding-bottom: 10px; margin-bottom: 2px; border-bottom: 1px solid var(--mh-line-soft); }
+
+.museu-canvas-wrap { position: relative; width: 100%; min-height: 280px; border-radius: 16px; overflow: hidden; border: 1px solid var(--mh-line); background: #03050a; touch-action: none; }
+.museu-canvas-wrap canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+.museu-canvas-wrap canvas:active { cursor: grabbing; }
+.museu-canvas-hint { position: absolute; bottom: 10px; right: 14px; z-index: 2; font-size: 11px; color: var(--mh-text-soft); background: rgba(5,7,10,0.6); padding: 4px 10px; border-radius: 999px; pointer-events: none; }
+.museu-labels { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+.museu-label { position: absolute; transform: translate(-50%, -130%); font-size: 11px; font-weight: 700; color: var(--mh-text); text-shadow: 0 1px 5px rgba(0,0,0,0.85); white-space: nowrap; }
+.museu-label-major { font-size: 11.5px; color: #fff; }
+.museu-label-group { opacity: 0.75; }
+
+.museu-hero { min-height: 230px; }
+.museu-hero .museu-canvas-wrap { position: absolute; inset: 0; min-height: 0; border: none; border-radius: 0; z-index: 0; }
+.museu-hero .mh-hero-title, .museu-hero .mh-hero-subtitle { position: relative; z-index: 1; }
+.museu-hero.has-illustration {
+  min-height: 280px;
+  background-image:
+    linear-gradient(0deg, rgba(7,6,10,0.92) 0%, rgba(7,6,10,0.45) 42%, rgba(7,6,10,0.18) 70%, rgba(7,6,10,0.35) 100%),
+    var(--museu-hero-img);
+  background-size: cover, 130% auto;
+  background-position: center bottom, 50% 38%;
+  background-repeat: no-repeat, no-repeat;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .museu-hero.has-illustration { animation: museuHeroKenBurns 26s ease-in-out infinite alternate; }
+}
+@keyframes museuHeroKenBurns {
+  from { background-position: center bottom, 46% 34%; background-size: cover, 132% auto; }
+  to   { background-position: center bottom, 54% 42%; background-size: cover, 122% auto; }
+}
+.museu-illustration-caption {
+  position: absolute; z-index: 1; bottom: 8px; right: 14px;
+  font-size: 11px; color: var(--mh-text-mute); opacity: 0.75; letter-spacing: 0.02em;
+}
+#museu-tree-canvas-wrap, #museu-map-canvas-wrap { min-height: 440px; }
+
+.museu-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.museu-tool-btn { font-size: 11.5px; font-weight: 700; padding: 7px 13px; border-radius: 999px; border: 1px solid var(--mh-line); background: var(--mh-glass); color: var(--mh-text-soft); }
+.museu-tool-btn:hover { border-color: var(--mh-blue); color: var(--mh-text); }
+.museu-tool-btn.active { background: linear-gradient(135deg, var(--mh-blue), var(--mh-violet)); border-color: transparent; color: #05070a; }
+
+.mh-search-mini { padding-top: 2px; }
+.mh-search-mini input { width: 100%; background: var(--mh-glass); border: 1px solid var(--mh-line); border-radius: 8px; padding: 8px 10px; font-size: 12px; color: var(--mh-text); font-family: inherit; }
+.mh-search-mini input::placeholder { color: var(--mh-text-mute); }
+.museu-filter-label { display: flex; flex-direction: column; gap: 6px; font-size: 11px; font-weight: 700; color: var(--mh-text-mute); letter-spacing: 0.04em; margin-top: 8px; }
+.museu-drag-hint { font-size: 11px; color: var(--mh-text-mute); margin: 2px 2px 0; }
+
+@keyframes museuPulseKF { 0% { box-shadow: 0 0 0 0 var(--region-c, var(--mh-blue)); } 70% { box-shadow: 0 0 0 10px rgba(0,0,0,0); } 100% { box-shadow: none; } }
+.museu-pulse { animation: museuPulseKF 0.65s ease; }
+
+#museu-4d-canvas-wrap { min-height: 440px; }
+
+/* ---- Modo 4D: scrubber temporal + playback ---- */
+.museu4d-scrubber-wrap { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; padding: 14px 16px; border-radius: 14px; background: var(--mh-glass); border: 1px solid var(--mh-line); }
+.museu4d-scrubber-row { display: flex; align-items: center; gap: 14px; }
+.museu4d-play-btn { flex: 0 0 auto; }
+.museu4d-range { flex: 1; -webkit-appearance: none; appearance: none; height: 5px; border-radius: 999px; background: linear-gradient(90deg, var(--mh-gold), var(--mh-violet)); outline: none; cursor: pointer; }
+.museu4d-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--mh-gold-bright); border: 2px solid #07060a; box-shadow: 0 0 0 3px rgba(226,176,77,0.25); cursor: grab; }
+.museu4d-range::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: var(--mh-gold-bright); border: 2px solid #07060a; box-shadow: 0 0 0 3px rgba(226,176,77,0.25); cursor: grab; }
+.museu4d-date-readout { flex: 0 0 auto; min-width: 92px; text-align: right; font-family: "SFMono-Regular", Consolas, monospace; font-size: 13.5px; font-weight: 700; color: var(--mh-gold-bright); }
+.museu4d-speed-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.museu4d-speed-label { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; color: var(--mh-text-mute); margin-right: 2px; }
+.museu4d-speed-btn { padding: 5px 11px; font-size: 11px; }
+
+@media (max-width: 860px) {
+  #museu-tree-canvas-wrap, #museu-map-canvas-wrap, #museu-4d-canvas-wrap { min-height: 320px; }
+  .museu-hero { min-height: 190px; }
+  .museu4d-scrubber-row { flex-wrap: wrap; }
+  .museu4d-range { flex: 1 1 100%; order: 3; }
+}
 
 /* ============================================================
    BUSCA INTELIGENTE
@@ -4137,6 +4234,174 @@ const HUMANIDADE_ERAS = [
 
 
 // ============================================================
+// MUSEU HISTÓRICO INTERATIVO - árvore genealógica unificada
+// ============================================================
+// Combina os dois datasets já existentes no site:
+//   - HUMANIDADE_MILESTONES (data-humanidade.js): os 10 grandes marcos
+//     mitológicos/civilizacionais/religiosos, cada um já com predecessor,
+//     fatos, fontes e classificação de confiabilidade.
+//   - RELIGIONS (data-religions.js): as 20 religiões/denominações já
+//     cadastradas e revisadas no restante do site, cada uma com
+//     fundador, ano, país de origem e categoria.
+//
+// Não inventa nenhuma entidade nova nem número fictício: cada nó aqui
+// aponta de volta (refType/refSlug) para um registro já existente em um
+// desses dois arquivos, de onde o painel de detalhes lê os fatos e
+// fontes reais. Os únicos nós "sintéticos" são agrupadores de categoria
+// (kind: "group") - existem apenas para organizar visualmente ramos que,
+// nos dados de origem, já compartilham a mesma `category` (ex.: as 5
+// denominações "protestante-historica"), e dizem isso no próprio texto
+// de resumo exibido ao usuário.
+//
+// A escolha de qual religião pendura em qual marco é uma simplificação
+// de legibilidade (o mesmo tipo de simplificação que TIMELINE_CAT_PARENT,
+// em app.js, já assume para a Linha do Tempo dos Fundadores) - não uma
+// tese acadêmica nova. Onde este mapeamento diverge intencionalmente de
+// TIMELINE_CAT_PARENT (ex.: aqui "reformada" desce de reforma-protestante,
+// não diretamente de "catolica"), é porque, no nível de detalhe desta
+// árvore, esse é o desenho historicamente mais direto - e ambos são
+// simplificações voltadas à visualização, não pesquisa primária.
+
+var MUSEU_REGION_BY_RELIGION_SLUG = {
+  candomble: "americas", umbanda: "americas", espiritismo: "europa",
+  hinduismo: "asia", budismo: "asia",
+  islamismo: "oriente-medio", judaismo: "oriente-medio",
+  "testemunhas-de-jeova": "americas", mormons: "americas", iurd: "americas",
+  catolicismo: "europa", ortodoxia: "europa",
+  adventismo: "americas", anglicanismo: "europa", luteranismo: "europa",
+  metodismo: "europa", "assembleia-de-deus": "americas", batista: "europa",
+  presbiterianismo: "europa", "evangelicalismo-confessional": "global",
+};
+
+// Ano numérico de fundação de cada religião (mesmo texto de
+// data-religions.js `foundationYear`, convertido a número para
+// posicionamento na linha do tempo/árvore - RELIGIONS não guarda esse
+// número separadamente, então é derivado aqui uma única vez).
+var MUSEU_YEAR_BY_RELIGION_SLUG = {
+  candomble: 1830, umbanda: 1908, espiritismo: 1857,
+  hinduismo: -1500, budismo: -528,
+  islamismo: 610, judaismo: 70,
+  "testemunhas-de-jeova": 1879, mormons: 1830, iurd: 1977,
+  catolicismo: 33, ortodoxia: 1054,
+  adventismo: 1863, anglicanismo: 1534, luteranismo: 1517,
+  metodismo: 1738, "assembleia-de-deus": 1911, batista: 1609,
+  presbiterianismo: 1560, "evangelicalismo-confessional": 1970,
+};
+
+// parent: id de outro nó desta árvore ("m:<slug>" para marcos de
+// HUMANIDADE_MILESTONES, "r:<slug>" para religiões de RELIGIONS,
+// "g:<key>" para agrupadores sintéticos definidos abaixo).
+var MUSEU_GROUPS = [
+  { key: "afro", name: "Tradições Africanas e Afro-Brasileiras", parent: "m:mitologias-ancestrais",
+    summary: "Agrupador visual para religiões de matriz africana formadas no Brasil (Candomblé, Umbanda) - ambas descendem, por tradição oral e ancestralidade, de povos e cultos trazidos da África, sem um marco fundador único e datável nesta linha do tempo.",
+    region: "africa" },
+  { key: "oriental", name: "Tradições Orientais", parent: "m:budismo-origem",
+    summary: "Agrupador visual para Hinduísmo e Budismo - tradições do subcontinente indiano com desenvolvimento histórico próprio; aqui reunidas sob o marco do Budismo apenas para fins de organização espacial da árvore.",
+    region: "asia" },
+  { key: "catolica", name: "Catolicismo e Ortodoxia", parent: "m:cristianismo-primitivo",
+    summary: "Igreja Católica Romana e Igreja Ortodoxa Oriental, os dois grandes ramos do cristianismo institucional anteriores à Reforma Protestante (separados entre si pelo Grande Cisma de 1054).",
+    region: "europa" },
+  { key: "protestante-historica", name: "Protestantismo Histórico", parent: "m:reforma-protestante",
+    summary: "Denominações formadas diretamente pela Reforma Protestante do século XVI e por seus desdobramentos imediatos (Luteranismo, Anglicanismo, Metodismo, Batistas, Adventismo).",
+    region: "europa" },
+  { key: "reformada", name: "Tradição Reformada", parent: "m:reforma-protestante",
+    summary: "Ramo da Reforma associado a João Calvino e aos reformadores suíços - Presbiterianismo/Igrejas Reformadas e o Evangelicalismo Confessional contemporâneo que se identifica com essa herança teológica.",
+    region: "europa" },
+  { key: "pentecostal", name: "Pentecostalismo", parent: "g:protestante-historica",
+    summary: "Movimento surgido no início do século XX a partir de avivamentos dentro do protestantismo histórico, com ênfase nos dons espirituais - deu origem, no Brasil, à Assembleia de Deus.",
+    region: "americas" },
+  { key: "restauracionista", name: "Restauracionismo", parent: "g:protestante-historica",
+    summary: "Movimentos do século XIX nos Estados Unidos que se propuseram a \"restaurar\" o cristianismo primitivo por caminhos próprios (Testemunhas de Jeová, Mórmons) - tratados separadamente por divergirem de doutrinas centrais historicamente associadas ao protestantismo histórico.",
+    region: "americas" },
+  { key: "neopentecostal", name: "Neopentecostalismo", parent: "g:pentecostal",
+    summary: "Vertente do pentecostalismo formada a partir da segunda metade do século XX, com ênfase na teologia da prosperidade - no Brasil, exemplificada pela Igreja Universal do Reino de Deus.",
+    region: "americas" },
+];
+
+// slug (religião) -> id do nó pai nesta árvore.
+var MUSEU_RELIGION_PARENT = {
+  candomble: "g:afro", umbanda: "g:afro",
+  espiritismo: "m:mundo-contemporaneo",
+  hinduismo: "g:oriental", budismo: "g:oriental",
+  judaismo: "m:judaismo-origens", islamismo: "m:islamismo-origem",
+  catolicismo: "g:catolica", ortodoxia: "g:catolica",
+  adventismo: "g:protestante-historica", anglicanismo: "g:protestante-historica",
+  luteranismo: "g:protestante-historica", metodismo: "g:protestante-historica",
+  batista: "g:protestante-historica",
+  presbiterianismo: "g:reformada", "evangelicalismo-confessional": "g:reformada",
+  "assembleia-de-deus": "g:pentecostal",
+  "testemunhas-de-jeova": "g:restauracionista", mormons: "g:restauracionista",
+  iurd: "g:neopentecostal",
+};
+
+// Monta a lista final de nós { id, kind, parent, name, region, year, refType, refSlug, summary }.
+function museuBuildTree() {
+  var nodes = [];
+
+  HUMANIDADE_MILESTONES.forEach(function (m) {
+    nodes.push({
+      id: "m:" + m.slug, kind: "milestone",
+      parent: m.predecessor ? "m:" + m.predecessor : null,
+      name: m.name, region: m.region, year: m.year,
+      refType: "milestone", refSlug: m.slug,
+    });
+  });
+
+  MUSEU_GROUPS.forEach(function (g) {
+    nodes.push({
+      id: "g:" + g.key, kind: "group",
+      parent: g.parent, name: g.name, region: g.region,
+      year: null, refType: "group", refSlug: g.key, summary: g.summary,
+    });
+  });
+
+  RELIGIONS.forEach(function (r) {
+    nodes.push({
+      id: "r:" + r.slug, kind: "religion",
+      parent: MUSEU_RELIGION_PARENT[r.slug] || "m:mundo-contemporaneo",
+      name: r.shortName || r.name,
+      region: MUSEU_REGION_BY_RELIGION_SLUG[r.slug] || "global",
+      year: MUSEU_YEAR_BY_RELIGION_SLUG[r.slug] || null,
+      refType: "religion", refSlug: r.slug,
+    });
+  });
+
+  return nodes;
+}
+
+var MUSEU_TREE = museuBuildTree();
+var MUSEU_TREE_BY_ID = {};
+MUSEU_TREE.forEach(function (n) { MUSEU_TREE_BY_ID[n.id] = n; });
+
+function museuNode(id) { return MUSEU_TREE_BY_ID[id] || null; }
+function museuChildren(id) { return MUSEU_TREE.filter(function (n) { return n.parent === id; }); }
+function museuAncestorChain(id) {
+  var out = [], n = museuNode(id), guard = 0;
+  while (n && n.parent && guard++ < 12) { out.push(n.parent); n = museuNode(n.parent); }
+  return out;
+}
+function museuDescendantIds(id) {
+  var out = [];
+  museuChildren(id).forEach(function (c) { out.push(c.id); out = out.concat(museuDescendantIds(c.id)); });
+  return out;
+}
+
+// Estatísticas reais (nunca números inventados): contam os próprios
+// registros/arestas já existentes nos dois datasets de origem.
+function museuComputeStats() {
+  var branches = MUSEU_TREE.filter(function (n) { return n.parent; }).length;
+  var events = 0;
+  HUMANIDADE_MILESTONES.forEach(function (m) { events += (m.facts || []).length; });
+  RELIGIONS.forEach(function (r) { events += ((r.assessment || {}).verses || []).length; });
+  return {
+    traditions: HUMANIDADE_MILESTONES.length + RELIGIONS.length,
+    branches: branches,
+    events: events,
+  };
+}
+
+
+// ============================================================
 // BIBLE-API - integração ao vivo com "A Bíblia Digital"
 // (https://www.abibliadigital.com.br) para comparar um mesmo
 // versículo em diferentes versões da Bíblia cristã em português.
@@ -4311,7 +4576,8 @@ if (typeof module !== "undefined") {
     theme: "light", glossaryOn: true, currentReligionsForCompare: [],
     searchFilter: "todas",
     timelineCat: "todas", timelinePeriod: "todas", timelineZoom: 1, timelineFocusSlug: null,
-    humanidadeEra: "todas", humanidadeRegion: "todas", humanidadeQuery: "", humanidadeSelected: null, humanidadeView: "timeline",
+    museuEra: "todas", museuMapRegion: "todas", museuQuery: "", museuSelected: null, museuAutoRotate: false,
+    museu4dDate: new Date().getFullYear(), museu4dPlaying: false, museu4dSpeed: 40,
     mobileReligionA: "catolicismo", mobileReligionB: "assembleia-de-deus", mobileCompareOn: false,
     lastFocusedEl: null,
     aiAsking: false,
@@ -4554,6 +4820,10 @@ if (typeof module !== "undefined") {
     var route = parseHash();
     var app = $("#app");
     var html = "";
+    if (window.MuseuThree && typeof window.MuseuThree.destroyAll === "function") window.MuseuThree.destroyAll();
+    if (window.__museuVisObserver) { window.__museuVisObserver.disconnect(); window.__museuVisObserver = null; }
+    window.__museuPanoramaInst = null; window.__museuTreeInst = null; window.__museuMapInst = null; window.__museu4dInst = null;
+    STATE.museu4dPlaying = false;
     if (route.name === "busca" && route.query.q) saveRecentSearch(route.query.q);
     if (route.name === "home") html = pageHome();
     else if (route.name === "religiao") html = pageReligion(route.slug);
@@ -5302,6 +5572,18 @@ if (typeof module !== "undefined") {
   // nenhum símbolo foi inventado.
   var TIMELINE_IMG = {"adventismo":"assets/timeline/adventismo.webp","anglicanismo":"assets/timeline/anglicanismo.webp","assembleia-de-deus":"assets/timeline/assembleia-de-deus.webp","batista":"assets/timeline/batista.webp","budismo":"assets/timeline/budismo.webp","candomble":"assets/timeline/candomble.webp","catolicismo":"assets/timeline/catolicismo.webp","espiritismo":"assets/timeline/espiritismo.webp","evangelicalismo-confessional":"assets/timeline/evangelicalismo-confessional.webp","hinduismo":"assets/timeline/hinduismo.webp","islamismo":"assets/timeline/islamismo.webp","iurd":"assets/timeline/iurd.webp","judaismo":"assets/timeline/judaismo.webp","luteranismo":"assets/timeline/luteranismo.webp","metodismo":"assets/timeline/metodismo.webp","mormons":"assets/timeline/mormons.webp","ortodoxia":"assets/timeline/ortodoxia.webp","presbiterianismo":"assets/timeline/presbiterianismo.webp","testemunhas-de-jeova":"assets/timeline/testemunhas-de-jeova.webp","umbanda":"assets/timeline/umbanda.webp"};
 
+  // Ilustrações conceituais fornecidas pelo usuário como referência visual
+  // obrigatória para o Museu Histórico (#/humanidade) — painel panorâmico,
+  // 10 thumbnails por marco e o mapa-múndi noturno. São artes estilizadas
+  // (não fotografias históricas reais), por isso levam legenda "ilustração
+  // conceitual" onde aparecem — ver MUSEU4D_CAPTION.
+  var MUSEU4D_IMG = {"card-budismo-origem":"assets/museu-4d/card-budismo-origem.webp","card-cristianismo-primitivo":"assets/museu-4d/card-cristianismo-primitivo.webp","card-egito-antigo":"assets/museu-4d/card-egito-antigo.webp","card-islamismo-origem":"assets/museu-4d/card-islamismo-origem.webp","card-judaismo-origens":"assets/museu-4d/card-judaismo-origens.webp","card-mesopotamia":"assets/museu-4d/card-mesopotamia.webp","card-mitologias-ancestrais":"assets/museu-4d/card-mitologias-ancestrais.webp","card-mundo-contemporaneo":"assets/museu-4d/card-mundo-contemporaneo.webp","card-reforma-protestante":"assets/museu-4d/card-reforma-protestante.webp","card-zoroastrismo":"assets/museu-4d/card-zoroastrismo.webp","hero-panorama":"assets/museu-4d/hero-panorama.webp","map-satellite":"assets/museu-4d/map-satellite.webp"};
+  var MUSEU4D_CAPTION = "Ilustração conceitual — não é uma fotografia histórica";
+  // exposto em window para o módulo ES separado (museu-three.js) conseguir
+  // ler a URL da imagem do mapa-múndi, já que este arquivo roda dentro de
+  // uma IIFE e MUSEU4D_IMG não seria visível de fora sem isso.
+  window.MUSEU4D_IMG = MUSEU4D_IMG;
+
   var TIMELINE_ERA_ICON = {
     antiguidade: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20h16M5 20V9M19 20V9M4 9l8-5 8 5M7 9v8M10 9v8M14 9v8M17 9v8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     "idade-media": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3a5 5 0 0 1 5 5c0 2-1 3.2-2 4.2V14h-6v-1.8c-1-1-2-2.2-2-4.2a5 5 0 0 1 5-5Z" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 21v-6h14v6M3 21h18M12 14v3" stroke-linecap="round" stroke-linejoin="round"/></svg>',
@@ -5760,25 +6042,6 @@ if (typeof module !== "undefined") {
     for (var i = 0; i < HUMANIDADE_ERAS.length; i++) if (HUMANIDADE_ERAS[i].test(year)) return HUMANIDADE_ERAS[i];
     return null;
   }
-  function humanidadeFilteredList() {
-    var list = HUMANIDADE_MILESTONES.slice();
-    if (STATE.humanidadeEra !== "todas") {
-      list = list.filter(function (m) { var e = humanidadeEraFor(m.year); return e && e.key === STATE.humanidadeEra; });
-    }
-    if (STATE.humanidadeRegion !== "todas") {
-      list = list.filter(function (m) { return m.region === STATE.humanidadeRegion; });
-    }
-    if (STATE.humanidadeQuery) {
-      var qNorm = normalizeText(STATE.humanidadeQuery);
-      list = list.filter(function (m) {
-        return normalizeText(m.name).indexOf(qNorm) !== -1 ||
-          normalizeText(m.originFigures).indexOf(qNorm) !== -1 ||
-          normalizeText(m.origin).indexOf(qNorm) !== -1 ||
-          normalizeText(m.period).indexOf(qNorm) !== -1;
-      });
-    }
-    return list;
-  }
 
   function mhIconSVG(name) {
     var icons = {
@@ -5795,48 +6058,6 @@ if (typeof module !== "undefined") {
     var map = { "Era mitológica": "globe", "Civilização antiga": "book", "Religião": "tree", "Movimento religioso": "compare", "Era histórica": "clock" };
     return mhIconSVG(map[type] || "tree");
   }
-  function mhSkylineSVG() {
-    return (
-      '<svg class="mh-skyline" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true">' +
-      '<defs><linearGradient id="mhSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0b1420"/><stop offset="100%" stop-color="#05070a"/></linearGradient></defs>' +
-      '<rect x="0" y="0" width="1200" height="220" fill="url(#mhSky)"/>' +
-      '<g fill="#101a26"><polygon points="40,220 110,90 180,220"/><polygon points="130,220 190,120 250,220"/></g>' +
-      '<g fill="#0e1a2c"><rect x="330" y="120" width="10" height="100"/><rect x="360" y="120" width="10" height="100"/><rect x="390" y="120" width="10" height="100"/><rect x="420" y="120" width="10" height="100"/><rect x="320" y="105" width="120" height="16"/></g>' +
-      '<g fill="#101a2c"><rect x="560" y="140" width="90" height="80"/><circle cx="605" cy="130" r="40"/><rect x="595" y="70" width="20" height="40"/></g>' +
-      '<g fill="#0e1a2c"><rect x="760" y="150" width="70" height="70"/><circle cx="795" cy="140" r="26"/><rect x="850" y="60" width="10" height="160"/><circle cx="855" cy="55" r="7"/></g>' +
-      '<g fill="#101a26"><rect x="960" y="120" width="24" height="100"/><rect x="990" y="90" width="24" height="130"/><rect x="1020" y="140" width="24" height="80"/><rect x="1050" y="70" width="24" height="150"/><rect x="1080" y="110" width="24" height="110"/></g>' +
-      "</svg>"
-    );
-  }
-
-  function mhNavItemsMarkup() {
-    var items = [
-      { key: "timeline", label: "Linha do Tempo", icon: "clock" },
-      { key: "mapa", label: "Mapa Múndi", icon: "globe" },
-      { key: "arvore", label: "Árvore Genealógica", icon: "tree" },
-      { key: "comparar", label: "Comparar", icon: "compare", href: "#/comparar" },
-      { key: "fontes", label: "Fontes", icon: "book", href: "#/fontes" },
-      { key: "glossario", label: "Glossário", icon: "glossario" },
-    ];
-    return items.map(function (it) {
-      if (it.href) return '<a class="mh-nav-item" href="' + it.href + '">' + mhIconSVG(it.icon) + "<span>" + esc(it.label) + "</span></a>";
-      var active = (STATE.humanidadeView || "timeline") === it.key;
-      return '<button type="button" class="mh-nav-item' + (active ? " active" : "") + '" data-action="mh-set-view" data-view="' + it.key + '">' + mhIconSVG(it.icon) + "<span>" + esc(it.label) + "</span></button>";
-    }).join("");
-  }
-  function mhStatsMarkup() {
-    var visible = humanidadeFilteredList();
-    var branchCount = visible.filter(function (m) { return m.predecessor && visible.some(function (x) { return x.slug === m.predecessor; }); }).length;
-    var year = new Date().getFullYear();
-    return (
-      '<div class="mh-stats">' +
-      '<div class="mh-stat"><span class="mh-stat-label">PERÍODO ATUAL</span><span class="mh-stat-value">' + year + " d.C.</span></div>" +
-      '<div class="mh-stat"><span class="mh-stat-label">MARCOS VISÍVEIS</span><span class="mh-stat-value">' + visible.length + "</span></div>" +
-      '<div class="mh-stat"><span class="mh-stat-label">RAMIFICAÇÕES</span><span class="mh-stat-value">' + branchCount + "</span></div>" +
-      '<div class="mh-stat"><span class="mh-stat-label">TRADIÇÕES NO SITE</span><span class="mh-stat-value">' + RELIGIONS.length + "</span></div>" +
-      "</div>"
-    );
-  }
   function mhLegendMarkup() {
     return (
       '<div class="mh-legend"><span class="mh-legend-title">LEGENDA REGIONAL</span>' +
@@ -5846,41 +6067,117 @@ if (typeof module !== "undefined") {
       "</div>"
     );
   }
-  function mhSidebarMarkup() {
+
+  // ============================================================
+  // MUSEU HISTÓRICO INTERATIVO — três visualizações sincronizadas
+  // (Timeline + Árvore Genealógica 3D + Mapa Múndi Temporal) sobre um
+  // único estado (STATE.museuSelected). O 3D real roda em museu-three.js
+  // (módulo separado, WebGL via Three.js); esta seção só monta o HTML
+  // ao redor dos três canvases e mantém tudo sincronizado.
+  // ============================================================
+
+  // Resolve um nó de MUSEU_TREE (marco, religião ou agrupador) nos
+  // dados reais de origem (HUMANIDADE_MILESTONES / RELIGIONS) - nunca
+  // duplica texto, sempre lê do cadastro já revisado no restante do site.
+  function museuResolve(nodeId) {
+    var n = museuNode(nodeId);
+    if (!n) return null;
+    if (n.refType === "milestone") {
+      var m = findMilestone(n.refSlug);
+      if (!m) return null;
+      return {
+        node: n, name: m.name, badge: m.type, period: m.period,
+        origin: m.origin, founder: m.originFigures, type: m.type,
+        summary: m.summary, facts: m.facts, sources: m.sources, moreHref: null,
+      };
+    }
+    if (n.refType === "religion") {
+      var r = findReligion(n.refSlug);
+      if (!r) return null;
+      return {
+        node: n, name: r.shortName || r.name, badge: categoryLabel(r.category), period: r.foundationYear,
+        origin: r.originCountry, founder: r.founder, type: categoryLabel(r.category),
+        summary: r.description,
+        facts: ["Fundador ou figura central: " + r.founder, "Ano aproximado de fundação: " + r.foundationYear, "País de origem: " + r.originCountry],
+        sources: null, moreHref: "#/religiao/" + r.slug,
+      };
+    }
+    return {
+      node: n, name: n.name, badge: "Agrupamento", period: null,
+      origin: null, founder: null, type: "Agrupamento de tradições",
+      summary: n.summary, facts: [], sources: null, moreHref: null,
+    };
+  }
+
+  function museuDetailMarkup(nodeId, panelId) {
+    var data = museuResolve(nodeId) || museuResolve(MUSEU_TREE[0].id);
+    var region = HUMANIDADE_REGIONS_MAP[data.node.region] || HUMANIDADE_REGIONS_MAP.global;
+    var parentData = data.node.parent ? museuResolve(data.node.parent) : null;
+    var children = museuChildren(data.node.id);
+
+    var factsHtml = (data.facts || []).map(function (f) {
+      return '<li class="mh-fact-item"><span class="mh-fact-check" style="--rel-c:' + region.color + '">✓</span>' + esc(f) + "</li>";
+    }).join("");
+
+    var descendantsBlock = children.length
+      ? '<div class="mh-detail-block"><span class="mh-detail-title">DESDOBRAMENTOS PRINCIPAIS</span><ul class="mh-descendant-list">' +
+        children.map(function (c) {
+          var yearLabel = c.year != null ? (c.year < 0 ? Math.abs(c.year) + " a.C." : c.year + " d.C.") : "";
+          return '<li><button type="button" class="mh-detail-link" data-action="museu-select" data-id="' + esc(c.id) + '">' + esc(c.name) + "</button>" + (yearLabel ? '<span class="mh-descendant-period">' + esc(yearLabel) + "</span>" : "") + "</li>";
+        }).join("") + "</ul></div>"
+      : "";
+
+    var sourcesBlock = "";
+    if (data.sources && data.sources.length) {
+      sourcesBlock = '<div class="mh-detail-block"><span class="mh-detail-title">FONTES HISTÓRICAS</span><ul class="mh-source-list">' +
+        data.sources.map(function (s) { return '<li class="mh-source-item"><span class="mh-source-author">' + esc(s.author) + "</span>" + (s.work ? '<span class="mh-source-work">' + esc(s.work) + "</span>" : "") + "</li>"; }).join("") +
+        '</ul><a class="mh-detail-more" href="#/fontes">Ver todas as fontes →</a></div>';
+    } else if (data.moreHref) {
+      sourcesBlock = '<div class="mh-detail-block"><a class="mh-detail-more" href="' + data.moreHref + '">Ver página completa desta religião →</a></div>';
+    }
+
     return (
-      '<aside class="mh-sidebar">' +
-      '<nav class="mh-nav" id="mh-nav-slot">' + mhNavItemsMarkup() + "</nav>" +
-      '<div id="mh-stats-slot">' + mhStatsMarkup() + "</div>" +
-      mhLegendMarkup() +
+      '<aside class="mh-detail" id="' + panelId + '">' +
+      '<span class="mh-detail-badge" style="--region-c:' + region.color + '">' + esc(data.badge) + "</span>" +
+      '<h3 class="mh-detail-name">' + esc(data.name) + "</h3>" +
+      (data.period ? '<p class="mh-detail-period">' + esc(data.period) + "</p>" : "") +
+      '<div class="mh-detail-facts-grid">' +
+      (data.origin ? fact("Origem", data.origin) : "") +
+      (parentData ? '<div class="fact"><span class="label">Tradição anterior</span><button type="button" class="mh-detail-link" data-action="museu-select" data-id="' + esc(data.node.parent) + '">' + esc(parentData.name) + "</button></div>" : "") +
+      (data.founder ? fact("Fundador / origem", data.founder) : "") +
+      (data.type ? fact("Tipo", data.type) : "") +
+      "</div>" +
+      (data.summary ? '<div class="mh-detail-block"><span class="mh-detail-title">RESUMO HISTÓRICO</span><p class="mh-detail-summary">' + esc(data.summary) + "</p></div>" : "") +
+      (factsHtml ? '<div class="mh-detail-block"><span class="mh-detail-title">FATOS VERIFICÁVEIS</span><ul class="mh-facts-list">' + factsHtml + "</ul></div>" : "") +
+      descendantsBlock + sourcesBlock +
       "</aside>"
     );
   }
-  function mhHeaderMarkup() {
-    return (
-      '<div class="mh-header"><div class="container mh-header-inner">' +
-      '<div class="mh-header-brand">' + mhIconSVG("globe") + '<div class="mh-header-titles"><span class="mh-title">Linha do Tempo da Humanidade</span><span class="mh-subtitle">Mitologia · Religião · Tradição · História</span></div></div>' +
-      '<div class="mh-header-search">' +
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2" stroke-linecap="round"/></svg>' +
-      '<input type="text" id="mh-search-input" placeholder="Buscar religião, fundador, evento..." autocomplete="off" spellcheck="false" value="' + esc(STATE.humanidadeQuery) + '">' +
-      "</div>" +
-      '<a class="mh-header-btn" href="#/linha-do-tempo">← Linha dos Fundadores</a>' +
-      "</div></div>"
-    );
+
+  function museuMilestoneList() {
+    var list = HUMANIDADE_MILESTONES.slice();
+    if (STATE.museuEra !== "todas") {
+      list = list.filter(function (m) { var e = humanidadeEraFor(m.year); return e && e.key === STATE.museuEra; });
+    }
+    if (STATE.museuQuery) {
+      var q = normalizeText(STATE.museuQuery);
+      list = list.filter(function (m) {
+        return normalizeText(m.name).indexOf(q) !== -1 || normalizeText(m.originFigures).indexOf(q) !== -1 || normalizeText(m.origin).indexOf(q) !== -1;
+      });
+    }
+    return list;
   }
-  function mhEraTabsMarkup() {
-    var chips = ['<button type="button" class="mh-era-chip' + (STATE.humanidadeEra === "todas" ? " active" : "") + '" data-action="mh-filter-era" data-era="todas">Todas as eras</button>']
-      .concat(HUMANIDADE_ERAS.map(function (e) {
-        return '<button type="button" class="mh-era-chip' + (STATE.humanidadeEra === e.key ? " active" : "") + '" data-action="mh-filter-era" data-era="' + e.key + '">' + esc(e.label) + "</button>";
-      })).join("");
-    return '<div class="mh-era-tabs">' + chips + "</div>";
-  }
-  function mhCard(m) {
+  function museuCard(m) {
     var region = HUMANIDADE_REGIONS_MAP[m.region] || HUMANIDADE_REGIONS_MAP.global;
     var rel = HUMANIDADE_RELIABILITY[m.reliability];
-    var selected = STATE.humanidadeSelected === m.slug;
+    var selected = STATE.museuSelected === "m:" + m.slug;
+    var img = MUSEU4D_IMG["card-" + m.slug];
+    var thumb = img
+      ? '<span class="mh-card-thumb" style="background-image:url(\'' + img + "')\"></span>"
+      : '<span class="mh-card-emblem" style="--region-c:' + region.color + '">' + mhEmblemSVG(m.type) + "</span>";
     return (
-      '<button type="button" class="mh-card' + (selected ? " selected" : "") + '" data-action="mh-select" data-slug="' + m.slug + '">' +
-      '<span class="mh-card-emblem" style="--region-c:' + region.color + '">' + mhEmblemSVG(m.type) + "</span>" +
+      '<button type="button" class="mh-card' + (img ? " has-thumb" : "") + (selected ? " selected" : "") + '" data-action="museu-select" data-id="m:' + m.slug + '">' +
+      thumb +
       '<span class="mh-card-rel" style="--rel-c:' + rel.color + '" title="' + esc(rel.desc) + '">' + esc(rel.short) + "</span>" +
       '<span class="mh-card-name">' + esc(m.name) + "</span>" +
       '<span class="mh-card-period">' + esc(m.period) + "</span>" +
@@ -5888,111 +6185,362 @@ if (typeof module !== "undefined") {
       "</button>"
     );
   }
-  function mhCardStripMarkup() {
-    var list = humanidadeFilteredList();
-    if (!list.length) return '<div class="mh-card-empty">Nenhum marco encontrado para os filtros selecionados. <button type="button" class="link-btn" data-action="mh-clear-filters">Limpar filtros</button></div>';
-    return '<div class="mh-card-strip">' + list.map(mhCard).join("") + "</div>";
+  function museuCardStripMarkup() {
+    var list = museuMilestoneList();
+    if (!list.length) return '<div class="mh-card-empty">Nenhum marco encontrado. <button type="button" class="link-btn" data-action="museu-clear-filters">Limpar filtros</button></div>';
+    return '<div class="mh-card-strip">' + list.map(museuCard).join("") + "</div>";
   }
-  function mhPlaceholderMarkup(viewKey) {
-    var meta = {
-      mapa: { title: "Mapa Múndi Temporal", text: "Uma visualização das rotas de expansão religiosa e cultural por região, ligada aos marcos desta linha do tempo, está planejada como próxima etapa desta página." },
-      arvore: { title: "Árvore Genealógica", text: "Uma árvore de ramificações reunindo todos os marcos desta página (como a que já existe na Linha do Tempo dos Fundadores, mas em escala maior) está planejada como próxima etapa." },
-      glossario: { title: "Glossário", text: "Termos técnicos já são explicados ao longo do site (clique em palavras destacadas). Uma versão dedicada e pesquisável para esta página está planejada." },
-    }[viewKey] || { title: "Em construção", text: "Esta seção ainda está sendo desenvolvida." };
-    return (
-      '<div class="mh-placeholder">' +
-      '<span class="mh-placeholder-icon">' + mhIconSVG(viewKey === "mapa" ? "globe" : viewKey === "arvore" ? "tree" : "glossario") + "</span>" +
-      "<h3>" + esc(meta.title) + "</h3>" +
-      "<p>" + esc(meta.text) + "</p>" +
-      '<button type="button" class="btn btn-outline-light btn-sm" data-action="mh-set-view" data-view="timeline">← Voltar para a Linha do Tempo</button>' +
-      "</div>"
-    );
+  function museuEraTabsMarkup() {
+    var chips = ['<button type="button" class="mh-era-chip' + (STATE.museuEra === "todas" ? " active" : "") + '" data-action="museu-filter-era" data-era="todas">Todas as eras</button>']
+      .concat(HUMANIDADE_ERAS.map(function (e) {
+        return '<button type="button" class="mh-era-chip' + (STATE.museuEra === e.key ? " active" : "") + '" data-action="museu-filter-era" data-era="' + e.key + '">' + esc(e.label) + "</button>";
+      })).join("");
+    return '<div class="mh-era-tabs" id="museu-era-tabs">' + chips + "</div>";
   }
-  function mhMainContent() {
-    if (STATE.humanidadeView && STATE.humanidadeView !== "timeline") return mhPlaceholderMarkup(STATE.humanidadeView);
-    return (
-      '<div class="mh-hero"><span class="mh-hero-title">LINHA DO TEMPO DA HUMANIDADE</span><span class="mh-hero-subtitle">MITOLOGIA · RELIGIÃO · TRADIÇÃO · HISTÓRIA</span>' + mhSkylineSVG() + "</div>" +
-      '<div id="mh-era-tabs-slot">' + mhEraTabsMarkup() + "</div>" +
-      '<div id="mh-card-strip-slot">' + mhCardStripMarkup() + "</div>"
-    );
-  }
-  function mhDetailPanelMarkup(slug) {
-    var m = findMilestone(slug) || HUMANIDADE_MILESTONES[0];
-    var region = HUMANIDADE_REGIONS_MAP[m.region] || HUMANIDADE_REGIONS_MAP.global;
-    var rel = HUMANIDADE_RELIABILITY[m.reliability];
-    var pred = m.predecessor ? findMilestone(m.predecessor) : null;
 
-    var facts = m.facts.map(function (f) {
-      return '<li class="mh-fact-item"><span class="mh-fact-check" style="--rel-c:' + rel.color + '">✓</span>' + esc(f) + "</li>";
-    }).join("");
-    var descendants = m.descendants.length
-      ? '<div class="mh-detail-block"><span class="mh-detail-title">DESDOBRAMENTOS PRINCIPAIS</span><ul class="mh-descendant-list">' +
-        m.descendants.map(function (d) { return '<li><span class="mh-descendant-name">' + esc(d.name) + '</span><span class="mh-descendant-period">' + esc(d.period) + "</span></li>"; }).join("") +
-        "</ul></div>"
-      : "";
-    var sources = m.sources.map(function (s) {
-      return '<li class="mh-source-item"><span class="mh-source-author">' + esc(s.author) + "</span>" + (s.work ? '<span class="mh-source-work">' + esc(s.work) + "</span>" : "") + "</li>";
-    }).join("");
-
+  function museuHeaderMarkup() {
     return (
-      '<aside class="mh-detail" id="mh-detail-panel">' +
-      '<span class="mh-detail-badge" style="--region-c:' + region.color + '">' + esc(m.type) + "</span>" +
-      '<h3 class="mh-detail-name">' + esc(m.name) + "</h3>" +
-      '<p class="mh-detail-period">' + esc(m.period) + "</p>" +
-      '<div class="mh-detail-emblem-wrap" style="--region-c:' + region.color + '">' + mhEmblemSVG(m.type) + "</div>" +
-      '<div class="mh-detail-facts-grid">' +
-      fact("Origem", m.origin) +
-      (pred ? '<div class="fact"><span class="label">Tradição anterior</span><button type="button" class="mh-detail-link" data-action="mh-select" data-slug="' + pred.slug + '">' + esc(pred.name) + "</button></div>" : "") +
-      fact("Fundador ou origem", m.originFigures) +
-      fact("Tipo", m.type) +
+      '<div class="mh-header museu-header"><div class="container mh-header-inner">' +
+      '<div class="mh-header-brand">' + mhIconSVG("globe") + '<div class="mh-header-titles"><span class="mh-title">Linha do Tempo da Humanidade</span><span class="mh-subtitle">Mitologia · Religião · Tradição · História</span></div></div>' +
+      '<div class="mh-header-search">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2" stroke-linecap="round"/></svg>' +
+      '<input type="text" id="museu-search-input" placeholder="Buscar religião, fundador, evento..." autocomplete="off" spellcheck="false" value="' + esc(STATE.museuQuery) + '">' +
       "</div>" +
-      '<div class="mh-detail-block"><span class="mh-detail-title">RESUMO HISTÓRICO</span><p class="mh-detail-summary">' + esc(m.summary) + "</p></div>" +
-      '<div class="mh-detail-block"><span class="mh-detail-title">FATOS VERIFICÁVEIS</span><ul class="mh-facts-list">' + facts + "</ul></div>" +
-      descendants +
-      '<div class="mh-detail-block"><span class="mh-detail-title">FONTES HISTÓRICAS</span><ul class="mh-source-list">' + sources + "</ul>" +
-      '<a class="mh-detail-more" href="#/fontes">Ver todas as fontes →</a>' +
+      '<div class="museu-header-actions">' +
+      '<button type="button" class="mh-header-btn" data-action="museu-scroll-c">Filtros</button>' +
+      '<button type="button" class="mh-header-btn" data-action="museu-scroll-a">Período</button>' +
+      '<button type="button" class="mh-header-btn" data-action="museu-scroll-c">Região</button>' +
+      '<button type="button" class="mh-header-btn" data-action="museu-reset-focus">Foco</button>' +
       "</div>" +
-      "</aside>"
-    );
-  }
-  function mhFooterFiltersMarkup() {
-    var regionOptions = ['<option value="todas">Todas as regiões</option>'].concat(
-      HUMANIDADE_REGIONS.map(function (r) { return '<option value="' + r.key + '"' + (STATE.humanidadeRegion === r.key ? " selected" : "") + ">" + esc(r.label) + "</option>"; })
-    ).join("");
-    var relLegend = Object.keys(HUMANIDADE_RELIABILITY).map(function (k) {
-      var rel = HUMANIDADE_RELIABILITY[k];
-      return '<span class="mh-rel-legend-item" title="' + esc(rel.desc) + '"><span class="mh-legend-dot" style="background:' + rel.color + '"></span>' + esc(rel.label) + "</span>";
-    }).join("");
-    return (
-      '<div class="mh-footer"><div class="container mh-footer-inner">' +
-      '<div class="mh-footer-filters">' +
-      '<span class="mh-footer-label">FILTROS ATIVOS</span>' +
-      '<select id="mh-region-select" class="mh-select" aria-label="Filtrar por região">' + regionOptions + "</select>" +
-      '<button type="button" class="mh-clear-link" data-action="mh-clear-filters">Limpar filtros</button>' +
-      "</div>" +
-      '<div class="mh-footer-reliability"><span class="mh-footer-label">CONFIABILIDADE DAS INFORMAÇÕES</span><div class="mh-rel-legend">' + relLegend + "</div></div>" +
       "</div></div>"
     );
   }
-  function refreshMhFilteredUI() {
-    var eraSlot = $("#mh-era-tabs-slot"); if (eraSlot) eraSlot.innerHTML = mhEraTabsMarkup();
-    var stripSlot = $("#mh-card-strip-slot"); if (stripSlot) stripSlot.innerHTML = mhCardStripMarkup();
-    var statsSlot = $("#mh-stats-slot"); if (statsSlot) statsSlot.innerHTML = mhStatsMarkup();
-  }
-  function pageHumanidade() {
-    STATE.humanidadeView = "timeline";
-    if (!STATE.humanidadeSelected) STATE.humanidadeSelected = "cristianismo-primitivo";
+
+  function museuSidebarA() {
+    var stats = museuComputeStats();
+    var year = new Date().getFullYear();
+    var nav = [
+      { label: "Linha do Tempo", icon: "clock", action: "museu-scroll-a" },
+      { label: "Mapa Múndi", icon: "globe", action: "museu-scroll-c" },
+      { label: "Árvore Genealógica", icon: "tree", action: "museu-scroll-b" },
+    ].map(function (it) { return '<button type="button" class="mh-nav-item" data-action="' + it.action + '">' + mhIconSVG(it.icon) + "<span>" + esc(it.label) + "</span></button>"; }).join("") +
+      '<a class="mh-nav-item" href="#/comparar">' + mhIconSVG("compare") + "<span>Comparar</span></a>" +
+      '<a class="mh-nav-item" href="#/fontes">' + mhIconSVG("book") + "<span>Fontes</span></a>" +
+      '<a class="mh-nav-item" href="#/biblia">' + mhIconSVG("glossario") + "<span>Glossário</span></a>" +
+      '<button type="button" class="mh-nav-item" disabled title="Em breve">' + mhIconSVG("glossario") + "<span>Configurações</span></button>";
     return (
-      '<section class="mh-page">' +
-      mhHeaderMarkup() +
-      '<div class="container mh-container"><div class="mh-shell">' +
-      mhSidebarMarkup() +
-      '<main class="mh-main" id="mh-main-slot">' + mhMainContent() + "</main>" +
-      mhDetailPanelMarkup(STATE.humanidadeSelected) +
+      '<aside class="mh-sidebar">' +
+      '<span class="museu-sidebar-title">OPÇÃO A<br>Museu Histórico Interativo</span>' +
+      '<nav class="mh-nav">' + nav + "</nav>" +
+      '<div class="mh-stats" id="museu-stats-a">' +
+      '<div class="mh-stat"><span class="mh-stat-label">PERÍODO ATUAL</span><span class="mh-stat-value">' + year + " d.C.</span></div>" +
+      '<div class="mh-stat"><span class="mh-stat-label">TRADIÇÕES VISÍVEIS</span><span class="mh-stat-value">' + stats.traditions + "</span></div>" +
+      '<div class="mh-stat"><span class="mh-stat-label">RAMIFICAÇÕES</span><span class="mh-stat-value">' + stats.branches + "</span></div>" +
+      '<div class="mh-stat"><span class="mh-stat-label">EVENTOS HISTÓRICOS</span><span class="mh-stat-value">' + stats.events + "</span></div>" +
+      "</div>" +
+      mhLegendMarkup() +
+      "</aside>"
+    );
+  }
+  function museuSidebarB() {
+    return (
+      '<aside class="mh-sidebar">' +
+      '<span class="museu-sidebar-title">OPÇÃO B<br>Árvore Genealógica 3D</span>' +
+      '<nav class="mh-nav">' +
+      '<button type="button" class="mh-nav-item" data-action="museu-tree-reset">' + mhIconSVG("tree") + "<span>Visão Geral</span></button>" +
+      '<button type="button" class="mh-nav-item" data-action="museu-reset-focus">' + mhIconSVG("clock") + "<span>Foco</span></button>" +
+      '<a class="mh-nav-item" href="#/comparar">' + mhIconSVG("compare") + "<span>Compare</span></a>" +
+      '<button type="button" class="mh-nav-item" data-action="museu-scroll-c">' + mhIconSVG("globe") + "<span>Linhas</span></button>" +
+      '<button type="button" class="mh-nav-item" data-action="museu-scroll-a">' + mhIconSVG("clock") + "<span>Eventos</span></button>" +
+      '<a class="mh-nav-item" href="#/fontes">' + mhIconSVG("book") + "<span>Fontes</span></a>" +
+      "</nav>" +
+      '<div class="mh-search-mini"><input type="text" id="museu-tree-search" placeholder="Busca rápida..." autocomplete="off" spellcheck="false"></div>' +
+      mhLegendMarkup() +
+      "</aside>"
+    );
+  }
+  function museuSidebarC() {
+    var regionOptions = ['<option value="todas">Todas as regiões</option>'].concat(
+      HUMANIDADE_REGIONS.filter(function (r) { return r.key !== "global"; }).map(function (r) { return '<option value="' + r.key + '"' + (STATE.museuMapRegion === r.key ? " selected" : "") + ">" + esc(r.label) + "</option>"; })
+    ).join("");
+    return (
+      '<aside class="mh-sidebar">' +
+      '<span class="museu-sidebar-title">OPÇÃO C<br>Mapa Múndi Temporal</span>' +
+      '<nav class="mh-nav">' +
+      '<button type="button" class="mh-nav-item" data-action="museu-scroll-c">' + mhIconSVG("globe") + "<span>Mapa</span></button>" +
+      '<button type="button" class="mh-nav-item" data-action="museu-scroll-a">' + mhIconSVG("clock") + "<span>Linha do Tempo</span></button>" +
+      '<button type="button" class="mh-nav-item" disabled title="Em breve">' + mhIconSVG("compare") + "<span>Fluxos</span></button>" +
+      '<button type="button" class="mh-nav-item" data-action="museu-scroll-a">' + mhIconSVG("clock") + "<span>Eventos</span></button>" +
+      '<a class="mh-nav-item" href="#/fontes">' + mhIconSVG("book") + "<span>Fontes</span></a>" +
+      "</nav>" +
+      '<div class="mh-stats">' +
+      '<span class="mh-legend-title">FILTROS ATIVOS</span>' +
+      '<label class="museu-filter-label">Região<select id="museu-map-region" class="mh-select">' + regionOptions + "</select></label>" +
+      "</div>" +
+      mhLegendMarkup() +
+      "</aside>"
+    );
+  }
+
+  // ============================================================
+  // OPÇÃO D — Modo 4D Unificado (scrubber temporal + hipercubo 3D)
+  // ============================================================
+  // Eixo do tempo não-linear: mesmos limites de era usados na Linha do
+  // Tempo (HUMANIDADE_ERAS), distribuídos em frações iguais do slider -
+  // sem isso, ~100.000 anos de pré-história esmagariam os últimos 500
+  // anos (onde está a maior parte dos dados) num pixel só.
+  var MUSEU4D_YEAR_NOW = new Date().getFullYear();
+  var MUSEU4D_KNOTS = [-100000, -10000, -500, 500, 1500, 1900, MUSEU4D_YEAR_NOW];
+  function museu4dYearToT(year) {
+    year = Math.max(MUSEU4D_KNOTS[0], Math.min(MUSEU4D_YEAR_NOW, year));
+    for (var i = 0; i < MUSEU4D_KNOTS.length - 1; i++) {
+      var a = MUSEU4D_KNOTS[i], b = MUSEU4D_KNOTS[i + 1];
+      if (year >= a && year <= b) {
+        var frac = b === a ? 0 : (year - a) / (b - a);
+        return (i + frac) / (MUSEU4D_KNOTS.length - 1);
+      }
+    }
+    return 1;
+  }
+  function museu4dTToYear(t) {
+    t = Math.max(0, Math.min(1, t));
+    var scaled = t * (MUSEU4D_KNOTS.length - 1);
+    var i = Math.min(MUSEU4D_KNOTS.length - 2, Math.floor(scaled));
+    var frac = scaled - i;
+    var a = MUSEU4D_KNOTS[i], b = MUSEU4D_KNOTS[i + 1];
+    return Math.round(a + (b - a) * frac);
+  }
+  function museu4dFormatYear(year) {
+    year = Math.round(year);
+    return year < 0 ? Math.abs(year) + " a.C." : year + " d.C.";
+  }
+  // ano representativo de cada nó (marcos/religiões já têm year; nós de
+  // agrupamento sintético herdam o ano do filho mais antigo, senão do pai)
+  var museu4dYearCache = {};
+  function museu4dYearOf(nodeId) {
+    if (museu4dYearCache[nodeId] !== undefined) return museu4dYearCache[nodeId];
+    var n = museuNode(nodeId);
+    if (!n) return (museu4dYearCache[nodeId] = null);
+    if (n.year != null) return (museu4dYearCache[nodeId] = n.year);
+    var kids = museuChildren(nodeId).map(function (c) { return museu4dYearOf(c.id); }).filter(function (y) { return y != null; });
+    if (kids.length) return (museu4dYearCache[nodeId] = Math.min.apply(null, kids));
+    if (n.parent) return (museu4dYearCache[nodeId] = museu4dYearOf(n.parent));
+    return (museu4dYearCache[nodeId] = -100000);
+  }
+
+  function museu4dScrubberMarkup() {
+    var t = museu4dYearToT(STATE.museu4dDate);
+    var speeds = [10, 40, 150, 600];
+    var speedChips = speeds.map(function (s) {
+      return '<button type="button" class="museu-tool-btn museu4d-speed-btn' + (STATE.museu4dSpeed === s ? " active" : "") + '" data-action="museu4d-speed" data-speed="' + s + '">' + (s === 10 ? "1×" : s === 40 ? "4×" : s === 150 ? "15×" : "60×") + "</button>";
+    }).join("");
+    return (
+      '<div class="museu4d-scrubber-wrap">' +
+      '<div class="museu4d-scrubber-row">' +
+      '<button type="button" class="museu-tool-btn museu4d-play-btn" data-action="museu4d-toggle-play">' + (STATE.museu4dPlaying ? "⏸ Pausar" : "▶ Reproduzir") + "</button>" +
+      '<input type="range" id="museu4d-scrub" class="museu4d-range" min="0" max="1000" step="1" value="' + Math.round(t * 1000) + '">' +
+      '<span class="museu4d-date-readout" id="museu4d-date-readout">' + esc(museu4dFormatYear(STATE.museu4dDate)) + "</span>" +
+      "</div>" +
+      '<div class="museu4d-speed-row">' +
+      '<span class="museu4d-speed-label">Velocidade</span>' + speedChips +
+      "</div>" +
+      "</div>"
+    );
+  }
+
+  function museuSidebarD() {
+    return (
+      '<aside class="mh-sidebar">' +
+      '<span class="museu-sidebar-title">MODO 4D<br>Espaço-Tempo Unificado</span>' +
+      '<nav class="mh-nav">' +
+      '<button type="button" class="mh-nav-item" data-action="museu4d-toggle-play">' + mhIconSVG("clock") + "<span>" + (STATE.museu4dPlaying ? "Pausar" : "Reproduzir") + "</span></button>" +
+      '<button type="button" class="mh-nav-item" data-action="museu4d-reset">' + mhIconSVG("tree") + "<span>Reiniciar tempo</span></button>" +
+      '<button type="button" class="mh-nav-item" data-action="museu-scroll-a">' + mhIconSVG("clock") + "<span>Linha do Tempo</span></button>" +
+      "</nav>" +
+      '<div class="mh-stats">' +
+      '<div class="mh-stat"><span class="mh-stat-label">DATA ATUAL</span><span class="mh-stat-value" id="museu4d-stat-date">' + esc(museu4dFormatYear(STATE.museu4dDate)) + "</span></div>" +
+      "</div>" +
+      '<p class="museu-drag-hint" style="margin-top:2px">Arraste o tempo ou aperte reproduzir: a árvore cresce, as rotas se formam e os eventos se acendem no instante certo.</p>' +
+      mhLegendMarkup() +
+      "</aside>"
+    );
+  }
+
+  function museuCanvasWrap(id, hintText) {
+    return '<div class="museu-canvas-wrap" id="' + id + '"><canvas></canvas>' + (hintText ? '<span class="museu-canvas-hint">' + esc(hintText) + "</span>" : "") + "</div>";
+  }
+  function museuTreeToolbar() {
+    return (
+      '<div class="museu-toolbar">' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-tree-zoom-out" title="Zoom -">−</button>' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-tree-zoom-in" title="Zoom +">+</button>' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-tree-reset" title="Redefinir">Redefinir</button>' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-tree-rotate" title="Girar">Girar</button>' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-reset-focus" title="Foco">Foco</button>' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-fullscreen" data-target="museu-tree-canvas-wrap" title="Tela cheia">Tela cheia</button>' +
+      "</div>"
+    );
+  }
+
+  function pageHumanidade() {
+    if (!STATE.museuSelected) STATE.museuSelected = "m:cristianismo-primitivo";
+    return (
+      '<section class="mh-page museu-page">' +
+      museuHeaderMarkup() +
+      '<div class="container mh-container museu-section" id="museu-section-a">' +
+      '<div class="museu-section-label">Opção A — Quando?</div>' +
+      '<div class="mh-shell">' +
+      museuSidebarA() +
+      '<main class="mh-main">' +
+      '<div class="mh-hero museu-hero' + (MUSEU4D_IMG["hero-panorama"] ? " has-illustration" : "") + '"' + (MUSEU4D_IMG["hero-panorama"] ? ' style="--museu-hero-img:url(\'' + MUSEU4D_IMG["hero-panorama"] + "')\"" : "") + '>' +
+      '<span class="mh-hero-title">LINHA DO TEMPO DA HUMANIDADE</span><span class="mh-hero-subtitle">MITOLOGIA · RELIGIÃO · TRADIÇÃO · HISTÓRIA</span>' +
+      (MUSEU4D_IMG["hero-panorama"] ? '<span class="museu-illustration-caption">' + esc(MUSEU4D_CAPTION) + "</span>" : "") +
+      "</div>" +
+      museuEraTabsMarkup() +
+      '<div id="museu-card-strip-slot">' + museuCardStripMarkup() + "</div>" +
+      '<p class="museu-drag-hint">Arraste para navegar no tempo · clique num cartão para ver detalhes</p>' +
+      "</main>" +
+      museuDetailMarkup(STATE.museuSelected, "museu-detail-a") +
       "</div></div>" +
-      mhFooterFiltersMarkup() +
+
+      '<div class="container mh-container museu-section" id="museu-section-b">' +
+      '<div class="museu-section-label">Opção B — Como se relaciona?</div>' +
+      '<div class="mh-shell">' +
+      museuSidebarB() +
+      '<main class="mh-main">' + museuCanvasWrap("museu-tree-canvas-wrap", "Arraste para girar · roda do mouse para zoom") + museuTreeToolbar() + "</main>" +
+      museuDetailMarkup(STATE.museuSelected, "museu-detail-b") +
+      "</div></div>" +
+
+      '<div class="container mh-container museu-section" id="museu-section-c">' +
+      '<div class="museu-section-label">Opção C — Onde aconteceu?</div>' +
+      '<div class="mh-shell">' +
+      museuSidebarC() +
+      '<main class="mh-main">' + museuCanvasWrap("museu-map-canvas-wrap", "Clique num ponto para ver a região") + "</main>" +
+      museuDetailMarkup(STATE.museuSelected, "museu-detail-c") +
+      "</div></div>" +
+
+      '<div class="container mh-container museu-section" id="museu-section-d">' +
+      '<div class="museu-section-label">Modo 4D — Uma história, três perspectivas</div>' +
+      '<div class="mh-shell">' +
+      museuSidebarD() +
+      '<main class="mh-main">' +
+      museuCanvasWrap("museu-4d-canvas-wrap", "Arraste para girar · roda do mouse para zoom") +
+      '<div id="museu4d-scrubber-slot">' + museu4dScrubberMarkup() + "</div>" +
+      "</main>" +
+      museuDetailMarkup(STATE.museuSelected, "museu-detail-d") +
+      "</div></div>" +
       "</section>"
     );
+  }
+
+  // ---- sincronização entre as três visualizações ----
+  function museuRefreshDetailPanels() {
+    ["museu-detail-a", "museu-detail-b", "museu-detail-c", "museu-detail-d"].forEach(function (id) {
+      var el = $("#" + id);
+      if (el) el.outerHTML = museuDetailMarkup(STATE.museuSelected, id);
+    });
+  }
+  function museuPulse(nodeId) {
+    var cardEl = document.querySelector('.mh-card[data-id="' + nodeId + '"]');
+    if (cardEl) { cardEl.classList.add("museu-pulse"); setTimeout(function () { cardEl.classList.remove("museu-pulse"); }, 650); }
+  }
+  function museuSelect(nodeId) {
+    if (!museuNode(nodeId)) return;
+    STATE.museuSelected = nodeId;
+    var stripSlot = $("#museu-card-strip-slot"); if (stripSlot) stripSlot.innerHTML = museuCardStripMarkup();
+    museuRefreshDetailPanels();
+    museuPulse(nodeId);
+    var n = museuNode(nodeId);
+    if (window.__museuTreeInst) window.__museuTreeInst.focus(nodeId);
+    if (window.__museuMapInst && n.region) window.__museuMapInst.focusRegion(n.region);
+    if (window.__museu4dInst) window.__museu4dInst.focus(nodeId);
+    if (n.year != null) {
+      var era = humanidadeEraFor(n.year);
+      if (era) { STATE.museuEra = era.key; var tabs = $("#museu-era-tabs"); if (tabs) tabs.outerHTML = museuEraTabsMarkup(); }
+      // Regra 4D: selectedDate é a fonte primária de sincronização — selecionar
+      // qualquer entidade em qualquer visualização também move o eixo do tempo.
+      if (!STATE.museu4dPlaying) museu4dSetDate(n.year, { silent: true });
+    }
+  }
+  function museuSelectRegion(region) {
+    STATE.museuMapRegion = region;
+    var sel = $("#museu-map-region"); if (sel) sel.value = region;
+    var first = MUSEU_TREE.filter(function (n) { return n.region === region; })[0];
+    if (first) museuSelect(first.id);
+  }
+  function museuInitThreeIfMounted() {
+    var treeEl = $("#museu-tree-canvas-wrap"), mapEl = $("#museu-map-canvas-wrap"), cubeEl = $("#museu-4d-canvas-wrap");
+    if (!treeEl || !mapEl || !window.MuseuThree) return;
+    window.__museuTreeInst = window.MuseuThree.initTree(treeEl, { onSelect: museuSelect });
+    window.__museuMapInst = window.MuseuThree.initMap(mapEl, { onSelectRegion: museuSelectRegion });
+    if (cubeEl && window.MuseuThree.initHypercube) {
+      window.__museu4dInst = window.MuseuThree.initHypercube(cubeEl, {
+        onSelect: museuSelect,
+        yearOf: museu4dYearOf,
+        yearToT: museu4dYearToT,
+      });
+      if (window.__museu4dInst) window.__museu4dInst.setDate(STATE.museu4dDate);
+    }
+    if (STATE.museuSelected) museuSelect(STATE.museuSelected);
+    if (STATE.museuAutoRotate && window.__museuTreeInst) window.__museuTreeInst.toggleRotate();
+
+    // Economia de bateria/CPU: as 3 cenas WebGL (árvore, mapa, hipercubo)
+    // ficam com o loop de animação pausado sempre que sua seção sai da
+    // tela, e retomam automaticamente quando o usuário rola de volta.
+    // Sem isso, os três renderers continuariam rodando em requestAnimationFrame
+    // o tempo todo, mesmo enquanto o visitante ainda está lendo o topo da
+    // página (Opção A) e nunca chegou a rolar até B/C/D.
+    if (window.__museuVisObserver) { window.__museuVisObserver.disconnect(); window.__museuVisObserver = null; }
+    var visTargets = [
+      { el: treeEl, inst: window.__museuTreeInst },
+      { el: mapEl, inst: window.__museuMapInst },
+      { el: cubeEl, inst: window.__museu4dInst },
+    ].filter(function (t) { return t.el && t.inst && typeof t.inst.setActive === "function"; });
+    if (visTargets.length && "IntersectionObserver" in window) {
+      var elToInst = new Map(visTargets.map(function (t) { return [t.el, t.inst]; }));
+      window.__museuVisObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var inst = elToInst.get(entry.target);
+          if (inst) inst.setActive(entry.isIntersecting);
+        });
+      }, { rootMargin: "200px 0px 200px 0px", threshold: 0.01 });
+      visTargets.forEach(function (t) { window.__museuVisObserver.observe(t.el); });
+    }
+  }
+
+  // ---- Modo 4D: controle central do eixo do tempo (scrubber + playback) ----
+  function museu4dRefreshUI() {
+    var readout = $("#museu4d-date-readout"); if (readout) readout.textContent = museu4dFormatYear(STATE.museu4dDate);
+    var stat = $("#museu4d-stat-date"); if (stat) stat.textContent = museu4dFormatYear(STATE.museu4dDate);
+    var range = $("#museu4d-scrub"); if (range) range.value = Math.round(museu4dYearToT(STATE.museu4dDate) * 1000);
+    var playBtn = document.querySelector('[data-action="museu4d-toggle-play"].museu4d-play-btn');
+    if (playBtn) playBtn.innerHTML = STATE.museu4dPlaying ? "⏸ Pausar" : "▶ Reproduzir";
+  }
+  function museu4dSetDate(year, opts) {
+    opts = opts || {};
+    STATE.museu4dDate = Math.max(MUSEU4D_KNOTS[0], Math.min(MUSEU4D_YEAR_NOW, Math.round(year)));
+    museu4dRefreshUI();
+    if (window.__museu4dInst) window.__museu4dInst.setDate(STATE.museu4dDate);
+    if (!opts.silent) {
+      var era = humanidadeEraFor(STATE.museu4dDate);
+      if (era) { STATE.museuEra = era.key; var tabs = $("#museu-era-tabs"); if (tabs) tabs.outerHTML = museuEraTabsMarkup(); }
+    }
+  }
+  var museu4dRAF = null;
+  function museu4dLoop() {
+    if (!STATE.museu4dPlaying) { museu4dRAF = null; return; }
+    var nextYear = STATE.museu4dDate + STATE.museu4dSpeed / 60;
+    if (nextYear >= MUSEU4D_YEAR_NOW) { museu4dSetDate(MUSEU4D_YEAR_NOW, { silent: true }); STATE.museu4dPlaying = false; museu4dRefreshUI(); museu4dRAF = null; return; }
+    museu4dSetDate(nextYear, { silent: true });
+    museu4dRAF = requestAnimationFrame(museu4dLoop);
+  }
+  function museu4dTogglePlay() {
+    STATE.museu4dPlaying = !STATE.museu4dPlaying;
+    museu4dRefreshUI();
+    if (STATE.museu4dPlaying) {
+      if (STATE.museu4dDate >= MUSEU4D_YEAR_NOW) museu4dSetDate(MUSEU4D_KNOTS[0], { silent: true });
+      if (!museu4dRAF) museu4dRAF = requestAnimationFrame(museu4dLoop);
+    }
   }
 
   // ---------- O que diz a Bíblia (hub de ritos + comparador de versões) ----------
@@ -6750,22 +7298,42 @@ if (typeof module !== "undefined") {
       if (card) setTimeout(function () { card.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" }); }, 80);
     },
     "clear-timeline-focus": function () { STATE.timelineFocusSlug = null; applyTimelineFocusVisual(); },
-    "mh-select": function (el) {
-      STATE.humanidadeSelected = el.getAttribute("data-slug");
-      var stripSlot = $("#mh-card-strip-slot"); if (stripSlot) stripSlot.innerHTML = mhCardStripMarkup();
-      var detail = $("#mh-detail-panel"); if (detail) detail.outerHTML = mhDetailPanelMarkup(STATE.humanidadeSelected);
+    "museu-select": function (el) { museuSelect(el.getAttribute("data-id")); },
+    "museu-filter-era": function (el) {
+      STATE.museuEra = el.getAttribute("data-era");
+      var tabs = $("#museu-era-tabs"); if (tabs) tabs.outerHTML = museuEraTabsMarkup();
+      var strip = $("#museu-card-strip-slot"); if (strip) strip.innerHTML = museuCardStripMarkup();
     },
-    "mh-filter-era": function (el) { STATE.humanidadeEra = el.getAttribute("data-era"); refreshMhFilteredUI(); },
-    "mh-set-view": function (el) {
-      STATE.humanidadeView = el.getAttribute("data-view");
-      var navSlot = $("#mh-nav-slot"); if (navSlot) navSlot.innerHTML = mhNavItemsMarkup();
-      var mainSlot = $("#mh-main-slot"); if (mainSlot) mainSlot.innerHTML = mhMainContent();
+    "museu-clear-filters": function () {
+      STATE.museuEra = "todas"; STATE.museuQuery = "";
+      var input = $("#museu-search-input"); if (input) input.value = "";
+      var tabs = $("#museu-era-tabs"); if (tabs) tabs.outerHTML = museuEraTabsMarkup();
+      var strip = $("#museu-card-strip-slot"); if (strip) strip.innerHTML = museuCardStripMarkup();
     },
-    "mh-clear-filters": function () {
-      STATE.humanidadeEra = "todas"; STATE.humanidadeRegion = "todas"; STATE.humanidadeQuery = "";
-      var input = $("#mh-search-input"); if (input) input.value = "";
-      var sel = $("#mh-region-select"); if (sel) sel.value = "todas";
-      refreshMhFilteredUI();
+    "museu-scroll-a": function () { var el = $("#museu-section-a"); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); },
+    "museu-scroll-b": function () { var el = $("#museu-section-b"); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); },
+    "museu-scroll-c": function () { var el = $("#museu-section-c"); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); },
+    "museu-scroll-d": function () { var el = $("#museu-section-d"); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); },
+    "museu4d-toggle-play": function () { museu4dTogglePlay(); },
+    "museu4d-reset": function () { STATE.museu4dPlaying = false; museu4dSetDate(MUSEU4D_KNOTS[0]); },
+    "museu4d-speed": function (el) {
+      STATE.museu4dSpeed = parseInt(el.getAttribute("data-speed"), 10);
+      var slot = $("#museu4d-scrubber-slot"); if (slot) slot.innerHTML = museu4dScrubberMarkup();
+    },
+    "museu-reset-focus": function () { museuSelect("m:cristianismo-primitivo"); },
+    "museu-tree-reset": function () { if (window.__museuTreeInst) window.__museuTreeInst.resetView(); },
+    "museu-tree-zoom-in": function () { if (window.__museuTreeInst) window.__museuTreeInst.zoomIn(); },
+    "museu-tree-zoom-out": function () { if (window.__museuTreeInst) window.__museuTreeInst.zoomOut(); },
+    "museu-tree-rotate": function (el) {
+      if (!window.__museuTreeInst) return;
+      STATE.museuAutoRotate = window.__museuTreeInst.toggleRotate();
+      el.classList.toggle("active", STATE.museuAutoRotate);
+    },
+    "museu-fullscreen": function (el) {
+      var target = document.getElementById(el.getAttribute("data-target"));
+      if (!target) return;
+      if (document.fullscreenElement) document.exitFullscreen();
+      else if (target.requestFullscreen) target.requestFullscreen();
     },
     "filter-search": function (el) {
       STATE.searchFilter = el.getAttribute("data-type");
@@ -6948,11 +7516,21 @@ if (typeof module !== "undefined") {
       var results = $("#tl-palette-results");
       if (results) results.innerHTML = timelineSearchResultsMarkup(e.target.value);
     }
-    if (e.target.id === "mh-search-input") {
-      STATE.humanidadeQuery = e.target.value;
-      refreshMhFilteredUI();
+    if (e.target.id === "museu-search-input" || e.target.id === "museu-tree-search") {
+      STATE.museuQuery = e.target.value;
+      var tabs = $("#museu-era-tabs"); if (tabs) tabs.outerHTML = museuEraTabsMarkup();
+      var strip = $("#museu-card-strip-slot"); if (strip) strip.innerHTML = museuCardStripMarkup();
     }
   }, 220));
+
+  // Scrubber do Modo 4D: sem debounce (precisa responder a cada frame do
+  // arraste para o hipercubo acompanhar o dedo/mouse em tempo real).
+  document.addEventListener("input", function (e) {
+    if (e.target.id !== "museu4d-scrub") return;
+    STATE.museu4dPlaying = false;
+    var t = parseInt(e.target.value, 10) / 1000;
+    museu4dSetDate(museu4dTToYear(t), { silent: true });
+  });
 
   // Ritos - versão mobile: troca de religião / religiões comparadas
   document.addEventListener("change", function (e) {
@@ -6971,9 +7549,9 @@ if (typeof module !== "undefined") {
       var wrap = e.target.closest(".rituals-mobile");
       if (wrap) wrap.innerHTML = mobileRitualsMarkup();
     }
-    if (e.target.id === "mh-region-select") {
-      STATE.humanidadeRegion = e.target.value;
-      refreshMhFilteredUI();
+    if (e.target.id === "museu-map-region") {
+      STATE.museuMapRegion = e.target.value;
+      if (window.__museuMapInst && e.target.value !== "todas") window.__museuMapInst.focusRegion(e.target.value);
     }
   });
 
@@ -7000,6 +7578,16 @@ if (typeof module !== "undefined") {
     if (route.name === "biblia") initBibleComparator("");
     if (route.name === "biblioteca" && !route.topic) initBibliotecaSearch();
     if (route.name === "timeline") { STATE.timelineFocusSlug = null; requestAnimationFrame(renderTimelineConnectors); }
+    if (route.name === "humanidade") {
+      if (window.MuseuThree && window.MuseuThree.ready) {
+        requestAnimationFrame(museuInitThreeIfMounted);
+      } else {
+        window.addEventListener("museu-three-ready", function onReady() {
+          window.removeEventListener("museu-three-ready", onReady);
+          if (parseHash().name === "humanidade") requestAnimationFrame(museuInitThreeIfMounted);
+        });
+      }
+    }
   }
 
   // ============================================================
@@ -7467,6 +8055,803 @@ if (typeof module !== "undefined") {
     cursorTrail.init();
   });
 })();
+
+</script>
+<script type="importmap">
+{"imports": {"three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}
+</script>
+<script type="module">
+// ============================================================
+// Museu Histórico Interativo — motor 3D (Three.js real, via WebGL)
+// ============================================================
+// Módulo ES separado do restante do app (que é um único <script>
+// clássico concatenado por build.js). Carregado via import map
+// apontando "three" para a build ESM oficial no jsDelivr. Não altera
+// nada do resto do site: só desenha dentro dos três canvases da
+// página #/humanidade e expõe window.MuseuThree para o app.js
+// (script clássico) chamar depois que o DOM da página existir.
+//
+// Dados (MUSEU_TREE, HUMANIDADE_MILESTONES, RELIGIONS) são lidos de
+// window.* - eles são declarados com `var`/função no script clássico
+// concatenado, que roda antes deste módulo (scripts type=module são
+// adiados até depois do parse do documento), então já existem quando
+// este arquivo executa.
+
+import * as THREE from "three";
+
+var REGION_COLOR = {
+  africa: 0x31c48d, "oriente-medio": 0xe2b04d, europa: 0x5a9be0,
+  asia: 0xe8735f, americas: 0xb478e8, oceania: 0x3fd0c9, global: 0xa8987a,
+};
+function regionColor(region) { return REGION_COLOR[region] != null ? REGION_COLOR[region] : REGION_COLOR.global; }
+
+// ---------- textura de halo radial (glow "barato", sem post-processing) ----------
+var haloTexCache = {};
+function haloTexture(hexColor) {
+  if (haloTexCache[hexColor]) return haloTexCache[hexColor];
+  var c = document.createElement("canvas"); c.width = 128; c.height = 128;
+  var ctx = c.getContext("2d");
+  var col = new THREE.Color(hexColor);
+  var r = Math.round(col.r * 255), g = Math.round(col.g * 255), b = Math.round(col.b * 255);
+  var grad = ctx.createRadialGradient(64, 64, 0, 64, 64, 64);
+  grad.addColorStop(0, "rgba(" + r + "," + g + "," + b + ",0.95)");
+  grad.addColorStop(0.35, "rgba(" + r + "," + g + "," + b + ",0.45)");
+  grad.addColorStop(1, "rgba(" + r + "," + g + "," + b + ",0)");
+  ctx.fillStyle = grad; ctx.fillRect(0, 0, 128, 128);
+  var tex = new THREE.CanvasTexture(c);
+  haloTexCache[hexColor] = tex;
+  return tex;
+}
+function makeHaloSprite(hexColor, scale) {
+  var mat = new THREE.SpriteMaterial({ map: haloTexture(hexColor), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+  var sprite = new THREE.Sprite(mat);
+  sprite.scale.setScalar(scale);
+  return sprite;
+}
+
+var instances = {}; // canvasEl -> { dispose }
+
+function disposeInstance(canvas) {
+  var inst = instances[canvas.__museuKey];
+  if (inst) { try { inst.dispose(); } catch (e) { /* noop */ } }
+  delete instances[canvas.__museuKey];
+}
+var keyCounter = 0;
+function registerInstance(canvas, inst) {
+  if (!canvas.__museuKey) canvas.__museuKey = "k" + (++keyCounter);
+  disposeInstance(canvas);
+  instances[canvas.__museuKey] = inst;
+}
+
+function makeRenderer(canvas) {
+  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true, powerPreference: "low-power" });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  return renderer;
+}
+
+function observeResize(el, cb) {
+  var ro = new ResizeObserver(function (entries) {
+    var box = entries[0].contentRect;
+    if (box.width > 0 && box.height > 0) cb(box.width, box.height);
+  });
+  ro.observe(el);
+  return ro;
+}
+
+// ---------- controle órbita simples (arrastar para girar, roda para zoom) ----------
+function attachOrbitControls(el, camera, target, opts) {
+  opts = opts || {};
+  var radius = opts.radius || camera.position.distanceTo(target);
+  var theta = opts.theta != null ? opts.theta : Math.PI / 4;
+  var phi = opts.phi != null ? opts.phi : Math.PI / 3;
+  var minRadius = opts.minRadius || radius * 0.35;
+  var maxRadius = opts.maxRadius || radius * 2.6;
+  var minPhi = opts.minPhi != null ? opts.minPhi : 0.2;
+  var maxPhi = opts.maxPhi != null ? opts.maxPhi : Math.PI - 0.2;
+  var dragging = false, lastX = 0, lastY = 0, moved = false;
+  var autoRotate = false;
+
+  function update() {
+    phi = Math.max(minPhi, Math.min(maxPhi, phi));
+    radius = Math.max(minRadius, Math.min(maxRadius, radius));
+    camera.position.set(
+      target.x + radius * Math.sin(phi) * Math.sin(theta),
+      target.y + radius * Math.cos(phi),
+      target.z + radius * Math.sin(phi) * Math.cos(theta)
+    );
+    camera.lookAt(target);
+  }
+  function xyOf(e) { return e.touches ? [e.touches[0].clientX, e.touches[0].clientY] : [e.clientX, e.clientY]; }
+  function onDown(e) { dragging = true; moved = false; var xy = xyOf(e); lastX = xy[0]; lastY = xy[1]; }
+  function onMove(e) {
+    if (!dragging) return;
+    var xy = xyOf(e);
+    var dx = xy[0] - lastX, dy = xy[1] - lastY;
+    if (Math.abs(dx) + Math.abs(dy) > 2) moved = true;
+    theta -= dx * 0.007;
+    phi -= dy * 0.007;
+    lastX = xy[0]; lastY = xy[1];
+    update();
+  }
+  function onUp() { dragging = false; }
+  function onWheel(e) {
+    e.preventDefault();
+    radius = radius * (1 + e.deltaY * 0.001);
+    update();
+  }
+  el.addEventListener("pointerdown", onDown);
+  window.addEventListener("pointermove", onMove);
+  window.addEventListener("pointerup", onUp);
+  el.addEventListener("wheel", onWheel, { passive: false });
+  update();
+
+  return {
+    tick: function () { if (autoRotate && !dragging) { theta += 0.0022; update(); } },
+    wasDragged: function () { return moved; },
+    setAutoRotate: function (v) { autoRotate = v; },
+    getAutoRotate: function () { return autoRotate; },
+    zoomBy: function (f) { radius *= f; update(); },
+    reset: function () { radius = opts.radius; theta = opts.theta != null ? opts.theta : Math.PI / 4; phi = opts.phi != null ? opts.phi : Math.PI / 3; update(); },
+    lookAtPoint: function (p, keepRadius) {
+      target.copy(p);
+      if (!keepRadius) radius = Math.max(minRadius, Math.min(maxRadius, radius));
+      update();
+    },
+    dispose: function () {
+      el.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      el.removeEventListener("wheel", onWheel);
+    },
+  };
+}
+
+// ---------- overlay de rótulos HTML sincronizados com posições 3D ----------
+function makeLabelLayer(container) {
+  var wrap = document.createElement("div");
+  wrap.className = "museu-labels";
+  container.appendChild(wrap);
+  var entries = [];
+  return {
+    add: function (worldPos, text, cls) {
+      var div = document.createElement("div");
+      div.className = "museu-label" + (cls ? " " + cls : "");
+      div.textContent = text;
+      wrap.appendChild(div);
+      entries.push({ pos: worldPos, el: div });
+      return div;
+    },
+    update: function (camera, width, height) {
+      for (var i = 0; i < entries.length; i++) {
+        var e = entries[i];
+        var v = e.pos.clone().project(camera);
+        var behind = v.z > 1;
+        if (behind) { e.el.style.display = "none"; continue; }
+        e.el.style.display = "";
+        e.el.style.left = ((v.x * 0.5 + 0.5) * width) + "px";
+        e.el.style.top = ((-v.y * 0.5 + 0.5) * height) + "px";
+      }
+    },
+    dispose: function () { wrap.remove(); entries = []; },
+  };
+}
+
+// ============================================================
+// OPÇÃO B — Árvore genealógica 3D
+// ============================================================
+function museuLayoutTree(rootId, tree) {
+  var childrenMap = {};
+  tree.forEach(function (n) {
+    if (n.parent == null) return;
+    (childrenMap[n.parent] = childrenMap[n.parent] || []).push(n.id);
+  });
+  var leafCache = {};
+  function leafCount(id) {
+    if (leafCache[id] != null) return leafCache[id];
+    var kids = childrenMap[id] || [];
+    var v = kids.length ? kids.reduce(function (s, k) { return s + leafCount(k); }, 0) : 1;
+    leafCache[id] = v;
+    return v;
+  }
+  var positions = {};
+  function place(id, depth, a0, a1) {
+    var angle = (a0 + a1) / 2;
+    var radius = depth * 2.5;
+    positions[id] = {
+      depth: depth, angle: angle,
+      x: radius * Math.cos(angle), z: radius * Math.sin(angle), y: depth * 1.05,
+    };
+    var kids = childrenMap[id] || [];
+    if (!kids.length) return;
+    var total = leafCount(id);
+    var cursor = a0;
+    kids.forEach(function (k) {
+      var span = (a1 - a0) * (leafCount(k) / total);
+      place(k, depth + 1, cursor, cursor + span);
+      cursor += span;
+    });
+  }
+  place(rootId, 0, 0, Math.PI * 2);
+  return positions;
+}
+
+function initTree(container, callbacks) {
+  callbacks = callbacks || {};
+  var canvas = container.querySelector("canvas");
+  if (!canvas) return null;
+  var tree = window.MUSEU_TREE || [];
+  var rootId = (tree.filter(function (n) { return !n.parent; })[0] || {}).id;
+
+  var scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x0a0704, 0.016);
+  var camera = new THREE.PerspectiveCamera(48, 1, 0.1, 300);
+  var renderer = makeRenderer(canvas);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.15;
+
+  scene.add(new THREE.AmbientLight(0xc9a876, 0.55));
+  var key = new THREE.DirectionalLight(0xffe4b0, 1.0); key.position.set(8, 14, 6); scene.add(key);
+  var rim = new THREE.PointLight(0xe2b04d, 1.15, 60); rim.position.set(-10, 8, -8); scene.add(rim);
+  var rim2 = new THREE.PointLight(0xc9822f, 0.75, 60); rim2.position.set(10, 4, 10); scene.add(rim2);
+
+  var ground = new THREE.Mesh(
+    new THREE.CircleGeometry(24, 48),
+    new THREE.MeshStandardMaterial({ color: 0x0c0904, roughness: 1, metalness: 0 })
+  );
+  ground.rotation.x = -Math.PI / 2; ground.position.y = -0.15; scene.add(ground);
+
+  var positions = museuLayoutTree(rootId, tree);
+  var group = new THREE.Group(); scene.add(group);
+  var nodeMeshes = {};
+  var labels = makeLabelLayer(container);
+
+  tree.forEach(function (n) {
+    var p = positions[n.id]; if (!p) return;
+    var color = regionColor(n.region);
+    var r = n.kind === "milestone" ? 0.32 : (n.kind === "group" ? 0.2 : 0.15);
+    var geo = new THREE.SphereGeometry(r, 22, 16);
+    var mat = new THREE.MeshStandardMaterial({ color: color, emissive: color, emissiveIntensity: 0.85, roughness: 0.4, metalness: 0.25 });
+    var mesh = new THREE.Mesh(geo, mat);
+    mesh.position.set(p.x, p.y, p.z);
+    mesh.userData.nodeId = n.id;
+    mesh.userData.baseScale = 1;
+    group.add(mesh);
+    nodeMeshes[n.id] = mesh;
+    // halo aditivo (glow "barato") atrás de cada nó — reforça o visual
+    // de galhos luminosos da referência sem precisar de post-processing.
+    var halo = makeHaloSprite(color, r * 6.5);
+    halo.position.copy(mesh.position);
+    halo.userData.baseScale = r * 6.5;
+    mesh.userData.halo = halo;
+    group.add(halo);
+    if (n.kind !== "religion") labels.add(mesh.position, n.name, n.kind === "milestone" ? "museu-label-major" : "museu-label-group");
+
+    if (n.parent) {
+      var pp = positions[n.parent];
+      if (pp) {
+        var mid = new THREE.Vector3((pp.x + p.x) / 2, (pp.y + p.y) / 2 + 0.35, (pp.z + p.z) / 2);
+        var curve = new THREE.CatmullRomCurve3([new THREE.Vector3(pp.x, pp.y, pp.z), mid, new THREE.Vector3(p.x, p.y, p.z)]);
+        var tubeGeo = new THREE.TubeGeometry(curve, 14, 0.02, 6, false);
+        var tubeMat = new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.75, blending: THREE.AdditiveBlending, depthWrite: false });
+        group.add(new THREE.Mesh(tubeGeo, tubeMat));
+      }
+    }
+  });
+
+  camera.position.set(0, 9, 16);
+  var controls = attachOrbitControls(canvas, camera, new THREE.Vector3(0, 4.5, 0), { radius: 18, theta: 0.7, phi: 1.0, minRadius: 4, maxRadius: 40 });
+
+  var raycaster = new THREE.Raycaster();
+  var mouse = new THREE.Vector2();
+  var meshList = Object.keys(nodeMeshes).map(function (k) { return nodeMeshes[k]; });
+  function onClick(ev) {
+    if (controls.wasDragged()) return;
+    var rect = canvas.getBoundingClientRect();
+    mouse.x = ((ev.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((ev.clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    var hits = raycaster.intersectObjects(meshList);
+    if (hits.length && callbacks.onSelect) callbacks.onSelect(hits[0].object.userData.nodeId);
+  }
+  canvas.addEventListener("click", onClick);
+
+  var selectedId = null, pulseT = 0;
+  function setSelected(id) {
+    selectedId = id;
+    meshList.forEach(function (m) { m.userData.baseScale = (m.userData.nodeId === id) ? 1.7 : 1; });
+  }
+
+  var raf = null, running = true;
+  function frame() {
+    if (!running) return;
+    pulseT += 0.05;
+    controls.tick();
+    meshList.forEach(function (m) {
+      var pulse = m.userData.nodeId === selectedId ? Math.sin(pulseT) * 0.08 : 0;
+      var s = m.userData.baseScale + pulse;
+      m.scale.setScalar(s);
+      if (m.userData.halo) m.userData.halo.scale.setScalar(m.userData.halo.userData.baseScale * (s * 0.7 + 0.3));
+    });
+    renderer.render(scene, camera);
+    var rect = canvas.getBoundingClientRect();
+    labels.update(camera, rect.width, rect.height);
+    raf = requestAnimationFrame(frame);
+  }
+  frame();
+
+  var ro = observeResize(container, function (w, h) {
+    renderer.setSize(w, h, false);
+    camera.aspect = w / Math.max(1, h);
+    camera.updateProjectionMatrix();
+  });
+
+  return {
+    focus: function (id) {
+      setSelected(id);
+      var p = positions[id];
+      if (p) controls.lookAtPoint(new THREE.Vector3(p.x, p.y, p.z), true);
+    },
+    zoomIn: function () { controls.zoomBy(0.8); },
+    zoomOut: function () { controls.zoomBy(1.25); },
+    resetView: function () { controls.reset(); controls.lookAtPoint(new THREE.Vector3(0, 4.5, 0), true); },
+    toggleRotate: function () { controls.setAutoRotate(!controls.getAutoRotate()); return controls.getAutoRotate(); },
+    setActive: function (active) {
+      if (active && !running) { running = true; frame(); }
+      else if (!active && running) { running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
+    },
+    dispose: function () {
+      running = false;
+      if (raf) cancelAnimationFrame(raf);
+      canvas.removeEventListener("click", onClick);
+      controls.dispose();
+      ro.disconnect();
+      labels.dispose();
+      renderer.dispose();
+      if (renderer.forceContextLoss) renderer.forceContextLoss();
+    },
+  };
+}
+
+// ============================================================
+// OPÇÃO C — Mapa Múndi Temporal
+// ============================================================
+var MAP_REGION_XY = {
+  africa: [-1.1, 1.7], "oriente-medio": [1.0, 1.15], europa: [0.3, -1.5],
+  asia: [3.1, 0.5], americas: [-4.3, 0.1], oceania: [4.5, 2.7], global: [0, -3.4],
+};
+
+function drawStylizedMapTexture() {
+  var w = 2048, h = 1152;
+  var c = document.createElement("canvas"); c.width = w; c.height = h;
+  var ctx = c.getContext("2d");
+  var g = ctx.createLinearGradient(0, 0, 0, h);
+  g.addColorStop(0, "#070c14"); g.addColorStop(1, "#03050a");
+  ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+
+  // grade de longitude/latitude discreta
+  ctx.strokeStyle = "rgba(255,255,255,0.045)"; ctx.lineWidth = 1;
+  for (var gx = 0; gx <= w; gx += w / 12) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, h); ctx.stroke(); }
+  for (var gy = 0; gy <= h; gy += h / 8) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(w, gy); ctx.stroke(); }
+
+  function toPx(nx, ny) { return [ (nx / 8 + 0.5) * w, (ny / 4.5 + 0.5) * h ]; }
+  function blob(points, fill) {
+    ctx.beginPath();
+    points.forEach(function (p, i) {
+      var px = toPx(p[0], p[1]);
+      if (i === 0) ctx.moveTo(px[0], px[1]); else ctx.lineTo(px[0], px[1]);
+    });
+    ctx.closePath();
+    ctx.fillStyle = fill;
+    ctx.fill();
+  }
+  var land = "rgba(60,90,120,0.55)";
+  // formas continentais estilizadas (aproximações livres, não cartografia precisa)
+  blob([[-5.1,-1.7],[-4.6,-1.9],[-3.9,-1.6],[-3.5,-0.6],[-3.7,0.6],[-4.4,0.9],[-5.0,0.3],[-5.3,-0.7]], land); // américa do norte
+  blob([[-4.6,0.6],[-4.0,0.8],[-3.6,1.6],[-3.9,2.3],[-4.4,2.0],[-4.7,1.3]], land); // américa do sul
+  blob([[-0.6,0.7],[0.2,0.6],[0.6,1.4],[0.5,2.3],[-0.1,2.5],[-0.7,1.9],[-0.8,1.2]], land); // áfrica
+  blob([[-0.6,-1.9],[0.4,-2.1],[1.1,-1.6],[0.6,-1.1],[-0.4,-1.1]], land); // europa
+  blob([[0.9,-1.3],[1.8,-1.5],[2.2,-0.7],[1.5,-0.3],[0.9,-0.6]], land); // oriente médio
+  blob([[1.6,-1.9],[3.6,-1.8],[4.1,-0.6],[3.4,0.6],[2.2,0.3],[1.6,-0.6]], land); // ásia
+  blob([[3.6,1.9],[4.3,1.8],[4.6,2.5],[4.0,2.8],[3.5,2.4]], land); // oceania
+
+  var tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+
+function initMap(container, callbacks) {
+  callbacks = callbacks || {};
+  var canvas = container.querySelector("canvas");
+  if (!canvas) return null;
+  var tree = window.MUSEU_TREE || [];
+
+  var scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x0a0704, 0.01);
+  var camera = new THREE.PerspectiveCamera(46, 1, 0.1, 300);
+  var renderer = makeRenderer(canvas);
+
+  scene.add(new THREE.AmbientLight(0xd8c6a0, 0.95));
+  var key = new THREE.DirectionalLight(0xffffff, 0.55); key.position.set(4, 10, 4); scene.add(key);
+
+  // Textura real: a ilustração de referência do mapa-múndi noturno
+  // fornecida pelo usuário (ver MUSEU4D_CAPTION em app.js — é uma
+  // ilustração estilizada, não uma imagem de satélite real). Se por
+  // algum motivo a imagem não estiver disponível, cai no mapa
+  // desenhado proceduralmente como reserva.
+  var mapImgUrl = (window.MUSEU4D_IMG || {})["map-satellite"];
+  var mapTex = mapImgUrl ? new THREE.TextureLoader().load(mapImgUrl) : drawStylizedMapTexture();
+  mapTex.colorSpace = THREE.SRGBColorSpace;
+  var plane = new THREE.Mesh(new THREE.PlaneGeometry(16, 9.28, 1, 1), new THREE.MeshStandardMaterial({ map: mapTex, roughness: 1, emissive: 0x1a1408, emissiveIntensity: 0.25 }));
+  plane.rotation.x = -Math.PI / 2;
+  scene.add(plane);
+
+  var labels = makeLabelLayer(container);
+  var markers = {};
+  Object.keys(MAP_REGION_XY).forEach(function (region) {
+    if (region === "global") return;
+    var xy = MAP_REGION_XY[region];
+    var color = regionColor(region);
+    var mesh = new THREE.Mesh(new THREE.SphereGeometry(0.11, 16, 12), new THREE.MeshStandardMaterial({ color: color, emissive: color, emissiveIntensity: 0.9 }));
+    mesh.position.set(xy[0], 0.08, xy[1]);
+    mesh.userData.region = region;
+    scene.add(mesh);
+    var markerHalo = makeHaloSprite(color, 0.85);
+    markerHalo.position.set(xy[0], 0.09, xy[1]);
+    scene.add(markerHalo);
+    markers[region] = mesh;
+  });
+
+  // arestas entre regiões distintas, derivadas das ligações reais da árvore
+  var edgeSet = {};
+  tree.forEach(function (n) {
+    if (!n.parent) return;
+    var parentNode = tree.filter(function (x) { return x.id === n.parent; })[0];
+    if (!parentNode || parentNode.region === n.region) return;
+    var a = parentNode.region, b = n.region;
+    if (!MAP_REGION_XY[a] || !MAP_REGION_XY[b]) return;
+    var key2 = [a, b].sort().join("|");
+    edgeSet[key2] = [a, b];
+  });
+  var flowSprites = [];
+  Object.keys(edgeSet).forEach(function (k) {
+    var pair = edgeSet[k];
+    var p1 = MAP_REGION_XY[pair[0]], p2 = MAP_REGION_XY[pair[1]];
+    var mid = new THREE.Vector3((p1[0] + p2[0]) / 2, 1.1, (p1[1] + p2[1]) / 2);
+    var curve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(p1[0], 0.05, p1[1]), mid, new THREE.Vector3(p2[0], 0.05, p2[1]),
+    ]);
+    var tubeGeo = new THREE.TubeGeometry(curve, 30, 0.014, 6, false);
+    var tubeMat = new THREE.MeshBasicMaterial({ color: 0xe2b04d, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending, depthWrite: false });
+    scene.add(new THREE.Mesh(tubeGeo, tubeMat));
+    var sprite = new THREE.Mesh(new THREE.SphereGeometry(0.05, 10, 8), new THREE.MeshBasicMaterial({ color: 0xf6dfa0 }));
+    scene.add(sprite);
+    flowSprites.push({ curve: curve, mesh: sprite, t: Math.random(), speed: 0.09 + Math.random() * 0.05 });
+  });
+
+  camera.position.set(0, 9, 8);
+  var controls = attachOrbitControls(canvas, camera, new THREE.Vector3(0, 0, 0), { radius: 11, theta: 0.15, phi: 0.75, minRadius: 5, maxRadius: 20, minPhi: 0.35, maxPhi: 1.35 });
+
+  var raycaster = new THREE.Raycaster(), mouse = new THREE.Vector2();
+  var markerList = Object.keys(markers).map(function (k) { return markers[k]; });
+  function onClick(ev) {
+    if (controls.wasDragged()) return;
+    var rect = canvas.getBoundingClientRect();
+    mouse.x = ((ev.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((ev.clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    var hits = raycaster.intersectObjects(markerList);
+    if (hits.length && callbacks.onSelectRegion) callbacks.onSelectRegion(hits[0].object.userData.region);
+  }
+  canvas.addEventListener("click", onClick);
+
+  var raf = null, running = true;
+  function frame() {
+    if (!running) return;
+    controls.tick();
+    flowSprites.forEach(function (f) {
+      f.t = (f.t + f.speed * 0.016) % 1;
+      var p = f.curve.getPointAt(f.t);
+      f.mesh.position.copy(p);
+    });
+    renderer.render(scene, camera);
+    var rect = canvas.getBoundingClientRect();
+    labels.update(camera, rect.width, rect.height);
+    raf = requestAnimationFrame(frame);
+  }
+  frame();
+
+  var ro = observeResize(container, function (w, h) {
+    renderer.setSize(w, h, false);
+    camera.aspect = w / Math.max(1, h);
+    camera.updateProjectionMatrix();
+  });
+
+  return {
+    focusRegion: function (region) {
+      var xy = MAP_REGION_XY[region];
+      if (xy) controls.lookAtPoint(new THREE.Vector3(xy[0], 0, xy[1]), true);
+    },
+    setActive: function (active) {
+      if (active && !running) { running = true; frame(); }
+      else if (!active && running) { running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
+    },
+    dispose: function () {
+      running = false;
+      if (raf) cancelAnimationFrame(raf);
+      canvas.removeEventListener("click", onClick);
+      controls.dispose();
+      ro.disconnect();
+      labels.dispose();
+      mapTex.dispose();
+      renderer.dispose();
+      if (renderer.forceContextLoss) renderer.forceContextLoss();
+    },
+  };
+}
+
+// ============================================================
+// MODO 4D — Hipercubo espaço-tempo (eixo vertical = tempo)
+// ============================================================
+// Mesmo dataset (MUSEU_TREE) e mesmo algoritmo de setores angulares por
+// contagem de folhas da Opção B, mas aqui o eixo Y é o tempo (via
+// yearToT, não-linear — ver museu4dYearToT em app.js) em vez da
+// profundidade na árvore. Cada tradição sobe como um filamento; o raio
+// horizontal cresce um pouco com a profundidade só para as ramificações
+// não se sobreporem, não para representar nenhuma grandeza real.
+var HYPERCUBE_HEIGHT = 15;
+function museuLayoutHypercube(rootId, tree, yearOf, yearToT) {
+  var childrenMap = {};
+  tree.forEach(function (n) {
+    if (n.parent == null) return;
+    (childrenMap[n.parent] = childrenMap[n.parent] || []).push(n.id);
+  });
+  var leafCache = {};
+  function leafCount(id) {
+    if (leafCache[id] != null) return leafCache[id];
+    var kids = childrenMap[id] || [];
+    var v = kids.length ? kids.reduce(function (s, k) { return s + leafCount(k); }, 0) : 1;
+    leafCache[id] = v;
+    return v;
+  }
+  var positions = {};
+  function place(id, depth, a0, a1) {
+    var angle = (a0 + a1) / 2;
+    var year = yearOf(id);
+    var t = yearToT(year);
+    var radius = 0.55 + depth * 0.6;
+    positions[id] = {
+      depth: depth, angle: angle, year: year, t: t,
+      x: radius * Math.cos(angle), z: radius * Math.sin(angle), y: t * HYPERCUBE_HEIGHT,
+    };
+    var kids = childrenMap[id] || [];
+    if (!kids.length) return;
+    var total = leafCount(id);
+    var cursor = a0;
+    kids.forEach(function (k) {
+      var span = (a1 - a0) * (leafCount(k) / total);
+      place(k, depth + 1, cursor, cursor + span);
+      cursor += span;
+    });
+  }
+  place(rootId, 0, 0, Math.PI * 2);
+  return positions;
+}
+
+function initHypercube(container, callbacks) {
+  callbacks = callbacks || {};
+  var canvas = container.querySelector("canvas");
+  if (!canvas) return null;
+  var tree = window.MUSEU_TREE || [];
+  var rootId = (tree.filter(function (n) { return !n.parent; })[0] || {}).id;
+  var yearOf = callbacks.yearOf || function () { return null; };
+  var yearToT = callbacks.yearToT || function () { return 1; };
+
+  var scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x0a0704, 0.012);
+  var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 300);
+  var renderer = makeRenderer(canvas);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+
+  scene.add(new THREE.AmbientLight(0xc9a876, 0.5));
+  var key = new THREE.DirectionalLight(0xffe4b0, 0.9); key.position.set(6, 16, 8); scene.add(key);
+  var rim = new THREE.PointLight(0xe2b04d, 1.0, 60); rim.position.set(-8, 10, -6); scene.add(rim);
+
+  var ground = new THREE.Mesh(new THREE.CircleGeometry(10, 48), new THREE.MeshStandardMaterial({ color: 0x0c0904, roughness: 1 }));
+  ground.rotation.x = -Math.PI / 2; ground.position.y = -0.1; scene.add(ground);
+
+  // eixo vertical do tempo: haste discreta + marcas nos "nós" da escala
+  // não-linear (mesmos limites de museu4dYearToT em app.js).
+  var axisMat = new THREE.LineBasicMaterial({ color: 0x6b5a38, transparent: true, opacity: 0.5 });
+  var axisGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, HYPERCUBE_HEIGHT, 0)]);
+  scene.add(new THREE.Line(axisGeo, axisMat));
+  var axisLabels = makeLabelLayer(container);
+  var axisKnotYears = [-100000, -10000, -500, 500, 1500, 1900];
+  axisKnotYears.forEach(function (y) {
+    var t = yearToT(y);
+    var ringY = t * HYPERCUBE_HEIGHT;
+    var ring = new THREE.Mesh(new THREE.RingGeometry(0.05, 0.09, 20), new THREE.MeshBasicMaterial({ color: 0x8a7248, transparent: true, opacity: 0.6, side: THREE.DoubleSide }));
+    ring.rotation.x = -Math.PI / 2; ring.position.y = ringY; scene.add(ring);
+    axisLabels.add(new THREE.Vector3(0.5, ringY, 0), y < 0 ? Math.abs(y) + " a.C." : String(y), "museu-label-group");
+  });
+
+  var positions = museuLayoutHypercube(rootId, tree, yearOf, yearToT);
+  var group = new THREE.Group(); scene.add(group);
+  var nodeMeshes = {}, edgeMeshes = [];
+  var labels = makeLabelLayer(container);
+
+  tree.forEach(function (n) {
+    var p = positions[n.id]; if (!p) return;
+    var color = regionColor(n.region);
+    var r = n.kind === "milestone" ? 0.26 : (n.kind === "group" ? 0.17 : 0.13);
+    var mat = new THREE.MeshStandardMaterial({ color: color, emissive: color, emissiveIntensity: 0.85, roughness: 0.4, metalness: 0.25, transparent: true, opacity: 1 });
+    var mesh = new THREE.Mesh(new THREE.SphereGeometry(r, 18, 14), mat);
+    mesh.position.set(p.x, p.y, p.z);
+    mesh.userData.nodeId = n.id;
+    mesh.userData.year = p.year;
+    mesh.userData.baseScale = 1;
+    mesh.userData.targetOpacity = 1;
+    group.add(mesh);
+    nodeMeshes[n.id] = mesh;
+    var halo = makeHaloSprite(color, r * 6);
+    halo.position.copy(mesh.position);
+    halo.userData.baseScale = r * 6;
+    halo.material.transparent = true;
+    mesh.userData.halo = halo;
+    group.add(halo);
+    if (n.kind === "milestone" || n.kind === "group") labels.add(mesh.position, n.name, n.kind === "milestone" ? "museu-label-major" : "museu-label-group");
+
+    if (n.parent) {
+      var pp = positions[n.parent];
+      if (pp) {
+        var curve = new THREE.CatmullRomCurve3([
+          new THREE.Vector3(pp.x, pp.y, pp.z),
+          new THREE.Vector3((pp.x + p.x) / 2, (pp.y + p.y) / 2, (pp.z + p.z) / 2),
+          new THREE.Vector3(p.x, p.y, p.z),
+        ]);
+        var tubeMat = new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending, depthWrite: false });
+        var tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 16, 0.016, 6, false), tubeMat);
+        tube.userData.year = p.year;
+        tube.userData.targetOpacity = 0.7;
+        group.add(tube);
+        edgeMeshes.push(tube);
+      }
+    }
+  });
+
+  // plano "corte temporal": marca o instante atual, sobe/desce com o scrubber
+  var slicePlane = new THREE.Mesh(
+    new THREE.CircleGeometry(6.5, 48),
+    new THREE.MeshBasicMaterial({ color: 0xe2b04d, transparent: true, opacity: 0.07, side: THREE.DoubleSide, depthWrite: false })
+  );
+  slicePlane.rotation.x = -Math.PI / 2;
+  scene.add(slicePlane);
+  var sliceRing = new THREE.Mesh(new THREE.RingGeometry(6.35, 6.5, 64), new THREE.MeshBasicMaterial({ color: 0xf6dfa0, transparent: true, opacity: 0.55, side: THREE.DoubleSide, blending: THREE.AdditiveBlending }));
+  sliceRing.rotation.x = -Math.PI / 2;
+  scene.add(sliceRing);
+
+  camera.position.set(11, 7, 11);
+  var controls = attachOrbitControls(canvas, camera, new THREE.Vector3(0, HYPERCUBE_HEIGHT * 0.4, 0), { radius: 16, theta: 0.8, phi: 1.15, minRadius: 4, maxRadius: 34 });
+
+  var raycaster = new THREE.Raycaster(), mouse = new THREE.Vector2();
+  var meshList = Object.keys(nodeMeshes).map(function (k) { return nodeMeshes[k]; });
+  function onClick(ev) {
+    if (controls.wasDragged()) return;
+    var rect = canvas.getBoundingClientRect();
+    mouse.x = ((ev.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((ev.clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    var hits = raycaster.intersectObjects(meshList);
+    if (hits.length && callbacks.onSelect) callbacks.onSelect(hits[0].object.userData.nodeId);
+  }
+  canvas.addEventListener("click", onClick);
+
+  var currentDate = yearToT ? Infinity : Infinity; // definido via setDate() logo após init
+  function applyDate(year) {
+    currentDate = year;
+    var t = yearToT(year);
+    var y = t * HYPERCUBE_HEIGHT;
+    slicePlane.position.y = y; sliceRing.position.y = y;
+    meshList.forEach(function (m) { m.userData.targetOpacity = (m.userData.year == null || m.userData.year <= year) ? 1 : 0.08; });
+    edgeMeshes.forEach(function (e) { e.userData.targetOpacity = (e.userData.year == null || e.userData.year <= year) ? 0.7 : 0.05; });
+  }
+
+  var selectedId = null, pulseT = 0;
+  function setSelected(id) {
+    selectedId = id;
+    meshList.forEach(function (m) { m.userData.baseScale = (m.userData.nodeId === id) ? 1.7 : 1; });
+  }
+
+  var raf = null, running = true;
+  function frame() {
+    if (!running) return;
+    pulseT += 0.05;
+    controls.tick();
+    meshList.forEach(function (m) {
+      var pulse = m.userData.nodeId === selectedId ? Math.sin(pulseT) * 0.08 : 0;
+      var s = m.userData.baseScale + pulse;
+      m.scale.setScalar(s);
+      var op = m.material.opacity + (m.userData.targetOpacity - m.material.opacity) * 0.12;
+      m.material.opacity = op;
+      if (m.userData.halo) {
+        m.userData.halo.scale.setScalar(m.userData.halo.userData.baseScale * (s * 0.7 + 0.3));
+        m.userData.halo.material.opacity += (m.userData.targetOpacity - m.userData.halo.material.opacity) * 0.12;
+      }
+    });
+    edgeMeshes.forEach(function (e) { e.material.opacity += (e.userData.targetOpacity - e.material.opacity) * 0.12; });
+    renderer.render(scene, camera);
+    var rect = canvas.getBoundingClientRect();
+    labels.update(camera, rect.width, rect.height);
+    axisLabels.update(camera, rect.width, rect.height);
+    raf = requestAnimationFrame(frame);
+  }
+  frame();
+
+  var ro = observeResize(container, function (w, h) {
+    renderer.setSize(w, h, false);
+    camera.aspect = w / Math.max(1, h);
+    camera.updateProjectionMatrix();
+  });
+
+  return {
+    setDate: function (year) { applyDate(year); },
+    focus: function (id) {
+      setSelected(id);
+      var p = positions[id];
+      if (p) controls.lookAtPoint(new THREE.Vector3(p.x, p.y, p.z), true);
+    },
+    setActive: function (active) {
+      if (active && !running) { running = true; frame(); }
+      else if (!active && running) { running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
+    },
+    dispose: function () {
+      running = false;
+      if (raf) cancelAnimationFrame(raf);
+      canvas.removeEventListener("click", onClick);
+      controls.dispose();
+      ro.disconnect();
+      labels.dispose();
+      axisLabels.dispose();
+      renderer.dispose();
+      if (renderer.forceContextLoss) renderer.forceContextLoss();
+    },
+  };
+}
+
+// (Opção A deixou de usar Three.js — virou imagem CSS + Ken Burns; o
+// painel panorâmico 3D antigo não é mais chamado por app.js e foi
+// removido nesta limpeza antes do deploy.)
+
+// ============================================================
+// API pública
+// ============================================================
+window.MuseuThree = {
+  ready: true,
+  initTree: function (container, callbacks) {
+    var canvas = container.querySelector("canvas"); if (!canvas) return;
+    var inst = initTree(container, callbacks);
+    if (inst) registerInstance(canvas, inst);
+    return inst;
+  },
+  initMap: function (container, callbacks) {
+    var canvas = container.querySelector("canvas"); if (!canvas) return;
+    var inst = initMap(container, callbacks);
+    if (inst) registerInstance(canvas, inst);
+    return inst;
+  },
+  initHypercube: function (container, callbacks) {
+    var canvas = container.querySelector("canvas"); if (!canvas) return;
+    var inst = initHypercube(container, callbacks);
+    if (inst) registerInstance(canvas, inst);
+    return inst;
+  },
+  destroyAll: function () {
+    Object.keys(instances).forEach(function (k) { try { instances[k].dispose(); } catch (e) {} });
+    instances = {};
+  },
+};
+window.dispatchEvent(new Event("museu-three-ready"));
 
 </script>
 </body>
