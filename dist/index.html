@@ -1009,6 +1009,9 @@ table.similarity-table th { background: var(--gray-50); font-size: var(--fs-labe
 .mh-header-search { flex: 1 1 260px; max-width: 420px; display: flex; align-items: center; gap: 8px; background: var(--mh-glass); border: 1px solid var(--mh-line); border-radius: 999px; padding: 9px 16px; }
 .mh-header-search svg { width: 16px; height: 16px; color: var(--mh-blue); flex: 0 0 auto; }
 .mh-header-search input { flex: 1; background: none; border: none; outline: none; color: var(--mh-text); font-size: 13px; font-family: inherit; }
+/* O campo some do foco visível porque tem outline:none; o anel passa a
+   ser desenhado no contêiner quando o input está focado. */
+.mh-header-search:focus-within { border-color: var(--mh-gold); box-shadow: 0 0 0 3px rgba(226,176,77,0.25); }
 .mh-header-search input::placeholder { color: var(--mh-text-mute); }
 .mh-header-btn { flex: 0 0 auto; font-size: 12.5px; font-weight: 700; color: var(--mh-text-soft); background: rgba(255,255,255,0.05); border: 1px solid var(--mh-line); border-radius: 999px; padding: 9px 16px; }
 .mh-header-btn:hover { border-color: var(--mh-blue); color: var(--mh-blue); }
@@ -2211,6 +2214,256 @@ table.compare-table tbody tr.compare-theme-row.open td.comparativo-cell { backgr
   .mobile-drawer .panel, .mobile-drawer .backdrop, .mobile-drawer.open a { animation: none !important; }
 }
 
+/* ============================================================
+   PÁGINAS INTERNAS: mesma linguagem do menu e do Museu aplicada à
+   estrutura compartilhada por todas as rotas (.section-head, cards,
+   selects, rodapé). Como toda página usa .section-head, uma única
+   regra afina Comparar, Ritos, Bíblia, Biblioteca, Ateísmo, Sobre,
+   Fontes e as páginas de religião ao mesmo tempo.
+   ============================================================ */
+
+/* 1. Rodapé sempre no fim da tela: páginas curtas (Comparar, Sobre)
+   deixavam uma faixa vazia embaixo do rodapé. */
+body { min-height: 100vh; display: flex; flex-direction: column; }
+#app { flex: 1 0 auto; }
+#footer-slot { flex: 0 0 auto; }
+
+/* 2. Cartela de seção: filete dourado + título editorial (Playfair),
+   o mesmo par tipográfico do Museu e da marca. */
+.section-head .eyebrow:not(.eyebrow-act) { display: inline-flex; align-items: center; gap: 12px; }
+.section-head .eyebrow:not(.eyebrow-act)::before {
+  content: ""; width: 26px; height: 1px; background: linear-gradient(90deg, var(--gold), rgba(201,162,39,0)); flex: 0 0 auto;
+}
+.section-head h2 {
+  font-family: "Playfair Display", Georgia, serif; font-weight: 700; letter-spacing: -0.005em;
+  margin: 6px 0 6px;
+}
+.section-head p { line-height: 1.68; }
+.section-head { position: relative; padding-bottom: var(--space-4); }
+.section-head::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: linear-gradient(90deg, rgba(201,162,39,0.42), rgba(201,162,39,0.08) 45%, transparent 80%);
+}
+/* dentro de cards/painéis escuros a régua fica discreta demais - reforça */
+.hero .section-head::after, .ato-conheca .section-head::after {
+  background: linear-gradient(90deg, rgba(226,194,90,0.55), rgba(226,194,90,0.1) 45%, transparent 80%);
+}
+
+/* 3. Ritmo de leitura: parágrafos seguidos dentro de cards de texto
+   (página Sobre) estavam colados por causa de margin: 0. */
+.info-card p + p { margin-top: 0.9em; }
+.info-card p { line-height: 1.7; }
+.info-card a { color: var(--gold-text); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: rgba(201,162,39,0.45); transition: text-decoration-color 0.3s var(--ease-nav); }
+.info-card a:hover { text-decoration-color: var(--gold); }
+
+/* 4. Selects do comparador: caixa mais firme, seta própria e foco em
+   dourado (antes eram os controles nativos, sem identidade). */
+.compare-field select, select.select {
+  appearance: none; -webkit-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--gold-text) 50%), linear-gradient(135deg, var(--gold-text) 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(50% + 1px), calc(100% - 15px) calc(50% + 1px);
+  background-size: 5px 5px, 5px 5px; background-repeat: no-repeat;
+  padding-right: 38px;
+  transition: border-color 0.3s var(--ease-nav), box-shadow 0.3s var(--ease-nav);
+}
+.compare-field select:hover, select.select:hover { border-color: var(--gold); }
+.compare-field select:focus, select.select:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,162,39,0.18); outline: none; }
+
+/* 5. Entrada em cena das seções (todas as rotas, exceto a Home, que
+   tem a própria coreografia). Só com movimento permitido. */
+@media (prefers-reduced-motion: no-preference) {
+  .section.is-staged, .museu-section.is-staged { opacity: 0; transform: translateY(20px); }
+  .section.is-staged.is-on, .museu-section.is-staged.is-on {
+    opacity: 1; transform: none;
+    transition: opacity 0.85s var(--ease-nav), transform 0.85s var(--ease-nav);
+  }
+}
+
+/* Trilho de três passos do comparador (página #/comparar) */
+.steps-rail { list-style: none; margin: var(--space-7) 0 0; padding: 0; display: grid; gap: 2px; }
+.steps-rail li {
+  position: relative; display: grid; grid-template-columns: 48px 1fr; align-items: baseline;
+  column-gap: 14px; padding: 18px 4px; border-top: 1px solid var(--border);
+}
+.steps-rail li:last-child { border-bottom: 1px solid var(--border); }
+.steps-n { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--gold-text); }
+.steps-rail strong { font-family: var(--f-credit); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12.5px; color: var(--text); }
+.steps-rail li > span:last-child { grid-column: 2; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-top: 4px; }
+.steps-rail li::after {
+  content: ""; position: absolute; left: 0; top: -1px; height: 1px; width: 0;
+  background: linear-gradient(90deg, var(--gold), rgba(201,162,39,0));
+  transition: width 0.7s var(--ease-nav);
+}
+.steps-rail li:hover::after { width: 100%; }
+@media (max-width: 520px) { .steps-rail li { grid-template-columns: 34px 1fr; column-gap: 10px; } }
+
+/* ============================================================
+   ATLAS DA HUMANIDADE — uma superfície, três lentes
+   ============================================================
+   Substitui as antigas seções empilhadas "Opção A/B/C/4D" por um único
+   canvas: breadcrumb + filtros + transporte no topo, as três lentes
+   sincronizadas no corpo e um painel de contexto à direita.
+   ============================================================ */
+.atlas-shell { display: flex; flex-direction: column; gap: 14px; padding-top: var(--space-5); padding-bottom: var(--space-7); }
+
+/* trilha histórica */
+.mh-breadcrumb { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; font-family: var(--f-credit); font-size: 11.5px; letter-spacing: 0.09em; text-transform: uppercase; }
+.mh-crumb { background: none; border: none; padding: 3px 2px; color: var(--mh-text-mute); font: inherit; transition: color 0.3s var(--ease-nav); }
+.mh-crumb:hover { color: var(--mh-gold-bright); }
+.mh-crumb.is-current { color: var(--mh-gold); }
+.mh-crumb-sep { color: rgba(226,176,77,0.4); }
+
+/* filtros compartilhados */
+.mh-controls { display: flex; flex-wrap: wrap; gap: 16px 26px; padding: 14px 16px; background: var(--mh-glass); border: 1px solid var(--mh-line); border-radius: 14px; }
+.mh-filter-group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; min-width: 0; }
+.mh-filter-label { font-family: var(--f-credit); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mh-text-mute); }
+.mh-chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* transporte do tempo */
+.mh-transport { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.mh-transport-date { font-family: var(--f-mono); font-size: 12.5px; color: var(--mh-gold); padding: 0 6px; }
+.museu-play-btn[aria-pressed="true"] { background: linear-gradient(135deg, var(--mh-gold-bright), var(--mh-gold)); color: #05070a; border-color: transparent; }
+
+/* seletor de lente (tablet/mobile) */
+.mh-lens-tabs { display: none; gap: 4px; padding: 4px; background: var(--mh-glass); border: 1px solid var(--mh-line); border-radius: 999px; }
+.mh-lens-tab { flex: 1; padding: 9px 10px; border: none; background: none; border-radius: 999px; color: var(--mh-text-soft);
+  font-family: var(--f-credit); font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase;
+  transition: background 0.35s var(--ease-nav), color 0.35s var(--ease-nav); }
+.mh-lens-tab.active { background: linear-gradient(135deg, var(--mh-gold-bright), var(--mh-gold)); color: #05070a; }
+
+/* grade das três lentes + contexto */
+.atlas-grid { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 14px; align-items: start; }
+.atlas-lenses { display: grid; gap: 14px; min-width: 0; }
+@media (min-width: 1280px) {
+  /* Quando ocupa a faixa inteira (é o eixo comum); Quem e Onde dividem a
+     linha de baixo - as três lentes visíveis ao mesmo tempo. */
+  .atlas-lenses { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "quando quando" "quem onde"; }
+  .atlas-quando { grid-area: quando; } .atlas-quem { grid-area: quem; } .atlas-onde { grid-area: onde; }
+}
+.atlas-context { display: flex; flex-direction: column; gap: 12px; position: sticky; top: 92px; max-height: calc(100vh - 108px); overflow-y: auto; }
+.atlas-lens { align-self: start; background: var(--mh-glass); border: 1px solid var(--mh-line); border-radius: 16px; padding: 14px; min-width: 0;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.mh-lens-head { margin-bottom: 12px; }
+.mh-lens-kicker { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-credit); font-size: 10.5px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--mh-gold); }
+.mh-lens-kicker::before { content: ""; width: 22px; height: 1px; background: linear-gradient(90deg, var(--mh-gold), rgba(226,176,77,0)); }
+.mh-lens-head h3 { font-family: "Playfair Display", Georgia, serif; font-size: 19px; font-weight: 700; color: var(--mh-text); margin: 5px 0 4px; }
+.mh-lens-head p { margin: 0; font-size: 12px; line-height: 1.55; color: var(--mh-text-mute); }
+.atlas-lens .museu-canvas-wrap { min-height: 320px; }
+.atlas-quando .mh-card-strip { padding-top: 10px; }
+
+/* régua do tempo */
+.mh-timeline { position: relative; padding: 22px 6px 6px; }
+.mh-timeline-eras { position: relative; height: 16px; }
+.mh-era-mark { position: absolute; top: 0; transform: translateX(-2px); font-family: var(--f-credit); font-size: 9.5px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mh-text-mute); white-space: nowrap; padding-left: 5px; border-left: 1px solid var(--mh-line); }
+.mh-era-mark.active { color: var(--mh-gold); border-left-color: var(--mh-gold); }
+.mh-timeline-axis { position: relative; height: 44px; margin-top: 4px; border-top: 1px solid var(--mh-line); }
+.mh-now { position: absolute; top: -1px; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--mh-gold), rgba(226,176,77,0));
+  box-shadow: 0 0 10px rgba(226,176,77,0.7); z-index: 3; transition: left 0.25s linear; }
+.mh-tick { position: absolute; top: -5px; transform: translateX(-50%); background: none; border: none; padding: 0 2px;
+  display: flex; flex-direction: column; align-items: center; gap: 3px; transition: opacity 0.4s var(--ease-nav), transform 0.4s var(--ease-nav); }
+.mh-tick-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--region-c, var(--mh-gold)); box-shadow: 0 0 8px color-mix(in srgb, var(--region-c, #e2b04d) 70%, transparent); }
+/* Rótulo só aparece no item ativo/apontado: com 30 marcas em escala
+   não-linear, mostrar todos de uma vez vira uma parede de texto. */
+.mh-tick-label { position: absolute; top: 14px; left: 50%; transform: translateX(-50%) translateY(-4px);
+  font-family: var(--f-credit); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mh-gold-bright);
+  white-space: nowrap; padding: 3px 7px; border-radius: 999px; background: rgba(5,8,14,0.92); border: 1px solid rgba(226,176,77,0.35);
+  opacity: 0; pointer-events: none; z-index: 4; transition: opacity 0.25s var(--ease-nav), transform 0.25s var(--ease-nav); }
+.mh-tick:hover .mh-tick-label, .mh-tick:focus-visible .mh-tick-label, .mh-tick.is-selected .mh-tick-label {
+  opacity: 1; transform: translateX(-50%) translateY(0); }
+.mh-tick.is-selected { z-index: 2; }
+.mh-tick.is-selected .mh-tick-dot { transform: scale(1.7); box-shadow: 0 0 16px var(--mh-gold-bright); background: var(--mh-gold-bright); }
+
+.mh-tick.is-related .mh-tick-dot { transform: scale(1.25); }
+
+.mh-tick.is-context { opacity: 0.85; }
+.mh-tick.is-out { opacity: 0.18; }
+.mh-tick.is-future .mh-tick-dot { background: transparent; border: 1px solid var(--region-c, var(--mh-line)); box-shadow: none; }
+.mh-tick:hover .mh-tick-label, .mh-tick:focus-visible .mh-tick-label { color: var(--mh-gold-bright); }
+.mh-scrub { -webkit-appearance: none; appearance: none; width: 100%; height: 3px; margin-top: 10px; border-radius: 3px;
+  background: linear-gradient(90deg, rgba(226,176,77,0.5), rgba(226,176,77,0.12)); }
+.mh-scrub::-webkit-slider-thumb { -webkit-appearance: none; width: 15px; height: 15px; border-radius: 50%;
+  background: var(--mh-gold-bright); border: 2px solid #05070a; box-shadow: 0 0 10px rgba(226,176,77,0.8); cursor: grab; }
+.mh-scrub::-moz-range-thumb { width: 15px; height: 15px; border-radius: 50%; background: var(--mh-gold-bright); border: 2px solid #05070a; cursor: grab; }
+
+/* vocabulário de seleção nos cartões */
+.mh-card.is-out { opacity: 0.28; filter: saturate(0.5); }
+.mh-card.is-related { border-color: rgba(226,176,77,0.45); }
+.mh-card.is-future { opacity: 0.4; }
+
+/* tablet e mobile: uma lente por vez, mesmo estado */
+@media (max-width: 1099px) {
+  .mh-lens-tabs { display: flex; }
+  .atlas-grid { grid-template-columns: minmax(0, 1fr); }
+  .atlas-grid .atlas-lens { display: none; }
+  .atlas-grid[data-lens="quando"] .atlas-quando,
+  .atlas-grid[data-lens="quem"] .atlas-quem,
+  .atlas-grid[data-lens="onde"] .atlas-onde { display: block; }
+  .atlas-context { position: static; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mh-tick, .mh-now, .mh-lens-tab, .mh-crumb { transition: none !important; }
+}
+
+/* ---------- Correções de contraste (auditoria AA) ---------- */
+/* Assinatura do rodapé: era 2.96:1 sobre o azul-marinho. */
+.footer-brand .small { color: rgba(226,231,241,0.82); }
+/* O cartão da Biblioteca é escuro: ali a sobrelinha precisa do dourado
+   claro (o dourado de texto foi pensado para fundo claro e ficava em
+   2,7:1 sobre o azul-marinho). */
+.bib-promo-copy .eyebrow { color: var(--gold-light); }
+/* Área de toque: o interruptor mede 42×24 por desenho; a região clicável
+   passa a 44px sem mudar o visual (WCAG 2.5.8). */
+.switch { position: relative; }
+.switch::before { content: ""; position: absolute; inset: -10px -4px; border-radius: 999px; }
+.mh-crumb { min-height: 32px; display: inline-flex; align-items: center; }
+/* O controle de tempo é um alvo de arraste: precisa de altura clicável. */
+.mh-scrub { height: 4px; padding: 14px 0; background-clip: content-box; }
+.mh-scrub:focus-visible { outline: 3px solid var(--mh-gold); outline-offset: 4px; }
+
+/* ---------- Faixa de eixos (fecha o Ato I) ----------
+   Era uma fileira de caixas brancas logo abaixo da grade escura de
+   cartazes: o corte de luz quebrava a leitura do ato. Agora é uma faixa
+   escura contínua, com os eixos numerados como um índice. */
+.category-strip {
+  background: linear-gradient(180deg, var(--navy-950), #0c1b35 60%, var(--navy-900));
+  border-bottom: none; padding: var(--space-8) 0;
+}
+/* Esmaecimento à direita: sinaliza que a faixa continua rolando
+   (agora na cor da faixa escura, não mais no branco antigo). */
+.category-strip::after {
+  content: ""; position: absolute; top: auto; bottom: var(--space-8); height: 150px; right: 0; width: 56px;
+  pointer-events: none; background: linear-gradient(to right, rgba(12,27,53,0), #0c1b35);
+}
+@media (min-width: 1200px) { .category-strip::after { display: none; } }
+.category-strip .section-head h2 { color: var(--text-on-dark); }
+.category-strip .section-head p { color: var(--text-muted-on-dark); }
+.category-strip .section-head .eyebrow { color: var(--gold-light); }
+.category-strip .section-head::after {
+  background: linear-gradient(90deg, rgba(226,194,90,0.5), rgba(226,194,90,0.08) 45%, transparent 80%);
+}
+.category-strip .category-scroll { counter-reset: axis; grid-auto-columns: minmax(150px, 1fr); }
+.category-strip .category-chip {
+  counter-increment: axis; position: relative; gap: 8px; padding: 16px 14px 18px;
+  background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.09); border-radius: 12px;
+  transition: background 0.4s var(--ease-nav), border-color 0.4s var(--ease-nav), transform 0.4s var(--ease-nav);
+}
+.category-strip .category-chip::after {
+  content: counter(axis, decimal-leading-zero); position: absolute; top: 12px; right: 12px;
+  font-family: var(--f-mono); font-size: 9.5px; letter-spacing: 0.08em; color: rgba(226,194,90,0.5);
+}
+.category-strip .category-chip strong {
+  font-family: var(--f-credit); font-weight: 500; font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-on-dark);
+}
+.category-strip .category-chip span.desc { color: var(--text-muted-on-dark); font-size: 11.5px; }
+.category-strip .category-chip .emoji { font-size: 19px; filter: saturate(0.9); }
+.category-strip .category-chip:hover, .category-strip .category-chip:focus-visible {
+  background: rgba(226,194,90,0.07); border-color: rgba(226,194,90,0.45); transform: translateY(-3px); box-shadow: none;
+}
+.category-strip .category-chip:hover::after { color: var(--gold-light); }
+@media (max-width: 720px) { .category-strip .category-scroll { grid-auto-columns: minmax(148px, 160px); } }
+
 </style>
 </head>
 <body>
@@ -3093,12 +3346,14 @@ if (typeof module !== "undefined") module.exports = { RITUALS, CLASSIFICATIONS }
 // checkmark/X de "certo/errado"), para que a tabela nunca seja lida
 // como um veredito bíblico - ela mostra apenas o que cada tradição
 // pratica. A avaliação bíblica vive só no painel do Novo Testamento.
+// As cores abaixo passam em contraste AA tanto como texto sobre branco
+// quanto dentro da pílula (fundo = a própria cor a 13%).
 const STATUS = {
   sim: { label: "Praticado", icon: "●", color: "#1e5b8a" },
-  diferente: { label: "Praticado, com finalidade distinta", icon: "◐", color: "#b8860b" },
+  diferente: { label: "Praticado, com finalidade distinta", icon: "◐", color: "#7a5a06" },
   semelhante: { label: "Prática semelhante, em contexto diferente", icon: "◒", color: "#6a4fa0" },
-  nao: { label: "Não praticado", icon: "✕", color: "#7a7a7a" },
-  naplica: { label: "Não se aplica ou não encontrado", icon: "○", color: "#a8a8a8" },
+  nao: { label: "Não praticado", icon: "✕", color: "#5f5f5f" },
+  naplica: { label: "Não se aplica ou não encontrado", icon: "○", color: "#6b6b6b" },
 };
 
 const MATRIX = {
@@ -5231,7 +5486,7 @@ if (typeof module !== "undefined") {
     var html = "";
     if (window.MuseuThree && typeof window.MuseuThree.destroyAll === "function") window.MuseuThree.destroyAll();
     if (window.__museuVisObserver) { window.__museuVisObserver.disconnect(); window.__museuVisObserver = null; }
-    window.__museuPanoramaInst = null; window.__museuTreeInst = null; window.__museuMapInst = null; window.__museu4dInst = null;
+    window.__museuPanoramaInst = null; window.__museuTreeInst = null; window.__museuGlobeInst = null; window.__museu4dInst = null;
     STATE.museu4dPlaying = false;
     if (route.name === "busca" && route.query.q) saveRecentSearch(route.query.q);
     if (route.name === "home") html = pageHome();
@@ -5511,7 +5766,12 @@ if (typeof module !== "undefined") {
       '<div class="cast-grid">' + castGrid() + "</div>" +
       "</div></section>" +
 
+      // A faixa de temas fecha o Ato I: é o índice pelo qual o visitante
+      // entra em qualquer comparação. Ganha a mesma cartela dos outros atos.
       '<section class="category-strip"><div class="container">' +
+      '<div class="section-head"><div><span class="eyebrow">Por onde começar</span>' +
+      "<h2>Nove eixos de comparação</h2>" +
+      "<p>Cada tradição do site é descrita e comparada por estes eixos - o mesmo recorte para todas.</p></div></div>" +
       '<div class="category-scroll">' + categoryStrip() + "</div>" +
       "</div></section>" +
 
@@ -5840,7 +6100,15 @@ if (typeof module !== "undefined") {
       '<div class="compare-field"><label>Religião B</label><select id="hub-rel-b">' + religionOptions("assembleia-de-deus") + "</select></div>" +
       "</div>" +
       '<button class="btn btn-gold compare-submit" type="submit">COMPARAR AGORA →</button>' +
-      "</form></div></div></section>"
+      "</form></div>" +
+      // Três passos do próprio método do site ("Conheça. Compare. Examine.")
+      // - não é dado novo, é a descrição do que a comparação faz a seguir.
+      '<ol class="steps-rail">' +
+      '<li><span class="steps-n">01</span><strong>Escolha duas tradições</strong><span>Entre as 20 religiões e denominações cadastradas.</span></li>' +
+      '<li><span class="steps-n">02</span><strong>Veja lado a lado</strong><span>Doutrina, ritos, origem e autoridade, tema a tema.</span></li>' +
+      '<li><span class="steps-n">03</span><strong>Examine o resultado</strong><span>Cada posição comparada à luz do Novo Testamento, com fonte.</span></li>' +
+      "</ol>" +
+      "</div></section>"
     );
   }
 
@@ -6151,8 +6419,10 @@ if (typeof module !== "undefined") {
   // nenhum símbolo foi inventado.
   var TIMELINE_IMG = {"adventismo":"assets/timeline/adventismo.webp","anglicanismo":"assets/timeline/anglicanismo.webp","assembleia-de-deus":"assets/timeline/assembleia-de-deus.webp","batista":"assets/timeline/batista.webp","budismo":"assets/timeline/budismo.webp","candomble":"assets/timeline/candomble.webp","catolicismo":"assets/timeline/catolicismo.webp","espiritismo":"assets/timeline/espiritismo.webp","evangelicalismo-confessional":"assets/timeline/evangelicalismo-confessional.webp","hinduismo":"assets/timeline/hinduismo.webp","islamismo":"assets/timeline/islamismo.webp","iurd":"assets/timeline/iurd.webp","judaismo":"assets/timeline/judaismo.webp","luteranismo":"assets/timeline/luteranismo.webp","metodismo":"assets/timeline/metodismo.webp","mormons":"assets/timeline/mormons.webp","ortodoxia":"assets/timeline/ortodoxia.webp","presbiterianismo":"assets/timeline/presbiterianismo.webp","testemunhas-de-jeova":"assets/timeline/testemunhas-de-jeova.webp","umbanda":"assets/timeline/umbanda.webp"};
 
-  // Ponto vertical (em % da altura da foto original) onde o rosto da pessoa
-  // retratada realmente fica em cada imagem da Linha do Tempo. O cartão
+  // Ponto vertical (em % da altura da foto original) onde fica o assunto
+  // de cada imagem da Linha do Tempo: o rosto da pessoa retratada nos
+  // retratos, ou a cabeça da estátua / o elemento que identifica a cena
+  // nas fotos de monumentos. O cartão
   // (.tl-card-img) recorta a foto para uma faixa baixa e larga via
   // background-size:cover, e a largura dessa faixa muda conforme o
   // dispositivo/navegador (colunas lado a lado no desktop, cartão em largura
@@ -6164,11 +6434,17 @@ if (typeof module !== "undefined") {
   // do quadro em qualquer largura de tela, de forma consistente. Só recebem
   // entrada aqui as fotos onde há um rosto identificável fora do centro;
   // fotos de prédios/estátuas/multidões continuam com o center padrão.
-  var TIMELINE_IMG_FACE_Y = {
+  var TIMELINE_IMG_FOCUS_Y = {
+    // retratos: ponto onde o rosto realmente está na foto
     luteranismo: "64%",
     presbiterianismo: "85%",
     umbanda: "4%",
     candomble: "0%",
+    // estátuas e monumentos: cabeça da imagem / elemento que identifica a foto
+    budismo: "22%",
+    hinduismo: "10%",
+    catolicismo: "10%",
+    "evangelicalismo-confessional": "10%",
   };
 
   // Ilustrações conceituais fornecidas pelo usuário como referência visual
@@ -6278,7 +6554,7 @@ if (typeof module !== "undefined") {
 
   function timelineNode(r) {
     var img = TIMELINE_IMG[r.slug];
-    var faceY = TIMELINE_IMG_FACE_Y[r.slug];
+    var focusY = TIMELINE_IMG_FOCUS_Y[r.slug];
     var catColor = TIMELINE_CAT_COLOR[r.category] || "#8b96ad";
     var rel = TIMELINE_RELIABILITY[reliabilityFor(r)];
     var related = isCategoryFocusRelated(r.category);
@@ -6286,7 +6562,7 @@ if (typeof module !== "undefined") {
     var cls = "tl-card" + (STATE.timelineFocusSlug ? (related ? " tl-focus-related" : "") : "") + (isSelf ? " tl-focus-self" : "");
     return (
       '<button type="button" class="' + cls + '" data-action="open-timeline-node" data-slug="' + r.slug + '">' +
-      (img ? '<span class="tl-card-img" style="background-image:url(\'' + img + "');background-position:center " + (faceY || "center") + '" role="img" aria-label="' + esc(r.name) + '"></span>' : "") +
+      (img ? '<span class="tl-card-img" style="background-image:url(\'' + img + "');background-position:center " + (focusY || "center") + '" role="img" aria-label="' + esc(r.name) + '"></span>' : "") +
       '<span class="tl-card-rel" style="--rel-c:' + rel.color + '" title="' + esc(rel.desc) + '">' + esc(rel.short) + "</span>" +
       '<span class="tl-card-body">' +
       '<span class="tl-card-name">' + esc(r.founder) + "</span>" +
@@ -6754,29 +7030,287 @@ if (typeof module !== "undefined") {
     );
   }
 
-  function museuMilestoneList() {
-    var list = HUMANIDADE_MILESTONES.slice();
-    if (STATE.museuEra !== "todas") {
-      list = list.filter(function (m) { var e = humanidadeEraFor(m.year); return e && e.key === STATE.museuEra; });
+  // ============================================================
+  // ATLAS DA HUMANIDADE — estado único, três lentes
+  // ============================================================
+  // O problema que este bloco resolve: antes, "Opção A/B/C" eram três
+  // interfaces paralelas, cada uma com os próprios filtros (era só na
+  // linha do tempo, região só no mapa). Agora existe UM estado de
+  // navegação; as três lentes são projeções dele.
+  //
+  //   MUSEU.selectedId  entidade selecionada (nó de MUSEU_TREE)
+  //   MUSEU.era         recorte temporal (chave de HUMANIDADE_ERAS)
+  //   MUSEU.region      recorte geográfico (chave de HUMANIDADE_REGIONS)
+  //   MUSEU.type        recorte por tipo de entidade (kind do nó)
+  //   MUSEU.query       busca global
+  //   MUSEU.lens        lente em primeiro plano em telas menores
+  //
+  // Qualquer alteração passa por museuSet(patch, origem) → museuProject(),
+  // que reescreve linha do tempo, árvore, globo, painel, breadcrumb e
+  // controles. Nenhuma lente guarda estado próprio de navegação.
+  var MUSEU = {
+    selectedId: null, era: "todas", region: "todas", type: "todas",
+    query: "", playing: false, lens: "quando",
+  };
+
+  // Início de cada era, derivado dos mesmos limites já declarados em
+  // HUMANIDADE_ERAS (nada de datas novas) - usado só para posicionar o
+  // rótulo da era na régua do tempo.
+  var MUSEU_ERA_START = {
+    "pre-historia": -100000, "civilizacoes-antigas": -10000, antiguidade: -500,
+    "idade-media": 500, "idade-moderna": 1500, contemporaneo: 1900,
+  };
+
+  var MUSEU_TYPES = [
+    { key: "milestone", label: "Marcos" },
+    { key: "religion", label: "Religiões" },
+    { key: "group", label: "Agrupamentos" },
+  ];
+
+  function museuNodeYear(id) { return museu4dYearOf(id); }
+
+  function museuAncestorIds(id) {
+    var out = [], n = museuNode(id), guard = 0;
+    while (n && n.parent && guard++ < 20) { out.push(n.parent); n = museuNode(n.parent); }
+    return out;
+  }
+  function museuDescendantIds(id) {
+    var out = [];
+    (function walk(pid) {
+      museuChildren(pid).forEach(function (c) { out.push(c.id); walk(c.id); });
+    })(id);
+    return out;
+  }
+
+  function museuMatchesQuery(n, q) {
+    if (!q) return true;
+    var data = museuResolve(n.id);
+    var hay = [n.name, data && data.badge, data && data.origin, data && data.founder, data && data.period]
+      .filter(Boolean).join(" ");
+    return normalizeText(hay).indexOf(normalizeText(q)) !== -1;
+  }
+
+  // Um nó está "no recorte" quando passa por todos os filtros ativos.
+  function museuPassesFilters(n) {
+    if (MUSEU.type !== "todas" && n.kind !== MUSEU.type) return false;
+    if (MUSEU.region !== "todas" && n.region !== MUSEU.region && n.region !== "global") return false;
+    if (MUSEU.era !== "todas") {
+      var y = museuNodeYear(n.id);
+      var era = y != null ? humanidadeEraFor(y) : null;
+      if (!era || era.key !== MUSEU.era) return false;
     }
-    if (STATE.museuQuery) {
-      var q = normalizeText(STATE.museuQuery);
-      list = list.filter(function (m) {
-        return normalizeText(m.name).indexOf(q) !== -1 || normalizeText(m.originFigures).indexOf(q) !== -1 || normalizeText(m.origin).indexOf(q) !== -1;
+    if (!museuMatchesQuery(n, MUSEU.query)) return false;
+    return true;
+  }
+
+  // Vocabulário de seleção compartilhado pelas três lentes:
+  //   selecionado → a entidade escolhida
+  //   relacionado → ancestrais e descendentes reais dela (dados, não inferência)
+  //   contexto    → mesma era ou mesma região
+  //   fora        → excluído pelos filtros atuais
+  function museuRelationSets() {
+    var sel = MUSEU.selectedId;
+    var related = {}, context = {}, out = {};
+    if (sel) {
+      museuAncestorIds(sel).concat(museuDescendantIds(sel)).forEach(function (id) { related[id] = 1; });
+      var selNode = museuNode(sel);
+      var selYear = museuNodeYear(sel);
+      var selEra = selYear != null ? humanidadeEraFor(selYear) : null;
+      MUSEU_TREE.forEach(function (n) {
+        if (n.id === sel || related[n.id]) return;
+        var y = museuNodeYear(n.id);
+        var era = y != null ? humanidadeEraFor(y) : null;
+        var sameEra = selEra && era && era.key === selEra.key;
+        var sameRegion = selNode && n.region && n.region === selNode.region;
+        if (sameEra || sameRegion) context[n.id] = 1;
       });
     }
-    return list;
+    MUSEU_TREE.forEach(function (n) { if (!museuPassesFilters(n)) out[n.id] = 1; });
+    return { selectedId: sel, related: related, context: context, out: out };
+  }
+  function museuRelationState(id, sets) {
+    if (id === sets.selectedId) return "selected";
+    if (sets.out[id]) return "out";
+    if (sets.related[id]) return "related";
+    if (sets.context[id]) return "context";
+    return "idle";
+  }
+
+  // ---------- superfície compartilhada ----------
+  function museuBreadcrumbMarkup() {
+    var parts = [{ label: "Humanidade", patch: { era: "todas", region: "todas", type: "todas", query: "", selectedId: null } }];
+    if (MUSEU.era !== "todas") {
+      var era = HUMANIDADE_ERAS.filter(function (e) { return e.key === MUSEU.era; })[0];
+      if (era) parts.push({ label: era.label, patch: { region: "todas", selectedId: null } });
+    }
+    if (MUSEU.region !== "todas") {
+      var reg = HUMANIDADE_REGIONS_MAP[MUSEU.region];
+      if (reg) parts.push({ label: reg.label, patch: { selectedId: null } });
+    }
+    var sel = MUSEU.selectedId ? museuResolve(MUSEU.selectedId) : null;
+    if (sel) {
+      var selNode = museuNode(MUSEU.selectedId);
+      if (MUSEU.region === "todas" && selNode && selNode.region && HUMANIDADE_REGIONS_MAP[selNode.region]) {
+        parts.push({ label: HUMANIDADE_REGIONS_MAP[selNode.region].label, patch: { region: selNode.region } });
+      }
+      parts.push({ label: sel.name, patch: null });
+    }
+    MUSEU_CRUMB_PATCHES = parts.map(function (p) { return p.patch; });
+    return parts.map(function (p, i) {
+      var last = i === parts.length - 1;
+      var inner = esc(p.label);
+      var el = last || !p.patch
+        ? '<span class="mh-crumb is-current">' + inner + "</span>"
+        : '<button type="button" class="mh-crumb" data-action="museu-crumb" data-crumb="' + i + '">' + inner + "</button>";
+      return el + (last ? "" : '<span class="mh-crumb-sep" aria-hidden="true">›</span>');
+    }).join("");
+  }
+  var MUSEU_CRUMB_PATCHES = [];
+  function museuCrumbPatch(i) { return MUSEU_CRUMB_PATCHES[i] || null; }
+
+  function museuChipRow(name, action, current, items) {
+    return items.map(function (it) {
+      var active = current === it.key;
+      return '<button type="button" role="radio" aria-checked="' + (active ? "true" : "false") + '" class="mh-era-chip' + (active ? " active" : "") +
+        '" data-action="' + action + '" data-value="' + esc(it.key) + '">' + esc(it.label) + "</button>";
+    }).join("");
+  }
+  function museuControlsMarkup() {
+    var eras = [{ key: "todas", label: "Todas as eras" }].concat(HUMANIDADE_ERAS.map(function (e) { return { key: e.key, label: e.label }; }));
+    var regions = [{ key: "todas", label: "Todas as regiões" }].concat(HUMANIDADE_REGIONS.map(function (r) { return { key: r.key, label: r.label }; }));
+    var types = [{ key: "todas", label: "Tudo" }].concat(MUSEU_TYPES);
+    return (
+      '<div class="mh-controls" id="museu-controls">' +
+      '<div class="mh-filter-group" role="radiogroup" aria-label="Período"><span class="mh-filter-label">Período</span>' +
+      '<div class="mh-chip-row">' + museuChipRow("era", "museu-filter-era", MUSEU.era, eras) + "</div></div>" +
+      '<div class="mh-filter-group" role="radiogroup" aria-label="Região"><span class="mh-filter-label">Região</span>' +
+      '<div class="mh-chip-row">' + museuChipRow("region", "museu-filter-region", MUSEU.region, regions) + "</div></div>" +
+      '<div class="mh-filter-group" role="radiogroup" aria-label="Tipo"><span class="mh-filter-label">Tipo</span>' +
+      '<div class="mh-chip-row">' + museuChipRow("type", "museu-filter-type", MUSEU.type, types) + "</div></div>" +
+      "</div>"
+    );
+  }
+  function museuTransportMarkup() {
+    return (
+      '<div class="mh-transport" id="museu-transport">' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-step" data-dir="-1" aria-label="Entidade anterior no tempo">←</button>' +
+      '<button type="button" class="museu-tool-btn museu-play-btn" data-action="museu-play" aria-pressed="' + (MUSEU.playing ? "true" : "false") + '">' +
+      (MUSEU.playing ? "⏸ Pausar" : "▶ Play histórico") + "</button>" +
+      '<button type="button" class="museu-tool-btn" data-action="museu-step" data-dir="1" aria-label="Próxima entidade no tempo">→</button>' +
+      '<span class="mh-transport-date" id="museu-transport-date">' + esc(museu4dFormatYear(STATE.museu4dDate)) + "</span>" +
+      '<button type="button" class="museu-tool-btn" data-action="museu-reset-all">Reiniciar</button>' +
+      "</div>"
+    );
+  }
+
+  // Ordem cronológica única usada pelo transporte (← play →) e pela faixa
+  // do tempo: os mesmos nós, os mesmos anos já cadastrados.
+  function museuChronology() {
+    return MUSEU_TREE
+      .filter(function (n) { return n.kind !== "group" && museuNodeYear(n.id) != null; })
+      .map(function (n) { return { id: n.id, year: museuNodeYear(n.id) }; })
+      .sort(function (a, b) { return a.year - b.year; });
+  }
+
+  // ---------- lente QUANDO ----------
+  function museuTimelineMarkup() {
+    var sets = museuRelationSets();
+    var chrono = museuChronology();
+    var ticks = chrono.map(function (c) {
+      var n = museuNode(c.id);
+      var t = museu4dYearToT(c.year);
+      var state = museuRelationState(c.id, sets);
+      var region = HUMANIDADE_REGIONS_MAP[n.region] || HUMANIDADE_REGIONS_MAP.global;
+      return '<button type="button" class="mh-tick is-' + state + '" style="left:' + (t * 100).toFixed(2) + '%;--region-c:' + region.color +
+        '" data-action="museu-select" data-id="' + esc(c.id) + '" title="' + esc(n.name + " · " + museu4dFormatYear(c.year)) +
+        '"><span class="mh-tick-dot"></span><span class="mh-tick-label">' + esc(n.name) + "</span></button>";
+    }).join("");
+    var eraMarks = HUMANIDADE_ERAS.map(function (e) {
+      var y = MUSEU_ERA_START[e.key];
+      if (y == null) return "";
+      var t = museu4dYearToT(y);
+      return '<span class="mh-era-mark' + (MUSEU.era === e.key ? " active" : "") + '" style="left:' + (t * 100).toFixed(2) + '%">' + esc(e.label) + "</span>";
+    }).join("");
+    return (
+      '<div class="mh-lens-head"><span class="mh-lens-kicker">Quando</span><h3>Linha do tempo</h3>' +
+      '<p>Cada marca é uma entidade cadastrada, posicionada pelo ano já registrado. Clique para levar as outras duas lentes junto.</p></div>' +
+      '<div class="mh-timeline" id="museu-timeline">' +
+      '<div class="mh-timeline-eras">' + eraMarks + "</div>" +
+      '<div class="mh-timeline-axis"><span class="mh-now" id="museu-now" style="left:' + (museu4dYearToT(STATE.museu4dDate) * 100).toFixed(2) + '%"></span>' + ticks + "</div>" +
+      '<input type="range" id="museu-scrub" class="mh-scrub" min="0" max="1000" step="1" value="' + Math.round(museu4dYearToT(STATE.museu4dDate) * 1000) +
+      '" aria-label="Percorrer o tempo">' +
+      "</div>" +
+      '<div id="museu-card-strip-slot">' + museuCardStripMarkup() + "</div>"
+    );
+  }
+
+  // ---------- projeção: um estado, três lentes ----------
+  function museuProject(origin) {
+    var sets = museuRelationSets();
+
+    var crumb = $("#museu-breadcrumb"); if (crumb) crumb.innerHTML = museuBreadcrumbMarkup();
+    var ctrl = $("#museu-controls"); if (ctrl) ctrl.outerHTML = museuControlsMarkup();
+    var tl = $("#museu-lens-quando"); if (tl) tl.innerHTML = museuTimelineMarkup();
+    museuRefreshDetailPanels();
+
+    if (window.__museuTreeInst) {
+      window.__museuTreeInst.setRelations(sets);
+      if (MUSEU.selectedId && origin !== "tree") window.__museuTreeInst.focus(MUSEU.selectedId);
+    }
+    if (window.__museuGlobeInst) {
+      window.__museuGlobeInst.setRelations(sets);
+      if (origin !== "globe") {
+        if (MUSEU.selectedId) window.__museuGlobeInst.focus(MUSEU.selectedId);
+        else if (MUSEU.region !== "todas") window.__museuGlobeInst.focusRegion(MUSEU.region);
+      }
+    }
+    var count = MUSEU_TREE.filter(function (n) { return n.kind !== "group" && !sets.out[n.id]; }).length;
+    var visEl = $("#museu-stat-visible"); if (visEl) visEl.textContent = String(count);
+    var dateEl = $("#museu-transport-date"); if (dateEl) dateEl.textContent = museu4dFormatYear(STATE.museu4dDate);
+  }
+
+  function museuSet(patch, origin) {
+    Object.keys(patch || {}).forEach(function (k) { MUSEU[k] = patch[k]; });
+    // Selecionar algo que os filtros escondem abre o recorte, em vez de
+    // deixar o usuário olhando para uma seleção invisível.
+    if (patch && patch.selectedId) {
+      var n = museuNode(patch.selectedId);
+      if (n && !museuPassesFilters(n)) {
+        if (MUSEU.type !== "todas" && n.kind !== MUSEU.type) MUSEU.type = "todas";
+        if (MUSEU.region !== "todas" && n.region !== MUSEU.region) MUSEU.region = "todas";
+        if (MUSEU.era !== "todas") {
+          var y = museuNodeYear(n.id), era = y != null ? humanidadeEraFor(y) : null;
+          MUSEU.era = era ? era.key : "todas";
+        }
+        if (MUSEU.query && !museuMatchesQuery(n, MUSEU.query)) MUSEU.query = "";
+      }
+      STATE.museuSelected = patch.selectedId;
+      var yy = museuNodeYear(patch.selectedId);
+      if (yy != null && !MUSEU.playing) museu4dSetDate(yy, { silent: true });
+    }
+    museuProject(origin);
+  }
+
+  // A tira de cartões da lente "Quando" segue o mesmo recorte das outras
+  // duas lentes - é o estado único que decide o que aparece.
+  function museuMilestoneList() {
+    return HUMANIDADE_MILESTONES.filter(function (m) {
+      var n = museuNode("m:" + m.slug);
+      return n ? museuPassesFilters(n) : false;
+    });
   }
   function museuCard(m) {
     var region = HUMANIDADE_REGIONS_MAP[m.region] || HUMANIDADE_REGIONS_MAP.global;
     var rel = HUMANIDADE_RELIABILITY[m.reliability];
-    var selected = STATE.museuSelected === "m:" + m.slug;
+    var selected = MUSEU.selectedId === "m:" + m.slug;
     var img = MUSEU4D_IMG["card-" + m.slug];
     var thumb = img
       ? '<span class="mh-card-thumb" style="background-image:url(\'' + img + "')\"></span>"
       : '<span class="mh-card-emblem" style="--region-c:' + region.color + '">' + mhEmblemSVG(m.type) + "</span>";
     return (
-      '<button type="button" class="mh-card' + (img ? " has-thumb" : "") + (selected ? " selected" : "") + '" data-action="museu-select" data-id="m:' + m.slug + '">' +
+      '<button type="button" class="mh-card' + (img ? " has-thumb" : "") + (selected ? " selected" : "") +
+      " is-" + museuRelationState("m:" + m.slug, museuRelationSets()) +
+      '" data-action="museu-select" data-id="m:' + m.slug + '">' +
       thumb +
       '<span class="mh-card-rel" style="--rel-c:' + rel.color + '" title="' + esc(rel.desc) + '">' + esc(rel.short) + "</span>" +
       '<span class="mh-card-name">' + esc(m.name) + "</span>" +
@@ -6804,83 +7338,15 @@ if (typeof module !== "undefined") {
       '<div class="mh-header-brand">' + mhIconSVG("globe") + '<div class="mh-header-titles"><span class="mh-title">Linha do Tempo da Humanidade</span><span class="mh-subtitle">Mitologia · Religião · Tradição · História</span></div></div>' +
       '<div class="mh-header-search">' +
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2" stroke-linecap="round"/></svg>' +
-      '<input type="text" id="museu-search-input" placeholder="Buscar religião, fundador, evento..." autocomplete="off" spellcheck="false" value="' + esc(STATE.museuQuery) + '">' +
+      '<input type="text" id="museu-search-input" placeholder="Pesquisar época, tradição, fundador ou lugar..." autocomplete="off" spellcheck="false" value="' + esc(MUSEU.query) + '">' +
       "</div>" +
       '<div class="museu-header-actions">' +
-      '<button type="button" class="mh-header-btn" data-action="museu-scroll-c">Filtros</button>' +
-      '<button type="button" class="mh-header-btn" data-action="museu-scroll-a">Período</button>' +
-      '<button type="button" class="mh-header-btn" data-action="museu-scroll-c">Região</button>' +
-      '<button type="button" class="mh-header-btn" data-action="museu-reset-focus">Foco</button>' +
+      '<button type="button" class="mh-header-btn" data-action="museu-reset-all">Limpar recorte</button>' +
       "</div>" +
       "</div></div>"
     );
   }
 
-  function museuSidebarA() {
-    var stats = museuComputeStats();
-    var year = new Date().getFullYear();
-    var nav = [
-      { label: "Linha do Tempo", icon: "clock", action: "museu-scroll-a" },
-      { label: "Mapa Múndi", icon: "globe", action: "museu-scroll-c" },
-      { label: "Árvore Genealógica", icon: "tree", action: "museu-scroll-b" },
-    ].map(function (it) { return '<button type="button" class="mh-nav-item" data-action="' + it.action + '">' + mhIconSVG(it.icon) + "<span>" + esc(it.label) + "</span></button>"; }).join("") +
-      '<a class="mh-nav-item" href="#/comparar">' + mhIconSVG("compare") + "<span>Comparar</span></a>" +
-      '<a class="mh-nav-item" href="#/fontes">' + mhIconSVG("book") + "<span>Fontes</span></a>" +
-      '<a class="mh-nav-item" href="#/biblia">' + mhIconSVG("glossario") + "<span>Glossário</span></a>" +
-      '<button type="button" class="mh-nav-item" disabled title="Em breve">' + mhIconSVG("glossario") + "<span>Configurações</span></button>";
-    return (
-      '<aside class="mh-sidebar">' +
-      '<span class="museu-sidebar-title">OPÇÃO A<br>Museu Histórico Interativo</span>' +
-      '<nav class="mh-nav">' + nav + "</nav>" +
-      '<div class="mh-stats" id="museu-stats-a">' +
-      '<div class="mh-stat"><span class="mh-stat-label">PERÍODO ATUAL</span><span class="mh-stat-value">' + year + " d.C.</span></div>" +
-      '<div class="mh-stat"><span class="mh-stat-label">TRADIÇÕES VISÍVEIS</span><span class="mh-stat-value">' + stats.traditions + "</span></div>" +
-      '<div class="mh-stat"><span class="mh-stat-label">RAMIFICAÇÕES</span><span class="mh-stat-value">' + stats.branches + "</span></div>" +
-      '<div class="mh-stat"><span class="mh-stat-label">EVENTOS HISTÓRICOS</span><span class="mh-stat-value">' + stats.events + "</span></div>" +
-      "</div>" +
-      mhLegendMarkup() +
-      "</aside>"
-    );
-  }
-  function museuSidebarB() {
-    return (
-      '<aside class="mh-sidebar">' +
-      '<span class="museu-sidebar-title">OPÇÃO B<br>Árvore Genealógica 3D</span>' +
-      '<nav class="mh-nav">' +
-      '<button type="button" class="mh-nav-item" data-action="museu-tree-reset">' + mhIconSVG("tree") + "<span>Visão Geral</span></button>" +
-      '<button type="button" class="mh-nav-item" data-action="museu-reset-focus">' + mhIconSVG("clock") + "<span>Foco</span></button>" +
-      '<a class="mh-nav-item" href="#/comparar">' + mhIconSVG("compare") + "<span>Compare</span></a>" +
-      '<button type="button" class="mh-nav-item" data-action="museu-scroll-c">' + mhIconSVG("globe") + "<span>Linhas</span></button>" +
-      '<button type="button" class="mh-nav-item" data-action="museu-scroll-a">' + mhIconSVG("clock") + "<span>Eventos</span></button>" +
-      '<a class="mh-nav-item" href="#/fontes">' + mhIconSVG("book") + "<span>Fontes</span></a>" +
-      "</nav>" +
-      '<div class="mh-search-mini"><input type="text" id="museu-tree-search" placeholder="Busca rápida..." autocomplete="off" spellcheck="false"></div>' +
-      mhLegendMarkup() +
-      "</aside>"
-    );
-  }
-  function museuSidebarC() {
-    var regionOptions = ['<option value="todas">Todas as regiões</option>'].concat(
-      HUMANIDADE_REGIONS.filter(function (r) { return r.key !== "global"; }).map(function (r) { return '<option value="' + r.key + '"' + (STATE.museuMapRegion === r.key ? " selected" : "") + ">" + esc(r.label) + "</option>"; })
-    ).join("");
-    return (
-      '<aside class="mh-sidebar">' +
-      '<span class="museu-sidebar-title">OPÇÃO C<br>Mapa Múndi Temporal</span>' +
-      '<nav class="mh-nav">' +
-      '<button type="button" class="mh-nav-item" data-action="museu-scroll-c">' + mhIconSVG("globe") + "<span>Mapa</span></button>" +
-      '<button type="button" class="mh-nav-item" data-action="museu-scroll-a">' + mhIconSVG("clock") + "<span>Linha do Tempo</span></button>" +
-      '<button type="button" class="mh-nav-item" disabled title="Em breve">' + mhIconSVG("compare") + "<span>Fluxos</span></button>" +
-      '<button type="button" class="mh-nav-item" data-action="museu-scroll-a">' + mhIconSVG("clock") + "<span>Eventos</span></button>" +
-      '<a class="mh-nav-item" href="#/fontes">' + mhIconSVG("book") + "<span>Fontes</span></a>" +
-      "</nav>" +
-      '<div class="mh-stats">' +
-      '<span class="mh-legend-title">FILTROS ATIVOS</span>' +
-      '<label class="museu-filter-label">Região<select id="museu-map-region" class="mh-select">' + regionOptions + "</select></label>" +
-      "</div>" +
-      mhLegendMarkup() +
-      "</aside>"
-    );
-  }
 
   // ============================================================
   // OPÇÃO D — Modo 4D Unificado (scrubber temporal + hipercubo 3D)
@@ -6912,7 +7378,8 @@ if (typeof module !== "undefined") {
   }
   function museu4dFormatYear(year) {
     year = Math.round(year);
-    return year < 0 ? Math.abs(year) + " a.C." : year + " d.C.";
+    var abs = Math.abs(year).toLocaleString("pt-BR");
+    return year < 0 ? abs + " a.C." : abs + " d.C.";
   }
   // ano representativo de cada nó (marcos/religiões já têm year; nós de
   // agrupamento sintético herdam o ano do filho mais antigo, senão do pai)
@@ -6928,108 +7395,71 @@ if (typeof module !== "undefined") {
     return (museu4dYearCache[nodeId] = -100000);
   }
 
-  function museu4dScrubberMarkup() {
-    var t = museu4dYearToT(STATE.museu4dDate);
-    var speeds = [10, 40, 150, 600];
-    var speedChips = speeds.map(function (s) {
-      return '<button type="button" class="museu-tool-btn museu4d-speed-btn' + (STATE.museu4dSpeed === s ? " active" : "") + '" data-action="museu4d-speed" data-speed="' + s + '">' + (s === 10 ? "1×" : s === 40 ? "4×" : s === 150 ? "15×" : "60×") + "</button>";
-    }).join("");
-    return (
-      '<div class="museu4d-scrubber-wrap">' +
-      '<div class="museu4d-scrubber-row">' +
-      '<button type="button" class="museu-tool-btn museu4d-play-btn" data-action="museu4d-toggle-play">' + (STATE.museu4dPlaying ? "⏸ Pausar" : "▶ Reproduzir") + "</button>" +
-      '<input type="range" id="museu4d-scrub" class="museu4d-range" min="0" max="1000" step="1" value="' + Math.round(t * 1000) + '">' +
-      '<span class="museu4d-date-readout" id="museu4d-date-readout">' + esc(museu4dFormatYear(STATE.museu4dDate)) + "</span>" +
-      "</div>" +
-      '<div class="museu4d-speed-row">' +
-      '<span class="museu4d-speed-label">Velocidade</span>' + speedChips +
-      "</div>" +
-      "</div>"
-    );
-  }
 
-  function museuSidebarD() {
-    return (
-      '<aside class="mh-sidebar">' +
-      '<span class="museu-sidebar-title">MODO 4D<br>Espaço-Tempo Unificado</span>' +
-      '<nav class="mh-nav">' +
-      '<button type="button" class="mh-nav-item" data-action="museu4d-toggle-play">' + mhIconSVG("clock") + "<span>" + (STATE.museu4dPlaying ? "Pausar" : "Reproduzir") + "</span></button>" +
-      '<button type="button" class="mh-nav-item" data-action="museu4d-reset">' + mhIconSVG("tree") + "<span>Reiniciar tempo</span></button>" +
-      '<button type="button" class="mh-nav-item" data-action="museu-scroll-a">' + mhIconSVG("clock") + "<span>Linha do Tempo</span></button>" +
-      "</nav>" +
-      '<div class="mh-stats">' +
-      '<div class="mh-stat"><span class="mh-stat-label">DATA ATUAL</span><span class="mh-stat-value" id="museu4d-stat-date">' + esc(museu4dFormatYear(STATE.museu4dDate)) + "</span></div>" +
-      "</div>" +
-      '<p class="museu-drag-hint" style="margin-top:2px">Arraste o tempo ou aperte reproduzir: a árvore cresce, as rotas se formam e os eventos se acendem no instante certo.</p>' +
-      mhLegendMarkup() +
-      "</aside>"
-    );
-  }
 
   function museuCanvasWrap(id, hintText) {
     return '<div class="museu-canvas-wrap" id="' + id + '"><canvas></canvas>' + (hintText ? '<span class="museu-canvas-hint">' + esc(hintText) + "</span>" : "") + "</div>";
   }
-  function museuTreeToolbar() {
-    return (
-      '<div class="museu-toolbar">' +
-      '<button type="button" class="museu-tool-btn" data-action="museu-tree-zoom-out" title="Zoom -">−</button>' +
-      '<button type="button" class="museu-tool-btn" data-action="museu-tree-zoom-in" title="Zoom +">+</button>' +
-      '<button type="button" class="museu-tool-btn" data-action="museu-tree-reset" title="Redefinir">Redefinir</button>' +
-      '<button type="button" class="museu-tool-btn" data-action="museu-tree-rotate" title="Girar">Girar</button>' +
-      '<button type="button" class="museu-tool-btn" data-action="museu-reset-focus" title="Foco">Foco</button>' +
-      '<button type="button" class="museu-tool-btn" data-action="museu-fullscreen" data-target="museu-tree-canvas-wrap" title="Tela cheia">Tela cheia</button>' +
-      "</div>"
-    );
-  }
 
   function pageHumanidade() {
-    if (!STATE.museuSelected) STATE.museuSelected = "m:cristianismo-primitivo";
+    if (!MUSEU.selectedId) MUSEU.selectedId = STATE.museuSelected || "m:cristianismo-primitivo";
+    STATE.museuSelected = MUSEU.selectedId;
+    var y = museuNodeYear(MUSEU.selectedId);
+    if (y != null) museu4dSetDate(y, { silent: true });
     return (
-      '<section class="mh-page museu-page">' +
+      '<section class="mh-page museu-page atlas">' +
       museuHeaderMarkup() +
-      '<div class="container mh-container museu-section" id="museu-section-a">' +
-      '<div class="museu-section-label">Opção A · Quando?</div>' +
-      '<div class="mh-shell">' +
-      museuSidebarA() +
-      '<main class="mh-main">' +
-      '<div class="mh-hero museu-hero' + (MUSEU4D_IMG["hero-panorama"] ? " has-illustration" : "") + '"' + (MUSEU4D_IMG["hero-panorama"] ? ' style="--museu-hero-img:url(\'' + MUSEU4D_IMG["hero-panorama"] + "')\"" : "") + '>' +
-      '<span class="mh-hero-title">LINHA DO TEMPO DA HUMANIDADE</span><span class="mh-hero-subtitle">MITOLOGIA · RELIGIÃO · TRADIÇÃO · HISTÓRIA</span>' +
-      (MUSEU4D_IMG["hero-panorama"] ? '<span class="museu-illustration-caption">' + esc(MUSEU4D_CAPTION) + "</span>" : "") +
+      '<div class="container mh-container atlas-shell">' +
+
+      // superfície compartilhada: breadcrumb + filtros + transporte
+      '<nav class="mh-breadcrumb" id="museu-breadcrumb" aria-label="Trilha histórica">' + museuBreadcrumbMarkup() + "</nav>" +
+      museuControlsMarkup() +
+      museuTransportMarkup() +
+
+      // seletor de lente (telas menores) - o estado não muda ao trocar
+      '<div class="mh-lens-tabs" role="tablist" aria-label="Lentes">' +
+      ["quando", "quem", "onde"].map(function (k, i) {
+        var label = k === "quando" ? "Quando" : k === "quem" ? "Quem" : "Onde";
+        return '<button type="button" role="tab" class="mh-lens-tab' + (MUSEU.lens === k ? " active" : "") +
+          '" aria-selected="' + (MUSEU.lens === k ? "true" : "false") + '" data-action="museu-lens" data-lens="' + k + '">' + label + "</button>";
+      }).join("") + "</div>" +
+
+      '<div class="atlas-grid" data-lens="' + esc(MUSEU.lens) + '">' +
+      '<div class="atlas-lenses">' +
+      '<section class="atlas-lens atlas-quando" id="museu-lens-quando" data-lens="quando">' + museuTimelineMarkup() + "</section>" +
+
+      '<section class="atlas-lens atlas-quem" data-lens="quem">' +
+      '<div class="mh-lens-head"><span class="mh-lens-kicker">Quem</span><h3>Árvore de relações</h3>' +
+      "<p>Ancestrais e desdobramentos já cadastrados de cada tradição. Clique num nó para levar tempo e território junto.</p></div>" +
+      museuCanvasWrap("museu-tree-canvas-wrap", "Arraste para girar · roda para zoom") +
+      '<div class="museu-toolbar">' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-tree-zoom-out" aria-label="Afastar">−</button>' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-tree-zoom-in" aria-label="Aproximar">+</button>' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-tree-reset">Redefinir</button>' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-tree-rotate">Girar</button>' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-fullscreen" data-target="museu-tree-canvas-wrap">Tela cheia</button>' +
+      "</div></section>" +
+
+      '<section class="atlas-lens atlas-onde" data-lens="onde">' +
+      '<div class="mh-lens-head"><span class="mh-lens-kicker">Onde</span><h3>Globo</h3>' +
+      "<p>Marcadores na <strong>região de origem</strong> registrada para cada tradição. Não são fronteiras nem territórios de época - o dataset não tem esse nível de detalhe.</p></div>" +
+      museuCanvasWrap("museu-globe-canvas-wrap", "Arraste para girar o globo · roda para zoom") +
+      '<div class="museu-toolbar">' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-globe-zoom-out" aria-label="Afastar">−</button>' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-globe-zoom-in" aria-label="Aproximar">+</button>' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-globe-reset">Redefinir</button>' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-globe-rotate">Girar</button>' +
+      '<button type="button" class="museu-tool-btn" data-action="museu-fullscreen" data-target="museu-globe-canvas-wrap">Tela cheia</button>' +
+      "</div></section>" +
       "</div>" +
-      museuEraTabsMarkup() +
-      '<div id="museu-card-strip-slot">' + museuCardStripMarkup() + "</div>" +
-      '<p class="museu-drag-hint">Arraste para navegar no tempo · clique num cartão para ver detalhes</p>' +
-      "</main>" +
-      museuDetailMarkup(STATE.museuSelected, "museu-detail-a") +
-      "</div></div>" +
 
-      '<div class="container mh-container museu-section" id="museu-section-b">' +
-      '<div class="museu-section-label">Opção B · Como se relaciona?</div>' +
-      '<div class="mh-shell">' +
-      museuSidebarB() +
-      '<main class="mh-main">' + museuCanvasWrap("museu-tree-canvas-wrap", "Arraste para girar · roda do mouse para zoom") + museuTreeToolbar() + "</main>" +
-      museuDetailMarkup(STATE.museuSelected, "museu-detail-b") +
-      "</div></div>" +
-
-      '<div class="container mh-container museu-section" id="museu-section-c">' +
-      '<div class="museu-section-label">Opção C · Onde aconteceu?</div>' +
-      '<div class="mh-shell">' +
-      museuSidebarC() +
-      '<main class="mh-main">' + museuCanvasWrap("museu-map-canvas-wrap", "Clique num ponto para ver a região") + "</main>" +
-      museuDetailMarkup(STATE.museuSelected, "museu-detail-c") +
-      "</div></div>" +
-
-      '<div class="container mh-container museu-section" id="museu-section-d">' +
-      '<div class="museu-section-label">Modo 4D · Uma história, três perspectivas</div>' +
-      '<div class="mh-shell">' +
-      museuSidebarD() +
-      '<main class="mh-main">' +
-      museuCanvasWrap("museu-4d-canvas-wrap", "Arraste para girar · roda do mouse para zoom") +
-      '<div id="museu4d-scrubber-slot">' + museu4dScrubberMarkup() + "</div>" +
-      "</main>" +
-      museuDetailMarkup(STATE.museuSelected, "museu-detail-d") +
-      "</div></div>" +
-      "</section>"
+      '<aside class="atlas-context">' + museuDetailMarkup(MUSEU.selectedId, "museu-detail-a") +
+      '<div class="mh-stats atlas-stats">' +
+      '<div class="mh-stat"><span class="mh-stat-label">No recorte</span><span class="mh-stat-value" id="museu-stat-visible">30</span></div>' +
+      "</div>" + mhLegendMarkup() +
+      '<p class="museu-drag-hint">As três lentes leem o mesmo estado: qualquer seleção, filtro ou busca atualiza todas ao mesmo tempo.</p>' +
+      "</aside>" +
+      "</div></div></section>"
     );
   }
 
@@ -7044,57 +7474,41 @@ if (typeof module !== "undefined") {
     var cardEl = document.querySelector('.mh-card[data-id="' + nodeId + '"]');
     if (cardEl) { cardEl.classList.add("museu-pulse"); setTimeout(function () { cardEl.classList.remove("museu-pulse"); }, 650); }
   }
-  function museuSelect(nodeId) {
+  // Compatibilidade: qualquer chamada antiga de seleção passa pelo
+  // estado único (não existe mais caminho paralelo de sincronização).
+  function museuSelect(nodeId, origin) {
     if (!museuNode(nodeId)) return;
-    STATE.museuSelected = nodeId;
-    var stripSlot = $("#museu-card-strip-slot"); if (stripSlot) stripSlot.innerHTML = museuCardStripMarkup();
-    museuRefreshDetailPanels();
+    museuSet({ selectedId: nodeId }, origin || null);
     museuPulse(nodeId);
-    var n = museuNode(nodeId);
-    if (window.__museuTreeInst) window.__museuTreeInst.focus(nodeId);
-    if (window.__museuMapInst && n.region) window.__museuMapInst.focusRegion(n.region);
-    if (window.__museu4dInst) window.__museu4dInst.focus(nodeId);
-    if (n.year != null) {
-      var era = humanidadeEraFor(n.year);
-      if (era) { STATE.museuEra = era.key; var tabs = $("#museu-era-tabs"); if (tabs) tabs.outerHTML = museuEraTabsMarkup(); }
-      // Regra 4D: selectedDate é a fonte primária de sincronização — selecionar
-      // qualquer entidade em qualquer visualização também move o eixo do tempo.
-      if (!STATE.museu4dPlaying) museu4dSetDate(n.year, { silent: true });
-    }
   }
   function museuSelectRegion(region) {
-    STATE.museuMapRegion = region;
-    var sel = $("#museu-map-region"); if (sel) sel.value = region;
-    var first = MUSEU_TREE.filter(function (n) { return n.region === region; })[0];
-    if (first) museuSelect(first.id);
+    museuSet({ region: region, selectedId: null }, "globe");
+    if (window.__museuGlobeInst && region !== "todas") window.__museuGlobeInst.focusRegion(region);
   }
+
   function museuInitThreeIfMounted() {
-    var treeEl = $("#museu-tree-canvas-wrap"), mapEl = $("#museu-map-canvas-wrap"), cubeEl = $("#museu-4d-canvas-wrap");
-    if (!treeEl || !mapEl || !window.MuseuThree) return;
-    window.__museuTreeInst = window.MuseuThree.initTree(treeEl, { onSelect: museuSelect });
-    window.__museuMapInst = window.MuseuThree.initMap(mapEl, { onSelectRegion: museuSelectRegion });
-    if (cubeEl && window.MuseuThree.initHypercube) {
-      window.__museu4dInst = window.MuseuThree.initHypercube(cubeEl, {
-        onSelect: museuSelect,
-        yearOf: museu4dYearOf,
-        yearToT: museu4dYearToT,
-      });
-      if (window.__museu4dInst) window.__museu4dInst.setDate(STATE.museu4dDate);
+    var treeEl = $("#museu-tree-canvas-wrap"), globeEl = $("#museu-globe-canvas-wrap");
+    if (!treeEl || !globeEl || !window.MuseuThree) return;
+    window.__museuTreeInst = window.MuseuThree.initTree(treeEl, {
+      onSelect: function (id) { museuSet({ selectedId: id }, "tree"); },
+    });
+    window.__museuGlobeInst = window.MuseuThree.initGlobe(globeEl, {
+      onSelect: function (id) { museuSet({ selectedId: id }, "globe"); },
+      yearOf: museuNodeYear,
+    });
+    museuProject("init");
+    if (MUSEU.selectedId) {
+      if (window.__museuTreeInst) window.__museuTreeInst.focus(MUSEU.selectedId);
+      if (window.__museuGlobeInst) window.__museuGlobeInst.focus(MUSEU.selectedId, false);
     }
-    if (STATE.museuSelected) museuSelect(STATE.museuSelected);
     if (STATE.museuAutoRotate && window.__museuTreeInst) window.__museuTreeInst.toggleRotate();
 
-    // Economia de bateria/CPU: as 3 cenas WebGL (árvore, mapa, hipercubo)
-    // ficam com o loop de animação pausado sempre que sua seção sai da
-    // tela, e retomam automaticamente quando o usuário rola de volta.
-    // Sem isso, os três renderers continuariam rodando em requestAnimationFrame
-    // o tempo todo, mesmo enquanto o visitante ainda está lendo o topo da
-    // página (Opção A) e nunca chegou a rolar até B/C/D.
+    // Economia de bateria/CPU: cada cena WebGL pausa o loop quando sai da
+    // tela e retoma ao voltar (em telas menores só uma lente fica visível).
     if (window.__museuVisObserver) { window.__museuVisObserver.disconnect(); window.__museuVisObserver = null; }
     var visTargets = [
       { el: treeEl, inst: window.__museuTreeInst },
-      { el: mapEl, inst: window.__museuMapInst },
-      { el: cubeEl, inst: window.__museu4dInst },
+      { el: globeEl, inst: window.__museuGlobeInst },
     ].filter(function (t) { return t.el && t.inst && typeof t.inst.setActive === "function"; });
     if (visTargets.length && "IntersectionObserver" in window) {
       var elToInst = new Map(visTargets.map(function (t) { return [t.el, t.inst]; }));
@@ -7103,44 +7517,82 @@ if (typeof module !== "undefined") {
           var inst = elToInst.get(entry.target);
           if (inst) inst.setActive(entry.isIntersecting);
         });
-      }, { rootMargin: "200px 0px 200px 0px", threshold: 0.01 });
+      }, { rootMargin: "150px 0px 150px 0px", threshold: 0.01 });
       visTargets.forEach(function (t) { window.__museuVisObserver.observe(t.el); });
+    } else {
+      visTargets.forEach(function (t) { t.inst.setActive(true); });
     }
   }
 
-  // ---- Modo 4D: controle central do eixo do tempo (scrubber + playback) ----
+  // ---- eixo do tempo compartilhado (régua, scrubber e Play histórico) ----
+  // O tempo é parte do mesmo estado: mover a régua move a marca do "agora"
+  // nas três lentes e realça as entidades que já existiam naquele ponto.
   function museu4dRefreshUI() {
-    var readout = $("#museu4d-date-readout"); if (readout) readout.textContent = museu4dFormatYear(STATE.museu4dDate);
-    var stat = $("#museu4d-stat-date"); if (stat) stat.textContent = museu4dFormatYear(STATE.museu4dDate);
-    var range = $("#museu4d-scrub"); if (range) range.value = Math.round(museu4dYearToT(STATE.museu4dDate) * 1000);
-    var playBtn = document.querySelector('[data-action="museu4d-toggle-play"].museu4d-play-btn');
-    if (playBtn) playBtn.innerHTML = STATE.museu4dPlaying ? "⏸ Pausar" : "▶ Reproduzir";
+    var readout = $("#museu-transport-date"); if (readout) readout.textContent = museu4dFormatYear(STATE.museu4dDate);
+    var range = $("#museu-scrub"); if (range && document.activeElement !== range) range.value = Math.round(museu4dYearToT(STATE.museu4dDate) * 1000);
+    var now = $("#museu-now"); if (now) now.style.left = (museu4dYearToT(STATE.museu4dDate) * 100).toFixed(2) + "%";
+    var playBtn = document.querySelector(".museu-play-btn");
+    if (playBtn) {
+      playBtn.innerHTML = MUSEU.playing ? "⏸ Pausar" : "▶ Play histórico";
+      playBtn.setAttribute("aria-pressed", MUSEU.playing ? "true" : "false");
+    }
   }
   function museu4dSetDate(year, opts) {
     opts = opts || {};
     STATE.museu4dDate = Math.max(MUSEU4D_KNOTS[0], Math.min(MUSEU4D_YEAR_NOW, Math.round(year)));
     museu4dRefreshUI();
     if (window.__museu4dInst) window.__museu4dInst.setDate(STATE.museu4dDate);
-    if (!opts.silent) {
-      var era = humanidadeEraFor(STATE.museu4dDate);
-      if (era) { STATE.museuEra = era.key; var tabs = $("#museu-era-tabs"); if (tabs) tabs.outerHTML = museuEraTabsMarkup(); }
-    }
+  }
+  // Marca "já existente até aqui" nas três lentes, sem mexer nos filtros.
+  function museuSyncTime() {
+    var year = STATE.museu4dDate;
+    $all(".mh-tick").forEach(function (t) {
+      var id = t.getAttribute("data-id");
+      var y = museuNodeYear(id);
+      t.classList.toggle("is-future", y != null && y > year);
+    });
+    $all(".mh-card").forEach(function (c) {
+      var id = c.getAttribute("data-id");
+      var y = id ? museuNodeYear(id) : null;
+      c.classList.toggle("is-future", y != null && y > year);
+    });
+  }
+  function museuStopPlay() {
+    MUSEU.playing = false;
+    if (museu4dRAF) { cancelAnimationFrame(museu4dRAF); museu4dRAF = null; }
+    museu4dRefreshUI();
+  }
+  function museuTogglePlay() {
+    if (MUSEU.playing) { museuStopPlay(); return; }
+    if (STATE.museu4dDate >= MUSEU4D_YEAR_NOW) museu4dSetDate(MUSEU4D_KNOTS[0], { silent: true });
+    MUSEU.playing = true;
+    museu4dRefreshUI();
+    museu4dRAF = requestAnimationFrame(museu4dLoop);
+  }
+  // Passo a passo pela cronologia real (← / →): seleciona a entidade
+  // anterior ou seguinte no tempo e leva as três lentes junto.
+  function museuStep(dir) {
+    museuStopPlay();
+    var chrono = museuChronology();
+    if (!chrono.length) return;
+    var idx = -1;
+    for (var i = 0; i < chrono.length; i++) if (chrono[i].id === MUSEU.selectedId) { idx = i; break; }
+    var next = idx === -1
+      ? (dir > 0 ? 0 : chrono.length - 1)
+      : Math.max(0, Math.min(chrono.length - 1, idx + dir));
+    museuSelect(chrono[next].id);
   }
   var museu4dRAF = null;
   function museu4dLoop() {
-    if (!STATE.museu4dPlaying) { museu4dRAF = null; return; }
-    var nextYear = STATE.museu4dDate + STATE.museu4dSpeed / 60;
-    if (nextYear >= MUSEU4D_YEAR_NOW) { museu4dSetDate(MUSEU4D_YEAR_NOW, { silent: true }); STATE.museu4dPlaying = false; museu4dRefreshUI(); museu4dRAF = null; return; }
-    museu4dSetDate(nextYear, { silent: true });
+    if (!MUSEU.playing) { museu4dRAF = null; return; }
+    var span = MUSEU4D_YEAR_NOW - MUSEU4D_KNOTS[0];
+    // avança em tempo perceptual (fração da régua), não em anos lineares:
+    // caso contrário a pré-história consumiria a viagem inteira.
+    var t = Math.min(1, museu4dYearToT(STATE.museu4dDate) + 0.0022);
+    museu4dSetDate(museu4dTToYear(t), { silent: true });
+    museuSyncTime();
+    if (t >= 1) { museuStopPlay(); return; }
     museu4dRAF = requestAnimationFrame(museu4dLoop);
-  }
-  function museu4dTogglePlay() {
-    STATE.museu4dPlaying = !STATE.museu4dPlaying;
-    museu4dRefreshUI();
-    if (STATE.museu4dPlaying) {
-      if (STATE.museu4dDate >= MUSEU4D_YEAR_NOW) museu4dSetDate(MUSEU4D_KNOTS[0], { silent: true });
-      if (!museu4dRAF) museu4dRAF = requestAnimationFrame(museu4dLoop);
-    }
   }
 
   // ---------- O que diz a Bíblia (hub de ritos + comparador de versões) ----------
@@ -7899,28 +8351,44 @@ if (typeof module !== "undefined") {
     },
     "clear-timeline-focus": function () { STATE.timelineFocusSlug = null; applyTimelineFocusVisual(); },
     "museu-select": function (el) { museuSelect(el.getAttribute("data-id")); },
-    "museu-filter-era": function (el) {
-      STATE.museuEra = el.getAttribute("data-era");
-      var tabs = $("#museu-era-tabs"); if (tabs) tabs.outerHTML = museuEraTabsMarkup();
-      var strip = $("#museu-card-strip-slot"); if (strip) strip.innerHTML = museuCardStripMarkup();
+    "museu-filter-era": function (el) { museuSet({ era: el.getAttribute("data-value") }); },
+    "museu-filter-region": function (el) {
+      var v = el.getAttribute("data-value");
+      museuSet({ region: v });
+      if (window.__museuGlobeInst) {
+        if (v === "todas") window.__museuGlobeInst.resetView();
+        else window.__museuGlobeInst.focusRegion(v);
+      }
+    },
+    "museu-filter-type": function (el) { museuSet({ type: el.getAttribute("data-value") }); },
+    "museu-crumb": function (el) {
+      var patch = museuCrumbPatch(parseInt(el.getAttribute("data-crumb"), 10));
+      if (!patch) return;
+      if (patch.query === "") { var inp = $("#museu-search-input"); if (inp) inp.value = ""; }
+      museuSet(patch);
+    },
+    "museu-lens": function (el) {
+      MUSEU.lens = el.getAttribute("data-lens");
+      var grid = $(".atlas-grid"); if (grid) grid.setAttribute("data-lens", MUSEU.lens);
+      $all(".mh-lens-tab").forEach(function (t) {
+        var on = t.getAttribute("data-lens") === MUSEU.lens;
+        t.classList.toggle("active", on);
+        t.setAttribute("aria-selected", on ? "true" : "false");
+      });
     },
     "museu-clear-filters": function () {
-      STATE.museuEra = "todas"; STATE.museuQuery = "";
-      var input = $("#museu-search-input"); if (input) input.value = "";
-      var tabs = $("#museu-era-tabs"); if (tabs) tabs.outerHTML = museuEraTabsMarkup();
-      var strip = $("#museu-card-strip-slot"); if (strip) strip.innerHTML = museuCardStripMarkup();
+      var inp = $("#museu-search-input"); if (inp) inp.value = "";
+      museuSet({ era: "todas", region: "todas", type: "todas", query: "" });
     },
-    "museu-scroll-a": function () { var el = $("#museu-section-a"); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); },
-    "museu-scroll-b": function () { var el = $("#museu-section-b"); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); },
-    "museu-scroll-c": function () { var el = $("#museu-section-c"); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); },
-    "museu-scroll-d": function () { var el = $("#museu-section-d"); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); },
-    "museu4d-toggle-play": function () { museu4dTogglePlay(); },
-    "museu4d-reset": function () { STATE.museu4dPlaying = false; museu4dSetDate(MUSEU4D_KNOTS[0]); },
-    "museu4d-speed": function (el) {
-      STATE.museu4dSpeed = parseInt(el.getAttribute("data-speed"), 10);
-      var slot = $("#museu4d-scrubber-slot"); if (slot) slot.innerHTML = museu4dScrubberMarkup();
+    "museu-reset-all": function () {
+      museuStopPlay();
+      var inp = $("#museu-search-input"); if (inp) inp.value = "";
+      museuSet({ era: "todas", region: "todas", type: "todas", query: "", selectedId: null });
+      if (window.__museuTreeInst) window.__museuTreeInst.resetView();
+      if (window.__museuGlobeInst) window.__museuGlobeInst.resetView();
     },
-    "museu-reset-focus": function () { museuSelect("m:cristianismo-primitivo"); },
+    "museu-step": function (el) { museuStep(parseInt(el.getAttribute("data-dir"), 10)); },
+    "museu-play": function () { museuTogglePlay(); },
     "museu-tree-reset": function () { if (window.__museuTreeInst) window.__museuTreeInst.resetView(); },
     "museu-tree-zoom-in": function () { if (window.__museuTreeInst) window.__museuTreeInst.zoomIn(); },
     "museu-tree-zoom-out": function () { if (window.__museuTreeInst) window.__museuTreeInst.zoomOut(); },
@@ -7928,6 +8396,13 @@ if (typeof module !== "undefined") {
       if (!window.__museuTreeInst) return;
       STATE.museuAutoRotate = window.__museuTreeInst.toggleRotate();
       el.classList.toggle("active", STATE.museuAutoRotate);
+    },
+    "museu-globe-reset": function () { if (window.__museuGlobeInst) window.__museuGlobeInst.resetView(); },
+    "museu-globe-zoom-in": function () { if (window.__museuGlobeInst) window.__museuGlobeInst.zoomIn(); },
+    "museu-globe-zoom-out": function () { if (window.__museuGlobeInst) window.__museuGlobeInst.zoomOut(); },
+    "museu-globe-rotate": function (el) {
+      if (!window.__museuGlobeInst) return;
+      el.classList.toggle("active", window.__museuGlobeInst.toggleRotate());
     },
     "museu-fullscreen": function (el) {
       var target = document.getElementById(el.getAttribute("data-target"));
@@ -8116,10 +8591,15 @@ if (typeof module !== "undefined") {
       var results = $("#tl-palette-results");
       if (results) results.innerHTML = timelineSearchResultsMarkup(e.target.value);
     }
-    if (e.target.id === "museu-search-input" || e.target.id === "museu-tree-search") {
-      STATE.museuQuery = e.target.value;
-      var tabs = $("#museu-era-tabs"); if (tabs) tabs.outerHTML = museuEraTabsMarkup();
-      var strip = $("#museu-card-strip-slot"); if (strip) strip.innerHTML = museuCardStripMarkup();
+    if (e.target.id === "museu-search-input") {
+      // busca global: o termo entra no estado único e recorta as três lentes
+      var q = e.target.value.trim();
+      var patch = { query: q };
+      if (q) {
+        var hit = MUSEU_TREE.filter(function (n) { return n.kind !== "group" && museuMatchesQuery(n, q); })[0];
+        if (hit) patch.selectedId = hit.id;
+      }
+      museuSet(patch, "search");
     }
   }, 220));
 
@@ -8149,9 +8629,10 @@ if (typeof module !== "undefined") {
       var wrap = e.target.closest(".rituals-mobile");
       if (wrap) wrap.innerHTML = mobileRitualsMarkup();
     }
-    if (e.target.id === "museu-map-region") {
-      STATE.museuMapRegion = e.target.value;
-      if (window.__museuMapInst && e.target.value !== "todas") window.__museuMapInst.focusRegion(e.target.value);
+    if (e.target.id === "museu-scrub") {
+      // arrastar o tempo move as três lentes juntas
+      museu4dSetDate(museu4dTToYear(parseInt(e.target.value, 10) / 1000), { silent: true });
+      museuSyncTime();
     }
   });
 
@@ -8174,11 +8655,13 @@ if (typeof module !== "undefined") {
     if (!e.target.closest(".glossary-tooltip")) $all(".glossary-tooltip").forEach(function (t) { t.remove(); });
   });
 
-  // Museu Histórico: cada seção (Opção A/B/C/4D) entra em cena ao rolar.
-  // A primeira seção nunca é adiada (já está visível ao abrir a página).
-  function initMuseuStage() {
+  // Entrada em cena: cada seção abaixo da dobra sobe suavemente quando
+  // entra no campo de visão. Usada no Museu Histórico (.museu-section) e
+  // nas demais páginas internas (.section) - a Home fica de fora porque
+  // tem a própria coreografia (Atos I/II/III).
+  function initSectionStage(selector) {
     if (window.__museuStageObs) { window.__museuStageObs.disconnect(); window.__museuStageObs = null; }
-    var sections = $all(".museu-section");
+    var sections = $all(selector);
     if (sections.length < 2 || !("IntersectionObserver" in window) || reduceMotionOn()) return;
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
@@ -8199,12 +8682,15 @@ if (typeof module !== "undefined") {
 
   function postRenderHooks(route) {
     if (route.name === "home") requestAnimationFrame(initHomeCinematics);
-    else teardownActRail();
+    else {
+      teardownActRail();
+      if (route.name !== "humanidade") requestAnimationFrame(function () { initSectionStage(".section"); });
+    }
     if (route.name === "biblia") initBibleComparator("");
     if (route.name === "biblioteca" && !route.topic) initBibliotecaSearch();
     if (route.name === "timeline") { STATE.timelineFocusSlug = null; requestAnimationFrame(renderTimelineConnectors); }
     if (route.name === "humanidade") {
-      initMuseuStage();
+      initSectionStage(".museu-section");
       if (window.MuseuThree && window.MuseuThree.ready) {
         requestAnimationFrame(museuInitThreeIfMounted);
       } else {
@@ -8940,6 +9426,7 @@ function attachOrbitControls(el, camera, target, opts) {
   var maxPhi = opts.maxPhi != null ? opts.maxPhi : Math.PI - 0.2;
   var dragging = false, lastX = 0, lastY = 0, moved = false;
   var autoRotate = false;
+  var tween = null; // {theta, phi} destino, interpolado em tick()
 
   function update() {
     phi = Math.max(minPhi, Math.min(maxPhi, phi));
@@ -8957,7 +9444,7 @@ function attachOrbitControls(el, camera, target, opts) {
     if (!dragging) return;
     var xy = xyOf(e);
     var dx = xy[0] - lastX, dy = xy[1] - lastY;
-    if (Math.abs(dx) + Math.abs(dy) > 2) moved = true;
+    if (Math.abs(dx) + Math.abs(dy) > 2) { moved = true; tween = null; }
     theta -= dx * 0.007;
     phi -= dy * 0.007;
     lastX = xy[0]; lastY = xy[1];
@@ -8975,8 +9462,28 @@ function attachOrbitControls(el, camera, target, opts) {
   el.addEventListener("wheel", onWheel, { passive: false });
   update();
 
+  function shortestDelta(from, to) {
+    var d = (to - from) % (Math.PI * 2);
+    if (d > Math.PI) d -= Math.PI * 2;
+    if (d < -Math.PI) d += Math.PI * 2;
+    return d;
+  }
+
   return {
-    tick: function () { if (autoRotate && !dragging) { theta += 0.0022; update(); } },
+    tick: function () {
+      if (tween && !dragging) {
+        var dt = shortestDelta(theta, tween.theta), dp = tween.phi - phi;
+        if (Math.abs(dt) < 0.002 && Math.abs(dp) < 0.002) { theta = tween.theta; phi = tween.phi; tween = null; }
+        else { theta += dt * 0.09; phi += dp * 0.09; }
+        update();
+      } else if (autoRotate && !dragging) { theta += 0.0022; update(); }
+    },
+    // leva um par de ângulos (ex.: derivado de lat/lon) para a frente da câmera
+    setAngles: function (t, p, animate) {
+      if (animate) { tween = { theta: t, phi: Math.max(minPhi, Math.min(maxPhi, p)) }; }
+      else { tween = null; theta = t; phi = p; update(); }
+    },
+    cancelTween: function () { tween = null; },
     wasDragged: function () { return moved; },
     setAutoRotate: function (v) { autoRotate = v; },
     getAutoRotate: function () { return autoRotate; },
@@ -9146,10 +9653,23 @@ function initTree(container, callbacks) {
   canvas.addEventListener("click", onClick);
 
   var selectedId = null, pulseT = 0;
-  function setSelected(id) {
-    selectedId = id;
-    meshList.forEach(function (m) { m.userData.baseScale = (m.userData.nodeId === id) ? 1.7 : 1; });
+  // Vocabulário de seleção compartilhado pelas três lentes:
+  // selecionado > relacionado > contexto > fora do recorte.
+  var relations = { related: {}, context: {}, out: {} };
+  function applyRelations() {
+    meshList.forEach(function (m) {
+      var id = m.userData.nodeId;
+      var state = id === selectedId ? "selected" : relations.related[id] ? "related" : relations.out[id] ? "out" : relations.context[id] ? "context" : "idle";
+      m.userData.baseScale = state === "selected" ? 1.7 : state === "related" ? 1.25 : state === "out" ? 0.75 : 1;
+      m.material.emissiveIntensity = state === "selected" ? 1.9 : state === "related" ? 1.15 : state === "out" ? 0.12 : 0.85;
+      m.material.transparent = state === "out";
+      m.material.opacity = state === "out" ? 0.22 : 1;
+      if (m.userData.halo) {
+        m.userData.halo.material.opacity = state === "selected" ? 1 : state === "related" ? 0.75 : state === "out" ? 0.06 : 0.4;
+      }
+    });
   }
+  function setSelected(id) { selectedId = id; applyRelations(); }
 
   var raf = null, running = true;
   function frame() {
@@ -9180,6 +9700,15 @@ function initTree(container, callbacks) {
       setSelected(id);
       var p = positions[id];
       if (p) controls.lookAtPoint(new THREE.Vector3(p.x, p.y, p.z), true);
+    },
+    setRelations: function (rel) {
+      relations = {
+        related: rel && rel.related ? rel.related : {},
+        context: rel && rel.context ? rel.context : {},
+        out: rel && rel.out ? rel.out : {},
+      };
+      if (rel && "selectedId" in rel) selectedId = rel.selectedId;
+      applyRelations();
     },
     zoomIn: function () { controls.zoomBy(0.8); },
     zoomOut: function () { controls.zoomBy(1.25); },
@@ -9247,6 +9776,256 @@ function drawStylizedMapTexture() {
   var tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.SRGBColorSpace;
   return tex;
+}
+
+// ============================================================
+// OPÇÃO C — Globo terrestre 3D
+// ============================================================
+// Coordenadas geográficas reais (centroides aproximados) das mesmas 7
+// regiões que os dados já usam. São referências geográficas, não
+// fronteiras históricas: o globo marca a REGIÃO DE ORIGEM de cada
+// tradição, nunca um território de época (esses dados não existem no
+// dataset e não seriam inventados aqui).
+var REGION_LATLON = {
+  africa: [1.5, 17.5],
+  "oriente-medio": [29.0, 42.0],
+  europa: [52.0, 15.0],
+  asia: [27.0, 90.0],
+  americas: [8.0, -75.0],
+  oceania: [-25.0, 134.0],
+  global: [15.0, 0.0],
+};
+var REGION_LABEL_PT = {
+  africa: "África", "oriente-medio": "Oriente Médio", europa: "Europa",
+  asia: "Ásia", americas: "Américas", oceania: "Oceania", global: "Múltiplas regiões",
+};
+
+// Contornos continentais aproximados em lat/lon, só para dar leitura de
+// planeta ao globo. É um esquema geográfico (não cartografia precisa) e
+// não representa fronteiras políticas de nenhuma época.
+var CONTINENT_OUTLINES = [
+  [[70,-165],[71,-125],[69,-90],[63,-68],[47,-53],[40,-70],[30,-81],[19,-96],[30,-115],[49,-125],[60,-148]],
+  [[12,-72],[10,-60],[0,-50],[-8,-35],[-23,-42],[-40,-62],[-54,-69],[-38,-73],[-18,-71],[-2,-80]],
+  [[35,-6],[33,11],[31,25],[30,33],[12,43],[10,51],[-2,42],[-16,40],[-26,33],[-34,20],[-30,16],[-15,12],[0,9],[5,-4],[15,-17],[28,-13]],
+  [[60,-9],[62,5],[70,25],[60,40],[45,39],[40,27],[37,15],[43,3],[48,-5]],
+  [[37,35],[37,48],[30,50],[25,57],[15,52],[12,44],[21,39],[29,34]],
+  [[70,60],[72,100],[70,140],[60,160],[50,140],[35,127],[23,120],[20,105],[8,100],[12,80],[22,70],[25,60],[40,50],[55,55]],
+  [[-11,131],[-12,142],[-20,148],[-28,153],[-38,146],[-35,138],[-32,116],[-22,114],[-15,125]],
+];
+
+function latLonToVec3(lat, lon, radius) {
+  var phi = (90 - lat) * Math.PI / 180;
+  var theta = (lon + 180) * Math.PI / 180;
+  return new THREE.Vector3(
+    -radius * Math.sin(phi) * Math.cos(theta),
+    radius * Math.cos(phi),
+    radius * Math.sin(phi) * Math.sin(theta)
+  );
+}
+// ângulos de câmera (orbit) que trazem um ponto lat/lon para a frente
+function latLonToAngles(lat, lon) {
+  return { theta: (lon + 180) * Math.PI / 180 - Math.PI / 2, phi: (90 - lat) * Math.PI / 180 };
+}
+
+function drawGlobeTexture() {
+  var w = 2048, h = 1024;
+  var c = document.createElement("canvas"); c.width = w; c.height = h;
+  var ctx = c.getContext("2d");
+  ctx.fillStyle = "#0b1526"; ctx.fillRect(0, 0, w, h);
+  function px(lat, lon) { return [(lon + 180) / 360 * w, (90 - lat) / 180 * h]; }
+  // meridianos e paralelos
+  ctx.strokeStyle = "rgba(226,176,77,0.10)"; ctx.lineWidth = 1.5;
+  for (var lon = -180; lon <= 180; lon += 30) { var a = px(90, lon), b = px(-90, lon); ctx.beginPath(); ctx.moveTo(a[0], 0); ctx.lineTo(b[0], h); ctx.stroke(); }
+  for (var lat = -60; lat <= 60; lat += 30) { var y = px(lat, 0)[1]; ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+  // massas continentais
+  CONTINENT_OUTLINES.forEach(function (poly) {
+    ctx.beginPath();
+    poly.forEach(function (pt, i) { var q = px(pt[0], pt[1]); if (i === 0) ctx.moveTo(q[0], q[1]); else ctx.lineTo(q[0], q[1]); });
+    ctx.closePath();
+    ctx.fillStyle = "rgba(96,132,170,0.95)"; ctx.fill();
+    ctx.strokeStyle = "rgba(226,176,77,0.42)"; ctx.lineWidth = 2.5; ctx.stroke();
+  });
+  var tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+
+function initGlobe(container, callbacks) {
+  callbacks = callbacks || {};
+  var canvas = container.querySelector("canvas");
+  if (!canvas) return null;
+  var tree = window.MUSEU_TREE || [];
+  var yearOf = callbacks.yearOf || function () { return null; };
+  var R = 5;
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(42, 1, 0.1, 200);
+  var renderer = makeRenderer(canvas);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+
+  scene.add(new THREE.AmbientLight(0xbfd2e8, 1.15));
+  // luz de cabeça: acompanha a câmera, para a face voltada ao usuário
+  // estar sempre legível (um globo com lado noturno vira uma bola preta).
+  var headlight = new THREE.DirectionalLight(0xfff3dc, 1.35);
+  scene.add(headlight);
+  var rim = new THREE.PointLight(0xe2b04d, 0.8, 60); rim.position.set(-9, 3, -6); scene.add(rim);
+
+  var globeTex = drawGlobeTexture();
+  var globe = new THREE.Mesh(
+    new THREE.SphereGeometry(R, 64, 48),
+    new THREE.MeshStandardMaterial({ map: globeTex, roughness: 0.85, metalness: 0.02, emissive: 0x0a1220, emissiveIntensity: 0.5 })
+  );
+  scene.add(globe);
+  // atmosfera: casca traseira aditiva (leitura de planeta, sem post-processing)
+  var atmo = new THREE.Mesh(
+    new THREE.SphereGeometry(R * 1.045, 48, 32),
+    new THREE.MeshBasicMaterial({ color: 0x4a7fd0, transparent: true, opacity: 0.13, side: THREE.BackSide, blending: THREE.AdditiveBlending, depthWrite: false })
+  );
+  scene.add(atmo);
+
+  var labels = makeLabelLayer(container);
+  var markerMeshes = {};
+  var markerList = [];
+
+  // Cada entidade é posicionada no centroide da sua região, com um leve
+  // deslocamento determinístico para não empilhar marcadores. Isso é uma
+  // convenção de leitura, não uma localização precisa - a UI diz isso.
+  var perRegionCount = {};
+  tree.forEach(function (n) {
+    if (n.kind === "group") return;
+    var reg = n.region && REGION_LATLON[n.region] ? n.region : "global";
+    var base = REGION_LATLON[reg];
+    var i = (perRegionCount[reg] = (perRegionCount[reg] || 0) + 1) - 1;
+    var ring = Math.floor(i / 6), slot = i % 6;
+    var ang = (slot / 6) * Math.PI * 2 + ring * 0.5;
+    var spread = 4.5 + ring * 4.0;
+    var lat = Math.max(-80, Math.min(80, base[0] + Math.sin(ang) * spread));
+    var lon = base[1] + Math.cos(ang) * spread * 1.5;
+    var pos = latLonToVec3(lat, lon, R * 1.012);
+    var color = regionColor(n.region);
+    var r = n.kind === "milestone" ? 0.16 : 0.1;
+    var mesh = new THREE.Mesh(
+      new THREE.SphereGeometry(r, 18, 14),
+      new THREE.MeshStandardMaterial({ color: color, emissive: color, emissiveIntensity: 0.9, roughness: 0.35 })
+    );
+    mesh.position.copy(pos);
+    mesh.userData.nodeId = n.id;
+    mesh.userData.baseScale = 1;
+    mesh.userData.latlon = [lat, lon];
+    mesh.userData.year = yearOf(n.id);
+    scene.add(mesh);
+    var halo = makeHaloSprite(color, r * 7);
+    halo.position.copy(pos); halo.userData.baseScale = r * 7;
+    mesh.userData.halo = halo;
+    scene.add(halo);
+    markerMeshes[n.id] = mesh;
+    markerList.push(mesh);
+  });
+
+  // rótulo de cada região (nome geográfico, não território histórico)
+  Object.keys(REGION_LATLON).forEach(function (reg) {
+    if (reg === "global") return;
+    var ll = REGION_LATLON[reg];
+    labels.add(latLonToVec3(ll[0], ll[1], R * 1.06), REGION_LABEL_PT[reg], "museu-label-major");
+  });
+
+  camera.position.set(0, 4, 14);
+  var controls = attachOrbitControls(canvas, camera, new THREE.Vector3(0, 0, 0), {
+    radius: 13, theta: Math.PI, phi: Math.PI / 2.3, minRadius: 7.2, maxRadius: 22, minPhi: 0.35, maxPhi: Math.PI - 0.35,
+  });
+
+  var raycaster = new THREE.Raycaster(); var mouse = new THREE.Vector2();
+  function onClick(ev) {
+    if (controls.wasDragged()) return;
+    var rect = canvas.getBoundingClientRect();
+    mouse.x = ((ev.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((ev.clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    var hits = raycaster.intersectObjects(markerList);
+    if (hits.length && callbacks.onSelect) callbacks.onSelect(hits[0].object.userData.nodeId);
+  }
+  canvas.addEventListener("click", onClick);
+
+  var selectedId = null, pulseT = 0;
+  var relations = { related: {}, context: {}, out: {} };
+  function applyRelations() {
+    markerList.forEach(function (m) {
+      var id = m.userData.nodeId;
+      var state = id === selectedId ? "selected" : relations.related[id] ? "related" : relations.out[id] ? "out" : relations.context[id] ? "context" : "idle";
+      m.userData.baseScale = state === "selected" ? 2.1 : state === "related" ? 1.4 : state === "out" ? 0.7 : 1;
+      m.material.emissiveIntensity = state === "selected" ? 2.0 : state === "related" ? 1.2 : state === "out" ? 0.1 : 0.9;
+      m.material.transparent = state === "out";
+      m.material.opacity = state === "out" ? 0.18 : 1;
+      if (m.userData.halo) m.userData.halo.material.opacity = state === "selected" ? 1 : state === "related" ? 0.7 : state === "out" ? 0.05 : 0.35;
+    });
+  }
+
+  var running = false, raf = null;
+  function frame() {
+    if (!running) return;
+    raf = requestAnimationFrame(frame);
+    pulseT += 0.03;
+    controls.tick();
+    headlight.position.copy(camera.position);
+    markerList.forEach(function (m) {
+      var s = m.userData.baseScale * (m.userData.nodeId === selectedId ? 1 + Math.sin(pulseT) * 0.13 : 1);
+      m.scale.setScalar(s);
+      if (m.userData.halo) m.userData.halo.scale.setScalar(m.userData.halo.userData.baseScale * s);
+    });
+    labels.update(camera, renderer);
+    renderer.render(scene, camera);
+  }
+
+  var ro = observeResize(container, function (w, h) {
+    renderer.setSize(w, h, false);
+    camera.aspect = w / Math.max(1, h);
+    camera.updateProjectionMatrix();
+  });
+
+  return {
+    focusRegion: function (region, animate) {
+      var ll = REGION_LATLON[region] || REGION_LATLON.global;
+      var a = latLonToAngles(ll[0], ll[1]);
+      controls.setAngles(a.theta, a.phi, animate !== false);
+    },
+    focus: function (id, animate) {
+      selectedId = id; applyRelations();
+      var m = markerMeshes[id];
+      if (m && m.userData.latlon) {
+        var a = latLonToAngles(m.userData.latlon[0], m.userData.latlon[1]);
+        controls.setAngles(a.theta, a.phi, animate !== false);
+      }
+    },
+    setRelations: function (rel) {
+      relations = {
+        related: rel && rel.related ? rel.related : {},
+        context: rel && rel.context ? rel.context : {},
+        out: rel && rel.out ? rel.out : {},
+      };
+      if (rel && "selectedId" in rel) selectedId = rel.selectedId;
+      applyRelations();
+    },
+    toggleRotate: function () { controls.setAutoRotate(!controls.getAutoRotate()); return controls.getAutoRotate(); },
+    zoomIn: function () { controls.zoomBy(0.82); },
+    zoomOut: function () { controls.zoomBy(1.22); },
+    resetView: function () { controls.reset(); },
+    setActive: function (active) {
+      if (active && !running) { running = true; frame(); }
+      else if (!active && running) { running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
+    },
+    dispose: function () {
+      running = false;
+      if (raf) cancelAnimationFrame(raf);
+      canvas.removeEventListener("click", onClick);
+      controls.dispose();
+      ro.disconnect();
+      labels.dispose();
+      globeTex.dispose();
+      renderer.dispose();
+      if (renderer.forceContextLoss) renderer.forceContextLoss();
+    },
+  };
 }
 
 function initMap(container, callbacks) {
@@ -9620,6 +10399,12 @@ window.MuseuThree = {
   initTree: function (container, callbacks) {
     var canvas = container.querySelector("canvas"); if (!canvas) return;
     var inst = initTree(container, callbacks);
+    if (inst) registerInstance(canvas, inst);
+    return inst;
+  },
+  initGlobe: function (container, callbacks) {
+    var canvas = container.querySelector("canvas"); if (!canvas) return;
+    var inst = initGlobe(container, callbacks);
     if (inst) registerInstance(canvas, inst);
     return inst;
   },
