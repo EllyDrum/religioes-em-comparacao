@@ -104,6 +104,7 @@
   --dur-fast: 0.15s;
   --dur-base: 0.22s;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-nav: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* ---- Direção de arte cinematográfica ("céu") — créditos/eyebrows/
      nav em versalete rastreado, corpo teológico em serifa, referência
@@ -150,7 +151,9 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+/* overflow-x: clip (e não hidden) evita criar um contêiner de rolagem no
+   html/body, o que quebraria o position: sticky do header. */
+html { scroll-behavior: smooth; overflow-x: clip; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   min-width: 320px;
@@ -161,7 +164,7 @@ body {
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   transition: background var(--dur-base) ease, color var(--dur-base) ease;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 img, svg { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -185,12 +188,34 @@ p { overflow-wrap: break-word; }
 .skip-link:focus { top: 12px; }
 
 /* ---------- Header ---------- */
+/* O header fica dentro de #header-slot; para o sticky funcionar de verdade
+   (e não se limitar à altura do próprio slot), é o slot que gruda no topo. */
+#header-slot { position: sticky; top: 0; z-index: 100; }
+html { scroll-padding-top: 84px; }
 .site-header {
-  position: sticky; top: 0; z-index: 100;
+  position: relative; z-index: 100;
   background: var(--bg-header);
   box-shadow: var(--shadow);
 }
-.site-header .container { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: var(--space-4); }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: var(--space-4); max-width: 1320px; transition: height 0.45s var(--ease-nav); }
+@media (min-width: 1600px) { .site-header .container { max-width: 1360px; } }
+@media (min-width: 1920px) { .site-header .container { max-width: 1440px; } }
+/* Fio de luz na base do header: hairline dourado que "acende" quando a
+   página é rolada (ver .site-header.is-scrolled) */
+.site-header::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, rgba(226,194,90,0) 0%, rgba(226,194,90,0.55) 30%, rgba(226,194,90,0.85) 50%, rgba(226,194,90,0.55) 70%, rgba(226,194,90,0) 100%);
+  opacity: 0; transform: scaleX(0.6); transform-origin: center;
+  transition: opacity 0.6s var(--ease-nav), transform 0.9s var(--ease-nav);
+}
+.site-header.is-scrolled::after { opacity: 1; transform: scaleX(1); }
+.site-header.is-scrolled { box-shadow: 0 10px 30px rgba(3,8,20,0.45); }
+.site-header.is-scrolled .container { height: 64px; }
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .site-header { transition: background 0.45s var(--ease-nav), box-shadow 0.45s var(--ease-nav); }
+  .site-header.is-scrolled { background: rgba(10,24,48,0.93); backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%); }
+  [data-theme="dark"] .site-header.is-scrolled { background: rgba(6,13,28,0.94); }
+}
 .brand { display: flex; align-items: center; gap: 13px; color: var(--text-on-dark); flex-shrink: 0; transition: opacity var(--dur-fast) ease; }
 .brand:hover { opacity: 0.92; }
 .brand-icon { width: 42px; height: 42px; flex-shrink: 0; filter: drop-shadow(0 2px 6px rgba(226,194,90,0.28)); }
@@ -199,22 +224,61 @@ p { overflow-wrap: break-word; }
   font-size: 21px; letter-spacing: 0.015em; white-space: nowrap; color: var(--text-on-dark);
 }
 .brand-name .gold { color: var(--gold-light); font-weight: 700; }
-.main-nav { display: flex; gap: 1px; flex-wrap: nowrap; flex-shrink: 1; min-width: 0; }
+/* ---------- Menu principal: "créditos de filme" ----------
+   Itens somente em texto (sem pílulas), com um único fio dourado que
+   desliza entre os itens (.nav-indicator, posicionado por JS) e repousa
+   sob a página ativa. Ao passar o mouse, o item acende, ganha
+   respiro de tracking e os irmãos recuam levemente (spotlight). */
+.main-nav { position: relative; display: flex; align-items: center; gap: 0; flex-wrap: nowrap; flex-shrink: 1; min-width: 0; }
 .main-nav a {
-  position: relative; color: var(--text-muted-on-dark); font-weight: 600; font-size: 10.5px;
-  font-family: var(--f-credit); text-transform: uppercase; letter-spacing: 0.055em;
-  padding: 8px 7px; border-radius: 999px; white-space: nowrap;
-  transition: color var(--dur-base) var(--ease), background var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
+  position: relative; color: var(--text-muted-on-dark); font-weight: 500; font-size: 10.5px;
+  font-family: var(--f-credit); text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 0 7px; border-radius: 4px; white-space: nowrap; line-height: 1;
   min-height: var(--tap-min); display: inline-flex; align-items: center;
+  transition: color 0.35s var(--ease-nav), opacity 0.45s var(--ease-nav), letter-spacing 0.45s var(--ease-nav), transform 0.45s var(--ease-nav);
 }
-.main-nav a:hover { color: var(--text-on-dark); background: rgba(255,255,255,0.08); }
-.main-nav a.active {
-  color: var(--navy-950);
-  background: linear-gradient(135deg, var(--gold-light), var(--gold));
-  box-shadow: 0 4px 14px rgba(201,162,39,0.35), inset 0 1px 0 rgba(255,255,255,0.4);
-  font-weight: 700;
-}
+.main-nav a > span { display: inline-block; transition: transform 0.45s var(--ease-nav); }
+.main-nav a:hover, .main-nav a:focus-visible { color: var(--text-on-dark); letter-spacing: 0.085em; }
+.main-nav a:hover > span, .main-nav a:focus-visible > span { transform: translateY(-1px); }
+.main-nav a.active { color: var(--gold-light); font-weight: 600; }
+.main-nav a.active:hover { color: #f3dd8f; }
+/* spotlight: ao passar o mouse pelo menu, os itens não focados recuam */
+.main-nav:hover a:not(:hover):not(:focus-visible) { opacity: 0.55; }
+.main-nav:hover a.active:not(:hover) { opacity: 0.8; }
 .main-nav a:focus-visible { outline-offset: 3px; }
+/* Fio deslizante */
+.nav-indicator {
+  position: absolute; left: 0; bottom: 4px; height: 1px; width: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(226,194,90,0), var(--gold-light) 18%, var(--gold-light) 82%, rgba(226,194,90,0));
+  box-shadow: 0 0 10px rgba(226,194,90,0.55), 0 0 2px rgba(226,194,90,0.9);
+  opacity: 0; transform-origin: left center;
+  transition: transform 0.55s var(--ease-nav), width 0.55s var(--ease-nav), opacity 0.35s ease;
+}
+.nav-indicator.is-ready { opacity: 1; }
+.nav-indicator.is-settling { animation: navIndicatorSettle 0.7s var(--ease-nav) both; }
+@keyframes navIndicatorSettle {
+  0% { box-shadow: 0 0 10px rgba(226,194,90,0.55); }
+  40% { box-shadow: 0 0 22px rgba(226,194,90,0.95), 0 0 4px rgba(255,238,170,1); }
+  100% { box-shadow: 0 0 10px rgba(226,194,90,0.55), 0 0 2px rgba(226,194,90,0.9); }
+}
+/* Brilho que varre o texto do item recém-ativado (troca de página) */
+.main-nav a.is-arriving > span {
+  -webkit-text-fill-color: transparent;
+  background-color: var(--gold-light);
+  background-image: linear-gradient(100deg, var(--gold-light) 35%, #fff4c8 50%, var(--gold-light) 65%);
+  background-size: 250% 100%; background-repeat: no-repeat; background-position: 120% 0;
+  -webkit-background-clip: text; background-clip: text;
+  animation: navArrive 0.9s var(--ease-nav) both;
+}
+@keyframes navArrive {
+  from { background-position: 120% 0; }
+  to { background-position: -120% 0; }
+}
+@media (max-width: 1365px) { .main-nav a { padding: 0 6px; } }
+@media (prefers-reduced-motion: reduce) {
+  .main-nav a, .main-nav a > span, .nav-indicator, .site-header .container, .site-header::after { transition: none !important; animation: none !important; }
+  .main-nav a:hover > span { transform: none; }
+}
 .header-actions { display: flex; align-items: center; gap: var(--space-2); flex-shrink: 0; }
 .icon-btn {
   width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.18);
@@ -1542,8 +1606,6 @@ table.compare-table tbody tr.compare-theme-row.open td.comparativo-cell { backgr
    no hover original de cada uma - só soma um halo que aparece e
    desaparece em opacidade. */
 .icon-btn,
-.main-nav a,
-.mobile-drawer a,
 .footer-links a,
 .category-chip,
 .tl-ctrl-btn,
@@ -1554,8 +1616,6 @@ table.compare-table tbody tr.compare-theme-row.open td.comparativo-cell { backgr
   position: relative;
 }
 .icon-btn::before,
-.main-nav a::before,
-.mobile-drawer a::before,
 .category-chip::before,
 .tl-ctrl-btn::before,
 .tl-chip::before,
@@ -1574,8 +1634,6 @@ table.compare-table tbody tr.compare-theme-row.open td.comparativo-cell { backgr
   z-index: -1;
 }
 .icon-btn:hover::before, .icon-btn:focus-visible::before,
-.main-nav a:hover::before, .main-nav a:focus-visible::before,
-.mobile-drawer a:hover::before, .mobile-drawer a:focus-visible::before,
 .category-chip:hover::before, .category-chip:focus-visible::before,
 .tl-ctrl-btn:hover::before, .tl-ctrl-btn:focus-visible::before,
 .tl-chip:hover::before, .tl-chip:focus-visible::before,
@@ -1588,7 +1646,6 @@ table.compare-table tbody tr.compare-theme-row.open td.comparativo-cell { backgr
 }
 /* Halo específico para links de texto (sem "caixa"): brilho no
    próprio texto em vez de um anel geométrico. */
-.main-nav a:hover, .main-nav a:focus-visible { text-shadow: 0 0 14px rgba(226,194,90,0.5); }
 .footer-links a:hover, .footer-links a:focus-visible { text-shadow: 0 0 10px rgba(226,194,90,0.45); }
 
 /* Ícones: leve aumento de luminosidade + halo, sem mudar tamanho. */
@@ -2006,6 +2063,153 @@ table.compare-table tbody tr.compare-theme-row.open td.comparativo-cell { backgr
 .act-rail a[data-active="1"] { opacity: 1; }
 .act-rail a[data-active="1"] .dot { background: var(--gold); box-shadow: 0 0 8px var(--gold); }
 @media (max-width: 860px) { .act-rail { display: none; } }
+
+/* ============================================================
+   MUSEU HISTÓRICO: mesma linguagem do menu principal aplicada aos
+   controles internos da página (#/humanidade): rótulos de seção como
+   letreiros de ato, navegação lateral com fio dourado deslizante,
+   chips e botões com hover sofisticado e seções que "entram em cena"
+   ao rolar. Nada de conteúdo é alterado; só apresentação e motion.
+   ============================================================ */
+.museu-section-label {
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--f-credit); font-weight: 500; font-size: 12px; letter-spacing: 0.22em;
+  color: var(--mh-gold); margin-bottom: 14px;
+}
+.museu-section-label::before { content: ""; width: 34px; height: 1px; background: linear-gradient(90deg, var(--mh-gold), rgba(226,176,77,0)); flex: 0 0 auto; }
+.museu-section-label::after { content: ""; flex: 1 1 auto; height: 1px; background: linear-gradient(90deg, rgba(226,176,77,0.35), rgba(226,176,77,0)); }
+.museu-sidebar-title, .mh-subtitle, .mh-hero-subtitle, .mh-stat-label, .mh-legend-title,
+.mh-detail-title, .mh-detail-badge, .museu-filter-label, .mh-card-rel {
+  font-family: var(--f-credit); font-weight: 500; text-transform: uppercase;
+}
+.museu-sidebar-title { letter-spacing: 0.16em; font-size: 10.5px; }
+.mh-stat-label, .mh-legend-title, .mh-detail-title { letter-spacing: 0.18em; font-size: 10.5px; }
+.mh-detail-badge { letter-spacing: 0.16em; font-weight: 600; }
+.mh-subtitle, .mh-hero-subtitle { letter-spacing: 0.2em; font-weight: 500; }
+.mh-stat-value { font-family: var(--f-mono); font-weight: 500; }
+.mh-card-period, .mh-detail-period, .mh-descendant-period { font-family: var(--f-mono); }
+
+/* Navegação lateral: fio dourado que cresce da esquerda, ícone acende,
+   item ativo com barra vertical em vez de caixa preenchida */
+.mh-nav-item {
+  position: relative; font-family: var(--f-credit); font-weight: 500; font-size: 12px;
+  letter-spacing: 0.1em; text-transform: uppercase; border: none; border-radius: 8px;
+  transition: color 0.35s var(--ease-nav), background 0.35s var(--ease-nav), padding-left 0.45s var(--ease-nav);
+}
+.mh-nav-item::before {
+  content: ""; position: absolute; left: 0; top: 50%; width: 2px; height: 0; transform: translateY(-50%);
+  background: var(--mh-gold); border-radius: 2px; box-shadow: 0 0 10px rgba(226,176,77,0.7);
+  transition: height 0.45s var(--ease-nav);
+}
+.mh-nav-item::after {
+  content: ""; position: absolute; left: 36px; right: 10px; bottom: 5px; height: 1px;
+  background: linear-gradient(90deg, var(--mh-gold), rgba(226,176,77,0));
+  transform: scaleX(0); transform-origin: left; opacity: 0;
+  transition: transform 0.5s var(--ease-nav), opacity 0.3s ease;
+}
+.mh-nav-item svg { transition: color 0.35s var(--ease-nav), transform 0.45s var(--ease-nav); }
+.mh-nav-item:hover, .mh-nav-item:focus-visible { background: rgba(255,255,255,0.035); color: var(--mh-text); }
+.mh-nav-item:hover::after, .mh-nav-item:focus-visible::after { transform: scaleX(1); opacity: 0.9; }
+.mh-nav-item:hover svg, .mh-nav-item:focus-visible svg { color: var(--mh-gold); transform: translateX(2px); }
+.mh-nav-item.active { background: rgba(226,176,77,0.07); color: var(--mh-gold-bright); padding-left: 14px; }
+.mh-nav-item.active::before { height: 60%; }
+.mh-nav-item.active svg { color: var(--mh-gold); }
+.mh-nav:hover .mh-nav-item:not(:hover):not(.active) { opacity: 0.6; }
+.mh-nav-item { transition: color 0.35s var(--ease-nav), background 0.35s var(--ease-nav), padding-left 0.45s var(--ease-nav), opacity 0.45s var(--ease-nav); }
+
+/* Chips de era, botões de ferramenta e botões do cabeçalho */
+.mh-era-chip, .museu-tool-btn, .mh-header-btn {
+  font-family: var(--f-credit); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; font-size: 11px;
+  position: relative; overflow: hidden;
+  transition: color 0.35s var(--ease-nav), border-color 0.35s var(--ease-nav), background 0.35s var(--ease-nav), transform 0.45s var(--ease-nav), box-shadow 0.45s var(--ease-nav);
+}
+.mh-era-chip::after, .museu-tool-btn::after, .mh-header-btn::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(100deg, transparent 30%, rgba(255,240,190,0.22) 50%, transparent 70%);
+  background-size: 250% 100%; background-position: 120% 0; opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.mh-era-chip:hover, .museu-tool-btn:hover, .mh-header-btn:hover {
+  border-color: rgba(226,176,77,0.7); color: var(--mh-gold-bright); transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35), 0 0 0 1px rgba(226,176,77,0.15);
+}
+.mh-era-chip:hover::after, .museu-tool-btn:hover::after, .mh-header-btn:hover::after { opacity: 1; animation: navArrive 0.9s var(--ease-nav) both; }
+.mh-era-chip.active, .museu-tool-btn.active {
+  background: linear-gradient(135deg, var(--mh-gold-bright), var(--mh-gold)); color: #05070a; font-weight: 600;
+  box-shadow: 0 6px 16px rgba(226,176,77,0.28), inset 0 1px 0 rgba(255,255,255,0.45);
+}
+
+/* Painéis: fio de luz superior sutil, mais presença no hover */
+.mh-sidebar, .mh-detail { position: relative; transition: border-color 0.45s var(--ease-nav), box-shadow 0.45s var(--ease-nav); }
+.mh-sidebar::before, .mh-detail::before {
+  content: ""; position: absolute; top: 0; left: 18px; right: 18px; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, rgba(226,176,77,0), rgba(226,176,77,0.55), rgba(226,176,77,0));
+}
+.mh-sidebar:hover, .mh-detail:hover { border-color: rgba(226,176,77,0.32); }
+.mh-detail-link { font-family: var(--f-credit); text-transform: uppercase; letter-spacing: 0.08em; font-size: 11.5px; position: relative; transition: color 0.3s var(--ease-nav), letter-spacing 0.4s var(--ease-nav); }
+.mh-detail-link:hover { text-decoration: none; letter-spacing: 0.11em; color: var(--mh-gold-bright); }
+.mh-detail-more { font-family: var(--f-credit); text-transform: uppercase; letter-spacing: 0.1em; font-size: 11px; }
+
+/* Seções entram em cena ao rolar (só quando o visitante aceita movimento) */
+@media (prefers-reduced-motion: no-preference) {
+  .museu-section.is-staged { opacity: 0; transform: translateY(22px); }
+  .museu-section.is-staged.is-on { opacity: 1; transform: none; transition: opacity 0.9s var(--ease-nav), transform 0.9s var(--ease-nav); }
+}
+.mh-detail-facts-grid .mh-detail-link { font-family: inherit; text-transform: none; letter-spacing: 0; font-size: 12px; }
+.mh-detail-facts-grid .mh-detail-link:hover { letter-spacing: 0; text-decoration: underline; }
+
+/* ============================================================
+   MENU MÓVEL (gaveta): mesma linguagem do menu principal - painel
+   azul-marinho, itens em "créditos" numerados, entrada em cascata e
+   fio dourado no item ativo.
+   ============================================================ */
+.mobile-drawer .backdrop { background: rgba(3,8,20,0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: drawerFade 0.35s ease both; }
+@keyframes drawerFade { from { opacity: 0; } to { opacity: 1; } }
+.mobile-drawer .panel {
+  background: linear-gradient(170deg, #0f2246 0%, var(--navy-950) 60%, #060d1c 100%);
+  color: var(--text-on-dark); padding: var(--space-5) var(--space-5) var(--space-8);
+  gap: 0; border-left: 1px solid rgba(226,194,90,0.18);
+  animation: drawerSlide 0.55s var(--ease-nav) both;
+}
+@keyframes drawerSlide { from { transform: translateX(100%); } to { transform: translateX(0); } }
+.mobile-drawer .panel::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, rgba(226,194,90,0), rgba(226,194,90,0.8), rgba(226,194,90,0));
+}
+.mobile-drawer .close-drawer { border-color: rgba(226,194,90,0.35); color: var(--gold-light); background: rgba(255,255,255,0.04); margin-bottom: var(--space-4); }
+.mobile-drawer a {
+  counter-increment: drawer-item; position: relative;
+  font-family: var(--f-credit); font-weight: 500; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-muted-on-dark); padding: 15px 10px 15px 44px; border-radius: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: color 0.35s var(--ease-nav), padding-left 0.45s var(--ease-nav), background 0.35s var(--ease-nav);
+}
+.mobile-drawer .panel { counter-reset: drawer-item; }
+.mobile-drawer a::before {
+  content: counter(drawer-item, decimal-leading-zero); position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.08em; color: rgba(226,194,90,0.55);
+  transition: color 0.35s var(--ease-nav);
+}
+.mobile-drawer a::after {
+  content: ""; position: absolute; left: 44px; right: 10px; bottom: -1px; height: 1px;
+  background: linear-gradient(90deg, var(--gold-light), rgba(226,194,90,0));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.5s var(--ease-nav);
+}
+.mobile-drawer a:hover, .mobile-drawer a:focus-visible { background: rgba(255,255,255,0.03); color: var(--text-on-dark); padding-left: 50px; }
+.mobile-drawer a:hover::before, .mobile-drawer a.active::before { color: var(--gold-light); }
+.mobile-drawer a.active { color: var(--gold-light); background: transparent; }
+.mobile-drawer a.active::after, .mobile-drawer a:hover::after, .mobile-drawer a:focus-visible::after { transform: scaleX(1); }
+/* entrada em cascata dos itens */
+.mobile-drawer.open a { animation: drawerItemIn 0.6s var(--ease-nav) both; }
+.mobile-drawer.open a:nth-child(2) { animation-delay: 0.06s; } .mobile-drawer.open a:nth-child(3) { animation-delay: 0.1s; }
+.mobile-drawer.open a:nth-child(4) { animation-delay: 0.14s; } .mobile-drawer.open a:nth-child(5) { animation-delay: 0.18s; }
+.mobile-drawer.open a:nth-child(6) { animation-delay: 0.22s; } .mobile-drawer.open a:nth-child(7) { animation-delay: 0.26s; }
+.mobile-drawer.open a:nth-child(8) { animation-delay: 0.3s; } .mobile-drawer.open a:nth-child(9) { animation-delay: 0.34s; }
+.mobile-drawer.open a:nth-child(10) { animation-delay: 0.38s; }
+@keyframes drawerItemIn { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .mobile-drawer .panel, .mobile-drawer .backdrop, .mobile-drawer.open a { animation: none !important; }
+}
 
 </style>
 </head>
@@ -5058,7 +5262,21 @@ if (typeof module !== "undefined") {
     $all(".main-nav a, .mobile-drawer a").forEach(function (a) { a.classList.remove("active"); });
     var map = { home: "#/", "compare-hub": "#/comparar", compare: "#/comparar", timeline: "#/linha-do-tempo", biblia: "#/biblia", ateismo: "#/ateismo", biblioteca: "#/biblioteca", fontes: "#/fontes", sobre: "#/sobre", humanidade: "#/humanidade" };
     var href = map[route.name];
+    if (route.name === "home" && route.scrollTo === "ritos-section") href = "#/ritos";
     if (href) $all('a[href="' + href + '"]').forEach(function (a) { a.classList.add("active"); });
+    // efeito de chegada no item do menu principal + fio deslizante
+    var prev = $(".main-nav a.is-arriving");
+    if (prev) prev.classList.remove("is-arriving");
+    var cur = $(".main-nav a.active");
+    if (cur) {
+      if (cur.getAttribute("href") !== updateActiveNav._last) {
+        void cur.offsetWidth;
+        cur.classList.add("is-arriving");
+        setTimeout(function () { cur.classList.remove("is-arriving"); }, 950);
+      }
+      updateActiveNav._last = cur.getAttribute("href");
+    }
+    requestAnimationFrame(function () { navIndicatorRest(true); });
   }
 
   // ============================================================
@@ -5289,7 +5507,7 @@ if (typeof module !== "undefined") {
 
       '<section class="ato-conheca" id="ato-conheca"><div class="container">' +
       '<div class="ato-head"><span class="eyebrow eyebrow-act">Ato I · Conheça</span><h2>O que é isto?</h2><p>Vinte tradições religiosas e denominações cristãs, descritas primeiro pelo que cada uma diz de si mesma.</p></div>' +
-      '<blockquote class="manifesto"><span class="dropcap">N</span>ova Aliança não pede que você troque de casa no primeiro clique. Pede que você olhe. Aqui estão vinte tradições religiosas e denominações cristãs, descritas primeiro pelo que cada uma diz de si mesma — sem grito, sem meme, sem "desmascaramos". Depois, duas casas podem ser comparadas lado a lado, eixo por eixo. Por fim, cada ponto pode ser examinado à luz do Novo Testamento: o que o texto afirma, o que ele silencia, e onde a interpretação é honestamente disputada. Um mapa, um critério declarado, uma fonte para cada afirmação — o resto é você quem decide.</blockquote>' +
+      '<blockquote class="manifesto"><span class="dropcap">N</span>ova Aliança não pede que você troque de casa no primeiro clique. Pede que você olhe. Aqui estão vinte tradições religiosas e denominações cristãs, descritas primeiro pelo que cada uma diz de si mesma: sem grito, sem meme, sem "desmascaramos". Depois, duas casas podem ser comparadas lado a lado, eixo por eixo. Por fim, cada ponto pode ser examinado à luz do Novo Testamento: o que o texto afirma, o que ele silencia, e onde a interpretação é honestamente disputada. Um mapa, um critério declarado, uma fonte para cada afirmação. O resto é você quem decide.</blockquote>' +
       '<div class="cast-grid">' + castGrid() + "</div>" +
       "</div></section>" +
 
@@ -5959,7 +6177,7 @@ if (typeof module !== "undefined") {
   // (não fotografias históricas reais), por isso levam legenda "ilustração
   // conceitual" onde aparecem — ver MUSEU4D_CAPTION.
   var MUSEU4D_IMG = {"card-budismo-origem":"assets/museu-4d/card-budismo-origem.webp","card-cristianismo-primitivo":"assets/museu-4d/card-cristianismo-primitivo.webp","card-egito-antigo":"assets/museu-4d/card-egito-antigo.webp","card-islamismo-origem":"assets/museu-4d/card-islamismo-origem.webp","card-judaismo-origens":"assets/museu-4d/card-judaismo-origens.webp","card-mesopotamia":"assets/museu-4d/card-mesopotamia.webp","card-mitologias-ancestrais":"assets/museu-4d/card-mitologias-ancestrais.webp","card-mundo-contemporaneo":"assets/museu-4d/card-mundo-contemporaneo.webp","card-reforma-protestante":"assets/museu-4d/card-reforma-protestante.webp","card-zoroastrismo":"assets/museu-4d/card-zoroastrismo.webp","hero-panorama":"assets/museu-4d/hero-panorama.webp","map-satellite":"assets/museu-4d/map-satellite.webp"};
-  var MUSEU4D_CAPTION = "Ilustração conceitual — não é uma fotografia histórica";
+  var MUSEU4D_CAPTION = "Ilustração conceitual, não uma fotografia histórica";
   // exposto em window para o módulo ES separado (museu-three.js) conseguir
   // ler a URL da imagem do mapa-múndi, já que este arquivo roda dentro de
   // uma IIFE e MUSEU4D_IMG não seria visível de fora sem isso.
@@ -6217,7 +6435,7 @@ if (typeof module !== "undefined") {
     if (banner) {
       var fr = STATE.timelineFocusSlug ? findReligion(STATE.timelineFocusSlug) : null;
       if (fr) {
-        banner.innerHTML = '<span>Modo foco: <strong>' + esc(fr.founder) + "</strong> — " + esc(fr.name) + " e sua linhagem</span>" +
+        banner.innerHTML = '<span>Modo foco: <strong>' + esc(fr.founder) + "</strong> · " + esc(fr.name) + " e sua linhagem</span>" +
           '<button type="button" class="tl-focus-clear" data-action="clear-timeline-focus">Sair do foco ✕</button>';
         banner.hidden = false;
       } else {
@@ -6329,13 +6547,13 @@ if (typeof module !== "undefined") {
       '<div class="tl-hero-copy">' +
       '<span class="tl-eyebrow">Estudo Comparativo · Fundadores</span>' +
       '<h2>Linha do Tempo <span class="gold">dos Fundadores</span></h2>' +
-      '<p>Quem fundou cada religião, quando e onde — organizados por era histórica, com as linhas de ramificação entre tradições. Clique em um cartão para ver os detalhes.</p>' +
+      '<p>Quem fundou cada religião, quando e onde, organizados por era histórica, com as linhas de ramificação entre tradições. Clique em um cartão para ver os detalhes.</p>' +
       '<button type="button" class="tl-search-btn" id="tl-search-trigger" data-action="open-timeline-search" aria-haspopup="dialog">' +
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2" stroke-linecap="round"/></svg>' +
       "Buscar fundador, religião, país..." +
       '<span class="tl-search-kbd"><kbd>Ctrl</kbd><kbd>K</kbd></span>' +
       "</button>" +
-      '<a class="tl-crosslink" href="#/humanidade">Explore também a Linha do Tempo da Humanidade — mitologias, civilizações antigas e origens mais profundas →</a>' +
+      '<a class="tl-crosslink" href="#/humanidade">Explore também a Linha do Tempo da Humanidade: mitologias, civilizações antigas e origens mais profundas →</a>' +
       "</div>" +
       "</div>" +
 
@@ -6357,7 +6575,7 @@ if (typeof module !== "undefined") {
 
       '<div class="tl-legend"><span class="tl-legend-title">Categorias</span><div class="tl-legend-items">' + legend + "</div>" +
       '<span class="tl-legend-title">Confiabilidade histórica</span><div class="tl-legend-items">' + reliabilityLegend + "</div>" +
-      '<p class="tl-legend-footnote">Datas aproximadas — eventos históricos e fundações podem variar conforme diferentes fontes. A confiabilidade histórica é uma classificação automática (baseada no texto cadastrado sobre cada fundador e data), não uma avaliação da veracidade de nenhuma fé.</p>' +
+      '<p class="tl-legend-footnote">Datas aproximadas: eventos históricos e fundações podem variar conforme diferentes fontes. A confiabilidade histórica é uma classificação automática (baseada no texto cadastrado sobre cada fundador e data), não uma avaliação da veracidade de nenhuma fé.</p>' +
       "</div>" +
 
       "</div>" +
@@ -6391,7 +6609,7 @@ if (typeof module !== "undefined") {
       fact("Fundador ou figura central", r.founder) + fact("País de origem", r.originCountry) +
       fact("Chegada ao Brasil", r.brazilArrival) + fact("Categoria", categoryLabel(r.category)) +
       "</div>" +
-      '<p class="tl-reliability-note">' + esc(rel.desc) + " Classificação automática — não é uma avaliação da veracidade de nenhuma fé." +
+      '<p class="tl-reliability-note">' + esc(rel.desc) + " Classificação automática, não uma avaliação da veracidade de nenhuma fé." +
       "</p>" +
       '<div class="tl-modal-actions">' +
       '<button type="button" class="btn btn-outline-light btn-sm" data-action="focus-timeline-node" data-slug="' + r.slug + '">' + (focusOn ? "Sair do foco ✕" : "◎ Focar nesta linhagem") + "</button>" +
@@ -6770,7 +6988,7 @@ if (typeof module !== "undefined") {
       '<section class="mh-page museu-page">' +
       museuHeaderMarkup() +
       '<div class="container mh-container museu-section" id="museu-section-a">' +
-      '<div class="museu-section-label">Opção A — Quando?</div>' +
+      '<div class="museu-section-label">Opção A · Quando?</div>' +
       '<div class="mh-shell">' +
       museuSidebarA() +
       '<main class="mh-main">' +
@@ -6786,7 +7004,7 @@ if (typeof module !== "undefined") {
       "</div></div>" +
 
       '<div class="container mh-container museu-section" id="museu-section-b">' +
-      '<div class="museu-section-label">Opção B — Como se relaciona?</div>' +
+      '<div class="museu-section-label">Opção B · Como se relaciona?</div>' +
       '<div class="mh-shell">' +
       museuSidebarB() +
       '<main class="mh-main">' + museuCanvasWrap("museu-tree-canvas-wrap", "Arraste para girar · roda do mouse para zoom") + museuTreeToolbar() + "</main>" +
@@ -6794,7 +7012,7 @@ if (typeof module !== "undefined") {
       "</div></div>" +
 
       '<div class="container mh-container museu-section" id="museu-section-c">' +
-      '<div class="museu-section-label">Opção C — Onde aconteceu?</div>' +
+      '<div class="museu-section-label">Opção C · Onde aconteceu?</div>' +
       '<div class="mh-shell">' +
       museuSidebarC() +
       '<main class="mh-main">' + museuCanvasWrap("museu-map-canvas-wrap", "Clique num ponto para ver a região") + "</main>" +
@@ -6802,7 +7020,7 @@ if (typeof module !== "undefined") {
       "</div></div>" +
 
       '<div class="container mh-container museu-section" id="museu-section-d">' +
-      '<div class="museu-section-label">Modo 4D — Uma história, três perspectivas</div>' +
+      '<div class="museu-section-label">Modo 4D · Uma história, três perspectivas</div>' +
       '<div class="mh-shell">' +
       museuSidebarD() +
       '<main class="mh-main">' +
@@ -7956,6 +8174,29 @@ if (typeof module !== "undefined") {
     if (!e.target.closest(".glossary-tooltip")) $all(".glossary-tooltip").forEach(function (t) { t.remove(); });
   });
 
+  // Museu Histórico: cada seção (Opção A/B/C/4D) entra em cena ao rolar.
+  // A primeira seção nunca é adiada (já está visível ao abrir a página).
+  function initMuseuStage() {
+    if (window.__museuStageObs) { window.__museuStageObs.disconnect(); window.__museuStageObs = null; }
+    var sections = $all(".museu-section");
+    if (sections.length < 2 || !("IntersectionObserver" in window) || reduceMotionOn()) return;
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("is-on");
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    sections.forEach(function (sec, i) {
+      if (i === 0) return;
+      var r = sec.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.9) return; // já visível: não esconder
+      sec.classList.add("is-staged");
+      obs.observe(sec);
+    });
+    window.__museuStageObs = obs;
+  }
+
   function postRenderHooks(route) {
     if (route.name === "home") requestAnimationFrame(initHomeCinematics);
     else teardownActRail();
@@ -7963,6 +8204,7 @@ if (typeof module !== "undefined") {
     if (route.name === "biblioteca" && !route.topic) initBibliotecaSearch();
     if (route.name === "timeline") { STATE.timelineFocusSlug = null; requestAnimationFrame(renderTimelineConnectors); }
     if (route.name === "humanidade") {
+      initMuseuStage();
       if (window.MuseuThree && window.MuseuThree.ready) {
         requestAnimationFrame(museuInitThreeIfMounted);
       } else {
@@ -7977,6 +8219,70 @@ if (typeof module !== "undefined") {
   // ============================================================
   // INICIALIZAÇÃO
   // ============================================================
+  var NAV_ITEMS = [
+    ["#/", "Início"], ["#/comparar", "Comparar Religiões"], ["#/ritos", "Ritos e Práticas"],
+    ["#/linha-do-tempo", "Linha do Tempo"], ["#/humanidade", "Museu Histórico"], ["#/biblia", "O que diz a Bíblia"],
+    ["#/biblioteca", "Biblioteca Bíblica"], ["#/ateismo", "Ateísmo"], ["#/sobre", "Sobre"],
+  ];
+
+  // ---------- Menu principal: fio deslizante + header compacto ao rolar ----
+  // O .nav-indicator é um único fio dourado posicionado por JS: segue o
+  // item sob o mouse e volta a repousar sob a página ativa. Na troca de
+  // rota, desliza até o novo item e o texto recebe um brilho de chegada.
+  function navIndicatorTo(link, settle) {
+    var nav = $(".main-nav"), ind = $(".nav-indicator");
+    if (!nav || !ind) return;
+    if (!link) { ind.style.width = "0px"; ind.classList.remove("is-ready"); return; }
+    var pad = parseFloat(getComputedStyle(link).paddingLeft) || 7;
+    var navRect = nav.getBoundingClientRect(), r = link.getBoundingClientRect();
+    var w = Math.max(0, r.width - pad * 2);
+    ind.style.width = w + "px";
+    ind.style.transform = "translateX(" + (r.left - navRect.left + pad) + "px)";
+    if (!ind.classList.contains("is-ready")) {
+      // primeiro posicionamento: sem transição, para não "voar" da esquerda
+      ind.style.transition = "none";
+      void ind.offsetWidth;
+      ind.style.transition = "";
+      ind.classList.add("is-ready");
+    }
+    if (settle) {
+      ind.classList.remove("is-settling"); void ind.offsetWidth; ind.classList.add("is-settling");
+    }
+  }
+  function navIndicatorRest(settle) { navIndicatorTo($(".main-nav a.active"), settle); }
+  function initMainNavEffects() {
+    var nav = $(".main-nav");
+    if (!nav) return;
+    nav.addEventListener("mouseover", function (e) {
+      var a = e.target.closest && e.target.closest("a");
+      if (a && nav.contains(a)) navIndicatorTo(a, false);
+    });
+    nav.addEventListener("mouseleave", function () { navIndicatorRest(false); });
+    nav.addEventListener("focusin", function (e) {
+      var a = e.target.closest && e.target.closest("a");
+      if (a) navIndicatorTo(a, false);
+    });
+    nav.addEventListener("focusout", function () { setTimeout(function () { if (!nav.contains(document.activeElement)) navIndicatorRest(false); }, 0); });
+    var resizeT;
+    window.addEventListener("resize", function () { clearTimeout(resizeT); resizeT = setTimeout(function () { navIndicatorRest(false); }, 80); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { navIndicatorRest(false); });
+
+    var header = $(".site-header"), ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var sc = (window.scrollY || window.pageYOffset) > 28;
+        if (header) header.classList.toggle("is-scrolled", sc);
+        ticking = false;
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    // O header muda de altura ao rolar; reposiciona o fio quando a transição termina
+    if (header) header.addEventListener("transitionend", function (e) { if (e.propertyName === "height") navIndicatorRest(false); });
+  }
+
   function renderShell() {
     var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
     STATE.theme = prefersDark ? "dark" : "light";
@@ -7986,8 +8292,8 @@ if (typeof module !== "undefined") {
       '<header class="site-header"><div class="container">' +
       '<a class="brand" href="#/">' + brandSVG() + '<span class="brand-name">Nova<span class="gold">&#8217;</span> Aliança</span></a>' +
       '<nav class="main-nav" aria-label="Navegação principal">' +
-      '<a href="#/">Início</a><a href="#/comparar">Comparar Religiões</a><a href="#/ritos">Ritos e Práticas</a>' +
-      '<a href="#/linha-do-tempo">Linha do Tempo</a><a href="#/humanidade">Museu Histórico</a><a href="#/biblia">O que diz a Bíblia</a><a href="#/biblioteca">Biblioteca Bíblica</a><a href="#/ateismo">Ateísmo</a><a href="#/sobre">Sobre</a>' +
+      NAV_ITEMS.map(function (it) { return '<a href="' + it[0] + '"><span>' + it[1] + "</span></a>"; }).join("") +
+      '<span class="nav-indicator" aria-hidden="true"></span>' +
       "</nav>" +
       '<div class="header-actions">' +
       '<span class="simple-mode-toggle" title="Explicar termos técnicos em linguagem simples"><button class="switch on" data-action="toggle-simple" aria-label="Alternar explicações simples" aria-pressed="true"></button></span>' +
@@ -8170,6 +8476,7 @@ if (typeof module !== "undefined") {
 
   document.addEventListener("DOMContentLoaded", function () {
     renderShell();
+    initMainNavEffects();
     buildSearchIndex();
     renderRoute();
     initHeroParallax();
