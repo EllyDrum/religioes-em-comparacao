@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /home-v2.html
+
+Sitemap: https://novaalianca.info/sitemap.xml
