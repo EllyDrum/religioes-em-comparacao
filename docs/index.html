@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='13' fill='%230d1a33'/%3E%3Cpath d='M24 15.5c-3.4-2.1-7.2-2.6-10.5-1.6v16.4c3.3-1 7.1-.5 10.5 1.6' stroke='%23e2c25a' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M24 15.5c3.4-2.1 7.2-2.6 10.5-1.6v16.4c-3.3-1-7.1-.5-10.5 1.6' stroke='%23e2c25a' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='24' y1='15.5' x2='24' y2='31.9' stroke='%23e2c25a' stroke-width='1.1'/%3E%3Ccircle cx='24' cy='13.2' r='1.15' fill='%23f6e4a8'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&family=Oswald:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,300;1,6..72,400&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    RELIGIÕES EM COMPARAÇÃO - folha de estilos
@@ -18,125 +18,133 @@
    ============================================================ */
 
 :root {
-  --navy-950: #0a1830;
-  --navy-900: #101f3d;
-  --navy-800: #16294f;
-  --navy-700: #1d3461;
-  --navy-600: #2a4478;
-  --gold: #c9a227;
-  --gold-light: #e2c25a;
-  --gold-dark: #9c7d18;
-  --gold-text: #7a611c; /* uso em texto sobre fundo claro - contraste WCAG AA */
+  /* ============================================================
+     DESIGN SYSTEM v2 — "aparato crítico"
+     Papel osso + tinta naval + ouro de fio. Os nomes de variável
+     antigos foram preservados para que toda a folha herde o novo
+     sistema sem reescrita; os valores é que mudaram.
+     ============================================================ */
+  --navy-950: #070C16;
+  --navy-900: #131A28;
+  --navy-800: #1B2436;
+  --navy-700: #23304A;
+  --navy-600: #2E3C57;
+  --gold: #B99433;
+  --gold-light: #D9B458;
+  --gold-dark: #8F6E1C;
+  --gold-text: #8F6E1C;
   --white: #ffffff;
-  --gray-25: #fbfbfd;
-  --gray-50: #f5f6f9;
-  --gray-100: #eceef3;
-  --gray-200: #dde1e9;
-  --gray-300: #c3c9d4;
-  --gray-500: #7c8494;
-  --gray-600: #5b6472;
-  --gray-700: #3f4757;
-  --gray-800: #232a36;
-  --green: #1e7b34;
-  --green-light: #e6f4ea;
-  --amber: #8a5d0a; /* escurecido para contraste de texto AA sobre --amber-light */
-  --amber-light: #fbf1da;
-  --blue: #2563a8;
-  --blue-light: #e6eefa;
-  --red: #a01f1f;
-  --red-light: #fbe9e9;
-  --purple: #5d3f96;
-  --purple-light: #efe9fb;
-  --gray-neutral-light: #eef0f2;
+  --gray-25: #FAFAF7;
+  --gray-50: #F7F7F3;
+  --gray-100: #EDEDE7;
+  --gray-200: #DCDBD1;
+  --gray-300: #C6C5BA;
+  --gray-500: #767D88;
+  --gray-600: #6E7787;
+  --gray-700: #414B5C;
+  --gray-800: #131A28;
+  --green: #245C3C;
+  --green-light: #E4EDE7;
+  --amber: #7A5D12;
+  --amber-light: #F2EDDF;
+  --blue: #2C4A78;
+  --blue-light: #E7EAF1;
+  --red: #8B2F27;
+  --red-light: #F3E8E6;
+  --purple: #4E3F7A;
+  --purple-light: #EAE7F2;
+  --gray-neutral-light: #E8E8E1;
 
-  /* ---- Cores semânticas (hierarquia de estado) ---- */
   --color-primary: var(--navy-900);
-  --color-accent: var(--gold);
+  --color-accent: var(--gold-dark);
   --color-positive: var(--green);
   --color-attention: var(--amber);
   --color-conflict: var(--red);
   --color-neutral: var(--gray-600);
 
-  --bg: var(--gray-50);
-  --bg-elevated: var(--white);
-  --bg-header: linear-gradient(135deg, var(--navy-950), var(--navy-800));
-  --text: var(--gray-800);
-  --text-muted: var(--gray-600);
-  --text-on-dark: #eef1f7;
-  --text-muted-on-dark: #aab3c5;
-  --border: var(--gray-200);
-  --shadow: 0 4px 18px rgba(16, 31, 61, 0.08);
-  --shadow-lg: 0 12px 34px rgba(16, 31, 61, 0.14);
-  --radius-sm: 8px;
-  --radius: 14px;
-  --radius-lg: 20px;
-  --container: 1280px;
+  --bg: #EDEDE7;
+  --bg-elevated: #F7F7F3;
+  --bg-header: #070C16;
+  --text: #131A28;
+  --text-muted: #414B5C;
+  --text-on-dark: #EDEBE0;
+  --text-muted-on-dark: #A9B2C0;
+  --border: #DCDBD1;
+  --border-strong: #C6C5BA;
+  --shadow: 0 1px 0 #DCDBD1, 0 18px 40px -30px rgba(19,26,40,.42);
+  --shadow-lg: 0 1px 0 #DCDBD1, 0 40px 80px -46px rgba(19,26,40,.55);
+  --radius-sm: 1px;
+  --radius: 2px;
+  --radius-lg: 3px;
+  --container: 1240px;
 
-  /* ---- Escala de espaçamento (múltiplos de 4px) ---- */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-7: 32px;
-  --space-8: 40px;
-  --space-9: 56px;
-  --space-10: 72px;
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
+  --space-9: 96px; --space-10: 136px;
 
-  /* ---- Escala tipográfica responsiva (clamp: mín, fluido, máx) ---- */
-  --fs-h1: clamp(28px, 4vw + 10px, 46px);
-  --fs-h2: clamp(21px, 1.6vw + 14px, 30px);
-  --fs-h3: clamp(16px, 0.5vw + 14px, 18.5px);
-  --fs-h4: clamp(13.5px, 0.2vw + 13px, 15px);
-  --fs-body: clamp(13.5px, 0.15vw + 13px, 14.5px);
-  --fs-lead: clamp(15px, 0.4vw + 14px, 17.5px);
-  --fs-small: 12.5px;
-  --fs-caption: 11.5px;
+  --fs-h1: clamp(40px, 6.6vw, 78px);
+  --fs-h2: clamp(28px, 3.4vw, 44px);
+  --fs-h3: clamp(20px, 1.8vw, 26px);
+  --fs-h4: clamp(16px, 1.1vw, 18px);
+  --fs-body: 17px;
+  --fs-lead: clamp(17.5px, 1.35vw, 20px);
+  --fs-small: 14.5px;
+  --fs-caption: 13px;
   --fs-label: 11px;
-  --fs-badge: 11.5px;
-  --lh-heading: 1.2;
-  --lh-body: 1.6;
+  --fs-badge: 10.5px;
+  --lh-heading: 1.12;
+  --lh-body: 1.62;
 
-  /* ---- Touch target mínimo recomendado ---- */
   --tap-min: 44px;
 
-  --dur-fast: 0.15s;
-  --dur-base: 0.22s;
-  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
-  --ease-nav: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: .18s;
+  --dur-base: .34s;
+  --dur-slow: .62s;
+  --dur-cine: .95s;
+  --ease: cubic-bezier(.22,1,.36,1);
+  --ease-nav: cubic-bezier(.22,1,.36,1);
 
-  /* ---- Direção de arte cinematográfica ("céu") — créditos/eyebrows/
-     nav em versalete rastreado, corpo teológico em serifa, referência
-     bíblica em monoespaçada. Ver PROMPT-NOVA-ALIANCA-REVISADO.md. ---- */
-  --f-credit: "Oswald", "Inter", -apple-system, sans-serif;
-  --f-serif: "Source Serif 4", Georgia, serif;
-  --f-mono: "IBM Plex Mono", "Courier New", monospace;
+  --f-credit: "Newsreader", "Times New Roman", serif;
+  --f-serif: "Gentium Book Plus", Georgia, serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 
 [data-theme="dark"] {
-  --bg: #0c1526;
-  --bg-elevated: #121e35;
-  --bg-header: linear-gradient(135deg, #060d1c, #0e1c38);
-  --text: #e7eaf2;
-  --text-muted: #a6afc2;
-  --text-on-dark: #eef1f7;
-  --text-muted-on-dark: #9aa4bb;
-  --border: #22304d;
-  --shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.45);
-  --gray-50: #0f1a30;
-  --gray-100: #16233d;
-  --gray-200: #223257;
-  --green-light: #10301b;
-  --amber-light: #33270a;
-  --amber: #d9a13e;
-  --blue-light: #0f2440;
-  --red-light: #391212;
-  --red: #e2685f;
-  --purple-light: #241a3d;
-  --gold-text: var(--gold-light);
-  --gray-neutral-light: #1c2740;
+  --bg: #0B111C;
+  --bg-elevated: #121A28;
+  --bg-header: #04080F;
+  --text: #E8E6DB;
+  --text-muted: #AFB6C3;
+  --text-on-dark: #EDEBE0;
+  --text-muted-on-dark: #A9B2C0;
+  --border: #1C2433;
+  --border-strong: #2B3549;
+  --shadow: 0 1px 0 #1C2433, 0 22px 48px -32px rgba(0,0,0,.85);
+  --shadow-lg: 0 1px 0 #1C2433, 0 44px 90px -50px rgba(0,0,0,.95);
+  --gray-25: #0E1524;
+  --gray-50: #121A28;
+  --gray-100: #17202F;
+  --gray-200: #202A3C;
+  --gray-300: #2B3549;
+  --gray-500: #7E8795;
+  --gray-600: #AFB6C3;
+  --gray-700: #C8CDD7;
+  --gray-800: #E8E6DB;
+  --green: #74C295;
+  --green-light: #12291D;
+  --amber: #D7B05B;
+  --amber-light: #2A2412;
+  --blue: #7FA6DA;
+  --blue-light: #121E30;
+  --red: #E28C82;
+  --red-light: #2C1614;
+  --purple: #B39DE0;
+  --purple-light: #1E1930;
+  --gold: #D9B458;
+  --gold-light: #E7CB84;
+  --gold-dark: #A98A3C;
+  --gold-text: #D9B458;
+  --gray-neutral-light: #18202E;
 }
 
 /* Redução de movimento: desativa/encurta animações e transições
@@ -1004,7 +1012,7 @@ table.similarity-table th { background: var(--gray-50); font-size: var(--fs-labe
 .mh-header-brand { display: flex; align-items: center; gap: 12px; flex: 0 0 auto; }
 .mh-header-brand svg { width: 28px; height: 28px; color: var(--mh-gold); flex: 0 0 auto; }
 .mh-header-titles { display: flex; flex-direction: column; line-height: 1.2; }
-.mh-title { font-family: "Playfair Display", serif; font-size: 17px; font-weight: 700; color: var(--mh-text); }
+.mh-title { font-family: "Newsreader", "Times New Roman", serif; font-size: 17px; font-weight: 700; color: var(--mh-text); }
 .mh-subtitle { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mh-text-mute); }
 .mh-header-search { flex: 1 1 260px; max-width: 420px; display: flex; align-items: center; gap: 8px; background: var(--mh-glass); border: 1px solid var(--mh-line); border-radius: 999px; padding: 9px 16px; }
 .mh-header-search svg { width: 16px; height: 16px; color: var(--mh-blue); flex: 0 0 auto; }
@@ -1042,7 +1050,7 @@ table.similarity-table th { background: var(--gray-50); font-size: var(--fs-labe
 .mh-main { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .mh-hero { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--mh-line); padding: 22px 24px; min-height: 150px; display: flex; flex-direction: column; justify-content: flex-end; }
 .mh-skyline { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.9; }
-.mh-hero-title { position: relative; z-index: 1; font-family: "Playfair Display", serif; font-size: clamp(20px, 2.6vw, 28px); font-weight: 700; color: var(--mh-text); text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
+.mh-hero-title { position: relative; z-index: 1; font-family: "Newsreader", "Times New Roman", serif; font-size: clamp(20px, 2.6vw, 28px); font-weight: 700; color: var(--mh-text); text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
 .mh-hero-subtitle { position: relative; z-index: 1; font-size: 11px; letter-spacing: 0.14em; color: var(--mh-gold); font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
 .mh-era-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
 .mh-era-chip { font-size: 11.5px; font-weight: 700; padding: 7px 13px; border-radius: 999px; border: 1px solid var(--mh-line); background: var(--mh-glass); color: var(--mh-text-soft); }
@@ -1093,7 +1101,7 @@ table.similarity-table th { background: var(--gray-50); font-size: var(--fs-labe
 /* ---- detail panel ---- */
 .mh-detail { background: var(--mh-glass); border: 1px solid var(--mh-line); border-radius: 16px; padding: 18px; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
 .mh-detail-badge { display: inline-flex; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; padding: 4px 10px; border-radius: 999px; color: #05070a; background: var(--region-c, var(--mh-blue)); }
-.mh-detail-name { font-family: "Playfair Display", serif; font-size: 19px; margin: 10px 0 2px; color: var(--mh-text); line-height: 1.25; }
+.mh-detail-name { font-family: "Newsreader", "Times New Roman", serif; font-size: 19px; margin: 10px 0 2px; color: var(--mh-text); line-height: 1.25; }
 .mh-detail-period { font-family: "SFMono-Regular", Consolas, monospace; font-size: 12px; color: var(--mh-text-mute); margin: 0 0 12px; }
 .mh-detail-emblem-wrap { width: 100%; height: 76px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, color-mix(in srgb, var(--region-c, #4da3ff) 20%, transparent), transparent); border: 1px solid var(--mh-line); margin-bottom: 14px; }
 .mh-detail-emblem-wrap svg { width: 30px; height: 30px; color: var(--region-c, var(--mh-blue)); }
@@ -2464,6 +2472,375 @@ body { min-height: 100vh; display: flex; flex-direction: column; }
 .category-strip .category-chip:hover::after { color: var(--gold-light); }
 @media (max-width: 720px) { .category-strip .category-scroll { grid-auto-columns: minmax(148px, 160px); } }
 
+/* ==================================================================
+   CAMADA v2 — identidade aplicada a todas as telas
+   Carregada depois da folha original; reescreve apenas o que
+   caracteriza a marca: tipografia, botões, superfícies, heróis,
+   cartazes, etiquetas, tabelas, cabeçalho e rodapé.
+   ================================================================== */
+
+body { font-family: var(--f-serif); font-size: var(--fs-body); line-height: var(--lh-body); letter-spacing: 0; }
+h1, h2, h3, h4, h5 { font-family: var(--f-credit); font-weight: 500; letter-spacing: -.014em; text-wrap: balance; }
+h1 { font-weight: 400; letter-spacing: -.03em; }
+.lead, .sub { font-family: var(--f-serif); }
+.eyebrow, .label, .v-label, .mh-filter-label, .tl-filter-label, .museu-label,
+.mh-footer-label, .tl-eyebrow, .compare-eyebrow, .mh-lens-kicker {
+  font-family: var(--f-credit); letter-spacing: .2em; font-weight: 600; text-transform: uppercase;
+}
+.ref, .year, .count, .steps-n, .mh-tick-label, .tl-card-founded, .museu4d-date-readout {
+  font-family: var(--f-mono); font-variant-numeric: tabular-nums;
+}
+
+/* ---- fio duplo de abertura de seção ---- */
+.section-head { border-bottom: 1px solid var(--border-strong); padding-bottom: var(--space-4); align-items: flex-end; }
+
+/* ---- botões: tinta, sem gradiente e sem brilho ---- */
+.btn {
+  border-radius: var(--radius); font-family: var(--f-credit); font-size: 12px; font-weight: 600;
+  letter-spacing: .14em; padding: 13px 22px; min-height: 46px; border: 1px solid transparent;
+  position: relative; overflow: hidden; box-shadow: none !important;
+  transition: color var(--dur-base) var(--ease), transform var(--dur-base) var(--ease), border-color var(--dur-base);
+}
+.btn::after { display: none !important; }
+.btn > * { position: relative; z-index: 1; }
+.btn::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; background: currentColor;
+  opacity: 0; transform: translateY(101%); transition: transform var(--dur-base) var(--ease);
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-gold, .btn-cta-primary {
+  background: var(--navy-900) !important; color: var(--bg) !important;
+  border-color: var(--navy-900) !important; text-shadow: none !important;
+}
+.btn-gold:hover, .btn-cta-primary:hover { background: transparent !important; color: var(--navy-900) !important; }
+[data-theme="dark"] .btn-gold, [data-theme="dark"] .btn-cta-primary { background: var(--gold-light) !important; color: #06101E !important; border-color: var(--gold-light) !important; }
+[data-theme="dark"] .btn-gold:hover, [data-theme="dark"] .btn-cta-primary:hover { background: transparent !important; color: var(--gold-light) !important; }
+.btn-navy { background: var(--navy-900); color: var(--text-on-dark); border-color: var(--navy-900); }
+.btn-navy:hover { background: transparent; color: var(--text); }
+.btn-outline, .btn-outline-light {
+  background: transparent !important; border: 1px solid rgba(237,235,224,.34) !important;
+  color: var(--text-on-dark) !important; backdrop-filter: none !important;
+}
+.btn-outline:hover, .btn-outline-light:hover { border-color: var(--gold-light) !important; }
+.btn-sm { padding: 9px 15px; min-height: 38px; font-size: 11px; }
+.btn-icon, .icon-btn {
+  border-radius: var(--radius) !important; border: 1px solid var(--border-strong) !important;
+  background: transparent !important; box-shadow: none !important;
+}
+
+/* ---- superfícies: fio em vez de sombra ---- */
+.card, .info-card, .summary-card, .compare-card, .search-result-card, .worldview-card,
+.bib-topic-card, .nt-panel, .source-item, .ai-ask-panel,
+.mobile-ritual-card, .bib-promo-card, .modal {
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow) !important;
+  border: 1px solid var(--border) !important;
+  background: var(--bg-elevated);
+}
+.card:hover, .info-card:hover { transform: none; }
+
+/* ---- herói: banda de tinta, sem foto de banco ---- */
+.hero, .search-hero, .bib-search-hero, .tl-hero, .museu-hero, .mh-hero, .religion-hero {
+  background: var(--navy-950) !important;
+  color: var(--text-on-dark);
+  position: relative; isolation: isolate; overflow: hidden;
+}
+.hero-bg-photo, .hero-bg-particles, .hero-bg-dots, .hero-bg-atmosphere, .hero-bible-aura,
+.hero-bible-rays, .hero-dust, .cartaz-shine, .tl-hero-bg, .tl-atmosphere, .mh-skyline,
+.hero-letterbox-top, .hero-letterbox-bottom, #hero-bible-canvas, #curtain, .celestial-cursor-canvas {
+  display: none !important;
+}
+.hero::before, .tl-hero::before, .museu-hero::before, .mh-hero::before, .search-hero::before, .bib-search-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .5;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(185,148,51,.22) 0 1px, transparent 1px 88px),
+    repeating-linear-gradient(0deg,  rgba(185,148,51,.14) 0 1px, transparent 1px 88px);
+  -webkit-mask-image: radial-gradient(130% 80% at 78% 0%, #000 0%, transparent 72%);
+  mask-image: radial-gradient(130% 80% at 78% 0%, #000 0%, transparent 72%);
+}
+.hero::after, .tl-hero::after, .mh-hero::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 170px; z-index: 0; pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(185,148,51,.09), transparent);
+  animation: v2beam 11s linear infinite;
+}
+@keyframes v2beam { 0% { transform: translateY(-180px) } 100% { transform: translateY(calc(100% + 180px)) } }
+.hero > *, .tl-hero > *, .museu-hero > *, .mh-hero > *, .search-hero > *, .bib-search-hero > * { position: relative; z-index: 1; }
+.hero h1, .tl-hero h1, .museu-hero h1, .mh-hero-title { color: var(--text-on-dark); }
+
+/* ---- o banner de quatro cartões genéricos sai de cena ---- */
+.trust-grid { display: none !important; }
+
+/* ---- cartazes das tradições: ficha tipográfica, sem foto desbotada ---- */
+.cartaz {
+  aspect-ratio: auto !important; background-image: none !important; background: var(--bg-elevated) !important;
+  border: 1px solid var(--border); border-left: 3px solid var(--rel-c, var(--border-strong));
+  border-radius: var(--radius) !important; box-shadow: none !important; padding: 16px 16px 15px 18px;
+  min-height: 0; display: grid; gap: 6px; align-content: start;
+  transition: background var(--dur-base) var(--ease), transform var(--dur-base) var(--ease), border-left-width var(--dur-base) var(--ease);
+}
+.cartaz:hover { transform: translateX(2px); background: color-mix(in srgb, var(--gold) 8%, var(--bg-elevated)) !important; border-left-width: 5px; }
+.cartaz-bar { position: static !important; background: none !important; padding: 0 !important; display: grid; gap: 4px; }
+.cartaz-bar * { color: var(--text) !important; text-shadow: none !important; }
+.cartaz-stamp {
+  position: static !important; justify-self: start; font-family: var(--f-credit); font-size: 10px;
+  letter-spacing: .2em; text-transform: uppercase; font-weight: 600; padding: 3px 7px; border-radius: 0 !important;
+  box-shadow: none !important; backdrop-filter: none !important;
+}
+.cast-grid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)) !important; }
+
+/* ---- etiquetas, chips e distintivos ---- */
+.badge, .status-pill, .tag, .bib-chip, .tl-chip, .mh-era-chip, .compare-nav-chip,
+.arquivo-pill, .version-chip, .bib-version-tag, .dossier-tag {
+  border-radius: var(--radius) !important; font-family: var(--f-credit);
+  letter-spacing: .14em; border-width: 1px !important; box-shadow: none !important;
+}
+.category-chip {
+  border-radius: var(--radius) !important; background: transparent !important;
+  border: 0 !important; border-bottom: 1px solid var(--border) !important; border-right: 1px solid var(--border) !important;
+  padding: 18px 16px !important; transition: background var(--dur-base) var(--ease), padding-left var(--dur-base) var(--ease);
+}
+.category-chip:hover { background: color-mix(in srgb, var(--gold) 8%, transparent) !important; padding-left: 24px !important; transform: none !important; }
+.category-chip .emoji { font-size: 0; }
+.category-chip .emoji svg { width: 26px; height: 26px; stroke: var(--gold-text); fill: none; stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; display: block; }
+.category-chip strong { font-family: var(--f-credit); letter-spacing: .13em; font-size: 13px; }
+
+/* ---- ícones de rito e de tema ---- */
+.mrc-icon svg, .cmc-icon svg, .bib-topic-icon svg, .bib-promo-icon svg, .src-icon svg, .trust-icon svg {
+  width: 22px; height: 22px; stroke: var(--gold-text); fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; display: block;
+}
+.bib-topic-icon, .bib-promo-icon, .src-icon, .mrc-icon, .cmc-icon {
+  background: transparent !important; box-shadow: none !important; border-radius: 0 !important;
+}
+.ic svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; vertical-align: -3px; }
+
+/* ---- tabelas ---- */
+table th { font-family: var(--f-credit); letter-spacing: .1em; text-transform: uppercase; font-size: 11px; font-weight: 600; }
+.comparativo-cell, .status-cell, .pos-cell { font-family: var(--f-mono); }
+.table-scroll, .compare-table-scroll { border-radius: var(--radius) !important; }
+.col-active { background: color-mix(in srgb, var(--gold) 9%, transparent) !important; }
+
+/* ---- cabeçalho ---- */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: color-mix(in srgb, var(--bg) 88%, transparent) !important;
+  backdrop-filter: blur(16px) saturate(1.2);
+  border-bottom: 1px solid var(--border);
+  box-shadow: none !important;
+}
+.site-header .brand-name, .site-header .main-nav a, .site-header .icon-btn, .site-header .theme-label { color: var(--text) !important; }
+.site-header .main-nav a { font-family: var(--f-credit); text-transform: uppercase; letter-spacing: .12em; font-size: 12px; }
+.nav-indicator { background: var(--gold) !important; box-shadow: none !important; }
+.brand-icon { filter: none !important; }
+
+/* barra de progresso de leitura */
+#v2-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 300; pointer-events: none; }
+#v2-progress i { display: block; height: 100%; width: 0; background: var(--gold); box-shadow: 0 0 10px 1px color-mix(in srgb, var(--gold) 70%, transparent); }
+
+/* ---- rodapé ---- */
+footer, .site-footer { background: var(--navy-950) !important; }
+.footer-links a { font-family: var(--f-credit); }
+.footer-bottom .verse { font-family: var(--f-serif); }
+
+/* ---- menu mobile em tela cheia ---- */
+.mobile-drawer .panel {
+  width: 100% !important; max-width: none !important; background: var(--bg) !important;
+  padding: 84px var(--space-5) var(--space-6) !important; border: 0 !important;
+}
+.mobile-drawer .panel a {
+  font-family: var(--f-credit); font-size: clamp(22px, 6vw, 32px) !important; text-transform: none !important;
+  letter-spacing: -.015em !important; padding: 14px 0 !important; border-bottom: 1px solid var(--border);
+  min-height: 56px; display: flex; align-items: center;
+}
+
+/* ---- entrada em cena a cada troca de rota ---- */
+@keyframes v2rise { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
+#app > section, #app > .section, #app > div > section, .compare-page > *, .tl-grid, .mh-shell {
+  animation: v2rise var(--dur-cine) var(--ease) both;
+}
+#app > *:nth-child(2) { animation-delay: .05s }
+#app > *:nth-child(3) { animation-delay: .1s }
+#app > *:nth-child(4) { animation-delay: .15s }
+#app > *:nth-child(n+5) { animation-delay: .2s }
+
+/* ---- foco visível ---- */
+:where(a, button, select, input, [tabindex]):focus-visible { outline: 2px solid var(--gold) !important; outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  #app > section, #app > .section, #app > div > section, .compare-page > *, .tl-grid, .mh-shell { animation: none !important; }
+  .hero::after, .tl-hero::after, .mh-hero::after { display: none !important; }
+}
+@media (max-width: 560px) {
+  .cast-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ==================================================================
+   CAMADA v2 — correções: escopos próprios, cabeçalho e trilha
+   ================================================================== */
+
+/* ---- Museu Histórico: paleta própria realinhada ao sistema v2 ---- */
+.mh-page {
+  --mh-bg: #070C16 !important;
+  --mh-surface: #0E1624 !important;
+  --mh-glass: rgba(14,22,36,.80) !important;
+  --mh-line: #26314A !important;
+  --mh-gold: #D9B458 !important;
+  --mh-gold-bright: #E7CB84 !important;
+  --mh-blue: #D9B458 !important;
+  --mh-cyan: #E7CB84 !important;
+  --mh-violet: #B99433 !important;
+  --mh-emerald: #74C295 !important;
+  --mh-text: #EDEBE0 !important;
+  --mh-text-soft: #A9B2C0 !important;
+}
+.mh-detail, .mh-card, .mh-sidebar, .mh-timeline, .mh-legend, .atlas-shell, .mh-lens-head {
+  border-radius: var(--radius) !important;
+  box-shadow: none !important;
+  border: 1px solid var(--mh-line) !important;
+  backdrop-filter: none !important;
+}
+.mh-detail-name, .mh-card-name, .mh-title, .mh-hero-title { font-family: var(--f-credit) !important; }
+.mh-era-chip, .mh-lens-tab, .mh-header-btn, .mh-nav-item, .mh-filter-label, .mh-select {
+  border-radius: var(--radius) !important; font-family: var(--f-credit);
+}
+
+/* ---- Linha do Tempo: mesma correção de escopo ---- */
+.tl-card, .tl-panel, .tl-node-modal, .tl-palette {
+  border-radius: var(--radius) !important; box-shadow: none !important;
+  border: 1px solid var(--border-strong) !important;
+}
+.tl-card-name, .tl-col-title, .tl-panel-title { font-family: var(--f-credit) !important; }
+
+/* ---- Cabeçalho: nada de sobreposição entre menu e controles ---- */
+.site-header .container { gap: var(--space-3); }
+.main-nav { gap: 0; overflow: visible; }
+.main-nav a { padding: 8px 7px !important; font-size: 11.5px !important; letter-spacing: .1em !important; }
+.header-actions { flex-shrink: 0; margin-left: auto; }
+@media (max-width: 1340px) { .simple-mode-toggle { display: none !important; } }
+@media (max-width: 1180px) { .main-nav { display: none !important; } .hamburger { display: inline-flex !important; } }
+
+/* interruptor de modo simples: tinta e ouro, sem verde de sistema */
+.switch { width: 38px; height: 20px; border-radius: 0 !important; background: var(--gray-300) !important; border: 1px solid var(--border-strong) !important; }
+.switch[aria-pressed="true"] { background: var(--navy-900) !important; border-color: var(--navy-900) !important; }
+.switch::after { border-radius: 0 !important; box-shadow: none !important; }
+
+/* ---- Trilha dos atos: à esquerda, discreta, como na home nova ---- */
+.act-rail {
+  right: auto !important; left: 20px !important; gap: 20px !important;
+  font-family: var(--f-credit);
+}
+.act-rail .dot, .act-rail i { background: var(--gold) !important; }
+@media (max-width: 1439px) { .act-rail { display: none !important; } }
+
+/* ---- Abertura: sem sombra de texto e sem vão morto ---- */
+.hero { padding-bottom: var(--space-7) !important; }
+.hero-grid { align-items: center !important; }
+.hero-copy h1, .hero h1, .tl-hero h1 { text-shadow: none !important; }
+.hero-verbs, .hero-actions { margin-bottom: 0 !important; }
+
+/* ---- Cartaz: carimbo legível nos dois temas ---- */
+.cartaz-stamp { background: var(--gray-100) !important; color: var(--text) !important; border: 1px solid var(--border-strong); }
+
+/* ---- Campo de busca e formulários ---- */
+input[type="text"], input[type="search"], input[type="number"], select, textarea {
+  border-radius: var(--radius) !important; font-family: var(--f-serif);
+}
+
+/* ==================================================================
+   CAMADA v2 — ajustes finais de cabeçalho, trilha e abertura
+   ================================================================== */
+@media (max-width: 1500px) { .simple-mode-toggle { display: none !important; } }
+.main-nav a { padding: 8px 6px !important; font-size: 11px !important; }
+.header-actions { gap: 6px !important; }
+.act-rail { display: none !important; }
+@media (min-width: 1560px) { .act-rail { display: flex !important; left: 16px !important; } }
+.hero-bible-spacer { display: none !important; }
+.hero { padding-bottom: var(--space-6) !important; }
+
+/* ==================================================================
+   CAMADA v2 — ícones do cabeçalho e cartões de tema
+   ================================================================== */
+#theme-icon svg, .icon-btn svg, .mh-header-btn svg, .btn svg, .src-icon svg {
+  width: 17px; height: 17px; stroke: currentColor; fill: none;
+  stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; display: block;
+}
+#theme-icon { display: grid; place-items: center; }
+.btn svg { width: 14px; height: 14px; }
+
+/* o cartão de tema é numerado e rotulado: o ícone repetido não informa nada */
+.bib-topic-icon { display: none !important; }
+.bib-topic-tradition {
+  background: transparent !important; border: 1px solid var(--border-strong) !important;
+  border-radius: var(--radius) !important; font-family: var(--f-credit);
+  letter-spacing: .12em; text-transform: uppercase; font-size: 10px; color: var(--text-muted) !important;
+}
+.bib-topic-card { transition: background var(--dur-base) var(--ease), transform var(--dur-base) var(--ease); }
+.bib-topic-card:hover { background: color-mix(in srgb, var(--gold) 7%, var(--bg-elevated)); transform: translateY(-2px); }
+.bib-topic-cta { font-family: var(--f-credit); letter-spacing: .12em; text-transform: uppercase; font-size: 11px; }
+
+/* ==================================================================
+   CAMADA v2 — ícones autocontidos, contraste do dossiê
+   ================================================================== */
+.category-chip .emoji svg { width: 26px; height: 26px; color: var(--gold-text); }
+.comparativo-cell svg, table svg, .mrc-icon svg, .cmc-icon svg { width: 1.2em; height: 1.2em; color: var(--gold-text); }
+.rituals-desktop svg, .table-scroll svg { max-width: 22px; max-height: 22px; }
+.nt-panel svg, .nt-panel-head svg { width: 20px; height: 20px; color: var(--gold-text); }
+
+/* contraste do dossiê e das etiquetas de grupo */
+.nt-panel h3, .nt-panel-head h3, .nt-panel-head strong { color: var(--text) !important; }
+.nt-group > summary, .nt-group-body, .nt-panel-conclusion, .nt-panel p { color: var(--text-muted) !important; }
+.nt-group > summary strong, .nt-panel-conclusion strong { color: var(--text) !important; }
+.nt-classification {
+  border-radius: var(--radius) !important; font-family: var(--f-credit);
+  letter-spacing: .14em; text-transform: uppercase; font-size: 10.5px; font-weight: 600;
+  box-shadow: none !important; background: transparent !important;
+}
+.nt-panel-divider { background: var(--border) !important; }
+
+/* ==================================================================
+   CAMADA v2 — contraste de painéis e botões contornados
+   ================================================================== */
+[class*="nt-panel"] h3, [class*="nt-panel"] h4, [class*="nt-panel"] strong { color: var(--text) !important; }
+[class*="nt-panel"] summary, [class*="nt-panel"] p, [class*="nt-panel"] li { color: var(--text-muted) !important; }
+[class*="nt-panel"] .ref, [class*="nt-panel"] .verse-block .ref { color: var(--gold-text) !important; }
+
+.btn-outline { color: var(--text) !important; border-color: var(--border-strong) !important; }
+.btn-outline:hover { border-color: var(--navy-900) !important; }
+.hero .btn-outline, .tl-hero .btn-outline, .museu-hero .btn-outline,
+.mh-hero .btn-outline, .search-hero .btn-outline, .bib-search-hero .btn-outline,
+.btn-outline-light {
+  color: var(--text-on-dark) !important; border-color: rgba(237,235,224,.34) !important;
+}
+.hero .btn-outline:hover, .btn-outline-light:hover { border-color: var(--gold-light) !important; }
+
+.btn.btn-outline, .btn.btn-cta-secondary { color: var(--text) !important; border-color: var(--border-strong) !important; }
+.hero .btn.btn-outline, .tl-hero .btn.btn-outline, .museu-hero .btn.btn-outline,
+.mh-hero .btn.btn-outline, .search-hero .btn.btn-outline, .bib-search-hero .btn.btn-outline,
+.btn.btn-outline-light { color: var(--text-on-dark) !important; border-color: rgba(237,235,224,.34) !important; }
+
+/* ==================================================================
+   CAMADA v2 — correção final: btn-outline-light é o contorno CLARO
+   (fundo claro, tinta escura). Só inverte dentro de blocos escuros.
+   ================================================================== */
+.btn.btn-outline-light { color: var(--text) !important; border-color: var(--border-strong) !important; background: transparent !important; }
+.btn.btn-outline-light:hover { border-color: var(--navy-900) !important; color: var(--text) !important; }
+.hero .btn.btn-outline-light, .tl-hero .btn.btn-outline-light, .museu-hero .btn.btn-outline-light,
+.mh-hero .btn.btn-outline-light, .mh-page .btn.btn-outline-light, .search-hero .btn.btn-outline-light,
+.bib-search-hero .btn.btn-outline-light, .modal.tl-node-modal .btn.btn-outline-light,
+.hero .btn.btn-outline, .tl-hero .btn.btn-outline, .museu-hero .btn.btn-outline,
+.mh-hero .btn.btn-outline, .search-hero .btn.btn-outline, .bib-search-hero .btn.btn-outline {
+  color: var(--text-on-dark) !important; border-color: rgba(237,235,224,.34) !important;
+}
+.hero .btn.btn-outline:hover, .hero .btn.btn-outline-light:hover,
+.mh-page .btn.btn-outline-light:hover { border-color: var(--gold-light) !important; color: var(--text-on-dark) !important; }
+
+.cartaz-bar, .cartaz-bar .name, .cartaz-bar .credit, .cartaz .name, .cartaz .credit { color: var(--text) !important; }
+.cartaz-bar .credit { color: var(--gold-text) !important; }
+.cartaz-stamp.badge { position: static !important; background: var(--gray-100) !important; backdrop-filter: none !important; }
+
+.cartaz { border-left-color: var(--rel-c, var(--cartaz-c, var(--gold))) !important; }
+.cast-grid .cartaz:nth-child(odd) { --cartaz-c: var(--navy-700); }
+.cast-grid .cartaz:nth-child(even) { --cartaz-c: var(--gold-dark); }
+
 </style>
 </head>
 <body>
@@ -3016,17 +3393,17 @@ if (typeof module !== "undefined") module.exports = { RELIGIONS };
 // ============================================================
 
 const CLASSIFICATIONS = {
-  ensinado: { label: "Explicitamente ensinado", icon: "🟢", color: "#1e7b34" },
-  compativel: { label: "Compatível com o Novo Testamento", icon: "🟢", color: "#1e7b34" },
-  neutro: { label: "Semelhante, mas com significado diferente", icon: "🟡", color: "#b8860b" },
-  semfundamento: { label: "Não há fundamento explícito", icon: "⚪", color: "#8a8a8a" },
-  controverso: { label: "Controvérsia interpretativa", icon: "🟠", color: "#c65b13" },
-  conflito: { label: "Entra em conflito com ensino explícito do Novo Testamento", icon: "🔴", color: "#b22222" },
+  ensinado: { label: "Explicitamente ensinado", icon: "●", color: "#1e7b34" },
+  compativel: { label: "Compatível com o Novo Testamento", icon: "●", color: "#1e7b34" },
+  neutro: { label: "Semelhante, mas com significado diferente", icon: "◐", color: "#b8860b" },
+  semfundamento: { label: "Não há fundamento explícito", icon: "○", color: "#8a8a8a" },
+  controverso: { label: "Controvérsia interpretativa", icon: "◑", color: "#c65b13" },
+  conflito: { label: "Entra em conflito com ensino explícito do Novo Testamento", icon: "✕", color: "#b22222" },
 };
 
 const RITUALS = [
   {
-    id: "agua", name: "Água e Purificação", icon: "💧", category: "purificacao",
+    id: "agua", name: "Água e Purificação", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4.6c3.2 3.8 5 6.7 5 9a5 5 0 0 1-10 0c0-2.3 1.8-5.2 5-9Z\"/><path d=\"M4 21.4c2-1.2 3.4-1.2 5.4 0s3.4 1.2 5.4 0 3.4-1.2 5.4 0\"/></svg>", category: "purificacao",
     description: "Uso ritual da água - água benta, água consagrada, água fluidificada, banhos de ervas, abluções, imersões - como meio de purificação, iniciação ou consagração. (O batismo cristão tem linha própria, mais abaixo.)",
     nt: {
       supportTexts: [
@@ -3045,7 +3422,7 @@ const RITUALS = [
     },
   },
   {
-    id: "roupa-branca", name: "Roupa Branca", icon: "🤍", category: "simbolico",
+    id: "roupa-branca", name: "Roupa Branca", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4.4 17 11l7 .6-5.3 4.6 1.6 6.8L14 19.4 8.7 23l1.6-6.8L5 11.6 12 11Z\"/></svg>", category: "simbolico",
     description: "Uso de vestes brancas como símbolo de pureza, consagração ou distinção ritual.",
     nt: {
       supportTexts: [
@@ -3062,7 +3439,7 @@ const RITUALS = [
     },
   },
   {
-    id: "oracao", name: "Oração e Invocação", icon: "🙏", category: "comunicacao",
+    id: "oracao", name: "Oração e Invocação", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4.6 7.4h18.8v11.2H12.6L7.4 22.6v-4H4.6Z\"/><path d=\"M9 12.6h10\"/></svg>", category: "comunicacao",
     description: "Comunicação verbal ou mental dirigida a uma divindade, espírito ou entidade espiritual.",
     nt: {
       supportTexts: [
@@ -3082,7 +3459,7 @@ const RITUALS = [
     },
   },
   {
-    id: "jejum", name: "Jejum", icon: "🍽️", category: "disciplina",
+    id: "jejum", name: "Jejum", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"14\" cy=\"14\" r=\"9.4\"/><path d=\"M14 8.6V14l3.6 2.4\"/></svg>", category: "disciplina",
     description: "Abstenção voluntária de alimento como expressão de busca espiritual, arrependimento ou consagração.",
     nt: {
       supportTexts: [
@@ -3099,7 +3476,7 @@ const RITUALS = [
     },
   },
   {
-    id: "oferendas", name: "Oferendas e Sacrifícios", icon: "🎁", category: "material",
+    id: "oferendas", name: "Oferendas e Sacrifícios", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4.6 10.4h18.8v12.2H4.6Z\"/><path d=\"M4.6 10.4 7.4 5.4h13.2l2.8 5\"/><path d=\"M14 10.4v12.2\"/></svg>", category: "material",
     description: "Entrega de bens, dinheiro ou objetos como ato religioso - para Deus, para uma entidade ou como parte de um ritual.",
     nt: {
       supportTexts: [
@@ -3119,7 +3496,7 @@ const RITUALS = [
     },
   },
   {
-    id: "incorporacao", name: "Mediunidade e Incorporação", icon: "🌀", category: "espiritual",
+    id: "incorporacao", name: "Mediunidade e Incorporação", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20.6 9.2A8.4 8.4 0 1 0 22 14\"/><path d=\"M17.4 11.6A5 5 0 1 0 19 14\"/><circle cx=\"14\" cy=\"14\" r=\"1.4\"/></svg>", category: "espiritual",
     description: "Prática em que um médium entra em transe para permitir a manifestação de um espírito, guia ou entidade.",
     nt: {
       supportTexts: [],
@@ -3135,7 +3512,7 @@ const RITUALS = [
     },
   },
   {
-    id: "peregrinacao", name: "Monte, Peregrinação e Lugares Sagrados", icon: "⛰️", category: "espacial",
+    id: "peregrinacao", name: "Monte, Peregrinação e Lugares Sagrados", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 21.6 10.6 8l4.6 7.6L18.4 11l6.6 10.6Z\"/><circle cx=\"20\" cy=\"6.6\" r=\"2.2\"/></svg>", category: "espacial",
     description: "Deslocamento até um local considerado sagrado - monte, templo, cidade santa - como ato de devoção.",
     nt: {
       supportTexts: [
@@ -3152,7 +3529,7 @@ const RITUALS = [
     },
   },
   {
-    id: "velas-incenso", name: "Velas e Incenso", icon: "🕯️", category: "simbolico",
+    id: "velas-incenso", name: "Velas e Incenso", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4.4 17 11l7 .6-5.3 4.6 1.6 6.8L14 19.4 8.7 23l1.6-6.8L5 11.6 12 11Z\"/></svg>", category: "simbolico",
     description: "Uso de velas acesas e incenso como elemento simbólico, devocional ou de ambientação ritual.",
     nt: {
       supportTexts: [
@@ -3166,7 +3543,7 @@ const RITUALS = [
     },
   },
   {
-    id: "batismo", name: "Batismo", icon: "⛲", category: "purificacao",
+    id: "batismo", name: "Batismo", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4.6c3.2 3.8 5 6.7 5 9a5 5 0 0 1-10 0c0-2.3 1.8-5.2 5-9Z\"/><path d=\"M4 21.4c2-1.2 3.4-1.2 5.4 0s3.4 1.2 5.4 0 3.4-1.2 5.4 0\"/></svg>", category: "purificacao",
     description: "Rito de iniciação por imersão ou aspersão em água, em nome da Trindade, marcando a entrada na fé cristã.",
     nt: {
       supportTexts: [
@@ -3183,7 +3560,7 @@ const RITUALS = [
     },
   },
   {
-    id: "escrituras", name: "Escrituras e Autoridade Religiosa", icon: "📖", category: "autoridade",
+    id: "escrituras", name: "Escrituras e Autoridade Religiosa", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4.6v18.8\"/><path d=\"M6 9.4h16\"/><path d=\"M6 9.4 3.4 16a3.4 3.4 0 0 0 5.2 0Z\"/><path d=\"M22 9.4 19.4 16a3.4 3.4 0 0 0 5.2 0Z\"/></svg>", category: "autoridade",
     description: "Textos considerados de autoridade religiosa máxima por uma tradição - sagrados, revelados ou inspirados.",
     nt: {
       supportTexts: [
@@ -3202,7 +3579,7 @@ const RITUALS = [
     },
   },
   {
-    id: "sacerdocio", name: "Sacerdócio e Liderança Eclesiástica", icon: "🕊", category: "autoridade",
+    id: "sacerdocio", name: "Sacerdócio e Liderança Eclesiástica", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4.6v18.8\"/><path d=\"M6 9.4h16\"/><path d=\"M6 9.4 3.4 16a3.4 3.4 0 0 0 5.2 0Z\"/><path d=\"M22 9.4 19.4 16a3.4 3.4 0 0 0 5.2 0Z\"/></svg>", category: "autoridade",
     description: "Existência de uma figura, classe ou ofício de liderança religiosa - sacerdote, pastor, pai-de-santo, guru, médium dirigente - dentro da estrutura de uma tradição, com funções de ensino, condução ritual ou governo da comunidade.",
     nt: {
       supportTexts: [
@@ -3220,7 +3597,7 @@ const RITUALS = [
     },
   },
   {
-    id: "acesso-a-deus", name: "Acesso a Deus", icon: "🚪", category: "autoridade",
+    id: "acesso-a-deus", name: "Acesso a Deus", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4.6v18.8\"/><path d=\"M6 9.4h16\"/><path d=\"M6 9.4 3.4 16a3.4 3.4 0 0 0 5.2 0Z\"/><path d=\"M22 9.4 19.4 16a3.4 3.4 0 0 0 5.2 0Z\"/></svg>", category: "autoridade",
     description: "Como uma tradição apresenta o caminho para se aproximar de Deus ou do divino: diretamente, ou por meio de um mediador humano ou espiritual apresentado como necessário.",
     nt: {
       supportTexts: [
@@ -3240,7 +3617,7 @@ const RITUALS = [
     },
   },
   {
-    id: "oleo-uncao", name: "Óleo e Unção", icon: "🫒", category: "simbolico",
+    id: "oleo-uncao", name: "Óleo e Unção", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4.4 17 11l7 .6-5.3 4.6 1.6 6.8L14 19.4 8.7 23l1.6-6.8L5 11.6 12 11Z\"/></svg>", category: "simbolico",
     description: "Aplicação de óleo sobre uma pessoa ou objeto em contexto ritual, associada a cura, consagração, investidura a um ofício ou proteção espiritual.",
     nt: {
       supportTexts: [
@@ -3257,7 +3634,7 @@ const RITUALS = [
     },
   },
   {
-    id: "imposicao-maos", name: "Imposição de Mãos", icon: "🤲", category: "simbolico",
+    id: "imposicao-maos", name: "Imposição de Mãos", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4.4 17 11l7 .6-5.3 4.6 1.6 6.8L14 19.4 8.7 23l1.6-6.8L5 11.6 12 11Z\"/></svg>", category: "simbolico",
     description: "Ato de colocar as mãos sobre uma pessoa como sinal de bênção, cura, consagração a um ofício ou acompanhamento de oração.",
     nt: {
       supportTexts: [
@@ -3275,7 +3652,7 @@ const RITUALS = [
     },
   },
   {
-    id: "ceia-comunhao", name: "Ceia e Comunhão", icon: "🍞", category: "comunicacao",
+    id: "ceia-comunhao", name: "Ceia e Comunhão", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4.6 7.4h18.8v11.2H12.6L7.4 22.6v-4H4.6Z\"/><path d=\"M9 12.6h10\"/></svg>", category: "comunicacao",
     description: "Rito de comer pão e beber vinho (ou suco de uva) em memória da morte de Cristo, com diferentes entendimentos sobre a natureza dos elementos.",
     nt: {
       supportTexts: [
@@ -3292,7 +3669,7 @@ const RITUALS = [
     },
   },
   {
-    id: "confissao", name: "Confissão", icon: "🕯", category: "disciplina",
+    id: "confissao", name: "Confissão", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"14\" cy=\"14\" r=\"9.4\"/><path d=\"M14 8.6V14l3.6 2.4\"/></svg>", category: "disciplina",
     description: "Declaração ou reconhecimento de pecados - a Deus diretamente, a um sacerdote ou líder religioso, ou à comunidade - como parte do arrependimento e da restauração.",
     nt: {
       supportTexts: [
@@ -3309,7 +3686,7 @@ const RITUALS = [
     },
   },
   {
-    id: "imagens", name: "Imagens e Ícones", icon: "🖼", category: "simbolico",
+    id: "imagens", name: "Imagens e Ícones", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4.4 17 11l7 .6-5.3 4.6 1.6 6.8L14 19.4 8.7 23l1.6-6.8L5 11.6 12 11Z\"/></svg>", category: "simbolico",
     description: "Uso de imagens, estátuas ou ícones representando divindades, santos ou figuras sagradas, como auxílio devocional, objeto de veneração ou parte da liturgia.",
     nt: {
       supportTexts: [],
@@ -3822,7 +4199,7 @@ const WORLDVIEW_TOPICS = [
   {
     id: "origem-universo",
     title: "Origem do Universo (Big Bang)",
-    icon: "🌌",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     argument: {
       summary: "Cosmólogos convergem, com base em observações independentes (radiação cósmica de fundo, redshift de galáxias, nucleossíntese primordial), que o universo observável teve um início há aproximadamente 13,8 bilhões de anos - o modelo do Big Bang. Para muitos ateus e agnósticos, esse início não implica necessariamente uma causa pessoal ou um Criador: físicos como Lawrence Krauss propuseram que um universo pode, em princípio, surgir de um estado de vácuo quântico sem violar as leis físicas conhecidas, sem exigir uma causa externa no sentido clássico. Bertrand Russell, em seu célebre debate de 1948 com o padre Frederick Copleston, resumiu essa postura afirmando que \"o universo simplesmente existe, e é só isso\" - recusando a necessidade de buscar uma causa para a existência do próprio universo.",
       sources: [
@@ -3845,7 +4222,7 @@ const WORLDVIEW_TOPICS = [
   {
     id: "evolucao-biologica",
     title: "Evolução Biológica",
-    icon: "🧬",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     argument: {
       summary: "A teoria da evolução por seleção natural, proposta por Charles Darwin e desenvolvida pela biologia moderna, é o modelo científico consensual para explicar a diversidade e a aparente complexidade da vida, incluindo características que parecem \"desenhadas\" para uma função. Richard Dawkins argumentou, em \"O Relojoeiro Cego\" (1986), que a seleção natural produz complexidade adaptativa cumulativa e gradual, sem necessidade de um projetista consciente - um \"relojoeiro cego\", em suas palavras. Para muitos ateus e agnósticos, isso remove a necessidade de um Criador para explicar a origem das espécies, incluindo o ser humano.",
       sources: [
@@ -3866,7 +4243,7 @@ const WORLDVIEW_TOPICS = [
   {
     id: "ausencia-evidencia",
     title: "Ausência de Evidência Empírica de Deus",
-    icon: "🔍",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     argument: {
       summary: "Para muitos céticos, a ausência de evidência empírica, testável e repetível da existência de Deus é motivo suficiente para não crer, seguindo o princípio de que afirmações extraordinárias exigem evidências proporcionais. Bertrand Russell ilustrou esse ponto com sua analogia do \"bule de chá\": se alguém afirmasse existir um bule de porcelana orbitando o Sol entre a Terra e Marte, pequeno demais para ser detectado por telescópios, ninguém seria obrigado a acreditar só porque a afirmação não pode ser refutada - o ônus da prova recai sobre quem afirma, não sobre quem duvida. Antony Flew, de forma semelhante, questionou se afirmações religiosas não-falsificáveis (que nenhuma evidência poderia, em princípio, refutar) têm conteúdo cognitivo real.",
       sources: [
@@ -3887,7 +4264,7 @@ const WORLDVIEW_TOPICS = [
   {
     id: "problema-do-mal",
     title: "Problema do Mal e do Sofrimento",
-    icon: "⚖️",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     argument: {
       summary: "Um dos argumentos filosóficos mais antigos contra a existência de um Deus onipotente, onisciente e perfeitamente bom é o chamado \"problema do mal\": se Deus quer impedir o mal e não consegue, não é onipotente; se consegue e não quer, não é bom; se quer e consegue, por que o mal existe? Essa formulação é popularmente associada a Epicuro, embora a atribuição histórica direta seja debatida entre historiadores da filosofia; foi articulada de forma clássica por David Hume em \"Diálogos sobre a Religião Natural\" (publicado postumamente em 1779) e, no século XX, formalizada como um problema lógico por J.L. Mackie em \"Evil and Omnipotence\" (Mind, 1955).",
       sources: [
@@ -3909,7 +4286,7 @@ const WORLDVIEW_TOPICS = [
   {
     id: "moralidade-secular",
     title: "Moralidade sem Religião (Humanismo Secular)",
-    icon: "🤝",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     argument: {
       summary: "Muitos ateus, agnósticos e humanistas seculares argumentam que é possível fundamentar uma ética robusta - com conceitos como dignidade humana, direitos e responsabilidade moral - sem recorrer a um mandamento divino, apelando à razão, à empatia, ao bem-estar e ao consenso social. O \"Manifesto Humanista III\" (2003), da Associação Humanista Americana, afirma que os valores éticos derivam da necessidade e do interesse humanos, testados pela experiência, sem referência a uma autoridade sobrenatural. Sam Harris, em \"The Moral Landscape\" (2010), argumenta que a ciência pode, em princípio, informar julgamentos sobre bem-estar humano e, portanto, sobre moralidade.",
       sources: [
@@ -3960,7 +4337,7 @@ const BIBLIOTECA_TOPICS = [
   // ------------------------------------------------------------
   {
     id: "dizimo",
-    icon: "💰",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     category: "Dinheiro e Igreja",
     title: "Dízimo obrigatório",
     summary: "Dez por cento da renda como mandamento permanente - ou lei cerimonial já cumprida em Cristo?",
@@ -4013,7 +4390,7 @@ const BIBLIOTECA_TOPICS = [
   // ------------------------------------------------------------
   {
     id: "ofertas-semente",
-    icon: "🌱",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     category: "Dinheiro e Igreja",
     title: "Ofertas e “semente” como obrigação ou fórmula de prosperidade",
     summary: "Ofertar como investimento espiritual com retorno multiplicado - ou generosidade sem cálculo?",
@@ -4056,7 +4433,7 @@ const BIBLIOTECA_TOPICS = [
   // ------------------------------------------------------------
   {
     id: "prosperidade-financeira",
-    icon: "📈",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     category: "Dinheiro e Igreja",
     title: "Prosperidade financeira como direito do crente",
     summary: "Riqueza garantida a todo fiel obediente - ou contentamento em qualquer circunstância?",
@@ -4100,7 +4477,7 @@ const BIBLIOTECA_TOPICS = [
   // ------------------------------------------------------------
   {
     id: "maldicoes-geracionais",
-    icon: "🔗",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     category: "Sofrimento e Cura",
     title: "Maldições geracionais",
     summary: "Pecados dos antepassados operando sobre os descendentes - ou responsabilidade individual diante de Deus?",
@@ -4153,7 +4530,7 @@ const BIBLIOTECA_TOPICS = [
   // ------------------------------------------------------------
   {
     id: "amarrar-demonios",
-    icon: "⛓️",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     category: "Espírito e Prática",
     title: "Quebra de maldições e “amarrar demônios”",
     summary: "Fórmulas verbais de guerra espiritual repetidas em culto - ou disciplina eclesiástica mal aplicada?",
@@ -4196,7 +4573,7 @@ const BIBLIOTECA_TOPICS = [
   // ------------------------------------------------------------
   {
     id: "linguas-evidencia",
-    icon: "🗣️",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     category: "Espírito e Prática",
     title: "Falar em línguas como evidência obrigatória",
     summary: "Sinal físico obrigatório do batismo no Espírito - ou um entre vários dons distribuídos “a cada um como quer”?",
@@ -4249,7 +4626,7 @@ const BIBLIOTECA_TOPICS = [
   // ------------------------------------------------------------
   {
     id: "pastor-mediador",
-    icon: "🚪",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     category: "Autoridade e Mediação",
     title: "Pastor como mediador entre Deus e o homem",
     summary: "Autoridade espiritual que substitui o acesso direto do crente a Deus - ou serviço e exemplo dentro de um sacerdócio de todos os crentes?",
@@ -4302,7 +4679,7 @@ const BIBLIOTECA_TOPICS = [
   // ------------------------------------------------------------
   {
     id: "confissao-positiva",
-    icon: "💬",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     category: "Espírito e Prática",
     title: "Confissão positiva / declaração de fé como poder mágico",
     summary: "Palavras que criam realidade automaticamente - ou sabedoria prática sobre o impacto real da fala?",
@@ -4355,7 +4732,7 @@ const BIBLIOTECA_TOPICS = [
   // ------------------------------------------------------------
   {
     id: "cura-garantida",
-    icon: "🩹",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     category: "Sofrimento e Cura",
     title: "Cura física garantida para todo crente",
     summary: "Cura incluída na cruz para todo fiel com fé suficiente - ou graça suficiente mesmo na fraqueza?",
@@ -4408,7 +4785,7 @@ const BIBLIOTECA_TOPICS = [
   // ------------------------------------------------------------
   {
     id: "uncao-cair-espirito",
-    icon: "✨",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     category: "Espírito e Prática",
     title: "Unção e “cair no espírito” como prática bíblica",
     summary: "Fiéis derrubados pelo toque do pregador em série - ou prostração diante da glória direta de Deus?",
@@ -4461,7 +4838,7 @@ const BIBLIOTECA_TOPICS = [
   // ------------------------------------------------------------
   {
     id: "pastores-milionarios",
-    icon: "🏦",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     category: "Dinheiro e Igreja",
     title: "Pastores que se tornam milionários com o dinheiro dos fiéis",
     summary: "O que a Bíblia realmente diz sobre líderes religiosos que acumulam fortuna com dízimos e ofertas.",
@@ -4530,7 +4907,7 @@ const BIBLIOTECA_TOPICS = [
   // ------------------------------------------------------------
   {
     id: "purgatorio",
-    icon: "🔥",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     category: "Além-vida e Salvação",
     tradition: "Catolicismo Romano",
     title: "Purgatório",
@@ -4591,7 +4968,7 @@ const BIBLIOTECA_TOPICS = [
   // ------------------------------------------------------------
   {
     id: "maria-mediadora",
-    icon: "🙏",
+    icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>",
     category: "Autoridade e Mediação",
     tradition: "Catolicismo Romano",
     title: "Maria e os santos como intercessores junto a Deus",
@@ -5559,17 +5936,17 @@ if (typeof module !== "undefined") {
 
   function categoryStrip() {
     var cats = [
-      { icon: "✝️", name: "DEUS", desc: "O que cada religião ensina sobre Deus", target: "#/busca?q=deus" },
-      { icon: "☦", name: "JESUS", desc: "Quem é Jesus para cada tradição", target: "#/busca?q=jesus" },
-      { icon: "🕊️", name: "SALVAÇÃO", desc: "Como cada religião entende a salvação", target: "#/busca?q=salvacao" },
-      { icon: "📖", name: "ESCRITURAS", desc: "Livros e autoridades de cada religião", target: "#/biblia/escrituras" },
-      { icon: "🔥", name: "RITOS", desc: "Práticas e cerimônias comparadas", target: "#/ritos" },
-      { icon: "🙏", name: "ORAÇÃO", desc: "Como cada tradição se comunica com o divino", target: "#/biblia/oracao" },
-      { icon: "💧", name: "PURIFICAÇÃO", desc: "Água, jejum, banhos e limpeza espiritual", target: "#/biblia/agua" },
-      { icon: "🌀", name: "ESPÍRITOS", desc: "Crenças sobre o mundo espiritual", target: "#/biblia/incorporacao" },
-      { icon: "♾️", name: "VIDA APÓS A MORTE", desc: "O que cada tradição ensina", target: "#/busca?q=vida apos a morte" },
-      { icon: "🚪", name: "ACESSO A DEUS", desc: "Mediação, sacerdócio e o mediador único", target: "#/biblia/acesso-a-deus" },
-      { icon: "📕", name: "NOVO TESTAMENTO", desc: "O que o texto bíblico apresenta", target: "#/biblia" },
+      { icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4.6 24 22.4H4Z\"/><circle cx=\"14\" cy=\"16.4\" r=\"2.5\"/></svg>", name: "DEUS", desc: "O que cada religião ensina sobre Deus", target: "#/busca?q=deus" },
+      { icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4v20M7.4 10.6h13.2\"/></svg>", name: "JESUS", desc: "Quem é Jesus para cada tradição", target: "#/busca?q=jesus" },
+      { icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8.5 23V9.6a5.5 5.5 0 0 1 11 0V23\"/><path d=\"M3 23h22\"/><path d=\"M14 23v-6\"/></svg>", name: "SALVAÇÃO", desc: "Como cada religião entende a salvação", target: "#/busca?q=salvacao" },
+      { icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 8.4v14\"/><path d=\"M14 8.4C11.6 6.6 8.3 6 4.8 6.6v13.8c3.5-.6 6.8 0 9.2 1.8\"/><path d=\"M14 8.4c2.4-1.8 5.7-2.4 9.2-1.8v13.8c-3.5-.6-6.8 0-9.2 1.8\"/></svg>", name: "ESCRITURAS", desc: "Livros e autoridades de cada religião", target: "#/biblia/escrituras" },
+      { icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8 5h12l-1 6.2A5.2 5.2 0 0 1 14 15.6 5.2 5.2 0 0 1 9 11.2Z\"/><path d=\"M14 15.6V22\"/><path d=\"M9.4 22h9.2\"/></svg>", name: "RITOS", desc: "Práticas e cerimônias comparadas", target: "#/ritos" },
+      { icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M11.6 23V8.2a2 2 0 0 1 4 0\"/><path d=\"M16.4 23V8.2a2 2 0 0 0-4 0\"/><path d=\"M8.6 23h10.8\"/><path d=\"M14 4.4v1.6\"/></svg>", name: "ORAÇÃO", desc: "Como cada tradição se comunica com o divino", target: "#/biblia/oracao" },
+      { icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4.6c3.2 3.8 5 6.7 5 9a5 5 0 0 1-10 0c0-2.3 1.8-5.2 5-9Z\"/><path d=\"M4 21.4c2-1.2 3.4-1.2 5.4 0s3.4 1.2 5.4 0 3.4-1.2 5.4 0\"/></svg>", name: "PURIFICAÇÃO", desc: "Água, jejum, banhos e limpeza espiritual", target: "#/biblia/agua" },
+      { icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20.6 9.2A8.4 8.4 0 1 0 22 14\"/><path d=\"M17.4 11.6A5 5 0 1 0 19 14\"/><circle cx=\"14\" cy=\"14\" r=\"1.4\"/></svg>", name: "ESPÍRITOS", desc: "Crenças sobre o mundo espiritual", target: "#/biblia/incorporacao" },
+      { icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 20.4h20\"/><path d=\"M7.6 20.4a6.4 6.4 0 0 1 12.8 0\"/><path d=\"M14 4.6v3M5.8 8.2l2 2M22.2 8.2l-2 2\"/></svg>", name: "VIDA APÓS A MORTE", desc: "O que cada tradição ensina", target: "#/busca?q=vida apos a morte" },
+      { icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 4.6h7v18.8H5Z\"/><path d=\"M16 4.6h7v18.8h-7Z\"/><path d=\"M14 3v22\"/></svg>", name: "ACESSO A DEUS", desc: "Mediação, sacerdócio e o mediador único", target: "#/biblia/acesso-a-deus" },
+      { icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7.4 5.6h13.2v16.8H7.4Z\"/><path d=\"M7.4 5.6a2.2 2.2 0 0 0 0 4.4h2.4\"/><path d=\"M20.6 22.4a2.2 2.2 0 0 0 0-4.4h-2.4\"/><path d=\"M11.4 12.6h6M11.4 15.8h6\"/></svg>", name: "NOVO TESTAMENTO", desc: "O que o texto bíblico apresenta", target: "#/biblia" },
     ];
     return cats.map(function (c) {
       return '<a class="category-chip" href="' + c.target + '"><span class="emoji">' + c.icon + "</span><strong>" + c.name + '</strong><span class="desc">' + c.desc + "</span></a>";
@@ -5669,7 +6046,7 @@ if (typeof module !== "undefined") {
         '<div class="mrc-row"><span class="rel-name">' + esc(a.shortName) + '</span><span class="status-pill" style="background:' + sta.color + '22;color:' + sta.color + '">' + sta.icon + " " + esc(sta.label) + "</span></div>" +
         rowB +
         (ca.usage ? '<p class="mrc-usage">' + glossify(ca.usage) + "</p>" : "") +
-        '<details class="nt-group-mobile"><summary>📖 Ver análise bíblica<span class="chevron">▸</span></summary>' + ntPanelBody(rit) + "</details>" +
+        '<details class="nt-group-mobile"><summary>Ver análise bíblica<span class="chevron">▸</span></summary>' + ntPanelBody(rit) + "</details>" +
         "</div>"
       );
     }).join("");
@@ -5692,11 +6069,11 @@ if (typeof module !== "undefined") {
     var cl = CLASSIFICATIONS[rit.nt.classification];
     return (
       '<div class="nt-classification" style="color:' + esc(cl.color) + '">' + cl.icon + " " + esc(cl.label) + "</div>" +
-      ntVerseGroup("✅", "Textos que apoiam", rit.nt.supportTexts) +
+      ntVerseGroup("●", "Textos que apoiam", rit.nt.supportTexts) +
       '<hr class="nt-panel-divider">' +
-      ntVerseGroup("⚠️", "Textos que limitam", rit.nt.limitTexts) +
+      ntVerseGroup("◑", "Textos que limitam", rit.nt.limitTexts) +
       '<hr class="nt-panel-divider">' +
-      ntVerseGroup("✖️", "Textos que rejeitam", rit.nt.rejectTexts) +
+      ntVerseGroup("✕", "Textos que rejeitam", rit.nt.rejectTexts) +
       '<div class="nt-panel-conclusion"><strong>Conclusão:</strong> ' + glossify(rit.nt.conclusion || rit.nt.context || "") + "</div>"
     );
   }
@@ -5770,7 +6147,7 @@ if (typeof module !== "undefined") {
       // entra em qualquer comparação. Ganha a mesma cartela dos outros atos.
       '<section class="category-strip"><div class="container">' +
       '<div class="section-head"><div><span class="eyebrow">Por onde começar</span>' +
-      "<h2>Nove eixos de comparação</h2>" +
+      "<h2>Onze eixos de comparação</h2>" +
       "<p>Cada tradição do site é descrita e comparada por estes eixos - o mesmo recorte para todas.</p></div></div>" +
       '<div class="category-scroll">' + categoryStrip() + "</div>" +
       "</div></section>" +
@@ -5971,7 +6348,7 @@ if (typeof module !== "undefined") {
       '<div class="bib-promo-card">' +
       '<div class="bib-promo-copy">' +
       '<span class="eyebrow">A Verdade Sem Filtro</span>' +
-      "<h2>📖 Biblioteca Bíblica</h2>" +
+      "<h2>Biblioteca Bíblica</h2>" +
       '<p>' + count + ' temas em que a tradição eclesiástica se afastou do texto - dízimo obrigatório, prosperidade, maldições geracionais, cura garantida e mais - examinados com o texto integral em quatro versões da Bíblia, contexto histórico e a diferença entre o Antigo Testamento e a Nova Aliança.</p>' +
       '<a class="btn btn-gold btn-cta-primary" href="#/biblioteca"><span>EXAMINAR OS TEMAS</span>' + arrowIcon() + "</a>" +
       "</div>" +
@@ -6118,10 +6495,10 @@ if (typeof module !== "undefined") {
   // Temas doutrinários (texto livre em data-religions.js) - comparados
   // por sobreposição de palavras-chave reais dos dois textos cadastrados.
   var COMPARE_DOCTRINE_THEMES = [
-    { key: "god", icon: "🌌", label: "Deus", field: "god" },
-    { key: "jesus", icon: "✝", label: "Jesus", field: "jesus" },
-    { key: "salvation", icon: "🔑", label: "Salvação", field: "salvation" },
-    { key: "afterlife", icon: "🌅", label: "Vida após a morte", field: "afterlife" },
+    { key: "god", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>", label: "Deus", field: "god" },
+    { key: "jesus", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>", label: "Jesus", field: "jesus" },
+    { key: "salvation", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>", label: "Salvação", field: "salvation" },
+    { key: "afterlife", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg>", label: "Vida após a morte", field: "afterlife" },
   ];
   // Temas rituais (categóricos em data-matrix.js) - todos os ritos já
   // cadastrados no sistema entram na comparação, na mesma ordem usada
@@ -6229,7 +6606,7 @@ if (typeof module !== "undefined") {
     var diffs = themes.filter(function (t) { return t.relation === "diferente"; });
     if (a.assessment.status !== b.assessment.status) {
       diffs.unshift({
-        key: "assessment", icon: "⚖️", label: "Avaliação bíblica geral", relation: "diferente",
+        key: "assessment", icon: "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4.6v18.8\"/><path d=\"M6 9.4h16\"/><path d=\"M6 9.4 3.4 16a3.4 3.4 0 0 0 5.2 0Z\"/><path d=\"M22 9.4 19.4 16a3.4 3.4 0 0 0 5.2 0Z\"/></svg>", label: "Avaliação bíblica geral", relation: "diferente",
         note: a.shortName + " está classificada como “" + statusLabel(a.assessment.status) + "”, enquanto " + b.shortName + " está como “" + statusLabel(b.assessment.status) + "”.",
       });
     }
@@ -6237,9 +6614,9 @@ if (typeof module !== "undefined") {
   }
 
   var COMPARE_RELATION_META = {
-    semelhante: { icon: "🟢", label: "Ensinamento semelhante", cls: "rel-sim" },
-    diferente: { icon: "🟠", label: "Ensinamento diferente", cls: "rel-diff" },
-    naplica: { icon: "⚪", label: "Não se aplica", cls: "rel-na" },
+    semelhante: { icon: "●", label: "Ensinamento semelhante", cls: "rel-sim" },
+    diferente: { icon: "◑", label: "Ensinamento diferente", cls: "rel-diff" },
+    naplica: { icon: "○", label: "Não se aplica", cls: "rel-na" },
   };
   function compareRelationPill(relation) {
     var m = COMPARE_RELATION_META[relation] || COMPARE_RELATION_META.naplica;
@@ -6353,8 +6730,8 @@ if (typeof module !== "undefined") {
     }
     return (
       '<div class="compare-summary-grid">' +
-      '<div class="summary-card summary-sims"><h3>🟢 Semelhanças principais</h3>' + list(sims, "Poucas semelhanças diretas encontradas na nossa base de dados.") + "</div>" +
-      '<div class="summary-card summary-diffs"><h3>🟠 Diferenças principais</h3>' + list(diffs, "Sem diferenças marcantes identificadas na nossa base de dados.") + "</div>" +
+      '<div class="summary-card summary-sims"><h3>● Semelhanças principais</h3>' + list(sims, "Poucas semelhanças diretas encontradas na nossa base de dados.") + "</div>" +
+      '<div class="summary-card summary-diffs"><h3>◑ Diferenças principais</h3>' + list(diffs, "Sem diferenças marcantes identificadas na nossa base de dados.") + "</div>" +
       "</div>"
     );
   }
@@ -7690,7 +8067,7 @@ if (typeof module !== "undefined") {
   function aiAskPanelMarkup() {
     return (
       '<div class="ai-ask-panel">' +
-      '<div class="ai-ask-head"><span class="ai-ask-badge">✨ IA</span><h3>Pergunte à nossa IA</h3></div>' +
+      '<div class="ai-ask-head"><span class="ai-ask-badge">IA</span><h3>Pergunte à nossa IA</h3></div>' +
       '<p class="small">Faça uma pergunta em linguagem natural. A resposta é gerada por IA, mas só com base nos dados já cadastrados neste site - nunca inventa religiões, versículos ou fontes.</p>' +
       '<form id="ai-ask-form" class="search-box">' +
       '<input type="text" id="ai-ask-input" maxlength="400" placeholder="Ex.: o que o Novo Testamento diz sobre o batismo por imersão?" aria-label="Pergunte à nossa IA" autocomplete="off">' +
@@ -7757,7 +8134,7 @@ if (typeof module !== "undefined") {
       items.map(function (s) {
         var hasLink = !!(s.url && isSafeUrl(s.url));
         return (
-          '<li class="source-item"><span class="src-icon">' + (hasLink ? "🔗" : "📄") + '</span><div class="src-body">' +
+          '<li class="source-item"><span class="src-icon">' + (hasLink ? '<span class="ic"><svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M11.4 16.6a4.6 4.6 0 0 0 6.6 0l3.4-3.4a4.66 4.66 0 0 0-6.6-6.6L13 8.4\"/><path d=\"M16.6 11.4a4.6 4.6 0 0 0-6.6 0l-3.4 3.4a4.66 4.66 0 0 0 6.6 6.6L15 19.6\"/></svg></span>' : '<span class="ic"><svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.4 4.6h17.2v18.8H5.4Z\"/><path d=\"M9 10h10M9 14h10M9 18h6\"/></svg></span>') + '</span><div class="src-body">' +
           '<div class="src-type">' + (hasLink ? "Fonte externa" : "Fonte citada") + "</div>" +
           '<div class="src-title">' + esc(s.title) + "</div>" +
           (s.author ? '<div class="src-desc">' + esc(s.author) + "</div>" : "") +
@@ -7806,14 +8183,14 @@ if (typeof module !== "undefined") {
       '<div class="info-card worldview-card" id="wv-' + topic.id + '">' +
       '<h3>' + topic.icon + " " + esc(topic.title) + "</h3>" +
       '<div class="worldview-block worldview-argument">' +
-      '<h4>🗣 O argumento cético</h4>' +
+      '<h4>O argumento cético</h4>' +
       "<p>" + esc(a.summary) + "</p>" +
       '<div class="worldview-sources"><strong>Fontes:</strong><ul style="padding-left:18px;margin:6px 0 0">' +
       a.sources.map(function (s) { return "<li style='margin-bottom:4px'><strong>" + esc(s.ref) + "</strong> - <span class='small'>" + esc(s.note) + "</span></li>"; }).join("") +
       "</ul></div>" +
       "</div>" +
       '<div class="worldview-block worldview-response">' +
-      '<h4>✝️ A resposta cristã</h4>' +
+      '<h4>A resposta cristã</h4>' +
       '<p><strong>Onde há compatibilidade:</strong> ' + esc(r.compatibility) + "</p>" +
       '<p><strong>Onde os pressupostos divergem:</strong> ' + esc(r.divergence) + "</p>" +
       r.verses.map(function (v) { return verseBlock(v); }).join("") +
@@ -8137,7 +8514,7 @@ if (typeof module !== "undefined") {
       '<section class="section bib-page"><div class="container">' +
       '<div class="bib-search-hero">' +
       '<span class="eyebrow">A Verdade Sem Filtro</span>' +
-      "<h2>📖 Biblioteca Bíblica</h2>" +
+      "<h2>Biblioteca Bíblica</h2>" +
       "<p>Um Google da Bíblia: pesquise uma prática, uma doutrina ou o nome de uma religião e veja o texto bíblico integral em quatro versões, o contexto histórico e a diferença entre o que se ensina hoje e o que a Nova Aliança, inaugurada pela morte e ressurreição de Cristo, de fato diz - em todas as religiões e denominações mapeadas pelo site, não apenas no meio evangélico.</p>" +
       '<form id="bib-search-form" class="bib-search-box" role="search">' +
       searchIcon() +
@@ -8175,7 +8552,7 @@ if (typeof module !== "undefined") {
 
   function bibleComparatorMarkup(prefill) {
     return (
-      '<h3>📖 Comparador de Versões da Bíblia</h3>' +
+      '<h3>Comparador de Versões da Bíblia</h3>' +
       '<p class="sub">Compare o mesmo versículo em diferentes traduções da Bíblia cristã em português (dados ao vivo via <a href="https://www.abibliadigital.com.br/" target="_blank" rel="noopener noreferrer">A Bíblia Digital</a>).</p>' +
       '<form id="bible-compare-form" class="bible-form">' +
       '<input type="text" id="bible-ref-input" placeholder="Ex.: João 3:16" value="' + esc(prefill || "") + '">' +
@@ -8278,7 +8655,7 @@ if (typeof module !== "undefined") {
     "toggle-theme": function () {
       STATE.theme = STATE.theme === "dark" ? "light" : "dark";
       document.documentElement.setAttribute("data-theme", STATE.theme);
-      $("#theme-icon").textContent = STATE.theme === "dark" ? "🌙" : "☀️";
+      $("#theme-icon").innerHTML = STATE.theme === "dark" ? "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21.6 16.4A8.6 8.6 0 0 1 11.6 6.4a8.6 8.6 0 1 0 10 10Z\"/></svg>" : "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"14\" cy=\"14\" r=\"4.6\"/><path d=\"M14 3v2.6M14 22.4V25M3 14h2.6M22.4 14H25M6.2 6.2l1.9 1.9M19.9 19.9l1.9 1.9M21.8 6.2l-1.9 1.9M8.1 19.9l-1.9 1.9\"/></svg>";
     },
     "toggle-simple": function (el) {
       STATE.glossaryOn = !STATE.glossaryOn;
@@ -8447,7 +8824,7 @@ if (typeof module !== "undefined") {
     },
     "open-compare-sources": function (el) {
       var content = (
-        "<h3>📚 Fontes e Referências desta comparação</h3>" +
+        "<h3>Fontes e Referências desta comparação</h3>" +
         '<p class="sub">Base bíblica, histórica e acadêmica usada nas análises deste site.</p>' +
         sourceGroup("Fontes Bíblicas", SOURCES.biblicas) +
         sourceGroup("Fontes Históricas e Acadêmicas", SOURCES.historicas.concat(SOURCES.academicas)) +
@@ -8783,8 +9160,8 @@ if (typeof module !== "undefined") {
       "</nav>" +
       '<div class="header-actions">' +
       '<span class="simple-mode-toggle" title="Explicar termos técnicos em linguagem simples"><button class="switch on" data-action="toggle-simple" aria-label="Alternar explicações simples" aria-pressed="true"></button></span>' +
-      '<button class="icon-btn" data-action="toggle-theme" aria-label="Alternar modo claro ou escuro"><span id="theme-icon" aria-hidden="true">' + (STATE.theme === "dark" ? "🌙" : "☀️") + "</span></button>" +
-      '<button class="icon-btn hamburger" data-action="toggle-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">☰</button>' +
+      '<button class="icon-btn" data-action="toggle-theme" aria-label="Alternar modo claro ou escuro"><span id="theme-icon" aria-hidden="true">' + (STATE.theme === "dark" ? "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21.6 16.4A8.6 8.6 0 0 1 11.6 6.4a8.6 8.6 0 1 0 10 10Z\"/></svg>" : "<svg viewBox=\"0 0 28 28\" width=\"1.35em\" height=\"1.35em\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"14\" cy=\"14\" r=\"4.6\"/><path d=\"M14 3v2.6M14 22.4V25M3 14h2.6M22.4 14H25M6.2 6.2l1.9 1.9M19.9 19.9l1.9 1.9M21.8 6.2l-1.9 1.9M8.1 19.9l-1.9 1.9\"/></svg>") + "</span></button>" +
+      '<button class="icon-btn hamburger" data-action="toggle-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>' +
       "</div></div></header>" +
       '<div class="mobile-drawer" id="mobile-drawer">' +
       '<div class="backdrop" data-action="close-menu"></div>' +
@@ -10427,6 +10804,30 @@ window.MuseuThree = {
 };
 window.dispatchEvent(new Event("museu-three-ready"));
 
+</script>
+
+<script>
+/* Camada v2 — progresso de leitura e cabeçalho reativo, válidos em todas as rotas. */
+(function () {
+  var bar = document.createElement("div");
+  bar.id = "v2-progress"; bar.setAttribute("aria-hidden", "true");
+  bar.innerHTML = "<i></i>";
+  document.body.appendChild(bar);
+  var fill = bar.firstChild, ticking = false;
+  function tick() {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      fill.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+      var h = document.querySelector(".site-header");
+      if (h) h.classList.toggle("is-scrolled", window.scrollY > 24);
+      ticking = false;
+    });
+  }
+  window.addEventListener("scroll", tick, { passive: true });
+  window.addEventListener("hashchange", function () { setTimeout(tick, 60); });
+  tick();
+})();
 </script>
 </body>
 </html>
