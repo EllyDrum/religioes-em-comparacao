@@ -3010,7 +3010,7 @@ if (typeof module !== "undefined") {
     if (parts[0] === "ateismo") return { name: "ateismo", query: query };
     if (parts[0] === "biblioteca" && parts[1]) return { name: "biblioteca", topic: parts[1], query: query };
     if (parts[0] === "biblioteca") return { name: "biblioteca", query: query };
-    if (parts[0] === "ritos") return { name: "home", scrollTo: "ritos-section", query: query };
+    if (parts[0] === "ritos") return { name: "ritos", query: query };
     return { name: "home", query: query };
   }
 
@@ -3031,6 +3031,7 @@ if (typeof module !== "undefined") {
     STATE.museu4dPlaying = false;
     if (route.name === "busca" && route.query.q) saveRecentSearch(route.query.q);
     if (route.name === "home") html = pageHome();
+    else if (route.name === "ritos") html = pageRitos();
     else if (route.name === "religiao") html = pageReligion(route.slug);
     else if (route.name === "compare-hub") html = pageCompareHub();
     else if (route.name === "compare") html = pageCompare(route.a, route.b);
@@ -3056,9 +3057,9 @@ if (typeof module !== "undefined") {
 
   function updateActiveNav(route) {
     $all(".main-nav a, .mobile-drawer a").forEach(function (a) { a.classList.remove("active"); });
-    var map = { home: "/", "compare-hub": "/comparar", compare: "/comparar", timeline: "/linha-do-tempo", biblia: "/biblia", ateismo: "/ateismo", biblioteca: "/biblioteca", fontes: "/fontes", sobre: "/sobre", humanidade: "/humanidade" };
+    var map = { home: "/", ritos: "/ritos", "compare-hub": "/comparar", compare: "/comparar", timeline: "/linha-do-tempo", biblia: "/biblia", ateismo: "/ateismo", biblioteca: "/biblioteca", fontes: "/fontes", sobre: "/sobre", humanidade: "/humanidade" };
     var href = map[route.name];
-    if (route.name === "home" && route.scrollTo === "ritos-section") href = "/ritos";
+    if (route.name === "ritos") href = "/ritos";
     if (href) $all('a[href="' + href + '"]').forEach(function (a) { a.classList.add("active"); });
     // efeito de chegada no item do menu principal + fio deslizante
     var prev = $(".main-nav a.is-arriving");
@@ -3298,6 +3299,39 @@ if (typeof module !== "undefined") {
       return '<button type="button" class="chip nv-filter" data-nvf="' + x[0] + '" aria-pressed="' + (x[0] === "all") + '">' +
         x[1] + ' <span class="ref">' + x[2] + "</span></button>";
     }).join("") + "</div>";
+  }
+
+  // ============================================================
+  // RITOS E PRÁTICAS — página própria (Ato III)
+  // ============================================================
+  function pageRitos() {
+    return (
+      '<section class="hero"><div class="container">' +
+      '<span class="eyebrow eyebrow-act">Ato III · Examine</span>' +
+      "<h1>Ritos e práticas, lado a lado</h1>" +
+      '<p class="lead">Dezessete ritos comparados entre dezessete tradições. A tabela registra o que cada uma pratica — nada mais. A avaliação bíblica fica no dossiê ao lado, separada de propósito.</p>' +
+      '<div class="hero-actions">' +
+      '<a class="btn btn-gold btn-cta-primary" href="/biblia/"><span>Ver a análise completa por rito</span>' + arrowIcon() + "</a>" +
+      '<a class="btn btn-outline btn-cta-secondary" href="/comparar/"><span>Comparar duas tradições</span></a>' +
+      "</div></div></section>" +
+
+      '<section class="section nv-inverse" id="ritos-section"><div class="container">' +
+      '<div class="section-head"><div><span class="eyebrow">Comparação geral</span>' +
+      "<h2>Dezessete ritos, dezessete tradições</h2>" +
+      "<p>Clique no nome de um rito para trocar o dossiê; passe o mouse sobre uma coluna para destacá-la.</p></div></div>" +
+      ritualTableSection("agua") +
+      "</div></section>" +
+
+      '<section class="section"><div class="container">' +
+      '<div class="section-head"><div><span class="eyebrow">Por onde continuar</span><h2>Cada rito tem um exame próprio</h2>' +
+      "<p>Na análise completa, cada prática aparece com os textos que a apoiam, os que a limitam, os que a rejeitam e a conclusão à luz da Nova Aliança.</p></div>" +
+      '<a class="btn btn-navy btn-sm" href="/biblia/">Abrir a análise bíblica</a></div>' +
+      "</div></section>" +
+
+      '<section class="section"><div class="container"><div class="disclaimer">' +
+      "<strong>Observação não é aprovação.</strong> Esta tabela descreve práticas; não as endossa nem as condena. A avaliação à luz do Novo Testamento é apresentada à parte, como interpretação cristã declarada - não como fato histórico." +
+      "</div></div></section>"
+    );
   }
 
   function pageHome() {
